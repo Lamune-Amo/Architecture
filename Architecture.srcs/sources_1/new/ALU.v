@@ -38,22 +38,23 @@ module ALU(
         RESERsVED 1011 1100 1101 1110 1111 */
         
     wire [31:0] w_and, w_or, w_xor, w_not, w_add, w_extend, w_compare, w_lsr, w_asr, w_lsl;
+    wire cout_prev, cout;
     
     assign w_and = source & operand;
     assign w_or = source | operand;
     assign w_xor = source ^ operand;
     assign w_not = ~operand;
-    assign w_lsr = a >> b;
-    assign w_asr = a >>> b;
-    assign w_lsl = a << b;
+    assign w_lsr = source >> operand;
+    assign w_asr = $signed(source) >>> operand;
+    assign w_lsl = source << operand;
     
     Adder_32bit adder (
         .a(source),
         .b(opcode == 4'b0101 ? w_not : operand),
         .cin(opcode == 4'b0101 ? 1'b1 : 1'b0),
         .s(w_add),
-        .cout_prev(),
-        .cout()
+        .cout_prev(cout_prev),
+        .cout(cout)
     );
     Extender_32bit extender (
         .a(source),
@@ -73,4 +74,8 @@ module ALU(
                     (opcode == 4'b1001) ? w_asr :
                     (opcode == 4'b1010) ? w_lsl : 32'h0;
 
+    assign c = (opcode == 4'b0100 || opcode == 4'b0101) ? cout : 1'b0;
+    assign n = result[31];
+    assign z = (result == 32'h0) ? 1'b1 : 1'b0;
+    assign v = (opcode == 4'b0100 || opcode == 4'b0101) ? cout_prev ^ cout : 1'b0;
 endmodule

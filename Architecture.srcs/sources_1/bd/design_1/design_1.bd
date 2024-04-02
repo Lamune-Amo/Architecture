@@ -1,0 +1,139 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xDC937B03EF4B7687",
+      "device": "xc7z020clg484-1",
+      "gen_directory": "../../../../Architecture.gen/sources_1/bd/design_1",
+      "name": "design_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2023.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "Motherboard_0": ""
+    },
+    "ports": {
+      "CLK": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "RST"
+          },
+          "CLK_DOMAIN": {
+            "value": "design_1_CLK",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "HSYNC": {
+        "direction": "O"
+      },
+      "VSYNC": {
+        "direction": "O"
+      },
+      "RGB": {
+        "direction": "O",
+        "left": "11",
+        "right": "0"
+      },
+      "RST": {
+        "direction": "I"
+      }
+    },
+    "components": {
+      "Motherboard_0": {
+        "vlnv": "xilinx.com:module_ref:Motherboard:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_Motherboard_0_0",
+        "xci_path": "ip\\design_1_Motherboard_0_0\\design_1_Motherboard_0_0.xci",
+        "inst_hier_path": "Motherboard_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Motherboard",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "CLK": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "RST",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_CLK",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "RST": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "HSYNC": {
+            "direction": "O"
+          },
+          "VSYNC": {
+            "direction": "O"
+          },
+          "RGB": {
+            "direction": "O",
+            "left": "11",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "CLK_1": {
+        "ports": [
+          "CLK",
+          "Motherboard_0/CLK"
+        ]
+      },
+      "Motherboard_0_HSYNC": {
+        "ports": [
+          "Motherboard_0/HSYNC",
+          "HSYNC"
+        ]
+      },
+      "Motherboard_0_RGB": {
+        "ports": [
+          "Motherboard_0/RGB",
+          "RGB"
+        ]
+      },
+      "Motherboard_0_VSYNC": {
+        "ports": [
+          "Motherboard_0/VSYNC",
+          "VSYNC"
+        ]
+      },
+      "RST_1": {
+        "ports": [
+          "RST",
+          "Motherboard_0/RST"
+        ]
+      }
+    }
+  }
+}

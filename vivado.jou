@@ -1,11 +1,12 @@
 #-----------------------------------------------------------
-# Vivado v2022.1 (64-bit)
-# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
-# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Thu Mar 28 11:08:49 2024
-# Process ID: 9476
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Tue Apr  2 18:55:31 2024
+# Process ID: 18428
 # Current directory: E:/Project/Capstone/Architecture
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent19496 E:\Project\Capstone\Architecture\Architecture.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11780 E:\Project\Capstone\Architecture\Architecture.xpr
 # Log file: E:/Project/Capstone/Architecture/vivado.log
 # Journal file: E:/Project/Capstone/Architecture\vivado.jou
 # Running On: DESKTOP-TDU015C, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 12, Host memory: 34306 MB
@@ -13,25 +14,41 @@
 start_gui
 open_project E:/Project/Capstone/Architecture/Architecture.xpr
 update_compile_order -fileset sources_1
-close [ open E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Adder.v w ]
-add_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Adder.v
-update_compile_order -fileset sources_1
-close [ open E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/CLB.v w ]
-add_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/CLB.v
-update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
-close [ open E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/FullAdder.v w ]
-add_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/FullAdder.v
-update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
-# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
-set_property source_mgmt_mode None [current_project]
-set_property top ALU [current_fileset]
-# Re-enabling previously disabled source management mode.
-set_property source_mgmt_mode All [current_project]
-update_compile_order -fileset sources_1
-close [ open E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Extender.v w ]
-add_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Extender.v
-update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files E:/Project/Capstone/Architecture/Architecture.srcs/utils_1/imports/synth_1/RegisterFile.dcp] -no_script -reset -force -quiet
+remove_files  -fileset utils_1 E:/Project/Capstone/Architecture/Architecture.srcs/utils_1/imports/synth_1/RegisterFile.dcp
+reset_run synth_1
+set_param general.maxThreads 24
+report_param general.maxThreads
+launch_runs impl_1 -to_step write_bitstream -jobs 12
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+current_hw_device [get_hw_devices xc7z020_1]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7z020_1] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+update_module_reference design_1_Motherboard_0_0
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 12
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+update_module_reference design_1_Motherboard_0_0
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 12
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
