@@ -90,7 +90,6 @@ module Motherboard(
     end
 
     /* AMO */
-    /*
     AMO amo_v1 (
         .CLK(CLK),
         .RST(RST),
@@ -103,5 +102,4 @@ module Motherboard(
     assign Din = (0 <= Aout && Aout <= ROM_MAPPED_ADDRESS + ROM_SIZE - 1) ? rom_data_out :
                  (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? graphics_data_out :
                  32'h0;
-                 */
 endmodule

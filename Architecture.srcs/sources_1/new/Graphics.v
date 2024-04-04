@@ -66,19 +66,11 @@ module Graphics(
         .ascii({ video_ram[x[9:3] + y[9:4] * 80], y[3:0] }),
         .cells(ascii_cells)
     );
-/*
-    initial begin
-        for (i = 0; i < 2400; i = i + 1)
-            video_ram[i] = 8'h0;
-    end
-*/
     
     always @(posedge CLK or posedge RST) begin
         if (RST) begin
             RGB <= 12'h0;
             data_out <= 32'h0;
-            video_ram[0] <= 8'h46;
-            video_ram[1] <= 8'h45;
         end
         else begin
             if (CLK_Hz) begin
@@ -87,18 +79,17 @@ module Graphics(
                     if (ascii_cells[~x[2:0]])
                         RGB <= 12'hFFF;
                     else
-                        RGB <= 12'hF11;
+                        RGB <= 12'h1F1;
                 end
                 else begin
                     /* blank */
                     RGB <= 12'h0;
                 end
             end
-            /*
+
             data_out <= { video_ram[address], video_ram[address + 1], video_ram[address + 2], video_ram[address + 3] };
             if (WR)
                 { video_ram[address], video_ram[address + 1], video_ram[address + 2], video_ram[address + 3] } <= data_in;
-                */
                 
         end
     end
