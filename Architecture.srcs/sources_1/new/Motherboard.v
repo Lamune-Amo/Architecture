@@ -29,9 +29,11 @@ module Motherboard(
     );
     parameter ROM_MAPPED_ADDRESS = 0; /* ROM: 0 ~ 1023 */
     parameter ROM_SIZE = 1024;
+    parameter ROM_HOLD_CLOCK = 0;
     
     parameter VIDEO_RAM_MAPPED_ADDRESS = 1024; /* VIDEO RAM: 1024 ~ 2047 */
     parameter VIDEO_RAM_SIZE = 1 * 80 * 30;
+    parameter VIDEO_RAM_HOLD_CLOCK = 1;
 
     /* wires */
     wire [31:0] Din, Aout, Dout;
@@ -90,7 +92,12 @@ module Motherboard(
     end
 
     /* AMO */
-    AMO amo_v1 (
+    AMO #(
+        .VIDEO_RAM_MAPPED_ADDRESS(VIDEO_RAM_MAPPED_ADDRESS),
+        .VIDEO_RAM_SIZE(VIDEO_RAM_SIZE),
+        .VIDEO_RAM_HOLD_CLOCK(VIDEO_RAM_HOLD_CLOCK)
+    )
+    amo_v1 (
         .CLK(CLK),
         .RST(RST),
         .Din(Din),
@@ -98,7 +105,6 @@ module Motherboard(
         .Aout(Aout),
         .Dout(Dout)
     );
-    
     assign Din = (0 <= Aout && Aout <= ROM_MAPPED_ADDRESS + ROM_SIZE - 1) ? rom_data_out :
                  (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? graphics_data_out :
                  32'h0;

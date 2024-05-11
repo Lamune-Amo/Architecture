@@ -137,7 +137,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:c1084eea</spirit:value>
+            <spirit:value>9:728b1095</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -149,7 +149,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9bb19c1e</spirit:value>
+            <spirit:value>9:6904826a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -163,11 +163,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Apr 03 04:19:12 UTC 2024</spirit:value>
+            <spirit:value>Fri May 10 09:24:22 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9bb19c1e</spirit:value>
+            <spirit:value>9:6904826a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -181,11 +181,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Apr 03 04:10:39 UTC 2024</spirit:value>
+            <spirit:value>Fri May 10 09:16:26 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9bb19c1e</spirit:value>
+            <spirit:value>9:6904826a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -201,11 +201,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Apr 03 04:10:39 UTC 2024</spirit:value>
+            <spirit:value>Fri May 10 09:16:26 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:c1084eea</spirit:value>
+            <spirit:value>9:728b1095</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -221,11 +221,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Apr 03 04:10:39 UTC 2024</spirit:value>
+            <spirit:value>Fri May 10 09:16:26 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9bb19c1e</spirit:value>
+            <spirit:value>9:6904826a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -313,6 +313,11 @@
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ROM_SIZE">1024</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>ROM_HOLD_CLOCK</spirit:name>
+        <spirit:displayName>Rom Hold Clock</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ROM_HOLD_CLOCK">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>VIDEO_RAM_MAPPED_ADDRESS</spirit:name>
         <spirit:displayName>Video Ram Mapped Address</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VIDEO_RAM_MAPPED_ADDRESS">1024</spirit:value>
@@ -321,6 +326,11 @@
         <spirit:name>VIDEO_RAM_SIZE</spirit:name>
         <spirit:displayName>Video Ram Size</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VIDEO_RAM_SIZE">2400</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>VIDEO_RAM_HOLD_CLOCK</spirit:name>
+        <spirit:displayName>Video Ram Hold Clock</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VIDEO_RAM_HOLD_CLOCK">1</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
@@ -401,6 +411,11 @@
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ROM_SIZE">1024</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
+      <spirit:name>ROM_HOLD_CLOCK</spirit:name>
+      <spirit:displayName>Rom Hold Clock</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ROM_HOLD_CLOCK">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
       <spirit:name>VIDEO_RAM_MAPPED_ADDRESS</spirit:name>
       <spirit:displayName>Video Ram Mapped Address</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VIDEO_RAM_MAPPED_ADDRESS">1024</spirit:value>
@@ -409,6 +424,11 @@
       <spirit:name>VIDEO_RAM_SIZE</spirit:name>
       <spirit:displayName>Video Ram Size</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VIDEO_RAM_SIZE">2400</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VIDEO_RAM_HOLD_CLOCK</spirit:name>
+      <spirit:displayName>Video Ram Hold Clock</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VIDEO_RAM_HOLD_CLOCK">1</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>

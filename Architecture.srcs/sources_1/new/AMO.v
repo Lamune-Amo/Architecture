@@ -20,7 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module AMO(
+module AMO#(
+        parameter VIDEO_RAM_MAPPED_ADDRESS = 0,
+        parameter VIDEO_RAM_SIZE = 0,
+        parameter VIDEO_RAM_HOLD_CLOCK = 0
+    )
+    (
     input CLK,
     input RST,
     input [31:0] Din,
@@ -147,6 +152,7 @@ module AMO(
         .source(alu_A),
         .operand(alu_B),
         .opcode((ALUOpcodeSrc == 1'b0) ? ALUOpcode : op_to_aluop),
+        .carry(ALUAddCarry == 1'b0 ? 1'b0 : Carry),
         .result(ALUResult),
         .c(FlagInCarry),
         .n(FlagInNegative),
@@ -154,7 +160,7 @@ module AMO(
         .v(FlagInOverflow)
     );
     
-    assign alu_A = (ALUSrcA == 1'b0) ? PC : (Rs + ((ALUAddCarry == 1'b0) ? 32'h0 : Carry));
+    assign alu_A = (ALUSrcA == 1'b0) ? PC : Rs;
     assign alu_B = (ALUSrcB == 2'h0) ? 32'h4 :
                    (ALUSrcB == 2'h1) ? Rn :
                    (ALUSrcB == 2'h2) ? imm16 : imm21;
@@ -176,10 +182,17 @@ module AMO(
     
     assign PC_cond = (is_true & PCWriteCond) | PCWrite;
     
-    ControlUnit control_unit (
+    ControlUnit #(
+        .VIDEO_RAM_MAPPED_ADDRESS(VIDEO_RAM_MAPPED_ADDRESS),
+        .VIDEO_RAM_SIZE(VIDEO_RAM_SIZE),
+        .VIDEO_RAM_HOLD_CLOCK(VIDEO_RAM_HOLD_CLOCK)
+    )
+    control_unit
+    (
         .CLK(CLK),
         .RST(RST),
         .opcode(IR[31:26]),
+        .address(ALUOut),
         /* 4-bit */
         .ALUOpcode(ALUOpcode),
         /* 3-bit */

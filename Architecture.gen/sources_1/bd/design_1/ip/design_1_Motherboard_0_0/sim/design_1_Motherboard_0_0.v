@@ -75,8 +75,10 @@ output wire [11 : 0] RGB;
   Motherboard #(
     .ROM_MAPPED_ADDRESS(0),
     .ROM_SIZE(1024),
+    .ROM_HOLD_CLOCK(0),
     .VIDEO_RAM_MAPPED_ADDRESS(1024),
-    .VIDEO_RAM_SIZE(2400)
+    .VIDEO_RAM_SIZE(2400),
+    .VIDEO_RAM_HOLD_CLOCK(1)
   ) inst (
     .CLK(CLK),
     .RST(RST),

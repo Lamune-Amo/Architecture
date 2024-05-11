@@ -20,17 +20,29 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ControlUnit(
+module ControlUnit#(
+        parameter VIDEO_RAM_MAPPED_ADDRESS = 0,
+        parameter VIDEO_RAM_SIZE = 0,
+        parameter VIDEO_RAM_HOLD_CLOCK = 0
+    )
+    (
     input CLK,
     input RST,
     input [5:0] opcode,
+    input [31:0] address,
     output [3:0] ALUOpcode,
     output [2:0] PCSource, PCWriteCondSrc,
     output [1:0] RegDataInSrc, RegWriteSrc, ALUSrcB,
     output PCWrite, PCWriteCond, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc
     );
+    parameter LDR_IMM = 8'h0D, LDR_REG = 8'h10;
+    parameter STR_IMM = 8'h13, STR_REG = 8'h15;
+    
     reg [39:0] out;
     reg [7:0] state;
+    /* register to hold clock for store and load */
+    reg [1:0] target, extra;
+    
     wire [7:0] opstate, next_state;
     wire StateSrc;
     
@@ -38,12 +50,44 @@ module ControlUnit(
         .opcode(opcode),
         .state(opstate)
     );
-
+    
     always @(posedge CLK or posedge RST) begin
-        if (RST)
+        if (RST) begin
             state <= 8'h0;
-        else
-            state <= next_state;
+            target <= 2'b00;
+            extra <= 2'b00;
+        end
+        else begin
+            if (state == LDR_IMM ||
+                state == LDR_REG ||
+                state == STR_IMM ||
+                state == STR_REG // TODO: remove this
+            ) begin
+                /* need a more clock */
+                if (extra == 2'b00) begin
+                    /* NOTE: add the same code here */
+                    if (VIDEO_RAM_MAPPED_ADDRESS <= address &&
+                        address <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) begin
+                        target <= VIDEO_RAM_HOLD_CLOCK;
+                        extra <= extra + 1;
+                    end
+                    /* NOTE: add the same code here */
+                    else
+                        state <= next_state;
+                end
+                else begin
+                    if (extra == target) begin
+                        state <= next_state;
+                        extra <= 2'b00;
+                    end
+                    else
+                        extra <= extra + 1;
+                end
+            end
+            else begin
+                state <= next_state;
+            end
+        end
     end
     
     always @(*) begin
@@ -53,6 +97,7 @@ module ControlUnit(
             /* 2-bit RegDataInSrc, RegWriteSrc, ALUSrcB */
             /* 1-bit StateSrc, PCWrite, PCWriteCond, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc */
             /* 8-bit NextState */
+            
             /* instruction fetch */	
 			8'h00: out = { 4'h4, 3'h0, 3'hx, 2'hx, 2'hx, 2'h0, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h1 };
 			/* instruction decode */
@@ -69,15 +114,15 @@ module ControlUnit(
 			8'h0a: out = { 4'hx, 3'hx, 3'hx, 2'h2, 2'h3, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h0b: out = { 4'hx, 3'hx, 3'hx, 2'h1, 2'h3, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h0c: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'hd };
-			8'h0d: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'he };
+			8'h0d: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'he };
 			8'h0e: out = { 4'hx, 3'hx, 3'hx, 2'h3, 2'h3, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h0f: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h10 };
-			8'h10: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h11 };
+			8'h10: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h11 };
 			8'h11: out = { 4'hx, 3'hx, 3'hx, 2'h3, 2'h2, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h12: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h13 };
-			8'h13: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h13: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h14: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h15 };
-			8'h15: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'h0, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h15: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h16: out = { 4'h5, 3'h1, 3'h0, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h17: out = { 4'h5, 3'h1, 3'h1, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h18: out = { 4'h5, 3'h1, 3'h4, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };

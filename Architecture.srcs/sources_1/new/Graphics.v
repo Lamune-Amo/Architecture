@@ -35,8 +35,10 @@ module Graphics(
 	reg [7:0] video_ram [0:2399];
 	reg [1:0] pulse;
 	/* wires */
+	wire [7:0] bits;
 	wire [9:0] x, y;
 	wire [7:0] ascii_cells;
+	wire [12:0] foreground, background;
 	wire [1:0] pulse_next;
 	wire active;
 	/* init */
@@ -63,10 +65,10 @@ module Graphics(
     
     ASCIIRom ascii_rom (
         .CLK(CLK),
-        .ascii({ video_ram[x[9:3] + y[9:4] * 80], y[3:0] }),
+        .ascii({ bits[7:0], y[3:0] }),
         .cells(ascii_cells)
     );
-    
+
     always @(posedge CLK or posedge RST) begin
         if (RST) begin
             RGB <= 12'h0;
@@ -79,19 +81,19 @@ module Graphics(
                     if (ascii_cells[~x[2:0]])
                         RGB <= 12'hFFF;
                     else
-                        RGB <= 12'h1F1;
+                        RGB <= 12'h000;
                 end
                 else begin
                     /* blank */
-                    RGB <= 12'h0;
+                    RGB <= 12'h000;
                 end
             end
 
             data_out <= { video_ram[address], video_ram[address + 1], video_ram[address + 2], video_ram[address + 3] };
             if (WR)
                 { video_ram[address], video_ram[address + 1], video_ram[address + 2], video_ram[address + 3] } <= data_in;
-                
         end
     end
     
+    assign bits = video_ram[x[9:3] + y[9:4] * 80];
 endmodule

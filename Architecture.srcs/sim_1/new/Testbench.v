@@ -23,7 +23,7 @@
 module Testbench();
     reg clk, rst;
     
-    Motherboard mb (
+    Motherboard motherboard (
         .CLK(clk),
         .RST(rst),
         .HSYNC(),
@@ -38,7 +38,7 @@ module Testbench();
         #1;
         rst = 1'b0;
 
-        #404;
+        #124;
         
         $finish;
     end

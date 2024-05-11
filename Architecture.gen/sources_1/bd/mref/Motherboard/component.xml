@@ -55,7 +55,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6066004b</spirit:value>
+            <spirit:value>8d4317f2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -68,7 +68,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6066004b</spirit:value>
+            <spirit:value>8d4317f2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -164,6 +164,11 @@
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ROM_SIZE">1024</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>ROM_HOLD_CLOCK</spirit:name>
+        <spirit:displayName>Rom Hold Clock</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ROM_HOLD_CLOCK">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>VIDEO_RAM_MAPPED_ADDRESS</spirit:name>
         <spirit:displayName>Video Ram Mapped Address</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VIDEO_RAM_MAPPED_ADDRESS">1024</spirit:value>
@@ -173,6 +178,11 @@
         <spirit:displayName>Video Ram Size</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VIDEO_RAM_SIZE">2400</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>VIDEO_RAM_HOLD_CLOCK</spirit:name>
+        <spirit:displayName>Video Ram Hold Clock</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VIDEO_RAM_HOLD_CLOCK">1</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:fileSets>
@@ -181,7 +191,7 @@
       <spirit:file>
         <spirit:name>xgui/Motherboard_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_60fe7b8a</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_076cf059</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -199,6 +209,11 @@
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ROM_SIZE">1024</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
+      <spirit:name>ROM_HOLD_CLOCK</spirit:name>
+      <spirit:displayName>Rom Hold Clock</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ROM_HOLD_CLOCK">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
       <spirit:name>VIDEO_RAM_MAPPED_ADDRESS</spirit:name>
       <spirit:displayName>Video Ram Mapped Address</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VIDEO_RAM_MAPPED_ADDRESS">1024</spirit:value>
@@ -207,6 +222,11 @@
       <spirit:name>VIDEO_RAM_SIZE</spirit:name>
       <spirit:displayName>Video Ram Size</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VIDEO_RAM_SIZE">2400</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VIDEO_RAM_HOLD_CLOCK</spirit:name>
+      <spirit:displayName>Video Ram Hold Clock</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VIDEO_RAM_HOLD_CLOCK">1</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
@@ -229,7 +249,7 @@
         <xilinx:designToolContext>IPI</xilinx:designToolContext>
       </xilinx:designToolContexts>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-04-03T04:10:31Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2024-05-10T09:16:16Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>

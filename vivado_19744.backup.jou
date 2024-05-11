@@ -1,0 +1,35 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu Apr 11 11:58:49 2024
+# Process ID: 19744
+# Current directory: E:/Project/Capstone/Architecture
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent23880 E:\Project\Capstone\Architecture\Architecture.xpr
+# Log file: E:/Project/Capstone/Architecture/vivado.log
+# Journal file: E:/Project/Capstone/Architecture\vivado.jou
+# Running On: DESKTOP-TDU015C, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 12, Host memory: 34306 MB
+#-----------------------------------------------------------
+start_gui
+open_project E:/Project/Capstone/Architecture/Architecture.xpr
+update_compile_order -fileset sources_1
+set_param general.maxThreads 234
+set_param general.maxThreads 24
+update_module_reference design_1_Motherboard_0_0
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 12
+wait_on_run impl_1
+open_run impl_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+current_hw_device [get_hw_devices xc7z020_1]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7z020_1] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]

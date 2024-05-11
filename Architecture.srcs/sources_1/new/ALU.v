@@ -24,6 +24,7 @@ module ALU(
     input [31:0] source,
     input [31:0] operand,
     input [3:0] opcode,
+    input carry,
     output [31:0] result,
     output c,
     output n,
@@ -51,7 +52,7 @@ module ALU(
     Adder_32bit adder (
         .a(source),
         .b(opcode == 4'b0101 ? w_not : operand),
-        .cin(opcode == 4'b0101 ? 1'b1 : 1'b0),
+        .cin(opcode == 4'b0101 ? 1'b1 : carry),
         .s(w_add),
         .cout_prev(cout_prev),
         .cout(cout)
