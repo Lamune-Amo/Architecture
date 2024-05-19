@@ -7,10 +7,10 @@
     "gen_directory": "../../../../Architecture.gen/sources_1/ip/dist_mem_video",
     "parameters": {
       "component_parameters": {
-        "depth": [ { "value": "2400", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "data_width": [ { "value": "16", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "depth": [ { "value": "1200", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "data_width": [ { "value": "32", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "dist_mem_video", "resolve_type": "user", "usage": "all" } ],
-        "memory_type": [ { "value": "single_port_ram", "resolve_type": "user", "usage": "all" } ],
+        "memory_type": [ { "value": "dual_port_ram", "value_src": "user", "resolve_type": "user", "usage": "all" } ],
         "input_options": [ { "value": "non_registered", "resolve_type": "user", "usage": "all" } ],
         "input_clock_enable": [ { "value": "false", "resolve_type": "user", "format": "bool", "usage": "all" } ],
         "qualify_we_with_i_ce": [ { "value": "false", "resolve_type": "user", "format": "bool", "usage": "all" } ],
@@ -36,13 +36,13 @@
       },
       "model_parameters": {
         "C_FAMILY": [ { "value": "zynq", "resolve_type": "generated", "usage": "all" } ],
-        "C_ADDR_WIDTH": [ { "value": "12", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_ADDR_WIDTH": [ { "value": "11", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_DEFAULT_DATA": [ { "value": "0", "resolve_type": "generated", "usage": "all" } ],
-        "C_DEPTH": [ { "value": "2400", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_DEPTH": [ { "value": "1200", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_HAS_CLK": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_HAS_D": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "C_HAS_DPO": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "C_HAS_DPRA": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_HAS_DPO": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_HAS_DPRA": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_HAS_I_CE": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_HAS_QDPO": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_HAS_QDPO_CE": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
@@ -57,7 +57,7 @@
         "C_HAS_WE": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_MEM_INIT_FILE": [ { "value": "no_coe_file_loaded", "resolve_type": "generated", "usage": "all" } ],
         "C_ELABORATION_DIR": [ { "value": "./", "resolve_type": "generated", "usage": "all" } ],
-        "C_MEM_TYPE": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_MEM_TYPE": [ { "value": "2", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_PIPELINE_STAGES": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_QCE_JOINED": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_QUALIFY_WE": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
@@ -65,7 +65,7 @@
         "C_REG_A_D_INPUTS": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_REG_DPRA_INPUT": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_SYNC_ENABLE": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "C_WIDTH": [ { "value": "16", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_WIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_PARSER_TYPE": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
@@ -94,11 +94,13 @@
     },
     "boundary": {
       "ports": {
-        "a": [ { "direction": "in", "size_left": "11", "size_right": "0", "driver_value": "0" } ],
-        "d": [ { "direction": "in", "size_left": "15", "size_right": "0", "driver_value": "0" } ],
+        "a": [ { "direction": "in", "size_left": "10", "size_right": "0", "driver_value": "0" } ],
+        "d": [ { "direction": "in", "size_left": "31", "size_right": "0", "driver_value": "0" } ],
+        "dpra": [ { "direction": "in", "size_left": "10", "size_right": "0", "driver_value": "0" } ],
         "clk": [ { "direction": "in", "driver_value": "0" } ],
         "we": [ { "direction": "in", "driver_value": "0" } ],
-        "spo": [ { "direction": "out", "size_left": "15", "size_right": "0" } ]
+        "spo": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
+        "dpo": [ { "direction": "out", "size_left": "31", "size_right": "0" } ]
       }
     }
   }

@@ -26,16 +26,16 @@ module Graphics(
 	input WR,
 	input [15:0] address,
 	input [31:0] data_in,
-	output reg [31:0] data_out,
+	output [31:0] data_out,
 	output HSYNC,
 	output VSYNC,
 	output reg [11:0] RGB
     );
     /* video memory */
-	reg [7:0] video_ram [0:2399];
 	reg [1:0] pulse;
 	/* wires */
-	wire [7:0] bits;
+	wire [31:0] vidoe_ram;
+	wire [15:0] bits;
 	wire [9:0] x, y;
 	wire [7:0] ascii_cells;
 	wire [12:0] foreground, background;
@@ -43,6 +43,17 @@ module Graphics(
 	wire active;
 	/* init */
 	integer i;
+	
+	dist_mem_video video_ram (
+	    .clk(CLK),
+	    .we(WR),
+	    .a(address[12:2]),
+	    .d(data_in),
+	    .spo(data_out),
+	    .dpra(x[9:4] + y[9:4] * 40),
+	    .dpo(vidoe_ram)
+	);
+	assign bits = (x[3] == 0) ? vidoe_ram[15:0] : vidoe_ram[31:16];
 	
     always @(posedge CLK or posedge RST) begin
         if (RST)
@@ -65,35 +76,39 @@ module Graphics(
     
     ASCIIRom ascii_rom (
         .CLK(CLK),
-        .ascii({ bits[7:0], y[3:0] }),
+        .ascii({ bits[15:8], y[3:0] }),
         .cells(ascii_cells)
+    );
+    
+    Palette palette_foreground (
+        .CLK(CLK),
+        .number(bits[7:4]),
+        .color(foreground)
+    );
+    Palette palette_background (
+        .CLK(CLK),
+        .number(bits[3:0]),
+        .color(background)
     );
 
     always @(posedge CLK or posedge RST) begin
         if (RST) begin
             RGB <= 12'h0;
-            data_out <= 32'h0;
         end
         else begin
             if (CLK_Hz) begin
                 /* SYNC */
                 if (active) begin
                     if (ascii_cells[~x[2:0]])
-                        RGB <= 12'hFFF;
+                        RGB <= foreground;
                     else
-                        RGB <= 12'h000;
+                        RGB <= background;
                 end
                 else begin
                     /* blank */
                     RGB <= 12'h000;
                 end
             end
-
-            data_out <= { video_ram[address], video_ram[address + 1], video_ram[address + 2], video_ram[address + 3] };
-            if (WR)
-                { video_ram[address], video_ram[address + 1], video_ram[address + 2], video_ram[address + 3] } <= data_in;
         end
     end
-    
-    assign bits = video_ram[x[9:3] + y[9:4] * 80];
 endmodule

@@ -28,7 +28,7 @@ module Palette(
 	
 	(* rom_style = "block" *)
 
-	reg [4:0] addr;
+	reg [3:0] addr;
 	
 	always @(posedge CLK)
 		addr <= number;

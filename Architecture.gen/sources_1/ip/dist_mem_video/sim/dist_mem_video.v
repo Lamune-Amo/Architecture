@@ -56,26 +56,30 @@
 module dist_mem_video (
   a,
   d,
+  dpra,
   clk,
   we,
-  spo
+  spo,
+  dpo
 );
 
-input wire [11 : 0] a;
-input wire [15 : 0] d;
+input wire [10 : 0] a;
+input wire [31 : 0] d;
+input wire [10 : 0] dpra;
 input wire clk;
 input wire we;
-output wire [15 : 0] spo;
+output wire [31 : 0] spo;
+output wire [31 : 0] dpo;
 
   dist_mem_gen_v8_0_14 #(
     .C_FAMILY("zynq"),
-    .C_ADDR_WIDTH(12),
+    .C_ADDR_WIDTH(11),
     .C_DEFAULT_DATA("0"),
-    .C_DEPTH(2400),
+    .C_DEPTH(1200),
     .C_HAS_CLK(1),
     .C_HAS_D(1),
-    .C_HAS_DPO(0),
-    .C_HAS_DPRA(0),
+    .C_HAS_DPO(1),
+    .C_HAS_DPRA(1),
     .C_HAS_I_CE(0),
     .C_HAS_QDPO(0),
     .C_HAS_QDPO_CE(0),
@@ -90,7 +94,7 @@ output wire [15 : 0] spo;
     .C_HAS_WE(1),
     .C_MEM_INIT_FILE("no_coe_file_loaded"),
     .C_ELABORATION_DIR("./"),
-    .C_MEM_TYPE(1),
+    .C_MEM_TYPE(2),
     .C_PIPELINE_STAGES(0),
     .C_QCE_JOINED(0),
     .C_QUALIFY_WE(0),
@@ -98,12 +102,12 @@ output wire [15 : 0] spo;
     .C_REG_A_D_INPUTS(0),
     .C_REG_DPRA_INPUT(0),
     .C_SYNC_ENABLE(1),
-    .C_WIDTH(16),
+    .C_WIDTH(32),
     .C_PARSER_TYPE(1)
   ) inst (
     .a(a),
     .d(d),
-    .dpra(12'B0),
+    .dpra(dpra),
     .clk(clk),
     .we(we),
     .i_ce(1'D1),
@@ -115,7 +119,7 @@ output wire [15 : 0] spo;
     .qspo_srst(1'D0),
     .qdpo_srst(1'D0),
     .spo(spo),
-    .dpo(),
+    .dpo(dpo),
     .qspo(),
     .qdpo()
   );

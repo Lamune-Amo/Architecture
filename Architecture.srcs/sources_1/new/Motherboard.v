@@ -72,7 +72,7 @@ module Motherboard(
     );
 
     assign graphics_write_enable_next = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? WR : 1'b0;
-    assign graphics_address_next = Aout - VIDEO_RAM_MAPPED_ADDRESS;
+    assign graphics_address_next = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? Aout - VIDEO_RAM_MAPPED_ADDRESS : 1'b0;
     assign graphics_data_in_next = Dout;
     
     /* split the stage */
