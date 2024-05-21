@@ -22,13 +22,16 @@
 
 module Testbench();
     reg clk, rst;
+    wire WR;
+    wire [31:0] Addr, Dout;
     
-    Motherboard motherboard (
+    AMO amo_v1 (
         .CLK(clk),
         .RST(rst),
-        .HSYNC(),
-	    .VSYNC(),
-	    .RGB()
+        .Din(32'h1400_0060),
+        .WR(WR),
+        .Aout(Addr),
+        .Dout(Dout)
     );
 
     initial begin
@@ -38,7 +41,7 @@ module Testbench();
         #1;
         rst = 1'b0;
 
-        #124;
+        #48;
         
         $finish;
     end

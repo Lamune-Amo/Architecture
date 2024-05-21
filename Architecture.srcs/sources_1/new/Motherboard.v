@@ -51,13 +51,9 @@ module Motherboard(
     assign rom_address = Aout;
     
     /* Graphic Card */
-    reg [31:0] graphics_data_in, graphics_data_out;
-    reg [15:0] graphics_address;
-    reg graphics_write_enable;
-
-    wire [31:0] graphics_data_in_next, graphics_data_out_next;
-    wire [15:0] graphics_address_next;
-    wire graphics_write_enable_next;
+    wire [31:0] graphics_data_in, graphics_data_out;
+    wire [15:0] graphics_address;
+    wire graphics_write_enable;
     
     Graphics graphics (
 	   .CLK(CLK),
@@ -65,39 +61,18 @@ module Motherboard(
 	   .WR(graphics_write_enable),
 	   .address(graphics_address),
 	   .data_in(graphics_data_in),
-	   .data_out(graphics_data_out_next),
+	   .data_out(graphics_data_out),
 	   .HSYNC(HSYNC),
 	   .VSYNC(VSYNC),
 	   .RGB(RGB)
     );
 
-    assign graphics_write_enable_next = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? WR : 1'b0;
-    assign graphics_address_next = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? Aout - VIDEO_RAM_MAPPED_ADDRESS : 1'b0;
-    assign graphics_data_in_next = Dout;
-    
-    /* split the stage */
-    always @(posedge CLK or posedge RST) begin
-        if (RST) begin
-            graphics_data_in <= 32'h0;
-            graphics_address <= 16'h0;
-            graphics_write_enable <= 1'b0;
-            graphics_data_out <= 32'h0;
-        end
-        else begin
-            graphics_data_in <= graphics_data_in_next;
-            graphics_address <= graphics_address_next;
-            graphics_write_enable <= graphics_write_enable_next;
-            graphics_data_out <= graphics_data_out_next;
-        end
-    end
+    assign graphics_write_enable = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? WR : 1'b0;
+    assign graphics_address = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? Aout - VIDEO_RAM_MAPPED_ADDRESS : 1'b0;
+    assign graphics_data_in = Dout;
 
     /* AMO */
-    AMO #(
-        .VIDEO_RAM_MAPPED_ADDRESS(VIDEO_RAM_MAPPED_ADDRESS),
-        .VIDEO_RAM_SIZE(VIDEO_RAM_SIZE),
-        .VIDEO_RAM_HOLD_CLOCK(VIDEO_RAM_HOLD_CLOCK)
-    )
-    amo_v1 (
+    AMO amo_v1 (
         .CLK(CLK),
         .RST(RST),
         .Din(Din),

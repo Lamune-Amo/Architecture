@@ -53,7 +53,7 @@ module Graphics(
 	    .dpra(x[9:4] + y[9:4] * 40),
 	    .dpo(vidoe_ram)
 	);
-	assign bits = (x[3] == 0) ? vidoe_ram[15:0] : vidoe_ram[31:16];
+	assign bits = (x[3] == 1) ? vidoe_ram[15:0] : vidoe_ram[31:16];
 	
     always @(posedge CLK or posedge RST) begin
         if (RST)

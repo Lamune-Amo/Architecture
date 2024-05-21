@@ -20,12 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module AMO#(
-        parameter VIDEO_RAM_MAPPED_ADDRESS = 0,
-        parameter VIDEO_RAM_SIZE = 0,
-        parameter VIDEO_RAM_HOLD_CLOCK = 0
-    )
-    (
+module AMO(
     input CLK,
     input RST,
     input [31:0] Din,
@@ -118,7 +113,7 @@ module AMO#(
     assign extend26 = { 6'h0, IR[25:0] };
     
     assign imm16 = (ExtendImm == 1'b0) ? extend16 : (extend16 << 2);
-    assign imm21 = (ExtendImm == 1'b0) ? extend21 : (extend21 << 2);
+    assign imm21 = extend21;
     assign imm26 = extend26 << 2;
     
     RegisterFile register_file (
@@ -182,13 +177,7 @@ module AMO#(
     
     assign PC_cond = (is_true & PCWriteCond) | PCWrite;
     
-    ControlUnit #(
-        .VIDEO_RAM_MAPPED_ADDRESS(VIDEO_RAM_MAPPED_ADDRESS),
-        .VIDEO_RAM_SIZE(VIDEO_RAM_SIZE),
-        .VIDEO_RAM_HOLD_CLOCK(VIDEO_RAM_HOLD_CLOCK)
-    )
-    control_unit
-    (
+    ControlUnit control_unit(
         .CLK(CLK),
         .RST(RST),
         .opcode(IR[31:26]),

@@ -20,12 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ControlUnit#(
-        parameter VIDEO_RAM_MAPPED_ADDRESS = 0,
-        parameter VIDEO_RAM_SIZE = 0,
-        parameter VIDEO_RAM_HOLD_CLOCK = 0
-    )
-    (
+module ControlUnit(
     input CLK,
     input RST,
     input [5:0] opcode,
@@ -35,16 +30,11 @@ module ControlUnit#(
     output [1:0] RegDataInSrc, RegWriteSrc, ALUSrcB,
     output PCWrite, PCWriteCond, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc
     );
-    parameter LDR_IMM = 8'h0D, LDR_REG = 8'h10;
-    parameter STR_IMM = 8'h13, STR_REG = 8'h15;
-    
-    reg [39:0] out;
+    reg [40:0] out;
     reg [7:0] state;
-    /* register to hold clock for store and load */
-    reg [1:0] target, extra;
-    
+    reg hold;
     wire [7:0] opstate, next_state;
-    wire StateSrc;
+    wire StateSrc, MemAccess;
     
     OpcodeToState opcode_to_state (
         .opcode(opcode),
@@ -53,35 +43,18 @@ module ControlUnit#(
     
     always @(posedge CLK or posedge RST) begin
         if (RST) begin
+            hold <= 1'h0;
             state <= 8'h0;
-            target <= 2'b00;
-            extra <= 2'b00;
         end
         else begin
-            if (state == LDR_IMM ||
-                state == LDR_REG ||
-                state == STR_IMM ||
-                state == STR_REG // TODO: remove this
-            ) begin
-                /* need a more clock */
-                if (extra == 2'b00) begin
-                    /* NOTE: add the same code here */
-                    if (VIDEO_RAM_MAPPED_ADDRESS <= address &&
-                        address <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) begin
-                        target <= VIDEO_RAM_HOLD_CLOCK;
-                        extra <= extra + 1;
-                    end
-                    /* NOTE: add the same code here */
-                    else
-                        state <= next_state;
+            if (MemAccess == 1'h1 && address[1:0] != 2'h0) begin
+                /* unaligned */
+                if (hold == 1'h0) begin
+                    hold = 1'h1;
                 end
                 else begin
-                    if (extra == target) begin
-                        state <= next_state;
-                        extra <= 2'b00;
-                    end
-                    else
-                        extra <= extra + 1;
+                    hold <= 1'h0;
+                    state <= next_state;
                 end
             end
             else begin
@@ -95,55 +68,55 @@ module ControlUnit#(
             /* 4-bit ALUOpcode */
             /* 3-bit PCSource, PCWriteCondSrc */
             /* 2-bit RegDataInSrc, RegWriteSrc, ALUSrcB */
-            /* 1-bit StateSrc, PCWrite, PCWriteCond, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc */
+            /* 1-bit StateSrc, PCWrite, PCWriteCond, MemAccess, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc */
             /* 8-bit NextState */
-            
+
             /* instruction fetch */	
-			8'h00: out = { 4'h4, 3'h0, 3'hx, 2'hx, 2'hx, 2'h0, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h1 };
+			8'h00: out = { 4'h4, 3'h0, 3'hx, 2'hx, 2'hx, 2'h0, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h1 };
 			/* instruction decode */
-			8'h01: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h1, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'hx };
-			
-			8'h02: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h8 };
-			8'h03: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h9 };
-			8'h04: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h8 };
-			8'h05: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h9 };
-			8'h06: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h8 };
-			8'h07: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h1, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h9 };
-			8'h08: out = { 4'hx, 3'hx, 3'hx, 2'h0, 2'h2, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h09: out = { 4'hx, 3'hx, 3'hx, 2'h0, 2'h1, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h0a: out = { 4'hx, 3'hx, 3'hx, 2'h2, 2'h3, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h0b: out = { 4'hx, 3'hx, 3'hx, 2'h1, 2'h3, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h0c: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'hd };
-			8'h0d: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'he };
-			8'h0e: out = { 4'hx, 3'hx, 3'hx, 2'h3, 2'h3, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h0f: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h10 };
-			8'h10: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h11 };
-			8'h11: out = { 4'hx, 3'hx, 3'hx, 2'h3, 2'h2, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h12: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h13 };
-			8'h13: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h14: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h15 };
-			8'h15: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h16: out = { 4'h5, 3'h1, 3'h0, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h17: out = { 4'h5, 3'h1, 3'h1, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h18: out = { 4'h5, 3'h1, 3'h4, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h19: out = { 4'h5, 3'h1, 3'h5, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h1a: out = { 4'h5, 3'h1, 3'h2, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h1b: out = { 4'h5, 3'h1, 3'h3, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h1c: out = { 4'hx, 3'h2, 3'hx, 2'hx, 2'hx, 2'hx, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h1d: out = { 4'hx, 3'h3, 3'hx, 2'hx, 2'hx, 2'hx, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h1e: out = { 4'hx, 3'h2, 3'hx, 2'hx, 2'h0, 2'hx, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h1f: out = { 4'hx, 3'h3, 3'hx, 2'hx, 2'h0, 2'hx, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
-			8'h20: out = { 4'hx, 3'h4, 3'hx, 2'hx, 2'h0, 2'hx, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h01: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'hx };
+
+			8'h02: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h8 };
+			8'h03: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h9 };
+			8'h04: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h8 };
+			8'h05: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h9 };
+			8'h06: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h8 };
+			8'h07: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h1, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h9 };
+			8'h08: out = { 4'hx, 3'hx, 3'hx, 2'h0, 2'h2, 2'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h09: out = { 4'hx, 3'hx, 3'hx, 2'h0, 2'h1, 2'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h0a: out = { 4'hx, 3'hx, 3'hx, 2'h2, 2'h3, 2'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h0b: out = { 4'hx, 3'hx, 3'hx, 2'h1, 2'h3, 2'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h0c: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'hd };
+			8'h0d: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'he };
+			8'h0e: out = { 4'hx, 3'hx, 3'hx, 2'h3, 2'h3, 2'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h0f: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h10 };
+			8'h10: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h11 };
+			8'h11: out = { 4'hx, 3'hx, 3'hx, 2'h3, 2'h2, 2'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h12: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h13 };
+			8'h13: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h14: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h15 };
+			8'h15: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h2, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h1, 1'h1, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h16: out = { 4'h5, 3'h1, 3'h0, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h17: out = { 4'h5, 3'h1, 3'h1, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h18: out = { 4'h5, 3'h1, 3'h4, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h19: out = { 4'h5, 3'h1, 3'h5, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h1a: out = { 4'h5, 3'h1, 3'h2, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h1b: out = { 4'h5, 3'h1, 3'h3, 2'hx, 2'hx, 2'h1, 1'h0, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h1c: out = { 4'hx, 3'h2, 3'hx, 2'hx, 2'hx, 2'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h1d: out = { 4'hx, 3'h3, 3'hx, 2'hx, 2'hx, 2'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h1e: out = { 4'hx, 3'h2, 3'hx, 2'hx, 2'h0, 2'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h1f: out = { 4'hx, 3'h3, 3'hx, 2'hx, 2'h0, 2'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h20: out = { 4'hx, 3'h4, 3'hx, 2'hx, 2'h0, 2'hx, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
 
             /* invalid */
-            default: out = 40'h0;
+            default: out = 41'h0;
         endcase
     end
     
-    assign ALUOpcode = out[39:36];
-    assign { PCSource, PCWriteCondSrc } = out[35:30];
-    assign { RegDataInSrc, RegWriteSrc, ALUSrcB } = out[29:24];
-    assign { StateSrc, PCWrite, PCWriteCond, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc } = out[23:8];   
+    assign ALUOpcode = out[40:37];
+    assign { PCSource, PCWriteCondSrc } = out[36:31];
+    assign { RegDataInSrc, RegWriteSrc, ALUSrcB } = out[30:25];
+    assign { StateSrc, PCWrite, PCWriteCond, MemAccess, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc } = out[24:8];
 
     assign next_state = (StateSrc == 1'b0) ? out[7:0] : opstate;
 endmodule
