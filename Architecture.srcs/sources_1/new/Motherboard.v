@@ -27,13 +27,15 @@ module Motherboard(
 	output VSYNC,
 	output [11:0] RGB
     );
+    /* memory map */
     parameter ROM_MAPPED_ADDRESS = 0; /* ROM: 0 ~ 1023 */
     parameter ROM_SIZE = 1024;
-    parameter ROM_HOLD_CLOCK = 0;
     
     parameter VIDEO_RAM_MAPPED_ADDRESS = 1024; /* VIDEO RAM: 1024 ~ 2047 */
     parameter VIDEO_RAM_SIZE = 1 * 80 * 30;
-    parameter VIDEO_RAM_HOLD_CLOCK = 1;
+    
+    parameter RAM_MAPPED_ADDRESS = 2048; /* RAM: 2048 ~ 4096 */
+    parameter RAM_SIZE = 2048;
 
     /* wires */
     wire [31:0] Din, Aout, Dout;
@@ -70,7 +72,24 @@ module Motherboard(
     assign graphics_write_enable = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? WR : 1'b0;
     assign graphics_address = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? Aout - VIDEO_RAM_MAPPED_ADDRESS : 1'b0;
     assign graphics_data_in = Dout;
-
+    
+    /* RAM */
+    wire [31:0] ram_data_in, ram_data_out;
+    wire [31:0] ram_address;
+    wire ram_write_enable;
+    
+    blk_mem_ram ram_0(
+        .clka(CLK),
+        .addra(ram_address),
+        .dina(ram_data_in),
+        .douta(ram_data_out),
+        .wea(ram_write_enable)
+    );
+    
+    assign ram_write_enable = (RAM_MAPPED_ADDRESS <= Aout && Aout <= RAM_MAPPED_ADDRESS + RAM_SIZE - 1) ? WR : 1'b0;
+    assign ram_address = (RAM_MAPPED_ADDRESS <= Aout && Aout <= RAM_MAPPED_ADDRESS + RAM_SIZE - 1) ? Aout - RAM_MAPPED_ADDRESS : 1'b0;
+    assign ram_data_in = Dout;
+    
     /* AMO */
     AMO amo_v1 (
         .CLK(CLK),
@@ -82,5 +101,6 @@ module Motherboard(
     );
     assign Din = (0 <= Aout && Aout <= ROM_MAPPED_ADDRESS + ROM_SIZE - 1) ? rom_data_out :
                  (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? graphics_data_out :
+                 (RAM_MAPPED_ADDRESS <= Aout && Aout <= RAM_MAPPED_ADDRESS + RAM_SIZE - 1) ? ram_data_out :
                  32'h0;
 endmodule

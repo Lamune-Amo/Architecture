@@ -45,13 +45,18 @@ module Graphics(
 	integer i;
 	
 	dist_mem_video video_ram (
-	    .clk(CLK),
-	    .we(WR),
-	    .a(address[12:2]),
-	    .d(data_in),
-	    .spo(data_out),
-	    .dpra(x[9:4] + y[9:4] * 40),
-	    .dpo(vidoe_ram)
+	    /* IO port */
+	    .clka(CLK),
+        .addra(address[12:2]),
+        .dina(data_in),
+        .douta(data_out),
+        .wea(WR ? 4'b1111 : 4'h0),
+        /* read port for graphic card */
+        .clkb(CLK),
+        .addrb(x[9:4] + y[9:4] * 40),
+        .dinb(32'h0),
+        .doutb(vidoe_ram),
+        .web(4'h0)
 	);
 	assign bits = (x[3] == 1) ? vidoe_ram[15:0] : vidoe_ram[31:16];
 	
