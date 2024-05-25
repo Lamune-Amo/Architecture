@@ -77,7 +77,7 @@ output wire [11 : 0] RGB;
     .ROM_SIZE(1024),
     .VIDEO_RAM_MAPPED_ADDRESS(1024),
     .VIDEO_RAM_SIZE(2400),
-    .RAM_MAPPED_ADDRESS(2048),
+    .RAM_MAPPED_ADDRESS(4096),
     .RAM_SIZE(2048)
   ) inst (
     .CLK(CLK),

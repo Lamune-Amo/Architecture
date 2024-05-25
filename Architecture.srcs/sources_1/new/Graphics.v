@@ -31,6 +31,7 @@ module Graphics(
 	output VSYNC,
 	output reg [11:0] RGB
     );
+    reg CLK_D;
     /* video memory */
 	reg [1:0] pulse;
 	/* wires */
@@ -44,15 +45,19 @@ module Graphics(
 	/* init */
 	integer i;
 	
+	always @(CLK) begin
+        CLK_D <= #0.5 CLK;
+    end
+	
 	dist_mem_video video_ram (
 	    /* IO port */
-	    .clka(CLK),
+	    .clka(CLK_D),
         .addra(address[12:2]),
         .dina(data_in),
         .douta(data_out),
         .wea(WR ? 4'b1111 : 4'h0),
         /* read port for graphic card */
-        .clkb(CLK),
+        .clkb(CLK_D),
         .addrb(x[9:4] + y[9:4] * 40),
         .dinb(32'h0),
         .doutb(vidoe_ram),

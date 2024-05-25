@@ -55,7 +55,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6a3f538c</spirit:value>
+            <spirit:value>dd79ef02</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -68,7 +68,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6a3f538c</spirit:value>
+            <spirit:value>dd79ef02</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -176,7 +176,7 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>RAM_MAPPED_ADDRESS</spirit:name>
         <spirit:displayName>Ram Mapped Address</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.RAM_MAPPED_ADDRESS">2048</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.RAM_MAPPED_ADDRESS">4096</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>RAM_SIZE</spirit:name>
@@ -221,7 +221,7 @@
     <spirit:parameter>
       <spirit:name>RAM_MAPPED_ADDRESS</spirit:name>
       <spirit:displayName>Ram Mapped Address</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.RAM_MAPPED_ADDRESS">2048</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.RAM_MAPPED_ADDRESS">4096</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RAM_SIZE</spirit:name>
@@ -249,7 +249,7 @@
         <xilinx:designToolContext>IPI</xilinx:designToolContext>
       </xilinx:designToolContexts>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-05-25T06:01:13Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2024-05-25T06:48:20Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>

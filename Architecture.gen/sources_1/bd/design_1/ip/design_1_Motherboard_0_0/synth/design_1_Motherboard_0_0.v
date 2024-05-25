@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "Motherboard,Vivado 2023.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_Motherboard_0_0,Motherboard,{}" *)
-(* CORE_GENERATION_INFO = "design_1_Motherboard_0_0,Motherboard,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=Motherboard,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,ROM_MAPPED_ADDRESS=0,ROM_SIZE=1024,VIDEO_RAM_MAPPED_ADDRESS=1024,VIDEO_RAM_SIZE=2400,RAM_MAPPED_ADDRESS=2048,RAM_SIZE=2048}" *)
+(* CORE_GENERATION_INFO = "design_1_Motherboard_0_0,Motherboard,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=Motherboard,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,ROM_MAPPED_ADDRESS=0,ROM_SIZE=1024,VIDEO_RAM_MAPPED_ADDRESS=1024,VIDEO_RAM_SIZE=2400,RAM_MAPPED_ADDRESS=4096,RAM_SIZE=2048}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_Motherboard_0_0 (
@@ -78,7 +78,7 @@ output wire [11 : 0] RGB;
     .ROM_SIZE(1024),
     .VIDEO_RAM_MAPPED_ADDRESS(1024),
     .VIDEO_RAM_SIZE(2400),
-    .RAM_MAPPED_ADDRESS(2048),
+    .RAM_MAPPED_ADDRESS(4096),
     .RAM_SIZE(2048)
   ) inst (
     .CLK(CLK),

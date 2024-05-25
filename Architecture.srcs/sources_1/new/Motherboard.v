@@ -34,7 +34,7 @@ module Motherboard(
     parameter VIDEO_RAM_MAPPED_ADDRESS = 1024; /* VIDEO RAM: 1024 ~ 2047 */
     parameter VIDEO_RAM_SIZE = 1 * 80 * 30;
     
-    parameter RAM_MAPPED_ADDRESS = 2048; /* RAM: 2048 ~ 4096 */
+    parameter RAM_MAPPED_ADDRESS = 4096; /* RAM: 2048 ~ 4096 */
     parameter RAM_SIZE = 2048;
 
     /* wires */
@@ -74,13 +74,18 @@ module Motherboard(
     assign graphics_data_in = Dout;
     
     /* RAM */
+    reg CLK_D;
     wire [31:0] ram_data_in, ram_data_out;
     wire [31:0] ram_address;
     wire ram_write_enable;
+
+    always @(CLK) begin
+        CLK_D <= #0.5 CLK;
+    end
     
     blk_mem_ram ram_0(
-        .clka(CLK),
-        .addra(ram_address),
+        .clka(CLK_D),
+        .addra(ram_address[31:2]),
         .dina(ram_data_in),
         .douta(ram_data_out),
         .wea(ram_write_enable)
