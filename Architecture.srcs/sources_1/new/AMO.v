@@ -24,7 +24,7 @@ module AMO(
     input CLK,
     input RST,
     input [31:0] Din,
-    output WR,
+    output [3:0] WR,
     output [31:0] Aout,
     output [31:0] Dout
     );
@@ -198,6 +198,6 @@ module AMO(
     );
     
     assign Aout = (MemAddrSrc == 1'b0) ? PC : ALUOut;
-    assign WR = MemWriteEn;
+    assign WR = MemWriteEn ? 4'b1111 : 4'b0000;
     assign Din_BIG_out = (MemInSrc == 1'b0) ? Rs : Rn;
 endmodule

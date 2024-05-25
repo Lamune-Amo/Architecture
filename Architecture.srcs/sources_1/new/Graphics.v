@@ -23,7 +23,7 @@
 module Graphics(
 	input CLK,
 	input RST,
-	input WR,
+	input [3:0] WR,
 	input [15:0] address,
 	input [31:0] data_in,
 	output [31:0] data_out,
@@ -55,7 +55,7 @@ module Graphics(
         .addra(address[12:2]),
         .dina(data_in),
         .douta(data_out),
-        .wea(WR ? 4'b1111 : 4'h0),
+        .wea(4'b1111),
         /* read port for graphic card */
         .clkb(CLK_D),
         .addrb(x[9:4] + y[9:4] * 40),

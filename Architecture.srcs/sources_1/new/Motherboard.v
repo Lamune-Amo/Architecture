@@ -39,7 +39,7 @@ module Motherboard(
 
     /* wires */
     wire [31:0] Din, Aout, Dout;
-    wire WR;
+    wire [3:0] WR;
     
     /* ROM (bios) */
     wire [11:0] rom_address;
@@ -55,7 +55,7 @@ module Motherboard(
     /* Graphic Card */
     wire [31:0] graphics_data_in, graphics_data_out;
     wire [15:0] graphics_address;
-    wire graphics_write_enable;
+    wire [3:0] graphics_write_enable;
     
     Graphics graphics (
 	   .CLK(CLK),
@@ -69,15 +69,15 @@ module Motherboard(
 	   .RGB(RGB)
     );
 
-    assign graphics_write_enable = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? WR : 1'b0;
-    assign graphics_address = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? Aout - VIDEO_RAM_MAPPED_ADDRESS : 1'b0;
+    assign graphics_write_enable = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? WR : 4'h0;
+    assign graphics_address = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? Aout - VIDEO_RAM_MAPPED_ADDRESS : 16'h0;
     assign graphics_data_in = Dout;
     
     /* RAM */
     reg CLK_D;
     wire [31:0] ram_data_in, ram_data_out;
     wire [31:0] ram_address;
-    wire ram_write_enable;
+    wire [3:0] ram_write_enable;
 
     always @(CLK) begin
         CLK_D <= #0.5 CLK;
@@ -91,7 +91,7 @@ module Motherboard(
         .wea(ram_write_enable)
     );
     
-    assign ram_write_enable = (RAM_MAPPED_ADDRESS <= Aout && Aout <= RAM_MAPPED_ADDRESS + RAM_SIZE - 1) ? WR : 1'b0;
+    assign ram_write_enable = (RAM_MAPPED_ADDRESS <= Aout && Aout <= RAM_MAPPED_ADDRESS + RAM_SIZE - 1) ? WR : 4'h0;
     assign ram_address = (RAM_MAPPED_ADDRESS <= Aout && Aout <= RAM_MAPPED_ADDRESS + RAM_SIZE - 1) ? Aout - RAM_MAPPED_ADDRESS : 1'b0;
     assign ram_data_in = Dout;
     
