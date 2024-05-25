@@ -41,8 +41,9 @@ module AMO(
     
     wire [3:0] ALUOpcode;
     wire [2:0] PCSource, PCWriteCondSrc;
-    wire [1:0] RegDataInSrc, RegWriteSrc, ALUSrcB;
+    wire [1:0] RegDataInSrc, RegWriteSrc, MemAccess, ALUSrcB;
     wire PCWrite, PCWriteCond, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc;    
+    wire MemAccessClock;
     
     wire [31:0] PC_next;
     
@@ -103,7 +104,7 @@ module AMO(
     assign Overflow = CPSR[0];
     assign Carry = CPSR[1];
     assign Zero = CPSR[2];
-    assign Negative = CPSR[3];    
+    assign Negative = CPSR[3];
     
     assign CR0Mode = CR0;
     
@@ -181,18 +182,19 @@ module AMO(
         .CLK(CLK),
         .RST(RST),
         .opcode(IR[31:26]),
-        .address(ALUOut),
+        .address((MemAddrSrc == 1'b0) ? PC : ALUOut),
         /* 4-bit */
         .ALUOpcode(ALUOpcode),
         /* 3-bit */
         .PCSource(PCSource), .PCWriteCondSrc(PCWriteCondSrc),
         /* 2-bit */
-        .RegDataInSrc(RegDataInSrc), .RegWriteSrc(RegWriteSrc), .ALUSrcB(ALUSrcB),
+        .RegDataInSrc(RegDataInSrc), .RegWriteSrc(RegWriteSrc), .MemAccess(MemAccess), .ALUSrcB(ALUSrcB),
         /* 1-bit */
         .PCWrite(PCWrite), .PCWriteCond(PCWriteCond), .MemAddrSrc(MemAddrSrc), .MemInSrc(MemInSrc),
         .MemWriteEn(MemWriteEn), .IRWriteEn(IRWriteEn), .RegWriteEn(RegWriteEn), .ExtendImm(ExtendImm),
         .SignedExtend(SignedExtend), .ALUAddCarry(ALUAddCarry), .ALUSrcA(ALUSrcA), .ALUOpcodeSrc(ALUOpcodeSrc),
-        .CPSRWriteEn(CPSRWriteEn), .CR0WriteEn(CR0WriteEn), .CR0ModeSrc(CR0ModeSrc)
+        .CPSRWriteEn(CPSRWriteEn), .CR0WriteEn(CR0WriteEn), .CR0ModeSrc(CR0ModeSrc),
+        .MemAccessClock(MemAccessClock)
     );
     
     assign Aout = (MemAddrSrc == 1'b0) ? PC : ALUOut;

@@ -28,7 +28,7 @@ module Testbench();
     AMO amo_v1 (
         .CLK(clk),
         .RST(rst),
-        .Din(32'h1400_0060),
+        .Din(32'h1500_0060),
         .WR(WR),
         .Aout(Addr),
         .Dout(Dout)

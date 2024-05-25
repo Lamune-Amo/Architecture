@@ -74,6 +74,16 @@ module OpcodeToState(
             
             6'h24: state = 8'h1B;
             6'h25: state = 8'h4;
+            6'h26: state = 8'h21;
+            6'h27: state = 8'h24;
+
+            6'h28: state = 8'h27;
+            6'h29: state = 8'h29;
+            6'h2A: state = 8'h2B;
+            6'h2B: state = 8'h2E;
+
+            6'h2C: state = 8'h31;
+            6'h2D: state = 8'h33;
 
             /* invalid */
             default: state = 8'h0;

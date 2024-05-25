@@ -74,7 +74,17 @@ module OpcodeToALUOpcode(
             
             6'h24: ALUOpcode = 4'hx;
             6'h25: ALUOpcode = 4'h6;
+            6'h26: ALUOpcode = 4'hx;
+            6'h27: ALUOpcode = 4'hx;
 
+            6'h28: ALUOpcode = 4'hx;
+            6'h29: ALUOpcode = 4'hx;
+            6'h2A: ALUOpcode = 4'hx;
+            6'h2B: ALUOpcode = 4'hx;
+
+            6'h2C: ALUOpcode = 4'hx;
+            6'h2D: ALUOpcode = 4'hx;
+            
             /* invalid */
             default: ALUOpcode = 4'h0;
         endcase
