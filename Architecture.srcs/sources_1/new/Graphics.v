@@ -55,9 +55,9 @@ module Graphics(
         .addra(address[12:2]),
         .dina(data_in),
         .douta(data_out),
-        .wea(4'b1111),
+        .wea(WR),
         /* read port for graphic card */
-        .clkb(CLK_D),
+        .clkb(CLK),
         .addrb(x[9:4] + y[9:4] * 40),
         .dinb(32'h0),
         .doutb(vidoe_ram),
@@ -110,9 +110,9 @@ module Graphics(
                 /* SYNC */
                 if (active) begin
                     if (ascii_cells[~x[2:0]])
-                        RGB <= foreground;
+                        RGB <= 12'hFFF;//foreground
                     else
-                        RGB <= background;
+                        RGB <= 12'h000;//background
                 end
                 else begin
                     /* blank */

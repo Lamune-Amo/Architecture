@@ -37,7 +37,7 @@ module AMO(
     reg CR0;
     
     /* wires */
-    wire [31:0] Din_BIG, Din_BIG_out;
+    wire [31:0] Din_BIG, Dout_BIG;
     
     wire [3:0] ALUOpcode;
     wire [2:0] PCSource, PCWriteCondSrc;
@@ -95,11 +95,6 @@ module AMO(
         end
     end
     
-    /* Little Endian to Big Endian */
-    assign Din_BIG = { Din[7:0], Din[15:8], Din[23:16], Din[31:24] };
-    /* Big Endian to Little Endian */
-    assign Dout = { Din_BIG_out[7:0], Din_BIG_out[15:8], Din_BIG_out[23:16], Din_BIG_out[31:24] };
-
     /* system */
     assign Overflow = CPSR[0];
     assign Carry = CPSR[1];
@@ -197,7 +192,22 @@ module AMO(
         .MemAccessClock(MemAccessClock)
     );
     
-    assign Aout = (MemAddrSrc == 1'b0) ? PC : ALUOut;
-    assign WR = MemWriteEn ? 4'b1111 : 4'b0000;
-    assign Din_BIG_out = (MemInSrc == 1'b0) ? Rs : Rn;
+    MemoryHandler memory_handler(
+
+        .MemWriteEn(MemWriteEn),
+        .MemAccess(MemAccess),
+        .MemAccessClock(MemAccessClock),
+
+        .Aout_IN((MemAddrSrc == 1'b0) ? PC : ALUOut),
+        .Dout_IN((MemInSrc == 1'b0) ? Rs : Rn),
+        .Din_IN({ Din[7:0], Din[15:8], Din[23:16], Din[31:24] }),
+
+        .Aout_OUT(Aout),
+        .Dout_OUT(Dout_BIG),
+        .Din_OUT(Din_BIG),
+        .WR_OUT(WR)
+    );
+
+    assign Dout = { Dout_BIG[7:0], Dout_BIG[15:8], Dout_BIG[23:16], Dout_BIG[31:24] };
+    
 endmodule

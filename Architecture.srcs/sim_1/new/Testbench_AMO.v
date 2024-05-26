@@ -22,27 +22,26 @@
 
 module Testbench_AMO();
     reg clk, rst;
-    reg [31:0] din;
+    wire WR;
+    wire [31:0] Addr, Dout;
     
     AMO amo_v1 (
         .CLK(clk),
         .RST(rst),
-        .Din(din),
-        .WR(),
-        .Aout(),
-        .Dout()
+        .Din(32'h1500_0060),
+        .WR(WR),
+        .Aout(Addr),
+        .Dout(Dout)
     );
 
     initial begin
-    //5C000100
-    
-        clk = 1; rst = 1'b0; din = 32'h0001005C;
+        clk = 1; rst = 1'b0;
         #1;
         rst = 1'b1;
         #1;
         rst = 1'b0;
 
-        #24;
+        #48;
         
         $finish;
     end

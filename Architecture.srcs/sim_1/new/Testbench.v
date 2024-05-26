@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 100ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -22,16 +22,15 @@
 
 module Testbench();
     reg clk, rst;
-    wire WR;
-    wire [31:0] Addr, Dout;
+    wire hsync, vsync;
+    wire [11:0] rgb;
     
-    AMO amo_v1 (
+    Motherboard cu0(
         .CLK(clk),
         .RST(rst),
-        .Din(32'h1500_0060),
-        .WR(WR),
-        .Aout(Addr),
-        .Dout(Dout)
+        .HSYNC(hsync),
+	   .VSYNC(vsync),
+	   .RGB(rgb)
     );
 
     initial begin
@@ -41,7 +40,7 @@ module Testbench();
         #1;
         rst = 1'b0;
 
-        #48;
+        #1000;
         
         $finish;
     end
