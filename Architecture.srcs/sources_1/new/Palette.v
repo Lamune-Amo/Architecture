@@ -21,20 +21,12 @@
 
 
 module Palette(
-    input CLK,
 	input [3:0] number,
 	output reg [11:0] color
 	);
 	
-	(* rom_style = "block" *)
-
-	reg [3:0] addr;
-	
-	always @(posedge CLK)
-		addr <= number;
-	
 	always @(*) begin
-		case(addr)
+		case(number)
 			// Black 0 0 0
 			4'h0: color = 12'h000;
 			// Blue 0 0 11

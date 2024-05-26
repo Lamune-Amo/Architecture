@@ -46,7 +46,7 @@ module Graphics(
 	integer i;
 	
 	always @(CLK) begin
-        CLK_D <= #0.5 CLK;
+        CLK_D <= #8 CLK;
     end
 	
 	dist_mem_video video_ram (
@@ -91,12 +91,10 @@ module Graphics(
     );
     
     Palette palette_foreground (
-        .CLK(CLK),
         .number(bits[7:4]),
         .color(foreground)
     );
     Palette palette_background (
-        .CLK(CLK),
         .number(bits[3:0]),
         .color(background)
     );
@@ -110,9 +108,9 @@ module Graphics(
                 /* SYNC */
                 if (active) begin
                     if (ascii_cells[~x[2:0]])
-                        RGB <= 12'hFFF;//foreground
+                        RGB <= foreground;
                     else
-                        RGB <= 12'h000;//background
+                        RGB <= background;
                 end
                 else begin
                     /* blank */
