@@ -39,24 +39,24 @@ module Palette(
 			4'h4: color = 12'hB00;
             // Magenta 11 0 11
 			4'h5: color = 12'hB0B;
-            // Brown 11 5 0
-			4'h6: color = 12'hB50;
+            // Brown 11 6 0
+			4'h6: color = 12'hB60;
             // White 11 11 11
 			4'h7: color = 12'hBBB;
-            // Gray 5 5 5
-			4'h8: color = 12'h555;
-            // Light Blue 5 5 15
-			4'h9: color = 12'h55F;
-            // Light Green 5 15 5
-			4'hA: color = 12'h5F5;
-            // Light Cyan 5 15 15
-			4'hB: color = 12'h5FF;
-            // Light Red 15 5 5
-			4'hC: color = 12'hF55;
-            // Light Magenta 15 5 15
-			4'hD: color = 12'hF5F;
-            // Yellow 15 15 5
-			4'hE: color = 12'hFF5;
+            // Gray 6 6 6
+			4'h8: color = 12'h666;
+            // Light Blue 6 6 15
+			4'h9: color = 12'h66F;
+            // Light Green 6 15 6
+			4'hA: color = 12'h6F6;
+            // Light Cyan 6 15 15
+			4'hB: color = 12'h6FF;
+            // Light Red 15 6 6
+			4'hC: color = 12'hF66;
+            // Light Magenta 15 6 15
+			4'hD: color = 12'hF6F;
+            // Yellow 15 15 6
+			4'hE: color = 12'hFF6;
             // Bright White 15 15 15
 			4'hF: color = 12'hFFF;
             

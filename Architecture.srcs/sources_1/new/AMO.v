@@ -193,15 +193,15 @@ module AMO(
     );
     
     MemoryHandler memory_handler(
-
+        /* control */
         .MemWriteEn(MemWriteEn),
         .MemAccess(MemAccess),
         .MemAccessClock(MemAccessClock),
-
+        /* IN */
         .Aout_IN((MemAddrSrc == 1'b0) ? PC : ALUOut),
         .Dout_IN((MemInSrc == 1'b0) ? Rs : Rn),
         .Din_IN({ Din[7:0], Din[15:8], Din[23:16], Din[31:24] }),
-
+        /* OUT */
         .Aout_OUT(Aout),
         .Dout_OUT(Dout_BIG),
         .Din_OUT(Din_BIG),

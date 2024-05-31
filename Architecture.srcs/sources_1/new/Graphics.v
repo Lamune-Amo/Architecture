@@ -24,7 +24,7 @@ module Graphics(
 	input CLK,
 	input RST,
 	input [3:0] WR,
-	input [15:0] address,
+	input [31:0] address,
 	input [31:0] data_in,
 	output [31:0] data_out,
 	output HSYNC,
@@ -39,14 +39,13 @@ module Graphics(
 	wire [15:0] bits;
 	wire [9:0] x, y;
 	wire [7:0] ascii_cells;
-	wire [12:0] foreground, background;
-	wire [1:0] pulse_next;
+	wire [11:0] foreground, background;
 	wire active;
 	/* init */
 	integer i;
 	
 	always @(CLK) begin
-        CLK_D <= #8 CLK;
+        CLK_D <= #4.5 CLK;
     end
 	
 	dist_mem_video video_ram (

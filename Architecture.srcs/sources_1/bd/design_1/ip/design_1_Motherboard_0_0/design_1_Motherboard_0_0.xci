@@ -9,20 +9,20 @@
     "parameters": {
       "component_parameters": {
         "ROM_MAPPED_ADDRESS": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "ROM_SIZE": [ { "value": "1024", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "VIDEO_RAM_MAPPED_ADDRESS": [ { "value": "1024", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "VIDEO_RAM_SIZE": [ { "value": "2400", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "RAM_MAPPED_ADDRESS": [ { "value": "4096", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "RAM_SIZE": [ { "value": "2048", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "ROM_SIZE": [ { "value": "4096", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "VIDEO_RAM_MAPPED_ADDRESS": [ { "value": "4096", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "VIDEO_RAM_SIZE": [ { "value": "4800", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "RAM_MAPPED_ADDRESS": [ { "value": "9000", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "RAM_SIZE": [ { "value": "8192", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "design_1_Motherboard_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "model_parameters": {
         "ROM_MAPPED_ADDRESS": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "ROM_SIZE": [ { "value": "1024", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "VIDEO_RAM_MAPPED_ADDRESS": [ { "value": "1024", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "VIDEO_RAM_SIZE": [ { "value": "2400", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "RAM_MAPPED_ADDRESS": [ { "value": "4096", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "RAM_SIZE": [ { "value": "2048", "resolve_type": "generated", "format": "long", "usage": "all" } ]
+        "ROM_SIZE": [ { "value": "4096", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "VIDEO_RAM_MAPPED_ADDRESS": [ { "value": "4096", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "VIDEO_RAM_SIZE": [ { "value": "4800", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "RAM_MAPPED_ADDRESS": [ { "value": "9000", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "RAM_SIZE": [ { "value": "8192", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynq" } ],

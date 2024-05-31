@@ -28,14 +28,14 @@ module Motherboard(
 	output [11:0] RGB
     );
     /* memory map */
-    parameter ROM_MAPPED_ADDRESS = 0; /* ROM: 0 ~ 1023 */
-    parameter ROM_SIZE = 1024;
+    parameter ROM_MAPPED_ADDRESS = 0; /* ROM: 0 ~ 4096 - 1 */
+    parameter ROM_SIZE = 4 * 1024; /* 4096 */
     
-    parameter VIDEO_RAM_MAPPED_ADDRESS = 1024; /* VIDEO RAM: 1024 ~ 2047 */
-    parameter VIDEO_RAM_SIZE = 1 * 80 * 30;
+    parameter VIDEO_RAM_MAPPED_ADDRESS = 4096; /* VIDEO RAM: 4096 ~ 8896 - 1 */
+    parameter VIDEO_RAM_SIZE = 2 * 80 * 30;
     
-    parameter RAM_MAPPED_ADDRESS = 4096; /* RAM: 2048 ~ 4096 */
-    parameter RAM_SIZE = 2048;
+    parameter RAM_MAPPED_ADDRESS = 9000; /* RAM: 9000 ~ 17192 - 1 */
+    parameter RAM_SIZE = 4 * 2048;
 
     /* wires */
     wire [31:0] Din, Aout, Dout;
@@ -54,7 +54,7 @@ module Motherboard(
     
     /* Graphic Card */
     wire [31:0] graphics_data_in, graphics_data_out;
-    wire [15:0] graphics_address;
+    wire [31:0] graphics_address;
     wire [3:0] graphics_write_enable;
     
     Graphics graphics (
@@ -70,7 +70,7 @@ module Motherboard(
     );
 
     assign graphics_write_enable = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? WR : 4'h0;
-    assign graphics_address = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? Aout - VIDEO_RAM_MAPPED_ADDRESS : 16'h0;
+    assign graphics_address = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? Aout - VIDEO_RAM_MAPPED_ADDRESS : 32'h0;
     assign graphics_data_in = Dout;
     
     /* RAM */
@@ -85,7 +85,7 @@ module Motherboard(
     
     blk_mem_ram ram_0(
         .clka(CLK_D),
-        .addra(ram_address[31:2]),
+        .addra(ram_address[12:2]),
         .dina(ram_data_in),
         .douta(ram_data_out),
         .wea(ram_write_enable)

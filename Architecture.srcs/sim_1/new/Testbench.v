@@ -40,7 +40,7 @@ module Testbench();
         #1;
         rst = 1'b0;
 
-        #1000;
+        #130;
         
         $finish;
     end
