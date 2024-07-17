@@ -12,6 +12,8 @@
         "ROM_SIZE": [ { "value": "4096", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "VIDEO_RAM_MAPPED_ADDRESS": [ { "value": "4096", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "VIDEO_RAM_SIZE": [ { "value": "4800", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "KEYBOARD_MAPPED_ADDRESS": [ { "value": "8896", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "KEYBOARD_SIZE": [ { "value": "4", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "RAM_MAPPED_ADDRESS": [ { "value": "9000", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "RAM_SIZE": [ { "value": "8192", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "design_1_Motherboard_0_0", "resolve_type": "user", "usage": "all" } ]
@@ -21,6 +23,8 @@
         "ROM_SIZE": [ { "value": "4096", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "VIDEO_RAM_MAPPED_ADDRESS": [ { "value": "4096", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "VIDEO_RAM_SIZE": [ { "value": "4800", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "KEYBOARD_MAPPED_ADDRESS": [ { "value": "8896", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "KEYBOARD_SIZE": [ { "value": "4", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "RAM_MAPPED_ADDRESS": [ { "value": "9000", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "RAM_SIZE": [ { "value": "8192", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
@@ -56,7 +60,9 @@
         "RST": [ { "direction": "in" } ],
         "HSYNC": [ { "direction": "out" } ],
         "VSYNC": [ { "direction": "out" } ],
-        "RGB": [ { "direction": "out", "size_left": "11", "size_right": "0" } ]
+        "RGB": [ { "direction": "out", "size_left": "11", "size_right": "0" } ],
+        "PS2CLOCK0": [ { "direction": "inout" } ],
+        "PS2DATA0": [ { "direction": "inout" } ]
       },
       "interfaces": {
         "RST": {
@@ -80,7 +86,7 @@
             "FREQ_HZ": [ { "value": "100000000", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "FREQ_TOLERANCE_HZ": [ { "value": "0", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "PHASE": [ { "value": "0.0", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "float", "is_ips_inferred": true, "is_static_object": false } ],
-            "CLK_DOMAIN": [ { "value": "design_1_CLK", "value_src": "default_prop", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
+            "CLK_DOMAIN": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "ASSOCIATED_BUSIF": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "ASSOCIATED_PORT": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "INSERT_VIP": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "simulation.rtl", "is_ips_inferred": true, "is_static_object": false } ]

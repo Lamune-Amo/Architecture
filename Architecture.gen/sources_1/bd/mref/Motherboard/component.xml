@@ -55,7 +55,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e9089b6e</spirit:value>
+            <spirit:value>5c1e27a6</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -68,7 +68,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e9089b6e</spirit:value>
+            <spirit:value>5c1e27a6</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -151,6 +151,32 @@
           </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
+      <spirit:port>
+        <spirit:name>PS2CLOCK0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>inout</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>PS2DATA0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>inout</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
@@ -174,6 +200,16 @@
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VIDEO_RAM_SIZE">4800</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>KEYBOARD_MAPPED_ADDRESS</spirit:name>
+        <spirit:displayName>Keyboard Mapped Address</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.KEYBOARD_MAPPED_ADDRESS">8896</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>KEYBOARD_SIZE</spirit:name>
+        <spirit:displayName>Keyboard Size</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.KEYBOARD_SIZE">4</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>RAM_MAPPED_ADDRESS</spirit:name>
         <spirit:displayName>Ram Mapped Address</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.RAM_MAPPED_ADDRESS">9000</spirit:value>
@@ -191,7 +227,7 @@
       <spirit:file>
         <spirit:name>xgui/Motherboard_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_c08ee6b6</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_7da955af</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -217,6 +253,16 @@
       <spirit:name>VIDEO_RAM_SIZE</spirit:name>
       <spirit:displayName>Video Ram Size</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VIDEO_RAM_SIZE">4800</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>KEYBOARD_MAPPED_ADDRESS</spirit:name>
+      <spirit:displayName>Keyboard Mapped Address</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.KEYBOARD_MAPPED_ADDRESS">8896</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>KEYBOARD_SIZE</spirit:name>
+      <spirit:displayName>Keyboard Size</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.KEYBOARD_SIZE">4</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RAM_MAPPED_ADDRESS</spirit:name>
@@ -249,7 +295,7 @@
         <xilinx:designToolContext>IPI</xilinx:designToolContext>
       </xilinx:designToolContexts>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-05-28T03:49:21Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2024-07-17T14:33:33Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>

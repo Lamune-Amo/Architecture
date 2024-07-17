@@ -3,15 +3,22 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sat Jun  1 15:11:13 2024
-# Process ID: 12800
+# Start of session at: Tue Jul 16 12:05:05 2024
+# Process ID: 12720
 # Current directory: E:/Project/Capstone/Architecture
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent30224 E:\Project\Capstone\Architecture\Architecture.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent588 E:\Project\Capstone\Architecture\Architecture.xpr
 # Log file: E:/Project/Capstone/Architecture/vivado.log
 # Journal file: E:/Project/Capstone/Architecture\vivado.jou
 # Running On: DESKTOP-TDU015C, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 12, Host memory: 34306 MB
 #-----------------------------------------------------------
 start_gui
 open_project E:/Project/Capstone/Architecture/Architecture.xpr
-open_hw_manager
 update_compile_order -fileset sources_1
+update_module_reference design_1_Motherboard_0_0
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top Testbench_AMO [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1

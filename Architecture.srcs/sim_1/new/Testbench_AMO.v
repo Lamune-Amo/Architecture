@@ -21,28 +21,171 @@
 
 
 module Testbench_AMO();
-    reg clk, rst;
-    wire WR;
-    wire [31:0] Addr, Dout;
+    reg clk, rst, WR, clock, data;
+    wire INT;
+    wire [7:0] Addr, Dout;
     
-    AMO amo_v1 (
+    wire a, b;
+    
+    assign a = clock;
+    assign b = data;
+    
+    PS2Controller ps2keyboard(
         .CLK(clk),
         .RST(rst),
-        .Din(32'h1500_0060),
         .WR(WR),
-        .Aout(Addr),
-        .Dout(Dout)
+        .INT(INT),
+        .Din(8'h0),
+        .Dout(Dout),
+        .CLOCK(a),
+        .DATA(b)
     );
 
     initial begin
-        clk = 1; rst = 1'b0;
+        clk = 1; rst = 1'b0; WR = 1'b0; clock = 1'b1; data = 1'b1;
         #1;
         rst = 1'b1;
         #1;
         rst = 1'b0;
-
-        #48;
+        #3;
+        #62;
+        data = 1'b0;
+        #10;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b0;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b0;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b0;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #50;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #50;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
         
+        
+        
+        
+        #100;
+        WR = 1'b1;
+        #10;
+        WR = 1'b0;
+        #100;
+        
+        
+        
+        
+        data = 1'b0;
+        #10;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b0;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b0;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b0;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #50;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1; /// <<<<<< 
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #20;
+        data = 1'b1;
+        #30;
+        clock = 1'b0;
+        #50;
+        clock = 1'b1;
+        #100;
         $finish;
     end
     

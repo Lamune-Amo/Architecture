@@ -1,14 +1,13 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xDC937B03EF4B7687",
+      "boundary_crc": "0x30B8B4DE346D8BC1",
       "device": "xc7z020clg484-1",
       "gen_directory": "../../../../Architecture.gen/sources_1/bd/design_1",
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2023.2",
-      "validated": "true"
+      "tool_version": "2023.2"
     },
     "design_tree": {
       "Motherboard_0": ""
@@ -20,26 +19,6 @@
         "parameters": {
           "ASSOCIATED_RESET": {
             "value": "RST"
-          },
-          "CLK_DOMAIN": {
-            "value": "design_1_CLK",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "default"
           }
         }
       },
@@ -56,6 +35,12 @@
       },
       "RST": {
         "direction": "I"
+      },
+      "PS2CLOCK0": {
+        "direction": "IO"
+      },
+      "PS2DATA0": {
+        "direction": "IO"
       }
     },
     "components": {
@@ -78,10 +63,6 @@
               "ASSOCIATED_RESET": {
                 "value": "RST",
                 "value_src": "constant"
-              },
-              "CLK_DOMAIN": {
-                "value": "design_1_CLK",
-                "value_src": "default_prop"
               }
             }
           },
@@ -99,6 +80,12 @@
             "direction": "O",
             "left": "11",
             "right": "0"
+          },
+          "PS2CLOCK0": {
+            "direction": "IO"
+          },
+          "PS2DATA0": {
+            "direction": "IO"
           }
         }
       }
@@ -126,6 +113,18 @@
         "ports": [
           "Motherboard_0/VSYNC",
           "VSYNC"
+        ]
+      },
+      "Net": {
+        "ports": [
+          "PS2CLOCK0",
+          "Motherboard_0/PS2CLOCK0"
+        ]
+      },
+      "Net1": {
+        "ports": [
+          "PS2DATA0",
+          "Motherboard_0/PS2DATA0"
         ]
       },
       "RST_1": {

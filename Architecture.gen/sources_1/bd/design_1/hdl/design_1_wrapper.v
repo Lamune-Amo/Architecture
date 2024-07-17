@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-//Date        : Tue May 28 12:55:22 2024
+//Date        : Wed Jul 17 21:21:28 2024
 //Host        : DESKTOP-TDU015C running 64-bit major release  (build 9200)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -13,17 +13,23 @@
 module design_1_wrapper
    (CLK,
     HSYNC,
+    PS2CLOCK0,
+    PS2DATA0,
     RGB,
     RST,
     VSYNC);
   input CLK;
   output HSYNC;
+  inout PS2CLOCK0;
+  inout PS2DATA0;
   output [11:0]RGB;
   input RST;
   output VSYNC;
 
   wire CLK;
   wire HSYNC;
+  wire PS2CLOCK0;
+  wire PS2DATA0;
   wire [11:0]RGB;
   wire RST;
   wire VSYNC;
@@ -31,6 +37,8 @@ module design_1_wrapper
   design_1 design_1_i
        (.CLK(CLK),
         .HSYNC(HSYNC),
+        .PS2CLOCK0(PS2CLOCK0),
+        .PS2DATA0(PS2DATA0),
         .RGB(RGB),
         .RST(RST),
         .VSYNC(VSYNC));

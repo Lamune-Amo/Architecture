@@ -1,0 +1,29 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Jul 17 10:58:17 2024
+# Process ID: 23548
+# Current directory: E:/Project/Capstone/Architecture
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12836 E:\Project\Capstone\Architecture\Architecture.xpr
+# Log file: E:/Project/Capstone/Architecture/vivado.log
+# Journal file: E:/Project/Capstone/Architecture\vivado.jou
+# Running On: DESKTOP-TDU015C, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 12, Host memory: 34306 MB
+#-----------------------------------------------------------
+start_gui
+open_project E:/Project/Capstone/Architecture/Architecture.xpr
+update_compile_order -fileset sources_1
+update_module_reference design_1_Motherboard_0_0
+regenerate_bd_layout
+startgroup
+make_bd_pins_external  [get_bd_pins Motherboard_0/PS2CLOCK0]
+endgroup
+startgroup
+make_bd_pins_external  [get_bd_pins Motherboard_0/PS2DATA0]
+endgroup
+set_property name PS2CLOCK0 [get_bd_ports PS2CLOCK0_0]
+set_property name PS2DATA0 [get_bd_ports PS2DATA0_0]
+save_bd_design
+update_compile_order -fileset sources_1
+update_module_reference design_1_Motherboard_0_0
