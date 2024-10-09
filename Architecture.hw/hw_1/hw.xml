@@ -5,7 +5,7 @@
 <!-- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.        -->
 
 <hwsession version="1" minor="2">
-  <device name="xc7z020_1" gui_info=""/>
+  <device name="xc7z020_1" gui_info="dashboard1=hw_ila_1[xc7z020_1/hw_ila_1/Waveform=ILA_WAVE_1;xc7z020_1/hw_ila_1/Capture Setup=ILA_CAPTURE_1;xc7z020_1/hw_ila_1/Status=ILA_STATUS_1;xc7z020_1/hw_ila_1/Trigger Setup=ILA_TRIGGER_1;xc7z020_1/hw_ila_1/Settings=ILA_SETTINGS_1;]"/>
   <ObjectList object_type="hw_cfgmem" gui_info="">
     <Object name="" gui_info="">
       <Properties Property="PROGRAM.BLANK_CHECK" value="0"/>
@@ -30,5 +30,940 @@
       <Properties Property="SLR.COUNT" value="1"/>
     </Object>
   </ObjectList>
-  <probeset name="hw project" active="false"/>
+  <ObjectList object_type="hw_ila" gui_info="">
+    <Object name="" gui_info="">
+      <Properties Property="CONTROL.TRIGGER_CONDITION" value="AND"/>
+      <Properties Property="CORE_REFRESH_RATE_MS" value="500"/>
+    </Object>
+    <Object name="u_ila_0" gui_info="">
+      <Properties Property="CONTROL.TRIGGER_CONDITION" value="AND"/>
+      <Properties Property="CORE_REFRESH_RATE_MS" value="500"/>
+    </Object>
+  </ObjectList>
+  <ObjectList object_type="hw_probe" gui_info="">
+    <Object name="design_1_i/Motherboard_0/inst/amo_v1/WR[3:0]" gui_info=""/>
+    <Object name="design_1_i/Motherboard_0/inst/amo_v1/control_unit/next_state[5:0]" gui_info="Trigger Setup=0"/>
+    <Object name="design_1_i/Motherboard_0/inst/ps2_controller/PS2CLOCK0" gui_info=""/>
+    <Object name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/state0_in[3:0]" gui_info=""/>
+  </ObjectList>
+  <probeset name="hw project" active="false">
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe5[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="CLK_IBUF"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="SIGNED"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe3[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/ALUOut[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe4[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe1[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/PC[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq4&apos;hX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe3[3:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/WR[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/WR[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/WR[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/WR[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq6&apos;hXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq6&apos;h34"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[5:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq6&apos;h34"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/control_unit/next_state[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/control_unit/next_state[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/control_unit/next_state[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/control_unit/next_state[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/control_unit/next_state[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/control_unit/next_state[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe6[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/pulse"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe5[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[0]_0[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe7[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe4[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe3[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/CLK"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq8&apos;hXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[7:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/Dout[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/Dout[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/Dout[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/Dout[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/Dout[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/Dout[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/Dout[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/Dout[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe2[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/INT_reg"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe5[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/PS2CLOCK0"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe6[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/PS2DATA0"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe7[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/RST"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe3[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/PS2CLOCK0"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe4[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/PS2DATA0"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq4&apos;hX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe1[3:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/state0_in[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/state0_in[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/state0_in[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/state0_in[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq11&apos;hXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq11&apos;hXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[10:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq11&apos;hXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/addra[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe9[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/clka"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe1[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/douta[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq4&apos;hX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[3:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/wea[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/wea[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/wea[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_0/wea[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq11&apos;hXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq11&apos;hXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[10:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq11&apos;hXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_address[2]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe2[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/ram_data_out[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe2[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/rom_data_out[0]"/>
+      </nets>
+    </probe>
+  </probeset>
 </hwsession>

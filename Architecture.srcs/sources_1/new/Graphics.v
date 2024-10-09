@@ -41,11 +41,9 @@ module Graphics(
 	wire [7:0] ascii_cells;
 	wire [11:0] foreground, background;
 	wire active;
-	/* init */
-	integer i;
 	
 	always @(CLK) begin
-        CLK_D <= #4.5 CLK;
+        CLK_D <= #200 CLK;
     end
 	
 	dist_mem_video video_ram (

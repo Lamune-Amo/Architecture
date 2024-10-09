@@ -1,31 +1,40 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x30B8B4DE346D8BC1",
+      "boundary_crc": "0x20D521F8FA1AE92E",
       "device": "xc7z020clg484-1",
       "gen_directory": "../../../../Architecture.gen/sources_1/bd/design_1",
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2023.2"
+      "tool_version": "2023.2",
+      "validated": "true"
     },
     "design_tree": {
       "Motherboard_0": ""
     },
     "ports": {
-      "CLK": {
-        "type": "clk",
+      "RST": {
+        "type": "rst",
         "direction": "I",
         "parameters": {
-          "ASSOCIATED_RESET": {
-            "value": "RST"
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
           }
         }
       },
-      "HSYNC": {
-        "direction": "O"
+      "PS2CLOCK0": {
+        "direction": "I"
       },
-      "VSYNC": {
+      "PS2DATA0": {
+        "direction": "I"
+      },
+      "HSYNC": {
         "direction": "O"
       },
       "RGB": {
@@ -33,14 +42,37 @@
         "left": "11",
         "right": "0"
       },
-      "RST": {
-        "direction": "I"
+      "VSYNC": {
+        "direction": "O"
       },
-      "PS2CLOCK0": {
-        "direction": "IO"
-      },
-      "PS2DATA0": {
-        "direction": "IO"
+      "CLK": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "RST",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "design_1_CLK_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "200000000"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
       }
     },
     "components": {
@@ -63,6 +95,14 @@
               "ASSOCIATED_RESET": {
                 "value": "RST",
                 "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "200000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_CLK_0",
+                "value_src": "default_prop"
               }
             }
           },
@@ -82,16 +122,16 @@
             "right": "0"
           },
           "PS2CLOCK0": {
-            "direction": "IO"
+            "direction": "I"
           },
           "PS2DATA0": {
-            "direction": "IO"
+            "direction": "I"
           }
         }
       }
     },
     "nets": {
-      "CLK_1": {
+      "CLK_0_1": {
         "ports": [
           "CLK",
           "Motherboard_0/CLK"
@@ -115,19 +155,19 @@
           "VSYNC"
         ]
       },
-      "Net": {
+      "PS2CLOCK0_0_1": {
         "ports": [
           "PS2CLOCK0",
           "Motherboard_0/PS2CLOCK0"
         ]
       },
-      "Net1": {
+      "PS2DATA0_0_1": {
         "ports": [
           "PS2DATA0",
           "Motherboard_0/PS2DATA0"
         ]
       },
-      "RST_1": {
+      "RST_0_1": {
         "ports": [
           "RST",
           "Motherboard_0/RST"

@@ -22,8 +22,8 @@
 
 module VGAController(
     input CLK,
-    input RST,
     input CLK_Hz,
+    input RST,
     output reg hsync,
     output reg vsync,
     output reg active,

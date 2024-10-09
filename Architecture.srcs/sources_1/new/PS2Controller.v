@@ -28,8 +28,8 @@ module PS2Controller(
     input [7:0] Din,
     output reg [7:0] Dout,
     /* PS/2 IO line */
-    inout CLOCK,
-    inout DATA
+    input CLOCK,
+    input DATA
     );
     wire [7:0] data_out;
     
@@ -42,16 +42,19 @@ module PS2Controller(
                 Dout <= data_out;
             else if (WR)
                 Dout <= Din;
+            Dout <= { 7'h0, CLOCK };
         end
     end
     
     /* receiver */
+    /*
     PS2RX ps2rx (
         .CLK(CLK),
         .RST(RST),
-        .CLOCK(CLOCK),
-        .DATA(DATA),
+        .CLOCK(~CLOCK),
+        .DATA(~DATA),
         .INT(INT),
         .Dout(data_out)
     );
+    */
 endmodule

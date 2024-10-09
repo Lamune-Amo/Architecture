@@ -55,7 +55,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5c1e27a6</spirit:value>
+            <spirit:value>66fb353d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -68,7 +68,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5c1e27a6</spirit:value>
+            <spirit:value>66fb353d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -154,7 +154,7 @@
       <spirit:port>
         <spirit:name>PS2CLOCK0</spirit:name>
         <spirit:wire>
-          <spirit:direction>inout</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
@@ -167,7 +167,7 @@
       <spirit:port>
         <spirit:name>PS2DATA0</spirit:name>
         <spirit:wire>
-          <spirit:direction>inout</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
@@ -295,7 +295,7 @@
         <xilinx:designToolContext>IPI</xilinx:designToolContext>
       </xilinx:designToolContexts>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-07-17T14:33:33Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2024-10-09T14:53:40Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>

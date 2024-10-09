@@ -1,4 +1,4 @@
-`timescale 1ns / 100ps
+`timescale 100ns / 1ns
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -21,172 +21,26 @@
 
 
 module Testbench();
-    reg clk, rst, clock, data, WR;
-    wire hsync, vsync;
-    wire [11:0] rgb;
-    wire a, b;
+    reg clk, rst, WR;
     
     Motherboard cu0(
         .CLK(clk),
         .RST(rst),
-        .HSYNC(hsync),
-	    .VSYNC(vsync),
-	    .RGB(rgb),
-	    .PS2CLOCK0(a),
-	    .PS2DATA0(b)
+        .HSYNC(),
+	    .VSYNC(),
+	    .RGB(),
+	    .PS2CLOCK0(1'b1),
+	    .PS2DATA0(1'b1)
     );
-    
-    assign a = clock;
-    assign b = data;
 
     initial begin
-        clk = 1; rst = 1'b0; WR = 1'b0; clock = 1'b1; data = 1'b1;
+        clk = 1; rst = 1'b0; WR = 1'b0;
         #1;
         rst = 1'b1;
-        #1;
+        #5;
         rst = 1'b0;
-        #3;
-        #100;
-        #62;
-        data = 1'b0;
-        #10;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b0;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b0;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b0;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #50;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #50;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        
-        
-        
-        
-        #100;
-        WR = 1'b1;
-        #10;
-        WR = 1'b0;
-        #100;
-        
-        
-        
-        
-        data = 1'b0;
-        #10;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b0;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b0;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b0;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #50;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1; /// <<<<<< 
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #20;
-        data = 1'b1;
-        #30;
-        clock = 1'b0;
-        #50;
-        clock = 1'b1;
-        #100;
-    
-        #400;
+
+        #340;
         
         $finish;
     end

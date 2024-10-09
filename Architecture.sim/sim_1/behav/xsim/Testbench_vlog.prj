@@ -18,7 +18,6 @@ verilog xil_defaultlib  \
 "../../../../Architecture.srcs/sources_1/new/OpcodeToALUOpcode.v" \
 "../../../../Architecture.srcs/sources_1/new/OpcodeToState.v" \
 "../../../../Architecture.srcs/sources_1/new/PS2Controller.v" \
-"../../../../Architecture.srcs/sources_1/new/PS2RX.v" \
 "../../../../Architecture.srcs/sources_1/new/Palette.v" \
 "../../../../Architecture.srcs/sources_1/new/RegisterFile.v" \
 "../../../../Architecture.srcs/sources_1/new/VGAController.v" \

@@ -28,9 +28,10 @@ module Motherboard(
 	output VSYNC,
 	output [11:0] RGB,
 	/* PS/2 */
-	inout PS2CLOCK0,
-	inout PS2DATA0
+	input PS2CLOCK0,
+	input PS2DATA0
     );
+    
     /* memory map */
     parameter ROM_MAPPED_ADDRESS = 0; /* ROM: 0 ~ 4096 - 1 */
     parameter ROM_SIZE = 4 * 1024; /* 4096 */
@@ -42,11 +43,21 @@ module Motherboard(
     parameter KEYBOARD_SIZE = 4;
     
     parameter RAM_MAPPED_ADDRESS = 9000; /* RAM: 9000 ~ 17192 - 1 */
-    parameter RAM_SIZE = 4 * 2048;
+    parameter RAM_SIZE = 4 * 2048; /* 2KB */
 
     /* wires */
     wire [31:0] Din, Aout, Dout;
     wire [3:0] WR;
+    
+    /* clock */
+    reg pulse;
+    always @(posedge CLK or posedge RST) begin
+        if (RST)
+            pulse <= 2'h0;
+        else
+            pulse <= pulse + 1;
+    end
+    assign CLK_HALF = pulse;
     
     /* ROM (bios) */
     wire [11:0] rom_address;
@@ -86,14 +97,14 @@ module Motherboard(
     wire ps2_int;
     
     PS2Controller ps2_controller (
-        .CLK(CLK),
+        .CLK(CLK_HALF),
         .RST(RST),
         .WR(ps2_write_enable[0]),
         .INT(ps2_int), // for interrupt routine to be added later
         .Din(ps2_data_in),
         .Dout(ps2_data_out),
         .CLOCK(PS2CLOCK0),
-        .DATA(PS2DATA0)
+        .DATA()
     );
     
     assign ps2_write_enable = (KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) ? WR : 4'h0;
@@ -106,7 +117,7 @@ module Motherboard(
     wire [3:0] ram_write_enable;
 
     always @(CLK) begin
-        CLK_D <= #0.5 CLK;
+        CLK_D <= #200 CLK;
     end
     
     blk_mem_ram ram_0(
@@ -123,7 +134,7 @@ module Motherboard(
     
     /* AMO */
     AMO amo_v1 (
-        .CLK(CLK),
+        .CLK(CLK_HALF),
         .RST(RST),
         .Din(Din),
         .WR(WR),

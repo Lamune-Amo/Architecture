@@ -1,27 +1,27 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-453,-133",
+   "Default View_TopLeft":"-471,-158",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0
 #  -string -flagsOSRD
-preplace port port-id_CLK -pg 1 -lvl 0 -x 0 -y 90 -defaultsOSRD
-preplace port port-id_HSYNC -pg 1 -lvl 2 -x 260 -y 60 -defaultsOSRD
-preplace port port-id_VSYNC -pg 1 -lvl 2 -x 260 -y 80 -defaultsOSRD
-preplace port port-id_RST -pg 1 -lvl 0 -x 0 -y 110 -defaultsOSRD
-preplace port port-id_PS2CLOCK0 -pg 1 -lvl 2 -x 260 -y 120 -defaultsOSRD
-preplace port port-id_PS2DATA0 -pg 1 -lvl 2 -x 260 -y 140 -defaultsOSRD
-preplace portBus RGB -pg 1 -lvl 2 -x 260 -y 100 -defaultsOSRD
-preplace inst Motherboard_0 -pg 1 -lvl 1 -x 130 -y 100 -defaultsOSRD
-preplace netloc CLK_1 1 0 1 NJ 90
-preplace netloc Motherboard_0_HSYNC 1 1 1 NJ 60
-preplace netloc Motherboard_0_RGB 1 1 1 NJ 100
-preplace netloc Motherboard_0_VSYNC 1 1 1 NJ 80
-preplace netloc Net 1 1 1 N 120
-preplace netloc Net1 1 1 1 N 140
-preplace netloc RST_1 1 0 1 NJ 110
-levelinfo -pg 1 0 130 260
-pagesize -pg 1 -db -bbox -sgen -80 0 420 200
+preplace port port-id_RST -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
+preplace port port-id_PS2CLOCK0 -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
+preplace port port-id_PS2DATA0 -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
+preplace port port-id_HSYNC -pg 1 -lvl 2 -x 300 -y 70 -defaultsOSRD
+preplace port port-id_VSYNC -pg 1 -lvl 2 -x 300 -y 90 -defaultsOSRD
+preplace port port-id_CLK -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
+preplace portBus RGB -pg 1 -lvl 2 -x 300 -y 110 -defaultsOSRD
+preplace inst Motherboard_0 -pg 1 -lvl 1 -x 150 -y 90 -defaultsOSRD
+preplace netloc CLK_0_1 1 0 1 NJ 60
+preplace netloc Motherboard_0_HSYNC 1 1 1 NJ 70
+preplace netloc Motherboard_0_RGB 1 1 1 NJ 110
+preplace netloc Motherboard_0_VSYNC 1 1 1 NJ 90
+preplace netloc PS2CLOCK0_0_1 1 0 1 NJ 100
+preplace netloc PS2DATA0_0_1 1 0 1 NJ 120
+preplace netloc RST_0_1 1 0 1 NJ 80
+levelinfo -pg 1 0 150 300
+pagesize -pg 1 -db -bbox -sgen -140 0 420 180
 "
 }
 0
