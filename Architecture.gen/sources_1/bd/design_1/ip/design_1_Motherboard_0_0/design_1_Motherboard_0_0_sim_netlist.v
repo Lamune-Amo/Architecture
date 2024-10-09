@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-// Date        : Wed Oct  9 23:55:03 2024
+// Date        : Thu Oct 10 00:25:07 2024
 // Host        : DESKTOP-TDU015C running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               e:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/ip/design_1_Motherboard_0_0/design_1_Motherboard_0_0_sim_netlist.v
@@ -18,6 +18,7 @@
 (* NotValidForBitStream *)
 module design_1_Motherboard_0_0
    (CLK,
+    DCLK,
     RST,
     HSYNC,
     VSYNC,
@@ -25,6 +26,7 @@ module design_1_Motherboard_0_0
     PS2CLOCK0,
     PS2DATA0);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK, ASSOCIATED_RESET RST, FREQ_HZ 200000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_CLK_0, INSERT_VIP 0" *) input CLK;
+  input DCLK;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input RST;
   output HSYNC;
   output VSYNC;
@@ -33,6 +35,7 @@ module design_1_Motherboard_0_0
   input PS2DATA0;
 
   wire CLK;
+  wire DCLK;
   wire HSYNC;
   wire PS2CLOCK0;
   wire [11:0]RGB;
@@ -49,6 +52,7 @@ module design_1_Motherboard_0_0
   (* VIDEO_RAM_SIZE = "4800" *) 
   design_1_Motherboard_0_0_Motherboard inst
        (.CLK(CLK),
+        .DCLK(DCLK),
         .HSYNC(HSYNC),
         .PS2CLOCK0(PS2CLOCK0),
         .PS2DATA0(1'b0),
@@ -59,27 +63,27 @@ endmodule
 
 (* ORIG_REF_NAME = "AMO" *) 
 module design_1_Motherboard_0_0_AMO
-   (rom_address,
-    addra,
+   (addra,
+    a,
+    ram_0_i_17,
     wea,
-    \PC_reg[12]_0 ,
     \WR_OUT_reg[3] ,
     MemAccessClock_reg,
     douta,
     spo,
-    \Din_OUT_reg[31]_i_4 ,
+    \Din_OUT_reg[23]_i_5 ,
     Dout,
     pulse,
     RST);
-  output [9:0]rom_address;
   output [10:0]addra;
+  output [9:0]a;
+  output [10:0]ram_0_i_17;
   output [3:0]wea;
-  output [10:0]\PC_reg[12]_0 ;
   output [3:0]\WR_OUT_reg[3] ;
   output [31:0]MemAccessClock_reg;
   input [31:0]douta;
   input [31:0]spo;
-  input [31:0]\Din_OUT_reg[31]_i_4 ;
+  input [31:0]\Din_OUT_reg[23]_i_5 ;
   input [0:0]Dout;
   input pulse;
   input RST;
@@ -93,7 +97,7 @@ module design_1_Motherboard_0_0_AMO
   wire [30:0]ALUResult;
   wire Carry;
   wire [31:0]Din_BIG;
-  wire [31:0]\Din_OUT_reg[31]_i_4 ;
+  wire [31:0]\Din_OUT_reg[23]_i_5 ;
   wire [0:0]Dout;
   wire FlagInNegative;
   wire \IR_reg_n_0_[0] ;
@@ -118,12 +122,12 @@ module design_1_Motherboard_0_0_AMO
   wire MemWriteEn;
   wire [31:0]PC;
   wire [31:0]PC_next;
-  wire [10:0]\PC_reg[12]_0 ;
   wire RST;
   wire [31:0]Rn;
   wire [31:0]Rs;
   wire [3:0]WR;
   wire [3:0]\WR_OUT_reg[3] ;
+  wire [9:0]a;
   wire [10:0]addra;
   wire control_unit_n_0;
   wire control_unit_n_1;
@@ -248,7 +252,7 @@ module design_1_Motherboard_0_0_AMO
   wire [4:0]p_1_in;
   wire [4:0]p_2_in;
   wire pulse;
-  wire [9:0]rom_address;
+  wire [10:0]ram_0_i_17;
   wire [31:0]spo;
   wire [5:1]state;
   wire [3:0]wea;
@@ -1450,7 +1454,6 @@ module design_1_Motherboard_0_0_AMO
         .Q(Rs[9]));
   design_1_Motherboard_0_0_ControlUnit control_unit
        (.ALUOpcodeSrc(ALUOpcodeSrc),
-        .\ALUOut_reg[1] ({control_unit_n_45,control_unit_n_46,control_unit_n_47,control_unit_n_48,control_unit_n_49,control_unit_n_50,control_unit_n_51,control_unit_n_52,control_unit_n_53,control_unit_n_54,control_unit_n_55,control_unit_n_56,control_unit_n_57,control_unit_n_58,control_unit_n_59,control_unit_n_60,control_unit_n_61,control_unit_n_62,control_unit_n_63,control_unit_n_64,control_unit_n_65,control_unit_n_66,control_unit_n_67,control_unit_n_68,control_unit_n_69,control_unit_n_70,control_unit_n_71,control_unit_n_72,control_unit_n_73,control_unit_n_74,control_unit_n_75,control_unit_n_76}),
         .\ALUOut_reg[5] (\ALUOut[31]_i_5_n_0 ),
         .\ALUOut_reg[5]_0 (\ALUOut[31]_i_8_n_0 ),
         .\ALUOut_reg[5]_1 (\ALUOut[31]_i_3_n_0 ),
@@ -1458,8 +1461,8 @@ module design_1_Motherboard_0_0_AMO
         .AR({control_unit_n_187,control_unit_n_188}),
         .\CPSR_reg[1] (control_unit_n_109),
         .Carry(Carry),
-        .D({control_unit_n_41,control_unit_n_42,control_unit_n_43,control_unit_n_44}),
-        .\Din_OUT_reg[31]_i_4_0 (\Din_OUT_reg[31]_i_4 ),
+        .D({control_unit_n_41,control_unit_n_42,control_unit_n_43,control_unit_n_44,control_unit_n_45,control_unit_n_46,control_unit_n_47,control_unit_n_48,control_unit_n_49,control_unit_n_50,control_unit_n_51,control_unit_n_52,control_unit_n_53,control_unit_n_54,control_unit_n_55,control_unit_n_56,control_unit_n_57,control_unit_n_58,control_unit_n_59,control_unit_n_60,control_unit_n_61,control_unit_n_62,control_unit_n_63,control_unit_n_64,control_unit_n_65,control_unit_n_66,control_unit_n_67,control_unit_n_68,control_unit_n_69,control_unit_n_70,control_unit_n_71,control_unit_n_72}),
+        .\Din_OUT_reg[23]_i_5_0 (\Din_OUT_reg[23]_i_5 ),
         .Dout(Dout),
         .E(control_unit_n_0),
         .\IR_reg[11] (control_unit_n_3),
@@ -1493,11 +1496,9 @@ module design_1_Motherboard_0_0_AMO
         .\IR_reg[15]_7 (control_unit_n_13),
         .\IR_reg[15]_8 (control_unit_n_17),
         .\IR_reg[15]_9 (control_unit_n_18),
-        .MemAccessClock_reg_0(rom_address[6]),
-        .MemAccessClock_reg_1(rom_address[7]),
-        .MemAccessClock_reg_2({control_unit_n_183,control_unit_n_184,control_unit_n_185,control_unit_n_186}),
-        .MemAccessClock_reg_3({control_unit_n_189,control_unit_n_190}),
-        .\PC_reg[12] (\PC_reg[12]_0 ),
+        .MemAccessClock_reg_0({control_unit_n_73,control_unit_n_74,control_unit_n_75,control_unit_n_76}),
+        .MemAccessClock_reg_1({control_unit_n_183,control_unit_n_184,control_unit_n_185,control_unit_n_186}),
+        .MemAccessClock_reg_2({control_unit_n_189,control_unit_n_190}),
         .\PC_reg[31] (data_in),
         .\PC_reg[31]_0 (Rs),
         .\PC_reg[31]_1 (ALUOut),
@@ -1506,13 +1507,14 @@ module design_1_Motherboard_0_0_AMO
         .\Rn_reg[31] ({control_unit_n_77,control_unit_n_78,control_unit_n_79,control_unit_n_80,control_unit_n_81,control_unit_n_82,control_unit_n_83,control_unit_n_84,control_unit_n_85,control_unit_n_86,control_unit_n_87,control_unit_n_88,control_unit_n_89,control_unit_n_90,control_unit_n_91,control_unit_n_92,control_unit_n_93,control_unit_n_94,control_unit_n_95,control_unit_n_96,control_unit_n_97,control_unit_n_98,control_unit_n_99,control_unit_n_100,control_unit_n_101,control_unit_n_102,control_unit_n_103,control_unit_n_104,control_unit_n_105,control_unit_n_106,control_unit_n_107,control_unit_n_108}),
         .\Rs_reg[31] (PC_next),
         .\WR_OUT_reg[3] (\WR_OUT_reg[3] ),
+        .a(a),
         .addra(addra),
         .douta(douta),
         .op_to_aluop(op_to_aluop[3:1]),
         .pulse(pulse),
+        .ram_0_i_17_0(ram_0_i_17),
         .\registers_reg[30][31] (Rn),
         .\registers_reg[30][31]_0 (MDR),
-        .rom_address({rom_address[9:8],rom_address[5:0]}),
         .spo(spo),
         .\state_reg[0]_0 (control_unit_n_191),
         .\state_reg[0]_1 ({\IR_reg_n_0_[31] ,\IR_reg_n_0_[30] ,\IR_reg_n_0_[29] ,\IR_reg_n_0_[28] ,\IR_reg_n_0_[27] ,\IR_reg_n_0_[26] ,p_0_in,p_1_in,p_2_in,\IR_reg_n_0_[10] ,\IR_reg_n_0_[9] ,\IR_reg_n_0_[8] ,\IR_reg_n_0_[7] ,\IR_reg_n_0_[6] ,\IR_reg_n_0_[5] ,\IR_reg_n_0_[4] ,\IR_reg_n_0_[3] ,\IR_reg_n_0_[2] ,\IR_reg_n_0_[1] ,\IR_reg_n_0_[0] }),
@@ -1569,11 +1571,11 @@ module design_1_Motherboard_0_0_AMO
         .D({control_unit_n_77,control_unit_n_78,control_unit_n_79,control_unit_n_80,control_unit_n_81,control_unit_n_82,control_unit_n_83,control_unit_n_84,control_unit_n_85,control_unit_n_86,control_unit_n_87,control_unit_n_88,control_unit_n_89,control_unit_n_90,control_unit_n_91,control_unit_n_92,control_unit_n_93,control_unit_n_94,control_unit_n_95,control_unit_n_96,control_unit_n_97,control_unit_n_98,control_unit_n_99,control_unit_n_100,control_unit_n_101,control_unit_n_102,control_unit_n_103,control_unit_n_104,control_unit_n_105,control_unit_n_106,control_unit_n_107,control_unit_n_108}),
         .E(MemWriteEn),
         .\MDR_reg[25] ({control_unit_n_183,control_unit_n_184,control_unit_n_185,control_unit_n_186}),
-        .\MDR_reg[31] ({control_unit_n_45,control_unit_n_46,control_unit_n_47,control_unit_n_48,control_unit_n_49,control_unit_n_50,control_unit_n_51,control_unit_n_52,control_unit_n_53,control_unit_n_54,control_unit_n_55,control_unit_n_56,control_unit_n_57,control_unit_n_58,control_unit_n_59,control_unit_n_60,control_unit_n_61,control_unit_n_62,control_unit_n_63,control_unit_n_64,control_unit_n_65,control_unit_n_66,control_unit_n_67,control_unit_n_68,control_unit_n_69,control_unit_n_70,control_unit_n_71,control_unit_n_72,control_unit_n_73,control_unit_n_74,control_unit_n_75,control_unit_n_76}),
+        .\MDR_reg[31] ({control_unit_n_41,control_unit_n_42,control_unit_n_43,control_unit_n_44,control_unit_n_45,control_unit_n_46,control_unit_n_47,control_unit_n_48,control_unit_n_49,control_unit_n_50,control_unit_n_51,control_unit_n_52,control_unit_n_53,control_unit_n_54,control_unit_n_55,control_unit_n_56,control_unit_n_57,control_unit_n_58,control_unit_n_59,control_unit_n_60,control_unit_n_61,control_unit_n_62,control_unit_n_63,control_unit_n_64,control_unit_n_65,control_unit_n_66,control_unit_n_67,control_unit_n_68,control_unit_n_69,control_unit_n_70,control_unit_n_71,control_unit_n_72}),
         .MemAccessClock_reg(MemAccessClock_reg),
         .MemAccessClock_reg_0(WR),
         .Q(Din_BIG),
-        .video_ram_i_1({control_unit_n_41,control_unit_n_42,control_unit_n_43,control_unit_n_44}),
+        .video_ram_i_1({control_unit_n_73,control_unit_n_74,control_unit_n_75,control_unit_n_76}),
         .video_ram_i_1_0({control_unit_n_189,control_unit_n_190}),
         .video_ram_i_1_1({control_unit_n_187,control_unit_n_188}));
   design_1_Motherboard_0_0_RegisterFile register_file
@@ -5554,21 +5556,19 @@ module design_1_Motherboard_0_0_ControlUnit
     \state_reg[2]_0 ,
     \state_reg[5]_2 ,
     D,
-    \ALUOut_reg[1] ,
+    MemAccessClock_reg_0,
     \Rn_reg[31] ,
     \CPSR_reg[1] ,
     ALUOpcodeSrc,
-    MemAccessClock_reg_0,
-    MemAccessClock_reg_1,
     addra,
+    a,
+    ram_0_i_17_0,
     wea,
-    \PC_reg[12] ,
     \WR_OUT_reg[3] ,
-    rom_address,
     \state_reg[5]_3 ,
-    MemAccessClock_reg_2,
+    MemAccessClock_reg_1,
     AR,
-    MemAccessClock_reg_3,
+    MemAccessClock_reg_2,
     \state_reg[0]_0 ,
     \Rs_reg[31] ,
     \PC_reg[31] ,
@@ -5584,7 +5584,7 @@ module design_1_Motherboard_0_0_ControlUnit
     \state_reg[0]_1 ,
     douta,
     spo,
-    \Din_OUT_reg[31]_i_4_0 ,
+    \Din_OUT_reg[23]_i_5_0 ,
     Carry,
     Dout,
     video_ram,
@@ -5628,22 +5628,20 @@ module design_1_Motherboard_0_0_ControlUnit
   output [0:0]\state_reg[5]_1 ;
   output \state_reg[2]_0 ;
   output [1:0]\state_reg[5]_2 ;
-  output [3:0]D;
-  output [31:0]\ALUOut_reg[1] ;
+  output [31:0]D;
+  output [3:0]MemAccessClock_reg_0;
   output [31:0]\Rn_reg[31] ;
   output \CPSR_reg[1] ;
   output ALUOpcodeSrc;
-  output MemAccessClock_reg_0;
-  output MemAccessClock_reg_1;
   output [10:0]addra;
+  output [9:0]a;
+  output [10:0]ram_0_i_17_0;
   output [3:0]wea;
-  output [10:0]\PC_reg[12] ;
   output [3:0]\WR_OUT_reg[3] ;
-  output [7:0]rom_address;
   output [31:0]\state_reg[5]_3 ;
-  output [3:0]MemAccessClock_reg_2;
+  output [3:0]MemAccessClock_reg_1;
   output [1:0]AR;
-  output [1:0]MemAccessClock_reg_3;
+  output [1:0]MemAccessClock_reg_2;
   output [0:0]\state_reg[0]_0 ;
   output [31:0]\Rs_reg[31] ;
   output [31:0]\PC_reg[31] ;
@@ -5659,7 +5657,7 @@ module design_1_Motherboard_0_0_ControlUnit
   input [31:0]\state_reg[0]_1 ;
   input [31:0]douta;
   input [31:0]spo;
-  input [31:0]\Din_OUT_reg[31]_i_4_0 ;
+  input [31:0]\Din_OUT_reg[23]_i_5_0 ;
   input Carry;
   input [0:0]Dout;
   input [3:0]video_ram;
@@ -6191,7 +6189,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut_reg[18]_i_3_n_0 ;
   wire \ALUOut_reg[19]_i_2_n_0 ;
   wire \ALUOut_reg[19]_i_3_n_0 ;
-  wire [31:0]\ALUOut_reg[1] ;
   wire \ALUOut_reg[21]_i_2_n_0 ;
   wire \ALUOut_reg[21]_i_3_n_0 ;
   wire \ALUOut_reg[22]_i_2_n_0 ;
@@ -6216,7 +6213,7 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \CPSR[1]_i_6_n_0 ;
   wire \CPSR_reg[1] ;
   wire Carry;
-  wire [3:0]D;
+  wire [31:0]D;
   wire [31:0]Din;
   wire Din1;
   wire Din3;
@@ -6244,6 +6241,7 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \Din_OUT_reg[21]_i_3_n_0 ;
   wire \Din_OUT_reg[22]_i_3_n_0 ;
   wire \Din_OUT_reg[23]_i_4_n_0 ;
+  wire [31:0]\Din_OUT_reg[23]_i_5_0 ;
   wire \Din_OUT_reg[23]_i_5_n_0 ;
   wire \Din_OUT_reg[23]_i_6_n_0 ;
   wire \Din_OUT_reg[24]_i_3_n_0 ;
@@ -6254,7 +6252,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \Din_OUT_reg[29]_i_3_n_0 ;
   wire \Din_OUT_reg[2]_i_3_n_0 ;
   wire \Din_OUT_reg[30]_i_3_n_0 ;
-  wire [31:0]\Din_OUT_reg[31]_i_4_0 ;
   wire \Din_OUT_reg[31]_i_4_n_0 ;
   wire \Din_OUT_reg[31]_i_5_n_0 ;
   wire \Din_OUT_reg[31]_i_7_n_0 ;
@@ -6380,10 +6377,10 @@ module design_1_Motherboard_0_0_ControlUnit
   wire [1:1]MemAccess;
   wire MemAccessClock;
   wire MemAccessClock_i_1_n_0;
-  wire MemAccessClock_reg_0;
-  wire MemAccessClock_reg_1;
-  wire [3:0]MemAccessClock_reg_2;
-  wire [1:0]MemAccessClock_reg_3;
+  wire [3:0]MemAccessClock_reg_0;
+  wire [3:0]MemAccessClock_reg_1;
+  wire [1:0]MemAccessClock_reg_2;
+  wire MemAddrSrc;
   wire [1:1]PCSource;
   wire PCWrite;
   wire PCWriteCond;
@@ -6419,7 +6416,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \PC[31]_i_8_n_0 ;
   wire \PC[31]_i_9_n_0 ;
   wire \PC[3]_i_2_n_0 ;
-  wire [10:0]\PC_reg[12] ;
   wire [31:0]\PC_reg[31] ;
   wire [31:0]\PC_reg[31]_0 ;
   wire [31:0]\PC_reg[31]_1 ;
@@ -6435,6 +6431,7 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \WR_OUT_reg[1]_i_5_n_0 ;
   wire \WR_OUT_reg[1]_i_6_n_0 ;
   wire [3:0]\WR_OUT_reg[3] ;
+  wire [9:0]a;
   wire [10:0]addra;
   wire [31:0]alu_A;
   wire carry0;
@@ -6455,6 +6452,7 @@ module design_1_Motherboard_0_0_ControlUnit
   wire [19:0]p_0_in__0;
   wire [27:2]p_1_in__0;
   wire pulse;
+  wire [10:0]ram_0_i_17_0;
   wire ram_0_i_17_n_2;
   wire ram_0_i_17_n_3;
   wire ram_0_i_18_n_0;
@@ -6538,7 +6536,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \registers[0][31]_i_9_n_0 ;
   wire [31:0]\registers_reg[30][31] ;
   wire [31:0]\registers_reg[30][31]_0 ;
-  wire [7:0]rom_address;
   wire [31:0]spo;
   wire [0:0]state;
   wire \state[0]_i_2_n_0 ;
@@ -6561,7 +6558,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire [1:0]\state_reg[5]_2 ;
   wire [31:0]\state_reg[5]_3 ;
   wire [3:0]video_ram;
-  wire video_ram_i_19_n_0;
   wire video_ram_i_20_n_0;
   wire video_ram_i_20_n_1;
   wire video_ram_i_20_n_2;
@@ -6810,7 +6806,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\ALUOut_reg[9] ),
         .I5(\ALUOut_reg[5]_1 ),
         .O(\ALUOut[10]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair123" *) 
+  (* SOFT_HLUTNM = "soft_lutpair119" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[10]_i_5 
@@ -7002,7 +6998,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\ALUOut[29]_i_21_n_0 ),
         .I5(\state_reg[0]_1 [11]),
         .O(\ALUOut[12]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair122" *) 
+  (* SOFT_HLUTNM = "soft_lutpair118" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[12]_i_14 
@@ -7144,7 +7140,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\ALUOut[13]_i_12_n_0 ),
         .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[12]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair121" *) 
+  (* SOFT_HLUTNM = "soft_lutpair117" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[12]_i_7 
@@ -7276,7 +7272,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\ALUOut[14]_i_16_n_0 ),
         .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[13]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair120" *) 
+  (* SOFT_HLUTNM = "soft_lutpair116" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[13]_i_7 
@@ -7537,7 +7533,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\ALUOut[29]_i_21_n_0 ),
         .I5(\state_reg[0]_1 [14]),
         .O(\ALUOut[14]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair119" *) 
+  (* SOFT_HLUTNM = "soft_lutpair115" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[14]_i_9 
@@ -7707,14 +7703,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\ALUOut[29]_i_8_n_0 ),
         .O(\ALUOut[15]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'hE3A8E388A86BA2EB)) 
+    .INIT(64'hEFFC9998639D0099)) 
     \ALUOut[15]_i_8 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(\state_reg[5]_0 [0]),
-        .I2(\state_reg[5]_0 [3]),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(state),
-        .I5(\state_reg[5]_0 [1]),
+       (.I0(\state_reg[5]_0 [1]),
+        .I1(\state_reg[5]_0 [2]),
+        .I2(state),
+        .I3(\state_reg[5]_0 [0]),
+        .I4(\state_reg[5]_0 [4]),
+        .I5(\state_reg[5]_0 [3]),
         .O(\ALUOut[15]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hFFD80027002727FF)) 
@@ -7948,7 +7944,7 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(\ALUOut[17]_i_11_n_0 ),
         .I1(\ALUOut[31]_i_23_n_0 ),
         .O(\ALUOut[17]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair117" *) 
+  (* SOFT_HLUTNM = "soft_lutpair112" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[17]_i_16 
@@ -8506,7 +8502,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(alu_A[17]),
         .I4(\ALUOut[17]_i_15_n_0 ),
         .O(\ALUOut[20]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair116" *) 
+  (* SOFT_HLUTNM = "soft_lutpair111" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[20]_i_11 
@@ -8523,7 +8519,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers_reg[30][31] [18]),
         .I4(\state_reg[0]_1 [18]),
         .O(\ALUOut[20]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair115" *) 
+  (* SOFT_HLUTNM = "soft_lutpair110" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[20]_i_13 
@@ -8969,7 +8965,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(alu_A[20]),
         .I5(\ALUOut[21]_i_12_n_0 ),
         .O(\ALUOut[23]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair130" *) 
+  (* SOFT_HLUTNM = "soft_lutpair127" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[23]_i_11 
@@ -8986,7 +8982,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers_reg[30][31] [21]),
         .I4(\state_reg[0]_1 [20]),
         .O(\ALUOut[23]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair129" *) 
+  (* SOFT_HLUTNM = "soft_lutpair126" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[23]_i_13 
@@ -9345,7 +9341,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers_reg[30][31] [23]),
         .I4(\state_reg[0]_1 [20]),
         .O(\ALUOut[25]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair129" *) 
+  (* SOFT_HLUTNM = "soft_lutpair126" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[25]_i_12 
@@ -10047,7 +10043,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\ALUOut[29]_i_27_n_0 ),
         .I4(\ALUOut[29]_i_12_n_0 ),
         .O(\ALUOut[29]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair118" *) 
+  (* SOFT_HLUTNM = "soft_lutpair114" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[29]_i_11 
@@ -11359,7 +11355,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\ALUOut_reg[5]_1 ),
         .I5(\ALUOut[6]_i_8_n_0 ),
         .O(\ALUOut[6]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair130" *) 
+  (* SOFT_HLUTNM = "soft_lutpair127" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[6]_i_4 
@@ -11667,7 +11663,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\ALUOut[29]_i_8_n_0 ),
         .I4(\ALUOut[9]_i_5_n_0 ),
         .O(\ALUOut[8]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair125" *) 
+  (* SOFT_HLUTNM = "soft_lutpair121" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[8]_i_7 
@@ -11723,7 +11719,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\ALUOut_reg[9] ),
         .I5(\ALUOut_reg[5]_1 ),
         .O(\ALUOut[9]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair124" *) 
+  (* SOFT_HLUTNM = "soft_lutpair120" *) 
   LUT3 #(
     .INIT(8'hCA)) 
     \ALUOut[9]_i_12 
@@ -12198,14 +12194,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [3]),
         .I5(\state_reg[5]_0 [2]),
         .O(\CPSR[1]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair97" *) 
+  (* SOFT_HLUTNM = "soft_lutpair100" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[0]_i_1 
        (.I0(Din[0]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[0]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [0]));
+        .O(D[0]));
   LUT5 #(
     .INIT(32'hFFFFEC20)) 
     \Din_OUT_reg[0]_i_2 
@@ -12228,7 +12224,7 @@ module design_1_Motherboard_0_0_ControlUnit
   LUT6 #(
     .INIT(64'h0000232000002020)) 
     \Din_OUT_reg[0]_i_4 
-       (.I0(\Din_OUT_reg[31]_i_4_0 [0]),
+       (.I0(\Din_OUT_reg[23]_i_5_0 [0]),
         .I1(Din1),
         .I2(Din3),
         .I3(Din4),
@@ -12251,28 +12247,28 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Din_OUT_reg[0]_i_8_n_0 ),
         .I2(video_ram_i_29_n_0),
         .I3(video_ram_i_31_n_0),
-        .I4(MemAccessClock_reg_0),
-        .I5(MemAccessClock_reg_1),
+        .I4(a[6]),
+        .I5(a[7]),
         .O(Din51_in));
   LUT6 #(
     .INIT(64'hFFFFFFFF00000001)) 
     \Din_OUT_reg[0]_i_7 
-       (.I0(rom_address[1]),
-        .I1(rom_address[2]),
-        .I2(MemAccessClock_reg_0),
-        .I3(rom_address[3]),
-        .I4(rom_address[0]),
+       (.I0(a[1]),
+        .I1(a[2]),
+        .I2(a[6]),
+        .I3(a[3]),
+        .I4(a[0]),
         .I5(video_ram_i_32_n_0),
         .O(\Din_OUT_reg[0]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h0027FF27FFFFFFFF)) 
+    .INIT(64'h001BFF1BFFFFFFFF)) 
     \Din_OUT_reg[0]_i_8 
-       (.I0(video_ram_i_19_n_0),
+       (.I0(MemAddrSrc),
         .I1(Q[6]),
         .I2(\PC_reg[31]_1 [6]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [4]),
-        .I5(rom_address[5]),
+        .I5(a[5]),
         .O(\Din_OUT_reg[0]_i_8_n_0 ));
   LUT4 #(
     .INIT(16'hFF20)) 
@@ -12281,14 +12277,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
         .I2(Din[26]),
         .I3(\Din_OUT_reg[10]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [10]));
+        .O(D[10]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[10]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [26]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [26]),
         .I4(douta[26]),
         .I5(spo[26]),
         .O(Din[26]));
@@ -12309,14 +12305,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
         .I2(Din[27]),
         .I3(\Din_OUT_reg[11]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [11]));
+        .O(D[11]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[11]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [27]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [27]),
         .I4(douta[27]),
         .I5(spo[27]),
         .O(Din[27]));
@@ -12337,14 +12333,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
         .I2(Din[28]),
         .I3(\Din_OUT_reg[12]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [12]));
+        .O(D[12]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[12]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [28]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [28]),
         .I4(douta[28]),
         .I5(spo[28]),
         .O(Din[28]));
@@ -12366,14 +12362,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
         .I2(Din[29]),
         .I3(\Din_OUT_reg[13]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [13]));
+        .O(D[13]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[13]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [29]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [29]),
         .I4(douta[29]),
         .I5(spo[29]),
         .O(Din[29]));
@@ -12395,14 +12391,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
         .I2(Din[30]),
         .I3(\Din_OUT_reg[14]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [14]));
+        .O(D[14]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[14]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [30]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [30]),
         .I4(douta[30]),
         .I5(spo[30]),
         .O(Din[30]));
@@ -12424,7 +12420,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
         .I2(Din[31]),
         .I3(\Din_OUT_reg[15]_i_4_n_0 ),
-        .O(\ALUOut_reg[1] [15]));
+        .O(D[15]));
   LUT6 #(
     .INIT(64'hFDDF00005FFF0000)) 
     \Din_OUT_reg[15]_i_2 
@@ -12434,14 +12430,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state[5]_i_3_n_0 ),
         .I4(\Din_OUT_reg[31]_i_5_n_0 ),
         .I5(MemAccessClock),
-        .O(MemAccessClock_reg_2[1]));
+        .O(MemAccessClock_reg_1[1]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[15]_i_3 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [31]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [31]),
         .I4(douta[31]),
         .I5(spo[31]),
         .O(Din[31]));
@@ -12456,21 +12452,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Din_OUT_reg[15]_i_6_n_0 ),
         .O(\Din_OUT_reg[15]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h3500000000000000)) 
+    .INIT(64'h5300000000000000)) 
     \Din_OUT_reg[15]_i_5 
        (.I0(\PC_reg[31]_1 [0]),
         .I1(Q[0]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .I3(\state[5]_i_3_n_0 ),
         .I4(MemAccess),
         .I5(\WR_OUT_reg[1]_i_6_n_0 ),
         .O(\Din_OUT_reg[15]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h0005303500000000)) 
+    .INIT(64'h0050035300000000)) 
     \Din_OUT_reg[15]_i_6 
        (.I0(\PC_reg[31]_1 [1]),
         .I1(Q[1]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .I3(\PC_reg[31]_1 [0]),
         .I4(Q[0]),
         .I5(MemAccess),
@@ -12482,14 +12478,14 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(Din[16]),
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[16]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [16]));
+        .O(D[16]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[16]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [16]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [16]),
         .I4(douta[16]),
         .I5(spo[16]),
         .O(Din[16]));
@@ -12510,14 +12506,14 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(Din[17]),
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[17]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [17]));
+        .O(D[17]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[17]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [17]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [17]),
         .I4(douta[17]),
         .I5(spo[17]),
         .O(Din[17]));
@@ -12531,21 +12527,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[25]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[17]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair98" *) 
+  (* SOFT_HLUTNM = "soft_lutpair97" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[18]_i_1 
        (.I0(Din[18]),
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[18]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [18]));
+        .O(D[18]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[18]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [18]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [18]),
         .I4(douta[18]),
         .I5(spo[18]),
         .O(Din[18]));
@@ -12559,21 +12555,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[26]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[18]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair98" *) 
+  (* SOFT_HLUTNM = "soft_lutpair97" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[19]_i_1 
        (.I0(Din[19]),
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[19]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [19]));
+        .O(D[19]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[19]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [19]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [19]),
         .I4(douta[19]),
         .I5(spo[19]),
         .O(Din[19]));
@@ -12587,21 +12583,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[27]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[19]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair97" *) 
+  (* SOFT_HLUTNM = "soft_lutpair100" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[1]_i_1 
        (.I0(Din[1]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[1]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [1]));
+        .O(D[1]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[1]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [1]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [1]),
         .I4(douta[1]),
         .I5(spo[1]),
         .O(Din[1]));
@@ -12615,21 +12611,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[9]),
         .I5(\Din_OUT_reg[7]_i_7_n_0 ),
         .O(\Din_OUT_reg[1]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair100" *) 
+  (* SOFT_HLUTNM = "soft_lutpair98" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[20]_i_1 
        (.I0(Din[20]),
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[20]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [20]));
+        .O(D[20]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[20]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [20]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [20]),
         .I4(douta[20]),
         .I5(spo[20]),
         .O(Din[20]));
@@ -12643,21 +12639,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[28]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[20]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair100" *) 
+  (* SOFT_HLUTNM = "soft_lutpair98" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[21]_i_1 
        (.I0(Din[21]),
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[21]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [21]));
+        .O(D[21]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[21]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [21]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [21]),
         .I4(douta[21]),
         .I5(spo[21]),
         .O(Din[21]));
@@ -12671,21 +12667,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[29]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[21]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair102" *) 
+  (* SOFT_HLUTNM = "soft_lutpair99" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[22]_i_1 
        (.I0(Din[22]),
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[22]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [22]));
+        .O(D[22]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[22]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [22]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [22]),
         .I4(douta[22]),
         .I5(spo[22]),
         .O(Din[22]));
@@ -12699,14 +12695,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[30]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[22]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair102" *) 
+  (* SOFT_HLUTNM = "soft_lutpair99" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[23]_i_1 
        (.I0(Din[23]),
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[23]_i_5_n_0 ),
-        .O(\ALUOut_reg[1] [23]));
+        .O(D[23]));
   LUT6 #(
     .INIT(64'hDF00FF00D700DF00)) 
     \Din_OUT_reg[23]_i_2 
@@ -12716,14 +12712,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[31]_i_5_n_0 ),
         .I4(\state[5]_i_4_n_0 ),
         .I5(\state[5]_i_6_n_0 ),
-        .O(MemAccessClock_reg_2[2]));
+        .O(MemAccessClock_reg_1[2]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[23]_i_3 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [23]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [23]),
         .I4(douta[23]),
         .I5(spo[23]),
         .O(Din[23]));
@@ -12759,14 +12755,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_6_n_0 ),
         .I2(Din[8]),
         .I3(\Din_OUT_reg[24]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [24]));
+        .O(D[24]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[24]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [8]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [8]),
         .I4(douta[8]),
         .I5(spo[8]),
         .O(Din[8]));
@@ -12787,14 +12783,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_6_n_0 ),
         .I2(Din[9]),
         .I3(\Din_OUT_reg[25]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [25]));
+        .O(D[25]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[25]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [9]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [9]),
         .I4(douta[9]),
         .I5(spo[9]),
         .O(Din[9]));
@@ -12815,14 +12811,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_6_n_0 ),
         .I2(Din[10]),
         .I3(\Din_OUT_reg[26]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [26]));
+        .O(D[26]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[26]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [10]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [10]),
         .I4(douta[10]),
         .I5(spo[10]),
         .O(Din[10]));
@@ -12843,14 +12839,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_6_n_0 ),
         .I2(Din[11]),
         .I3(\Din_OUT_reg[27]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [27]));
+        .O(D[27]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[27]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [11]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [11]),
         .I4(douta[11]),
         .I5(spo[11]),
         .O(Din[11]));
@@ -12871,14 +12867,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_6_n_0 ),
         .I2(Din[12]),
         .I3(\Din_OUT_reg[28]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [28]));
+        .O(D[28]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[28]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [12]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [12]),
         .I4(douta[12]),
         .I5(spo[12]),
         .O(Din[12]));
@@ -12899,14 +12895,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_6_n_0 ),
         .I2(Din[13]),
         .I3(\Din_OUT_reg[29]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [29]));
+        .O(D[29]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[29]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [13]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [13]),
         .I4(douta[13]),
         .I5(spo[13]),
         .O(Din[13]));
@@ -12920,21 +12916,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[21]),
         .I5(\Din_OUT_reg[31]_i_8_n_0 ),
         .O(\Din_OUT_reg[29]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair99" *) 
+  (* SOFT_HLUTNM = "soft_lutpair101" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[2]_i_1 
        (.I0(Din[2]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[2]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [2]));
+        .O(D[2]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[2]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [2]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [2]),
         .I4(douta[2]),
         .I5(spo[2]),
         .O(Din[2]));
@@ -12955,14 +12951,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_6_n_0 ),
         .I2(Din[14]),
         .I3(\Din_OUT_reg[30]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [30]));
+        .O(D[30]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[30]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [14]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [14]),
         .I4(douta[14]),
         .I5(spo[14]),
         .O(Din[14]));
@@ -12983,7 +12979,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_6_n_0 ),
         .I2(Din[15]),
         .I3(\Din_OUT_reg[31]_i_4_n_0 ),
-        .O(\ALUOut_reg[1] [31]));
+        .O(D[31]));
   LUT6 #(
     .INIT(64'h88CCC8CCC8CCCCCC)) 
     \Din_OUT_reg[31]_i_2 
@@ -12993,14 +12989,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(MemAccess),
         .I4(\state[5]_i_4_n_0 ),
         .I5(\state[5]_i_3_n_0 ),
-        .O(MemAccessClock_reg_2[3]));
+        .O(MemAccessClock_reg_1[3]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[31]_i_3 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [15]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [15]),
         .I4(douta[15]),
         .I5(spo[15]),
         .O(Din[15]));
@@ -13032,40 +13028,40 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(video_ram_i_30_n_0),
         .O(Din1));
   LUT6 #(
-    .INIT(64'h0A220A0000220000)) 
+    .INIT(64'h220A000A22000000)) 
     \Din_OUT_reg[31]_i_7 
        (.I0(\WR_OUT_reg[1]_i_5_n_0 ),
         .I1(\PC_reg[31]_1 [1]),
         .I2(Q[1]),
-        .I3(video_ram_i_19_n_0),
+        .I3(MemAddrSrc),
         .I4(\PC_reg[31]_1 [0]),
         .I5(Q[0]),
         .O(\Din_OUT_reg[31]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000035000000)) 
+    .INIT(64'h0000000053000000)) 
     \Din_OUT_reg[31]_i_8 
        (.I0(\PC_reg[31]_1 [0]),
         .I1(Q[0]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .I3(\state[5]_i_3_n_0 ),
         .I4(MemAccess),
         .I5(\state[5]_i_6_n_0 ),
         .O(\Din_OUT_reg[31]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair99" *) 
+  (* SOFT_HLUTNM = "soft_lutpair101" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[3]_i_1 
        (.I0(Din[3]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[3]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [3]));
+        .O(D[3]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[3]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [3]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [3]),
         .I4(douta[3]),
         .I5(spo[3]),
         .O(Din[3]));
@@ -13079,21 +13075,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[11]),
         .I5(\Din_OUT_reg[7]_i_7_n_0 ),
         .O(\Din_OUT_reg[3]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair101" *) 
+  (* SOFT_HLUTNM = "soft_lutpair102" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[4]_i_1 
        (.I0(Din[4]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[4]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [4]));
+        .O(D[4]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[4]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [4]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [4]),
         .I4(douta[4]),
         .I5(spo[4]),
         .O(Din[4]));
@@ -13107,21 +13103,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(Din[12]),
         .I5(\Din_OUT_reg[7]_i_7_n_0 ),
         .O(\Din_OUT_reg[4]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair101" *) 
+  (* SOFT_HLUTNM = "soft_lutpair102" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[5]_i_1 
        (.I0(Din[5]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[5]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [5]));
+        .O(D[5]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[5]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [5]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [5]),
         .I4(douta[5]),
         .I5(spo[5]),
         .O(Din[5]));
@@ -13142,14 +13138,14 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(Din[6]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[6]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [6]));
+        .O(D[6]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[6]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [6]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [6]),
         .I4(douta[6]),
         .I5(spo[6]),
         .O(Din[6]));
@@ -13170,7 +13166,7 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(Din[7]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[7]_i_5_n_0 ),
-        .O(\ALUOut_reg[1] [7]));
+        .O(D[7]));
   LUT6 #(
     .INIT(64'h44CCC4CCC4CCCCCC)) 
     \Din_OUT_reg[7]_i_2 
@@ -13180,24 +13176,24 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(MemAccess),
         .I4(\state[5]_i_4_n_0 ),
         .I5(\state[5]_i_3_n_0 ),
-        .O(MemAccessClock_reg_2[0]));
+        .O(MemAccessClock_reg_1[0]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[7]_i_3 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [7]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [7]),
         .I4(douta[7]),
         .I5(spo[7]),
         .O(Din[7]));
   LUT6 #(
-    .INIT(64'hA088A00000880000)) 
+    .INIT(64'h88A000A088000000)) 
     \Din_OUT_reg[7]_i_4 
        (.I0(\Dout_OUT_reg[31]_i_7_n_0 ),
         .I1(\PC_reg[31]_1 [1]),
         .I2(Q[1]),
-        .I3(video_ram_i_19_n_0),
+        .I3(MemAddrSrc),
         .I4(\PC_reg[31]_1 [0]),
         .I5(Q[0]),
         .O(\Din_OUT_reg[7]_i_4_n_0 ));
@@ -13212,21 +13208,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Din_OUT_reg[7]_i_7_n_0 ),
         .O(\Din_OUT_reg[7]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h3530050000000000)) 
+    .INIT(64'h5303500000000000)) 
     \Din_OUT_reg[7]_i_6 
        (.I0(\PC_reg[31]_1 [1]),
         .I1(Q[1]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .I3(\PC_reg[31]_1 [0]),
         .I4(Q[0]),
         .I5(\Dout_OUT_reg[31]_i_7_n_0 ),
         .O(\Din_OUT_reg[7]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h3530050000000000)) 
+    .INIT(64'h5303500000000000)) 
     \Din_OUT_reg[7]_i_7 
        (.I0(\PC_reg[31]_1 [0]),
         .I1(Q[0]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .I3(\PC_reg[31]_1 [1]),
         .I4(Q[1]),
         .I5(\Dout_OUT_reg[31]_i_7_n_0 ),
@@ -13238,14 +13234,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
         .I2(Din[24]),
         .I3(\Din_OUT_reg[8]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [8]));
+        .O(D[8]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[8]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [24]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [24]),
         .I4(douta[24]),
         .I5(spo[24]),
         .O(Din[24]));
@@ -13266,14 +13262,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
         .I2(Din[25]),
         .I3(\Din_OUT_reg[9]_i_3_n_0 ),
-        .O(\ALUOut_reg[1] [9]));
+        .O(D[9]));
   LUT6 #(
     .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[9]_i_2 
        (.I0(graphics_write_enable1),
         .I1(Din3),
         .I2(Din1),
-        .I3(\Din_OUT_reg[31]_i_4_0 [25]),
+        .I3(\Din_OUT_reg[23]_i_5_0 [25]),
         .I4(douta[25]),
         .I5(spo[25]),
         .O(Din[25]));
@@ -13428,11 +13424,11 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[15]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000035000000)) 
+    .INIT(64'h0000000053000000)) 
     \Dout_OUT_reg[15]_i_3 
        (.I0(\PC_reg[31]_1 [0]),
         .I1(Q[0]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .I3(\state[5]_i_3_n_0 ),
         .I4(MemAccess),
         .I5(\WR_OUT_reg[1]_i_6_n_0 ),
@@ -14047,11 +14043,11 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(\Dout_OUT_reg[31]_i_12_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT5 #(
-    .INIT(32'h00A00CAC)) 
+    .INIT(32'h000AC0CA)) 
     \Dout_OUT_reg[31]_i_13 
        (.I0(Q[0]),
         .I1(\PC_reg[31]_1 [0]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .I3(Q[1]),
         .I4(\PC_reg[31]_1 [1]),
         .O(\Dout_OUT_reg[31]_i_13_n_0 ));
@@ -14085,11 +14081,11 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [4]),
         .O(\Dout_OUT_reg[31]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h0005303500000000)) 
+    .INIT(64'h0050035300000000)) 
     \Dout_OUT_reg[31]_i_5 
        (.I0(\PC_reg[31]_1 [1]),
         .I1(Q[1]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .I3(\PC_reg[31]_1 [0]),
         .I4(Q[0]),
         .I5(\Dout_OUT_reg[31]_i_7_n_0 ),
@@ -14221,12 +14217,12 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Dout_OUT_reg[7]_i_3_n_0 ),
         .O(\Rn_reg[31] [7]));
   LUT6 #(
-    .INIT(64'h5F77FF775FFFFFFF)) 
+    .INIT(64'h775F77FFFF5FFFFF)) 
     \Dout_OUT_reg[7]_i_2 
        (.I0(MemAccess),
         .I1(\PC_reg[31]_1 [1]),
         .I2(Q[1]),
-        .I3(video_ram_i_19_n_0),
+        .I3(MemAddrSrc),
         .I4(Q[0]),
         .I5(\PC_reg[31]_1 [0]),
         .O(\Dout_OUT_reg[7]_i_2_n_0 ));
@@ -14241,10 +14237,10 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Dout_OUT_reg[31]_i_5_n_0 ),
         .O(\Dout_OUT_reg[7]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h000000000000A280)) 
+    .INIT(64'h000000000000A820)) 
     \Dout_OUT_reg[7]_i_4 
        (.I0(MemAccess),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[0]),
         .I3(\PC_reg[31]_1 [0]),
         .I4(\state[5]_i_3_n_0 ),
@@ -14295,10 +14291,10 @@ module design_1_Motherboard_0_0_ControlUnit
     \IR[31]_i_1 
        (.I0(\state_reg[5]_0 [4]),
         .I1(\state_reg[5]_0 [3]),
-        .I2(\state_reg[5]_0 [0]),
-        .I3(state),
-        .I4(\state_reg[5]_0 [2]),
-        .I5(\state_reg[5]_0 [1]),
+        .I2(\state_reg[5]_0 [1]),
+        .I3(\state_reg[5]_0 [2]),
+        .I4(\state_reg[5]_0 [0]),
+        .I5(state),
         .O(\state_reg[5]_1 ));
   LUT6 #(
     .INIT(64'h7F1F00007F1F80E0)) 
@@ -15198,7 +15194,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[31]_i_5_n_0 ),
         .I4(\state[5]_i_3_n_0 ),
         .I5(MemAccess),
-        .O(D[0]));
+        .O(MemAccessClock_reg_0[0]));
   LUT5 #(
     .INIT(32'h00FF00FE)) 
     \WR_OUT_reg[1]_i_1 
@@ -15207,14 +15203,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(\WR_OUT_reg[1]_i_3_n_0 ),
         .I3(\Din_OUT_reg[31]_i_5_n_0 ),
         .I4(\WR_OUT_reg[1]_i_4_n_0 ),
-        .O(D[1]));
+        .O(MemAccessClock_reg_0[1]));
   LUT6 #(
-    .INIT(64'h000000220A000A22)) 
+    .INIT(64'h00002200000A220A)) 
     \WR_OUT_reg[1]_i_2 
        (.I0(\WR_OUT_reg[1]_i_5_n_0 ),
         .I1(\PC_reg[31]_1 [1]),
         .I2(Q[1]),
-        .I3(video_ram_i_19_n_0),
+        .I3(MemAddrSrc),
         .I4(\PC_reg[31]_1 [0]),
         .I5(Q[0]),
         .O(\WR_OUT_reg[1]_i_2_n_0 ));
@@ -15229,10 +15225,10 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(MemAccessClock),
         .O(\WR_OUT_reg[1]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h0000A28000000000)) 
+    .INIT(64'h0000A82000000000)) 
     \WR_OUT_reg[1]_i_4 
        (.I0(MemAccess),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[0]),
         .I3(\PC_reg[31]_1 [0]),
         .I4(\state[5]_i_3_n_0 ),
@@ -15264,7 +15260,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state[5]_i_3_n_0 ),
         .I4(\state[5]_i_4_n_0 ),
         .I5(MemAccess),
-        .O(D[2]));
+        .O(MemAccessClock_reg_0[2]));
   (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT4 #(
     .INIT(16'hFFFD)) 
@@ -15273,7 +15269,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(MemAccessClock),
         .I2(\Din_OUT_reg[31]_i_5_n_0 ),
         .I3(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .O(MemAccessClock_reg_3[0]));
+        .O(MemAccessClock_reg_2[0]));
   (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT4 #(
     .INIT(16'h0100)) 
@@ -15292,7 +15288,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state[5]_i_6_n_0 ),
         .I4(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I5(\Din_OUT_reg[31]_i_5_n_0 ),
-        .O(D[3]));
+        .O(MemAccessClock_reg_0[3]));
   LUT6 #(
     .INIT(64'hEFFFFFFFFEEFFFFF)) 
     \WR_OUT_reg[3]_i_2 
@@ -15302,7 +15298,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state[5]_i_4_n_0 ),
         .I4(MemAccess),
         .I5(\state[5]_i_6_n_0 ),
-        .O(MemAccessClock_reg_3[1]));
+        .O(MemAccessClock_reg_2[1]));
   LUT6 #(
     .INIT(64'h1000000001100000)) 
     \WR_OUT_reg[3]_i_3 
@@ -15386,42 +15382,42 @@ module design_1_Motherboard_0_0_ControlUnit
     ram_0_i_10
        (.I0(Din3),
         .I1(ram_address0[7]),
-        .O(addra[5]));
+        .O(ram_0_i_17_0[5]));
   (* SOFT_HLUTNM = "soft_lutpair139" *) 
   LUT2 #(
     .INIT(4'h8)) 
     ram_0_i_11
        (.I0(Din3),
         .I1(ram_address0[6]),
-        .O(addra[4]));
+        .O(ram_0_i_17_0[4]));
   (* SOFT_HLUTNM = "soft_lutpair138" *) 
   LUT2 #(
     .INIT(4'h8)) 
     ram_0_i_12
        (.I0(Din3),
         .I1(ram_address0[5]),
-        .O(addra[3]));
+        .O(ram_0_i_17_0[3]));
   (* SOFT_HLUTNM = "soft_lutpair138" *) 
   LUT2 #(
     .INIT(4'h8)) 
     ram_0_i_13
        (.I0(Din3),
         .I1(ram_address0[4]),
-        .O(addra[2]));
+        .O(ram_0_i_17_0[2]));
   (* SOFT_HLUTNM = "soft_lutpair137" *) 
   LUT2 #(
     .INIT(4'h8)) 
     ram_0_i_14
        (.I0(Din3),
         .I1(ram_address0[3]),
-        .O(addra[1]));
+        .O(ram_0_i_17_0[1]));
   (* SOFT_HLUTNM = "soft_lutpair137" *) 
   LUT2 #(
     .INIT(4'h8)) 
     ram_0_i_15
        (.I0(Din3),
         .I1(ram_address0[2]),
-        .O(addra[0]));
+        .O(ram_0_i_17_0[0]));
   LUT4 #(
     .INIT(16'h008C)) 
     ram_0_i_16
@@ -15467,8 +15463,8 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(video_ram_i_33_n_0),
         .I1(video_ram_i_31_n_0),
         .I2(ram_0_i_41_n_0),
-        .I3(MemAccessClock_reg_1),
-        .I4(MemAccessClock_reg_0),
+        .I3(a[7]),
+        .I4(a[6]),
         .I5(ram_0_i_42_n_0),
         .O(ram_0_i_20_n_0));
   LUT6 #(
@@ -15478,14 +15474,14 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(ram_0_i_43_n_0),
         .I2(ram_0_i_42_n_0),
         .I3(video_ram_i_31_n_0),
-        .I4(MemAccessClock_reg_0),
-        .I5(MemAccessClock_reg_1),
+        .I4(a[6]),
+        .I5(a[7]),
         .O(Din43_in));
   LUT6 #(
-    .INIT(64'hFFFFFBEAAAAAFBEA)) 
+    .INIT(64'hFFFFFEBAAAAAFEBA)) 
     ram_0_i_22
        (.I0(ram_0_i_41_n_0),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[14]),
         .I3(\PC_reg[31]_1 [14]),
         .I4(MemAccessClock),
@@ -15501,58 +15497,58 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(ram_0_i_47_n_0),
         .O(ram_0_i_23_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_24
        (.I0(\memory_handler/Aout_OUT0 [9]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [11]),
         .I3(Q[11]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_24_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_25
        (.I0(\memory_handler/Aout_OUT0 [8]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [10]),
         .I3(Q[10]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_25_n_0));
   LUT5 #(
-    .INIT(32'h0027FF27)) 
+    .INIT(32'h001BFF1B)) 
     ram_0_i_26
-       (.I0(video_ram_i_19_n_0),
+       (.I0(MemAddrSrc),
         .I1(Q[12]),
         .I2(\PC_reg[31]_1 [12]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [10]),
         .O(graphics_address0));
   LUT5 #(
-    .INIT(32'h0027FF27)) 
+    .INIT(32'h001BFF1B)) 
     ram_0_i_27
-       (.I0(video_ram_i_19_n_0),
+       (.I0(MemAddrSrc),
         .I1(Q[11]),
         .I2(\PC_reg[31]_1 [11]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [9]),
         .O(ram_0_i_27_n_0));
   LUT5 #(
-    .INIT(32'h0027FF27)) 
+    .INIT(32'h001BFF1B)) 
     ram_0_i_28
-       (.I0(video_ram_i_19_n_0),
+       (.I0(MemAddrSrc),
         .I1(Q[10]),
         .I2(\PC_reg[31]_1 [10]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [8]),
         .O(ram_0_i_28_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_29
        (.I0(\memory_handler/Aout_OUT0 [5]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [7]),
         .I3(Q[7]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_29_n_0));
   (* SOFT_HLUTNM = "soft_lutpair143" *) 
   LUT2 #(
@@ -15562,90 +15558,90 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(video_ram[1]),
         .O(wea[1]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_30
        (.I0(\memory_handler/Aout_OUT0 [4]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [6]),
         .I3(Q[6]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_30_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_31
        (.I0(\memory_handler/Aout_OUT0 [7]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [9]),
         .I3(Q[9]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_31_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_32
        (.I0(\memory_handler/Aout_OUT0 [6]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [8]),
         .I3(Q[8]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_32_n_0));
   LUT5 #(
-    .INIT(32'h0027FF27)) 
+    .INIT(32'h001BFF1B)) 
     ram_0_i_33
-       (.I0(video_ram_i_19_n_0),
+       (.I0(MemAddrSrc),
         .I1(Q[7]),
         .I2(\PC_reg[31]_1 [7]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [5]),
         .O(ram_0_i_33_n_0));
   LUT5 #(
-    .INIT(32'h0027FF27)) 
+    .INIT(32'h001BFF1B)) 
     ram_0_i_34
-       (.I0(video_ram_i_19_n_0),
+       (.I0(MemAddrSrc),
         .I1(Q[6]),
         .I2(\PC_reg[31]_1 [6]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [4]),
         .O(ram_0_i_34_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_35
        (.I0(\memory_handler/Aout_OUT0 [2]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [4]),
         .I3(Q[4]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_35_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_36
        (.I0(\memory_handler/Aout_OUT0 [1]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [3]),
         .I3(Q[3]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_36_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_37
        (.I0(\memory_handler/Aout_OUT0 [3]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [5]),
         .I3(Q[5]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_37_n_0));
   LUT5 #(
-    .INIT(32'h0027FF27)) 
+    .INIT(32'h001BFF1B)) 
     ram_0_i_38
-       (.I0(video_ram_i_19_n_0),
+       (.I0(MemAddrSrc),
         .I1(Q[4]),
         .I2(\PC_reg[31]_1 [4]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [2]),
         .O(ram_0_i_38_n_0));
   LUT5 #(
-    .INIT(32'h0027FF27)) 
+    .INIT(32'h001BFF1B)) 
     ram_0_i_39
-       (.I0(video_ram_i_19_n_0),
+       (.I0(MemAddrSrc),
         .I1(Q[3]),
         .I2(\PC_reg[31]_1 [3]),
         .I3(MemAccessClock),
@@ -15659,30 +15655,30 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(video_ram[0]),
         .O(wea[0]));
   LUT4 #(
-    .INIT(16'h596A)) 
+    .INIT(16'h569A)) 
     ram_0_i_40
        (.I0(MemAccessClock),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[2]),
         .I3(\PC_reg[31]_1 [2]),
         .O(ram_0_i_40_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_41
        (.I0(\memory_handler/Aout_OUT0 [13]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [15]),
         .I3(Q[15]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_41_n_0));
   LUT5 #(
     .INIT(32'hFEFEFEEE)) 
     ram_0_i_42
-       (.I0(rom_address[5]),
-        .I1(rom_address[4]),
-        .I2(rom_address[3]),
-        .I3(rom_address[1]),
-        .I4(rom_address[2]),
+       (.I0(a[5]),
+        .I1(a[4]),
+        .I2(a[3]),
+        .I3(a[1]),
+        .I4(a[2]),
         .O(ram_0_i_42_n_0));
   LUT3 #(
     .INIT(8'hF8)) 
@@ -15701,31 +15697,31 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(video_ram_i_61_n_0),
         .O(ram_0_i_44_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_45
        (.I0(\memory_handler/Aout_OUT0 [16]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [18]),
         .I3(Q[18]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_45_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_46
        (.I0(\memory_handler/Aout_OUT0 [18]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [20]),
         .I3(Q[20]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_46_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_47
        (.I0(\memory_handler/Aout_OUT0 [19]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [21]),
         .I3(Q[21]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_47_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 ram_0_i_48
@@ -15736,13 +15732,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(\memory_handler/Aout_OUT0 [16:13]),
         .S({ram_0_i_52_n_0,ram_0_i_53_n_0,ram_0_i_54_n_0,ram_0_i_55_n_0}));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_49
        (.I0(\memory_handler/Aout_OUT0 [17]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [19]),
         .I3(Q[19]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_49_n_0));
   (* SOFT_HLUTNM = "soft_lutpair142" *) 
   LUT2 #(
@@ -15750,15 +15746,15 @@ module design_1_Motherboard_0_0_ControlUnit
     ram_0_i_5
        (.I0(Din3),
         .I1(ram_address0[12]),
-        .O(addra[10]));
+        .O(ram_0_i_17_0[10]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_50
        (.I0(\memory_handler/Aout_OUT0 [15]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [17]),
         .I3(Q[17]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(ram_0_i_50_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 ram_0_i_51
@@ -15769,60 +15765,60 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(\memory_handler/Aout_OUT0 [20:17]),
         .S({ram_0_i_56_n_0,ram_0_i_57_n_0,ram_0_i_58_n_0,ram_0_i_59_n_0}));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     ram_0_i_52
        (.I0(\PC_reg[31]_1 [18]),
         .I1(Q[18]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(ram_0_i_52_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     ram_0_i_53
        (.I0(\PC_reg[31]_1 [17]),
         .I1(Q[17]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(ram_0_i_53_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     ram_0_i_54
        (.I0(\PC_reg[31]_1 [16]),
         .I1(Q[16]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(ram_0_i_54_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     ram_0_i_55
        (.I0(\PC_reg[31]_1 [15]),
         .I1(Q[15]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(ram_0_i_55_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     ram_0_i_56
        (.I0(\PC_reg[31]_1 [22]),
         .I1(Q[22]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(ram_0_i_56_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     ram_0_i_57
        (.I0(\PC_reg[31]_1 [21]),
         .I1(Q[21]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(ram_0_i_57_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     ram_0_i_58
        (.I0(\PC_reg[31]_1 [20]),
         .I1(Q[20]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(ram_0_i_58_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     ram_0_i_59
        (.I0(\PC_reg[31]_1 [19]),
         .I1(Q[19]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(ram_0_i_59_n_0));
   (* SOFT_HLUTNM = "soft_lutpair141" *) 
   LUT2 #(
@@ -15830,28 +15826,28 @@ module design_1_Motherboard_0_0_ControlUnit
     ram_0_i_6
        (.I0(Din3),
         .I1(ram_address0[11]),
-        .O(addra[9]));
+        .O(ram_0_i_17_0[9]));
   (* SOFT_HLUTNM = "soft_lutpair141" *) 
   LUT2 #(
     .INIT(4'h8)) 
     ram_0_i_7
        (.I0(Din3),
         .I1(ram_address0[10]),
-        .O(addra[8]));
+        .O(ram_0_i_17_0[8]));
   (* SOFT_HLUTNM = "soft_lutpair140" *) 
   LUT2 #(
     .INIT(4'h8)) 
     ram_0_i_8
        (.I0(Din3),
         .I1(ram_address0[9]),
-        .O(addra[7]));
+        .O(ram_0_i_17_0[7]));
   (* SOFT_HLUTNM = "soft_lutpair140" *) 
   LUT2 #(
     .INIT(4'h8)) 
     ram_0_i_9
        (.I0(Din3),
         .I1(ram_address0[8]),
-        .O(addra[6]));
+        .O(ram_0_i_17_0[6]));
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][0]_i_1 
@@ -15869,7 +15865,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [0]),
         .O(p_0_in__0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair123" *) 
+  (* SOFT_HLUTNM = "soft_lutpair119" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][10]_i_1 
@@ -15887,7 +15883,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [10]),
         .O(p_0_in__0[10]));
-  (* SOFT_HLUTNM = "soft_lutpair122" *) 
+  (* SOFT_HLUTNM = "soft_lutpair118" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][11]_i_1 
@@ -15905,7 +15901,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [11]),
         .O(p_0_in__0[11]));
-  (* SOFT_HLUTNM = "soft_lutpair121" *) 
+  (* SOFT_HLUTNM = "soft_lutpair117" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][12]_i_1 
@@ -15923,7 +15919,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [12]),
         .O(p_0_in__0[12]));
-  (* SOFT_HLUTNM = "soft_lutpair120" *) 
+  (* SOFT_HLUTNM = "soft_lutpair116" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][13]_i_1 
@@ -15941,7 +15937,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [13]),
         .O(p_0_in__0[13]));
-  (* SOFT_HLUTNM = "soft_lutpair119" *) 
+  (* SOFT_HLUTNM = "soft_lutpair115" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][14]_i_1 
@@ -15959,7 +15955,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [14]),
         .O(p_0_in__0[14]));
-  (* SOFT_HLUTNM = "soft_lutpair118" *) 
+  (* SOFT_HLUTNM = "soft_lutpair114" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][15]_i_1 
@@ -15995,7 +15991,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [16]),
         .O(p_0_in__0[16]));
-  (* SOFT_HLUTNM = "soft_lutpair117" *) 
+  (* SOFT_HLUTNM = "soft_lutpair112" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][17]_i_1 
@@ -16013,7 +16009,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [17]),
         .O(p_0_in__0[17]));
-  (* SOFT_HLUTNM = "soft_lutpair116" *) 
+  (* SOFT_HLUTNM = "soft_lutpair111" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][18]_i_1 
@@ -16031,7 +16027,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [18]),
         .O(p_0_in__0[18]));
-  (* SOFT_HLUTNM = "soft_lutpair115" *) 
+  (* SOFT_HLUTNM = "soft_lutpair110" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][19]_i_1 
@@ -16051,25 +16047,25 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(p_0_in__0[19]));
   (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT5 #(
-    .INIT(32'hFDFC050C)) 
+    .INIT(32'hFF13DC10)) 
     \registers[0][19]_i_3 
        (.I0(state),
-        .I1(\state_reg[5]_0 [2]),
-        .I2(\state_reg[5]_0 [1]),
-        .I3(\state_reg[5]_0 [0]),
-        .I4(\state_reg[5]_0 [3]),
+        .I1(\state_reg[5]_0 [1]),
+        .I2(\state_reg[5]_0 [0]),
+        .I3(\state_reg[5]_0 [3]),
+        .I4(\state_reg[5]_0 [2]),
         .O(\registers[0][19]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT5 #(
-    .INIT(32'hFCFC880C)) 
+    .INIT(32'hFFA3CC00)) 
     \registers[0][19]_i_4 
        (.I0(state),
-        .I1(\state_reg[5]_0 [2]),
-        .I2(\state_reg[5]_0 [1]),
-        .I3(\state_reg[5]_0 [0]),
-        .I4(\state_reg[5]_0 [3]),
+        .I1(\state_reg[5]_0 [1]),
+        .I2(\state_reg[5]_0 [0]),
+        .I3(\state_reg[5]_0 [3]),
+        .I4(\state_reg[5]_0 [2]),
         .O(\registers[0][19]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair114" *) 
+  (* SOFT_HLUTNM = "soft_lutpair125" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][1]_i_1 
@@ -16267,7 +16263,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(\registers[0][31]_i_16_n_0 ),
         .I3(\registers_reg[30][31] [29]),
         .O(\registers[0][29]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair128" *) 
+  (* SOFT_HLUTNM = "soft_lutpair124" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][2]_i_1 
@@ -16323,23 +16319,23 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(\registers[0][31]_i_10_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
-    .INIT(32'hFDFC8D0C)) 
+    .INIT(32'hFFB3DC10)) 
     \registers[0][31]_i_11 
        (.I0(state),
-        .I1(\state_reg[5]_0 [2]),
-        .I2(\state_reg[5]_0 [1]),
-        .I3(\state_reg[5]_0 [0]),
-        .I4(\state_reg[5]_0 [3]),
+        .I1(\state_reg[5]_0 [1]),
+        .I2(\state_reg[5]_0 [0]),
+        .I3(\state_reg[5]_0 [3]),
+        .I4(\state_reg[5]_0 [2]),
         .O(\registers[0][31]_i_11_n_0 ));
   LUT6 #(
-    .INIT(64'h0002000000220000)) 
+    .INIT(64'h0000020002000200)) 
     \registers[0][31]_i_12 
        (.I0(\state_reg[0]_1 [20]),
         .I1(state),
-        .I2(\state_reg[5]_0 [2]),
-        .I3(\state_reg[5]_0 [1]),
-        .I4(\state_reg[5]_0 [0]),
-        .I5(\state_reg[5]_0 [3]),
+        .I2(\state_reg[5]_0 [1]),
+        .I3(\state_reg[5]_0 [0]),
+        .I4(\state_reg[5]_0 [3]),
+        .I5(\state_reg[5]_0 [2]),
         .O(\registers[0][31]_i_12_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
@@ -16363,20 +16359,20 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(RegWriteSrc));
   (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT4 #(
-    .INIT(16'hABA0)) 
+    .INIT(16'hCC8A)) 
     \registers[0][31]_i_15 
-       (.I0(\state_reg[5]_0 [3]),
-        .I1(\state_reg[5]_0 [0]),
-        .I2(\state_reg[5]_0 [1]),
-        .I3(\state_reg[5]_0 [2]),
+       (.I0(\state_reg[5]_0 [2]),
+        .I1(\state_reg[5]_0 [3]),
+        .I2(\state_reg[5]_0 [0]),
+        .I3(\state_reg[5]_0 [1]),
         .O(\registers[0][31]_i_15_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT4 #(
-    .INIT(16'h4000)) 
+    .INIT(16'h2000)) 
     \registers[0][31]_i_16 
-       (.I0(\state_reg[5]_0 [3]),
-        .I1(\state_reg[5]_0 [0]),
-        .I2(\state_reg[5]_0 [2]),
+       (.I0(\state_reg[5]_0 [2]),
+        .I1(\state_reg[5]_0 [3]),
+        .I2(\state_reg[5]_0 [0]),
         .I3(state),
         .O(\registers[0][31]_i_16_n_0 ));
   LUT6 #(
@@ -16453,7 +16449,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state_reg[5]_0 [1]),
         .I4(\state_reg[5]_0 [3]),
         .O(\registers[0][31]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair128" *) 
+  (* SOFT_HLUTNM = "soft_lutpair124" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][3]_i_1 
@@ -16471,7 +16467,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [3]),
         .O(p_0_in__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair127" *) 
+  (* SOFT_HLUTNM = "soft_lutpair123" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][4]_i_1 
@@ -16489,7 +16485,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [4]),
         .O(p_0_in__0[4]));
-  (* SOFT_HLUTNM = "soft_lutpair127" *) 
+  (* SOFT_HLUTNM = "soft_lutpair123" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][5]_i_1 
@@ -16507,7 +16503,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [5]),
         .O(p_0_in__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair126" *) 
+  (* SOFT_HLUTNM = "soft_lutpair122" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][6]_i_1 
@@ -16525,7 +16521,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [6]),
         .O(p_0_in__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair126" *) 
+  (* SOFT_HLUTNM = "soft_lutpair122" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][7]_i_1 
@@ -16543,7 +16539,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [7]),
         .O(p_0_in__0[7]));
-  (* SOFT_HLUTNM = "soft_lutpair125" *) 
+  (* SOFT_HLUTNM = "soft_lutpair121" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][8]_i_1 
@@ -16561,7 +16557,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\registers[0][19]_i_4_n_0 ),
         .I5(\state_reg[0]_1 [8]),
         .O(p_0_in__0[8]));
-  (* SOFT_HLUTNM = "soft_lutpair124" *) 
+  (* SOFT_HLUTNM = "soft_lutpair120" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][9]_i_1 
@@ -16890,95 +16886,95 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\registers[0][31]_i_8_n_0 ),
         .O(\IR_reg[15]_10 ));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_1
        (.I0(\memory_handler/Aout_OUT0 [9]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [11]),
         .I3(Q[11]),
-        .I4(video_ram_i_19_n_0),
-        .O(rom_address[7]));
+        .I4(MemAddrSrc),
+        .O(a[9]));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
-    .INIT(16'h596A)) 
+    .INIT(16'h569A)) 
     rom_0_i_10
        (.I0(MemAccessClock),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[2]),
         .I3(\PC_reg[31]_1 [2]),
-        .O(rom_address[0]));
+        .O(a[0]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_2
        (.I0(\memory_handler/Aout_OUT0 [8]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [10]),
         .I3(Q[10]),
-        .I4(video_ram_i_19_n_0),
-        .O(rom_address[6]));
+        .I4(MemAddrSrc),
+        .O(a[8]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_3
        (.I0(\memory_handler/Aout_OUT0 [7]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [9]),
         .I3(Q[9]),
-        .I4(video_ram_i_19_n_0),
-        .O(MemAccessClock_reg_1));
+        .I4(MemAddrSrc),
+        .O(a[7]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_4
        (.I0(\memory_handler/Aout_OUT0 [6]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [8]),
         .I3(Q[8]),
-        .I4(video_ram_i_19_n_0),
-        .O(MemAccessClock_reg_0));
+        .I4(MemAddrSrc),
+        .O(a[6]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_5
        (.I0(\memory_handler/Aout_OUT0 [5]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [7]),
         .I3(Q[7]),
-        .I4(video_ram_i_19_n_0),
-        .O(rom_address[5]));
+        .I4(MemAddrSrc),
+        .O(a[5]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_6
        (.I0(\memory_handler/Aout_OUT0 [4]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [6]),
         .I3(Q[6]),
-        .I4(video_ram_i_19_n_0),
-        .O(rom_address[4]));
+        .I4(MemAddrSrc),
+        .O(a[4]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_7
        (.I0(\memory_handler/Aout_OUT0 [3]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [5]),
         .I3(Q[5]),
-        .I4(video_ram_i_19_n_0),
-        .O(rom_address[3]));
+        .I4(MemAddrSrc),
+        .O(a[3]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_8
        (.I0(\memory_handler/Aout_OUT0 [2]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [4]),
         .I3(Q[4]),
-        .I4(video_ram_i_19_n_0),
-        .O(rom_address[2]));
+        .I4(MemAddrSrc),
+        .O(a[2]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_9
        (.I0(\memory_handler/Aout_OUT0 [1]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [3]),
         .I3(Q[3]),
-        .I4(video_ram_i_19_n_0),
-        .O(rom_address[1]));
+        .I4(MemAddrSrc),
+        .O(a[1]));
   (* SOFT_HLUTNM = "soft_lutpair132" *) 
   LUT3 #(
     .INIT(8'hB8)) 
@@ -17086,21 +17082,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_7_n_0 ),
         .I2(\state[5]_i_8_n_0 ),
         .O(next_state[5]));
-  (* SOFT_HLUTNM = "soft_lutpair114" *) 
+  (* SOFT_HLUTNM = "soft_lutpair125" *) 
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     \state[5]_i_3 
        (.I0(\PC_reg[31]_1 [1]),
         .I1(Q[1]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(\state[5]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     \state[5]_i_4 
        (.I0(\PC_reg[31]_1 [0]),
         .I1(Q[0]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(\state[5]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h0006800006016001)) 
@@ -17186,65 +17182,65 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(video_ram[3]),
         .O(\WR_OUT_reg[3] [3]));
   LUT6 #(
-    .INIT(64'hAAAAA2800000A280)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_10
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[7]),
         .I3(\PC_reg[31]_1 [7]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [5]),
-        .O(\PC_reg[12] [5]));
+        .O(addra[5]));
   LUT6 #(
-    .INIT(64'hAAAAA2800000A280)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_11
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[6]),
         .I3(\PC_reg[31]_1 [6]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [4]),
-        .O(\PC_reg[12] [4]));
+        .O(addra[4]));
   LUT6 #(
-    .INIT(64'hAAAAA2800000A280)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_12
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[5]),
         .I3(\PC_reg[31]_1 [5]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [3]),
-        .O(\PC_reg[12] [3]));
+        .O(addra[3]));
   LUT6 #(
-    .INIT(64'hAAAAA2800000A280)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_13
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[4]),
         .I3(\PC_reg[31]_1 [4]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [2]),
-        .O(\PC_reg[12] [2]));
+        .O(addra[2]));
   LUT6 #(
-    .INIT(64'hAAAAA2800000A280)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_14
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[3]),
         .I3(\PC_reg[31]_1 [3]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [1]),
-        .O(\PC_reg[12] [1]));
+        .O(addra[1]));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
-    .INIT(32'h0A22A088)) 
+    .INIT(32'h220A88A0)) 
     video_ram_i_15
        (.I0(graphics_write_enable1),
         .I1(\PC_reg[31]_1 [2]),
         .I2(Q[2]),
-        .I3(video_ram_i_19_n_0),
+        .I3(MemAddrSrc),
         .I4(MemAccessClock),
-        .O(\PC_reg[12] [0]));
+        .O(addra[0]));
   LUT6 #(
     .INIT(64'h00E000E0F0E000E0)) 
     video_ram_i_18
@@ -17256,15 +17252,15 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(video_ram_i_33_n_0),
         .O(graphics_write_enable1));
   LUT6 #(
-    .INIT(64'hAAAAA88A00005445)) 
+    .INIT(64'h0000FFFF07F70FF0)) 
     video_ram_i_19
        (.I0(\state_reg[5]_0 [4]),
         .I1(state),
         .I2(\state_reg[5]_0 [0]),
         .I3(\state_reg[5]_0 [1]),
-        .I4(\state_reg[5]_0 [2]),
-        .I5(\state_reg[5]_0 [3]),
-        .O(video_ram_i_19_n_0));
+        .I4(\state_reg[5]_0 [3]),
+        .I5(\state_reg[5]_0 [2]),
+        .O(MemAddrSrc));
   LUT2 #(
     .INIT(4'h8)) 
     video_ram_i_2
@@ -17296,10 +17292,10 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(\memory_handler/Aout_OUT0 [4:1]),
         .S({video_ram_i_43_n_0,video_ram_i_44_n_0,video_ram_i_45_n_0,video_ram_i_46_n_0}));
   LUT6 #(
-    .INIT(64'hFFFFFBEAAAAAFBEA)) 
+    .INIT(64'hFFFFFEBAAAAAFEBA)) 
     video_ram_i_28
        (.I0(video_ram_i_51_n_0),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[12]),
         .I3(\PC_reg[31]_1 [12]),
         .I4(MemAccessClock),
@@ -17329,70 +17325,70 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(ram_0_i_23_n_0),
         .O(video_ram_i_30_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     video_ram_i_31
        (.I0(\memory_handler/Aout_OUT0 [11]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [13]),
         .I3(Q[13]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(video_ram_i_31_n_0));
   LUT4 #(
     .INIT(16'h15FF)) 
     video_ram_i_32
-       (.I0(MemAccessClock_reg_0),
-        .I1(rom_address[4]),
-        .I2(rom_address[5]),
-        .I3(MemAccessClock_reg_1),
+       (.I0(a[6]),
+        .I1(a[4]),
+        .I2(a[5]),
+        .I3(a[7]),
         .O(video_ram_i_32_n_0));
   LUT3 #(
     .INIT(8'hFE)) 
     video_ram_i_33
        (.I0(video_ram_i_57_n_0),
-        .I1(rom_address[7]),
-        .I2(rom_address[6]),
+        .I1(a[9]),
+        .I2(a[8]),
         .O(video_ram_i_33_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_34
        (.I0(\PC_reg[31]_1 [14]),
         .I1(Q[14]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_34_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_35
        (.I0(\PC_reg[31]_1 [13]),
         .I1(Q[13]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_35_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_36
        (.I0(\PC_reg[31]_1 [12]),
         .I1(Q[12]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_36_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_37
        (.I0(\PC_reg[31]_1 [11]),
         .I1(Q[11]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_37_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_38
        (.I0(\PC_reg[31]_1 [10]),
         .I1(Q[10]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_38_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_39
        (.I0(\PC_reg[31]_1 [9]),
         .I1(Q[9]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_39_n_0));
   (* SOFT_HLUTNM = "soft_lutpair145" *) 
   LUT2 #(
@@ -17402,64 +17398,64 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(video_ram[0]),
         .O(\WR_OUT_reg[3] [0]));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_40
        (.I0(\PC_reg[31]_1 [8]),
         .I1(Q[8]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_40_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_41
        (.I0(\PC_reg[31]_1 [7]),
         .I1(Q[7]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_41_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_42
        (.I0(\PC_reg[31]_1 [2]),
         .I1(Q[2]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_42_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_43
        (.I0(\PC_reg[31]_1 [6]),
         .I1(Q[6]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_43_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_44
        (.I0(\PC_reg[31]_1 [5]),
         .I1(Q[5]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_44_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_45
        (.I0(\PC_reg[31]_1 [4]),
         .I1(Q[4]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_45_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_46
        (.I0(\PC_reg[31]_1 [3]),
         .I1(Q[3]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_46_n_0));
   LUT6 #(
-    .INIT(64'h0000082AAAAA082A)) 
+    .INIT(64'h0000028AAAAA028A)) 
     video_ram_i_5
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[12]),
         .I3(\PC_reg[31]_1 [12]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [10]),
-        .O(\PC_reg[12] [10]));
+        .O(addra[10]));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
     video_ram_i_51
@@ -17479,13 +17475,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [27]),
         .O(video_ram_i_52_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair110" *) 
+  (* SOFT_HLUTNM = "soft_lutpair130" *) 
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_53
        (.I0(\PC_reg[31]_1 [30]),
         .I1(Q[30]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_53_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 video_ram_i_54
@@ -17496,13 +17492,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(\memory_handler/Aout_OUT0 [28:25]),
         .S({video_ram_i_65_n_0,video_ram_i_66_n_0,video_ram_i_67_n_0,video_ram_i_68_n_0}));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     video_ram_i_55
        (.I0(\memory_handler/Aout_OUT0 [29]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [31]),
         .I3(Q[31]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(video_ram_i_55_n_0));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFBBFCB8)) 
@@ -17515,13 +17511,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(video_ram_i_72_n_0),
         .O(video_ram_i_56_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     video_ram_i_57
        (.I0(\memory_handler/Aout_OUT0 [10]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [12]),
         .I3(Q[12]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(video_ram_i_57_n_0));
   LUT4 #(
     .INIT(16'hFFFE)) 
@@ -17532,57 +17528,57 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(ram_0_i_50_n_0),
         .O(video_ram_i_58_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     video_ram_i_59
        (.I0(\memory_handler/Aout_OUT0 [22]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [24]),
         .I3(Q[24]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(video_ram_i_59_n_0));
   LUT6 #(
-    .INIT(64'hAAAAA2800000A280)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_6
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[11]),
         .I3(\PC_reg[31]_1 [11]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [9]),
-        .O(\PC_reg[12] [9]));
+        .O(addra[9]));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     video_ram_i_60
        (.I0(\memory_handler/Aout_OUT0 [21]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [23]),
         .I3(Q[23]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(video_ram_i_60_n_0));
   LUT5 #(
-    .INIT(32'hBB88B8B8)) 
+    .INIT(32'hB8B8BB88)) 
     video_ram_i_61
        (.I0(\memory_handler/Aout_OUT0 [20]),
         .I1(MemAccessClock),
         .I2(\PC_reg[31]_1 [22]),
         .I3(Q[22]),
-        .I4(video_ram_i_19_n_0),
+        .I4(MemAddrSrc),
         .O(video_ram_i_61_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair111" *) 
+  (* SOFT_HLUTNM = "soft_lutpair129" *) 
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_62
        (.I0(\PC_reg[31]_1 [28]),
         .I1(Q[28]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_62_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair110" *) 
+  (* SOFT_HLUTNM = "soft_lutpair130" *) 
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_63
        (.I0(\PC_reg[31]_1 [29]),
         .I1(Q[29]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_63_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 video_ram_i_64
@@ -17593,32 +17589,32 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(\memory_handler/Aout_OUT0 [24:21]),
         .S({video_ram_i_73_n_0,video_ram_i_74_n_0,video_ram_i_75_n_0,video_ram_i_76_n_0}));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_65
        (.I0(\PC_reg[31]_1 [30]),
         .I1(Q[30]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_65_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_66
        (.I0(\PC_reg[31]_1 [29]),
         .I1(Q[29]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_66_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_67
        (.I0(\PC_reg[31]_1 [28]),
         .I1(Q[28]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_67_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_68
        (.I0(\PC_reg[31]_1 [27]),
         .I1(Q[27]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_68_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 video_ram_i_69
@@ -17629,30 +17625,30 @@ module design_1_Motherboard_0_0_ControlUnit
         .O({NLW_video_ram_i_69_O_UNCONNECTED[3:1],\memory_handler/Aout_OUT0 [29]}),
         .S({1'b0,1'b0,1'b0,video_ram_i_77_n_0}));
   LUT6 #(
-    .INIT(64'hAAAAA2800000A280)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_7
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[10]),
         .I3(\PC_reg[31]_1 [10]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [8]),
-        .O(\PC_reg[12] [8]));
-  (* SOFT_HLUTNM = "soft_lutpair111" *) 
+        .O(addra[8]));
+  (* SOFT_HLUTNM = "soft_lutpair129" *) 
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_70
        (.I0(\PC_reg[31]_1 [27]),
         .I1(Q[27]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_70_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair112" *) 
+  (* SOFT_HLUTNM = "soft_lutpair128" *) 
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_71
        (.I0(\PC_reg[31]_1 [26]),
         .I1(Q[26]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_71_n_0));
   LUT5 #(
     .INIT(32'hFFFACCFA)) 
@@ -17664,76 +17660,76 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\memory_handler/Aout_OUT0 [14]),
         .O(video_ram_i_72_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_73
        (.I0(\PC_reg[31]_1 [26]),
         .I1(Q[26]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_73_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_74
        (.I0(\PC_reg[31]_1 [25]),
         .I1(Q[25]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_74_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_75
        (.I0(\PC_reg[31]_1 [24]),
         .I1(Q[24]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_75_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_76
        (.I0(\PC_reg[31]_1 [23]),
         .I1(Q[23]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_76_n_0));
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_77
        (.I0(\PC_reg[31]_1 [31]),
         .I1(Q[31]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_77_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair112" *) 
+  (* SOFT_HLUTNM = "soft_lutpair128" *) 
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_78
        (.I0(\PC_reg[31]_1 [25]),
         .I1(Q[25]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_78_n_0));
   (* SOFT_HLUTNM = "soft_lutpair113" *) 
   LUT3 #(
-    .INIT(8'hCA)) 
+    .INIT(8'hAC)) 
     video_ram_i_79
        (.I0(\PC_reg[31]_1 [16]),
         .I1(Q[16]),
-        .I2(video_ram_i_19_n_0),
+        .I2(MemAddrSrc),
         .O(video_ram_i_79_n_0));
   LUT6 #(
-    .INIT(64'hAAAAA2800000A280)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_8
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[9]),
         .I3(\PC_reg[31]_1 [9]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [7]),
-        .O(\PC_reg[12] [7]));
+        .O(addra[7]));
   LUT6 #(
-    .INIT(64'hAAAAA2800000A280)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_9
        (.I0(graphics_write_enable1),
-        .I1(video_ram_i_19_n_0),
+        .I1(MemAddrSrc),
         .I2(Q[8]),
         .I3(\PC_reg[31]_1 [8]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [6]),
-        .O(\PC_reg[12] [6]));
+        .O(addra[6]));
 endmodule
 
 (* ORIG_REF_NAME = "Graphics" *) 
@@ -17742,30 +17738,33 @@ module design_1_Motherboard_0_0_Graphics
     HSYNC,
     VSYNC,
     RGB,
-    CLK,
+    DCLK,
     \addr_reg[10] ,
+    addra,
     \addr_reg[10]_0 ,
-    \addr_reg[10]_1 ,
+    CLK,
     RST);
   output [31:0]douta;
   output HSYNC;
   output VSYNC;
   output [7:0]RGB;
-  input CLK;
+  input DCLK;
   input [3:0]\addr_reg[10] ;
-  input [10:0]\addr_reg[10]_0 ;
-  input [31:0]\addr_reg[10]_1 ;
+  input [10:0]addra;
+  input [31:0]\addr_reg[10]_0 ;
+  input CLK;
   input RST;
 
   wire CLK;
   wire CLK_Hz;
+  wire DCLK;
   wire HSYNC;
   wire [7:0]RGB;
   wire RST;
   wire VSYNC;
   wire [3:0]\addr_reg[10] ;
-  wire [10:0]\addr_reg[10]_0 ;
-  wire [31:0]\addr_reg[10]_1 ;
+  wire [31:0]\addr_reg[10]_0 ;
+  wire [10:0]addra;
   wire [5:4]addrb1;
   wire ascii_rom_n_0;
   wire ascii_rom_n_1;
@@ -17906,11 +17905,11 @@ module design_1_Motherboard_0_0_Graphics
         .\y_reg[9]_0 (y));
   (* x_core_info = "blk_mem_gen_v8_4_7,Vivado 2023.2" *) 
   design_1_Motherboard_0_0_dist_mem_video video_ram
-       (.addra(\addr_reg[10]_0 ),
+       (.addra(addra),
         .addrb({vag_controller_n_33,vag_controller_n_34,vag_controller_n_35,vag_controller_n_36,vag_controller_n_37,vag_controller_n_38,vag_controller_n_39,vag_controller_n_40,p_0_in_0[2:0]}),
-        .clka(CLK),
+        .clka(DCLK),
         .clkb(CLK),
-        .dina(\addr_reg[10]_1 ),
+        .dina(\addr_reg[10]_0 ),
         .dinb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .douta(douta),
         .doutb(vidoe_ram),
@@ -18684,6 +18683,7 @@ endmodule
 (* ROM_SIZE = "4096" *) (* VIDEO_RAM_MAPPED_ADDRESS = "4096" *) (* VIDEO_RAM_SIZE = "4800" *) 
 module design_1_Motherboard_0_0_Motherboard
    (CLK,
+    DCLK,
     RST,
     HSYNC,
     VSYNC,
@@ -18691,6 +18691,7 @@ module design_1_Motherboard_0_0_Motherboard
     PS2CLOCK0,
     PS2DATA0);
   input CLK;
+  input DCLK;
   input RST;
   output HSYNC;
   output VSYNC;
@@ -18699,6 +18700,7 @@ module design_1_Motherboard_0_0_Motherboard
   input PS2DATA0;
 
   wire CLK;
+  wire DCLK;
   wire [0:0]Dout;
   wire HSYNC;
   wire PS2CLOCK0;
@@ -18725,27 +18727,28 @@ module design_1_Motherboard_0_0_Motherboard
   assign RGB[3] = \^RGB [0];
   assign RGB[2:0] = \^RGB [2:0];
   design_1_Motherboard_0_0_AMO amo_v1
-       (.\Din_OUT_reg[31]_i_4 (ram_data_out),
+       (.\Din_OUT_reg[23]_i_5 (ram_data_out),
         .Dout(Dout),
         .MemAccessClock_reg(graphics_data_in),
-        .\PC_reg[12]_0 (graphics_address),
         .RST(RST),
         .\WR_OUT_reg[3] (graphics_write_enable),
-        .addra(ram_address),
+        .a(rom_address),
+        .addra(graphics_address),
         .douta(graphics_data_out),
         .pulse(pulse),
-        .rom_address(rom_address),
+        .ram_0_i_17(ram_address),
         .spo(rom_data_out),
         .wea(ram_write_enable));
   design_1_Motherboard_0_0_Graphics graphics
        (.CLK(CLK),
+        .DCLK(DCLK),
         .HSYNC(HSYNC),
         .RGB({\^RGB [8],\^RGB [2],\^RGB [9],\^RGB [4],\^RGB [6:5],\^RGB [0],\^RGB [1]}),
         .RST(RST),
         .VSYNC(VSYNC),
         .\addr_reg[10] (graphics_write_enable),
-        .\addr_reg[10]_0 (graphics_address),
-        .\addr_reg[10]_1 (graphics_data_in),
+        .\addr_reg[10]_0 (graphics_data_in),
+        .addra(graphics_address),
         .douta(graphics_data_out));
   design_1_Motherboard_0_0_PS2Controller ps2_controller
        (.Dout(Dout),
@@ -18758,7 +18761,7 @@ module design_1_Motherboard_0_0_Motherboard
        (.I0(pulse),
         .O(pulse_i_1_n_0));
   FDCE pulse_reg
-       (.C(CLK),
+       (.C(DCLK),
         .CE(1'b1),
         .CLR(RST),
         .D(pulse_i_1_n_0),
@@ -18766,7 +18769,7 @@ module design_1_Motherboard_0_0_Motherboard
   (* x_core_info = "blk_mem_gen_v8_4_7,Vivado 2023.2" *) 
   design_1_Motherboard_0_0_blk_mem_ram ram_0
        (.addra(ram_address),
-        .clka(CLK),
+        .clka(DCLK),
         .dina(graphics_data_in),
         .douta(ram_data_out),
         .wea(ram_write_enable));

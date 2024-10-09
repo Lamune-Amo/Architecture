@@ -1,10 +1,11 @@
-// (c) Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-// (c) Copyright 2022-2024 Advanced Micro Devices, Inc. All rights reserved.
-// 
+
+// file: design_1_clk_wiz_0_0.v
+// (c) Copyright 2017-2018, 2023 Advanced Micro Devices, Inc. All rights reserved.
+//
 // This file contains confidential and proprietary information
 // of AMD and is protected under U.S. and international copyright
 // and other intellectual property laws.
-// 
+//
 // DISCLAIMER
 // This disclaimer is not a license and does not grant any
 // rights to the materials distributed herewith. Except as
@@ -26,7 +27,7 @@
 // by a third party) even if such damage or loss was
 // reasonably foreseeable or AMD had been advised of the
 // possibility of the same.
-// 
+//
 // CRITICAL APPLICATIONS
 // AMD products are not designed or intended to be fail-
 // safe, or for use in any application requiring fail-safe
@@ -40,61 +41,43 @@
 // liability of any use of AMD products in Critical
 // Applications, subject only to applicable laws and
 // regulations governing limitations on product liability.
-// 
+//
 // THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 // PART OF THIS FILE AT ALL TIMES.
-// 
-// DO NOT MODIFY THIS FILE.
+//----------------------------------------------------------------------------
+// User entered comments
+//----------------------------------------------------------------------------
+// None
+//
+//----------------------------------------------------------------------------
+//  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
+//   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
+//----------------------------------------------------------------------------
+// clk_out1__200.00000______0.000______50.0_______98.146_____89.971
+//
+//----------------------------------------------------------------------------
+// Input Clock   Freq (MHz)    Input Jitter (UI)
+//----------------------------------------------------------------------------
+// __primary_________200.000____________0.010
 
+`timescale 1ps/1ps
 
-// IP VLNV: xilinx.com:module_ref:Motherboard:1.0
-// IP Revision: 1
+(* CORE_GENERATION_INFO = "design_1_clk_wiz_0_0,clk_wiz_v6_0_13_0_0,{component_name=design_1_clk_wiz_0_0,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=MMCM,num_out_clk=1,clkin1_period=5.000,clkin2_period=10.0,use_power_down=false,use_reset=false,use_locked=false,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *)
 
-`timescale 1ns/1ps
+module design_1_clk_wiz_0_0 
+ (
+  // Clock out ports
+  output        clk_out1,
+ // Clock in ports
+  input         clk_in1
+ );
 
-(* IP_DEFINITION_SOURCE = "module_ref" *)
-(* DowngradeIPIdentifiedWarnings = "yes" *)
-module design_1_Motherboard_0_0 (
-  CLK,
-  DCLK,
-  RST,
-  HSYNC,
-  VSYNC,
-  RGB,
-  PS2CLOCK0,
-  PS2DATA0
-);
-
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK, ASSOCIATED_RESET RST, FREQ_HZ 200000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_CLK_0, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK CLK" *)
-input wire CLK;
-input wire DCLK;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST RST" *)
-input wire RST;
-output wire HSYNC;
-output wire VSYNC;
-output wire [11 : 0] RGB;
-input wire PS2CLOCK0;
-input wire PS2DATA0;
-
-  Motherboard #(
-    .ROM_MAPPED_ADDRESS(0),
-    .ROM_SIZE(4096),
-    .VIDEO_RAM_MAPPED_ADDRESS(4096),
-    .VIDEO_RAM_SIZE(4800),
-    .KEYBOARD_MAPPED_ADDRESS(8896),
-    .KEYBOARD_SIZE(4),
-    .RAM_MAPPED_ADDRESS(9000),
-    .RAM_SIZE(8192)
-  ) inst (
-    .CLK(CLK),
-    .DCLK(DCLK),
-    .RST(RST),
-    .HSYNC(HSYNC),
-    .VSYNC(VSYNC),
-    .RGB(RGB),
-    .PS2CLOCK0(PS2CLOCK0),
-    .PS2DATA0(PS2DATA0)
+  design_1_clk_wiz_0_0_clk_wiz inst
+  (
+  // Clock out ports  
+  .clk_out1(clk_out1),
+ // Clock in ports
+  .clk_in1(clk_in1)
   );
+
 endmodule

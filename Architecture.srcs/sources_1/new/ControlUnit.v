@@ -79,11 +79,11 @@ module ControlUnit(
             /* 1-bit StateSrc, PCWrite, PCWriteCond, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc */
             /* 8-bit NextState */
 
-			/* instruction fetch */				
+			/* instruction fetch */							
 			8'h00: out = { 4'h4, 3'h0, 3'hx, 2'hx, 2'hx, 2'h3, 2'h0, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'h0, 1'h1, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h1 };
 			/* instruction decode */
 			8'h01: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h0, 2'h2, 1'h1, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'hx };
-			
+
 			8'h02: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h0, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h8 };
 			8'h03: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h0, 2'h1, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h9 };
 			8'h04: out = { 4'hx, 3'hx, 3'hx, 2'hx, 2'hx, 2'h0, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h1, 1'h1, 1'h0, 1'hx, 8'h8 };
@@ -99,7 +99,7 @@ module ControlUnit(
 			8'h0e: out = { 4'hx, 3'hx, 3'hx, 2'h3, 2'h3, 2'h0, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h0f: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h0, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h10 };
 			8'h10: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 2'h2, 1'h0, 1'h0, 1'h0, 1'h1, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h11 };
-			8'h11: out = { 4'h4, 3'hx, 3'hx, 2'h3, 2'h2, 2'h0, 2'h2, 1'h0, 1'h0, 1'h0, 1'h1, 1'hx, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
+			8'h11: out = { 4'hx, 3'hx, 3'hx, 2'h3, 2'h2, 2'h0, 2'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h1, 1'hx, 1'hx, 1'hx, 1'hx, 1'hx, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h12: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h0, 2'h3, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'hx, 1'h1, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h13 };
 			8'h13: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h3, 2'h3, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'hx, 1'h1, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'hx, 8'h0 };
 			8'h14: out = { 4'h4, 3'hx, 3'hx, 2'hx, 2'hx, 2'h0, 2'h2, 1'h0, 1'h0, 1'h0, 1'hx, 1'hx, 1'h0, 1'h0, 1'h0, 1'h0, 1'h1, 1'h0, 1'h1, 1'h0, 1'h0, 1'h0, 1'hx, 8'h15 };

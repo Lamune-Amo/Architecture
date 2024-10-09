@@ -55,6 +55,7 @@
     "boundary": {
       "ports": {
         "CLK": [ { "direction": "in" } ],
+        "DCLK": [ { "direction": "in" } ],
         "RST": [ { "direction": "in" } ],
         "HSYNC": [ { "direction": "out" } ],
         "VSYNC": [ { "direction": "out" } ],

@@ -22,6 +22,7 @@
 
 module Graphics(
 	input CLK,
+	input DCLK,
 	input RST,
 	input [3:0] WR,
 	input [31:0] address,
@@ -31,7 +32,7 @@ module Graphics(
 	output VSYNC,
 	output reg [11:0] RGB
     );
-    reg CLK_D;
+    reg DCLK_D;
     /* video memory */
 	reg [1:0] pulse;
 	/* wires */
@@ -42,13 +43,13 @@ module Graphics(
 	wire [11:0] foreground, background;
 	wire active;
 	
-	always @(CLK) begin
-        CLK_D <= #200 CLK;
+	always @(DCLK) begin
+        DCLK_D <= #200 DCLK;
     end
 	
 	dist_mem_video video_ram (
 	    /* IO port */
-	    .clka(CLK_D),
+	    .clka(DCLK_D),
         .addra(address[12:2]),
         .dina(data_in),
         .douta(data_out),

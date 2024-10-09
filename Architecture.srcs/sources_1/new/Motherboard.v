@@ -22,6 +22,7 @@
 
 module Motherboard(
     input CLK,
+    input DCLK,
     input RST,
     /* VGA */
     output HSYNC,
@@ -51,13 +52,13 @@ module Motherboard(
     
     /* clock */
     reg pulse;
-    always @(posedge CLK or posedge RST) begin
+    always @(posedge DCLK or posedge RST) begin
         if (RST)
             pulse <= 2'h0;
         else
             pulse <= pulse + 1;
     end
-    assign CLK_HALF = pulse;
+    assign DCLK_HALF = pulse;
     
     /* ROM (bios) */
     wire [11:0] rom_address;
@@ -77,6 +78,7 @@ module Motherboard(
     
     Graphics graphics (
 	   .CLK(CLK),
+	   .DCLK(DCLK),
 	   .RST(RST),
 	   .WR(graphics_write_enable),
 	   .address(graphics_address),
@@ -97,7 +99,7 @@ module Motherboard(
     wire ps2_int;
     
     PS2Controller ps2_controller (
-        .CLK(CLK_HALF),
+        .CLK(DCLK_HALF),
         .RST(RST),
         .WR(ps2_write_enable[0]),
         .INT(ps2_int), // for interrupt routine to be added later
@@ -111,17 +113,17 @@ module Motherboard(
     assign ps2_data_in = Dout[7:0];
     
     /* RAM */
-    reg CLK_D;
+    reg DCLK_D;
     wire [31:0] ram_data_in, ram_data_out;
     wire [31:0] ram_address;
     wire [3:0] ram_write_enable;
 
-    always @(CLK) begin
-        CLK_D <= #200 CLK;
+    always @(DCLK) begin
+        DCLK_D <= #200 DCLK;
     end
     
     blk_mem_ram ram_0(
-        .clka(CLK_D),
+        .clka(DCLK_D),
         .addra(ram_address[12:2]),
         .dina(ram_data_in),
         .douta(ram_data_out),
@@ -134,7 +136,7 @@ module Motherboard(
     
     /* AMO */
     AMO amo_v1 (
-        .CLK(CLK_HALF),
+        .CLK(DCLK_HALF),
         .RST(RST),
         .Din(Din),
         .WR(WR),

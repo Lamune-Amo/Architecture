@@ -57,6 +57,7 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_Motherboard_0_0 (
   CLK,
+  DCLK,
   RST,
   HSYNC,
   VSYNC,
@@ -68,6 +69,7 @@ module design_1_Motherboard_0_0 (
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK, ASSOCIATED_RESET RST, FREQ_HZ 200000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_CLK_0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK CLK" *)
 input wire CLK;
+input wire DCLK;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST RST" *)
 input wire RST;
@@ -88,6 +90,7 @@ input wire PS2DATA0;
     .RAM_SIZE(8192)
   ) inst (
     .CLK(CLK),
+    .DCLK(DCLK),
     .RST(RST),
     .HSYNC(HSYNC),
     .VSYNC(VSYNC),

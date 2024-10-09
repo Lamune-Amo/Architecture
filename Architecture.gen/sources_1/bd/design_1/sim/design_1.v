@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-//Date        : Wed Oct  9 23:53:52 2024
+//Date        : Thu Oct 10 00:23:56 2024
 //Host        : DESKTOP-TDU015C running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -10,7 +10,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=1,numReposBlks=1,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=2,numReposBlks=2,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (CLK,
     HSYNC,
@@ -34,6 +34,7 @@ module design_1
   wire PS2CLOCK0_0_1;
   wire PS2DATA0_0_1;
   wire RST_0_1;
+  wire clk_wiz_0_clk_out1;
 
   assign CLK_0_1 = CLK;
   assign HSYNC = Motherboard_0_HSYNC;
@@ -44,10 +45,14 @@ module design_1
   assign VSYNC = Motherboard_0_VSYNC;
   design_1_Motherboard_0_0 Motherboard_0
        (.CLK(CLK_0_1),
+        .DCLK(clk_wiz_0_clk_out1),
         .HSYNC(Motherboard_0_HSYNC),
         .PS2CLOCK0(PS2CLOCK0_0_1),
         .PS2DATA0(PS2DATA0_0_1),
         .RGB(Motherboard_0_RGB),
         .RST(RST_0_1),
         .VSYNC(Motherboard_0_VSYNC));
+  design_1_clk_wiz_0_0 clk_wiz_0
+       (.clk_in1(CLK_0_1),
+        .clk_out1(clk_wiz_0_clk_out1));
 endmodule
