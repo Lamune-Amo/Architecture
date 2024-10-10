@@ -94,23 +94,24 @@ module Motherboard(
     assign graphics_data_in = Dout;
     
     /* PS/2 Keyboard */
-    wire [7:0] ps2_data_in, ps2_data_out;
-    wire [3:0] ps2_write_enable;
-    wire ps2_int;
+    wire [31:0] ps2_keyboard_data_in, ps2_keyboard_data_out;
+    wire ps2_keyboard_read_enable, ps2_keyboard_write_enable;
     
-    PS2Controller ps2_controller (
+    PS2Controller ps2_controller_keyboard (
         .CLK(DCLK_HALF),
         .RST(RST),
-        .WR(ps2_write_enable[0]),
-        .INT(ps2_int), // for interrupt routine to be added later
-        .Din(ps2_data_in),
-        .Dout(ps2_data_out),
+        .RD(ps2_keyboard_read_enable),
+        .WR(ps2_keyboard_write_enable),
+        .INT(),
+        .Din(ps2_keyboard_data_in),
+        .Dout(ps2_keyboard_data_out),
         .CLOCK(PS2CLOCK0),
-        .DATA()
+        .DATA(PS2DATA0)
     );
     
-    assign ps2_write_enable = (KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) ? WR : 4'h0;
-    assign ps2_data_in = Dout[7:0];
+    assign ps2_keyboard_read_enable = ((KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) && (WR[0] == 0)) ? 1'h1 : 1'h0;
+    assign ps2_keyboard_write_enable = (KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) ? WR[0] : 1'h0;
+    assign ps2_keyboard_data_in = Dout;
     
     /* RAM */
     reg DCLK_D;
@@ -119,7 +120,7 @@ module Motherboard(
     wire [3:0] ram_write_enable;
 
     always @(DCLK) begin
-        DCLK_D <= #200 DCLK;
+        DCLK_D <= #2 DCLK;
     end
     
     blk_mem_ram ram_0(
@@ -145,7 +146,7 @@ module Motherboard(
     );
     assign Din = (0 <= Aout && Aout <= ROM_MAPPED_ADDRESS + ROM_SIZE - 1) ? rom_data_out :
                  (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? graphics_data_out :
+                 (KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) ? ps2_keyboard_data_out :
                  (RAM_MAPPED_ADDRESS <= Aout && Aout <= RAM_MAPPED_ADDRESS + RAM_SIZE - 1) ? ram_data_out :
-                 (KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) ? { 24'h0, ps2_data_out } :
                  32'h0;
 endmodule

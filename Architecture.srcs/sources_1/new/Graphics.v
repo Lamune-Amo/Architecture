@@ -44,7 +44,7 @@ module Graphics(
 	wire active;
 	
 	always @(DCLK) begin
-        DCLK_D <= #200 DCLK;
+        DCLK_D <= #2 DCLK;
     end
 	
 	dist_mem_video video_ram (

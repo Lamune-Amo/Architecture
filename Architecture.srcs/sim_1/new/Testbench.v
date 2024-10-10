@@ -1,4 +1,4 @@
-`timescale 100ns / 1ns
+`timescale 1ns / 10ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -21,10 +21,11 @@
 
 
 module Testbench();
-    reg clk, rst, WR;
+    reg clk, dclk, rst;
     
     Motherboard cu0(
         .CLK(clk),
+        .DCLK(dclk),
         .RST(rst),
         .HSYNC(),
 	    .VSYNC(),
@@ -34,20 +35,28 @@ module Testbench();
     );
 
     initial begin
-        clk = 1; rst = 1'b0; WR = 1'b0;
+        clk = 1; dclk = 1; rst = 1'b0;
         #1;
         rst = 1'b1;
         #5;
         rst = 1'b0;
 
-        #340;
+        #208503;
         
         $finish;
     end
     
     always begin
-        clk = ~clk;
-        #5;
+        clk = 0;
+        dclk = 0;
+        #2.5;
+        dclk = 1;
+        #2.5;
+        clk = 1;
+        dclk = 0;
+        #2.5;
+        dclk = 1;
+        #2.5;
     end
 
 endmodule

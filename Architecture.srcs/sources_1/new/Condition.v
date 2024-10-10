@@ -34,7 +34,7 @@ module Condition(
     assign not_equal = ~zero;
     assign unsigned_lower = ~carry;
     assign unsigned_lower_same = unsigned_lower | equal;
-    assign signed_less = (negative & (~overflow)) | ((~negative) | overflow);
+    assign signed_less = negative ^ overflow;
     assign signed_less_equal = signed_less | equal;
     
     assign is_true = (mux == 3'h0) ? equal :

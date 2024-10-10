@@ -3,44 +3,38 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Fri Oct 11 00:26:16 2024
-# Process ID: 8196
+# Start of session at: Thu Oct 10 23:30:52 2024
+# Process ID: 14636
 # Current directory: E:/Project/Capstone/Architecture
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent24428 E:\Project\Capstone\Architecture\Architecture.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent24152 E:\Project\Capstone\Architecture\Architecture.xpr
 # Log file: E:/Project/Capstone/Architecture/vivado.log
 # Journal file: E:/Project/Capstone/Architecture\vivado.jou
 # Running On: DESKTOP-TDU015C, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 12, Host memory: 34306 MB
 #-----------------------------------------------------------
-start_gui
-open_project E:/Project/Capstone/Architecture/Architecture.xpr
+start_guiopen_project E:/Project/Capstone/Architecture/Architecture.xpr
 update_compile_order -fileset sources_1
-generate_target Simulation [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
-generate_target Simulation [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_video/dist_mem_video.xci]
-generate_target Simulation [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci]
-launch_simulation
-source Testbench.tcl
-current_wave_config {Untitled 1}
-add_wave {{/Testbench/cu0/ps2_controller_keyboard/Din}} {{/Testbench/cu0/ps2_controller_keyboard/Dout}} 
-current_wave_config {Untitled 1}
-add_wave {{/Testbench/cu0/ps2_controller_keyboard/data}} 
-current_wave_config {Untitled 1}
-add_wave {{/Testbench/cu0/ps2_controller_keyboard/RD}} {{/Testbench/cu0/ps2_controller_keyboard/WR}} 
-current_wave_config {Untitled 1}
-add_wave {{/Testbench/cu0/amo_v1/MDR}} 
-current_wave_config {Untitled 1}
-add_wave {{/Testbench/cu0/amo_v1/PC}} 
-current_wave_config {Untitled 1}
-add_wave {{/Testbench/cu0/amo_v1/CLK}} 
-current_wave_config {Untitled 1}
-add_wave {{/Testbench/cu0/amo_v1/control_unit/state}} 
-relaunch_sim
-relaunch_sim
-close_sim
 update_module_reference design_1_Motherboard_0_0
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset dist_mem_gen_0] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci]
+catch { config_ip_cache -export [get_ips -all dist_mem_gen_0] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci]
+launch_runs dist_mem_gen_0_synth_1 -jobs 6
+wait_on_run dist_mem_gen_0_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 6
 wait_on_run impl_1
+get_param general.maxThreads
 open_hw_manager
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
 connect_hw_server -allow_non_jtag
 open_hw_target
 set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
@@ -49,13 +43,12 @@ set_property FULL_PROBES.FILE {E:/Project/Capstone/Architecture/Architecture.run
 current_hw_device [get_hw_devices xc7z020_1]
 refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
 create_hw_cfgmem -hw_device [get_hw_devices xc7z020_1] -mem_dev [lindex [get_cfgmem_parts {is25lp256d-qspi-x4-single}] 0]
-display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"u_ila_0"}]]
 set_property PROBES.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.ltx} [get_hw_devices xc7z020_1]
 set_property FULL_PROBES.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.ltx} [get_hw_devices xc7z020_1]
 set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
 program_hw_devices [get_hw_devices xc7z020_1]
 refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
-save_wave_config {E:/Project/Capstone/Architecture/Architecture.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wcfg}
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"u_ila_0"}]]
 close_hw_manager
 update_module_reference design_1_Motherboard_0_0
 make_wrapper -files [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd] -top
@@ -76,11 +69,6 @@ set_property FULL_PROBES.FILE {E:/Project/Capstone/Architecture/Architecture.run
 set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
 program_hw_devices [get_hw_devices xc7z020_1]
 refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
-set_property PROBES.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.ltx} [get_hw_devices xc7z020_1]
-set_property FULL_PROBES.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.ltx} [get_hw_devices xc7z020_1]
-set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
-program_hw_devices [get_hw_devices xc7z020_1]
-refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
 save_wave_config {E:/Project/Capstone/Architecture/Architecture.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wcfg}
 close_hw_manager
 generate_target Simulation [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
@@ -88,19 +76,28 @@ generate_target Simulation [get_files E:/Project/Capstone/Architecture/Architect
 generate_target Simulation [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci]
 launch_simulation
 source Testbench.tcl
-current_wave_config {Untitled 2}
+current_wave_config {Untitled 1}
 add_wave {{/Testbench/cu0/amo_v1/PC}} 
-current_wave_config {Untitled 2}
-add_wave {{/Testbench/cu0/amo_v1/control_unit/state}} 
-current_wave_config {Untitled 2}
-add_wave {{/Testbench/cu0/amo_v1/control_unit/CLK}} 
-current_wave_config {Untitled 2}
+current_wave_config {Untitled 1}
 add_wave {{/Testbench/cu0/ps2_controller_keyboard/data}} 
-current_wave_config {Untitled 2}
+current_wave_config {Untitled 1}
 add_wave {{/Testbench/cu0/ps2_controller_keyboard/Dout}} 
-current_wave_config {Untitled 2}
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/ps2_controller_keyboard/RD}} 
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/ps2_controller_keyboard/WR}} 
+relaunch_sim
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/amo_v1/control_unit/state}} 
+relaunch_sim
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/DCLK_HALF}} 
+relaunch_sim
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/amo_v1/CLK}} 
+relaunch_sim
+current_wave_config {Untitled 1}
 add_wave {{/Testbench/cu0/amo_v1/MDR}} 
 relaunch_sim
 relaunch_sim
 relaunch_sim
-close_sim

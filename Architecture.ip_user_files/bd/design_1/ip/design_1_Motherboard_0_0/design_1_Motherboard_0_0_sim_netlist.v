@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-// Date        : Fri Oct 11 00:51:01 2024
+// Date        : Thu Oct 10 13:00:57 2024
 // Host        : DESKTOP-TDU015C running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               e:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/ip/design_1_Motherboard_0_0/design_1_Motherboard_0_0_sim_netlist.v
@@ -37,6 +37,7 @@ module design_1_Motherboard_0_0
   wire CLK;
   wire DCLK;
   wire HSYNC;
+  wire PS2CLOCK0;
   wire [11:0]RGB;
   wire RST;
   wire VSYNC;
@@ -53,7 +54,7 @@ module design_1_Motherboard_0_0
        (.CLK(CLK),
         .DCLK(DCLK),
         .HSYNC(HSYNC),
-        .PS2CLOCK0(1'b0),
+        .PS2CLOCK0(PS2CLOCK0),
         .PS2DATA0(1'b0),
         .RGB(RGB),
         .RST(RST),
@@ -62,48 +63,42 @@ endmodule
 
 (* ORIG_REF_NAME = "AMO" *) 
 module design_1_Motherboard_0_0_AMO
-   (wea,
-    addra,
-    MemAccessClock_reg,
-    MemAccessClock_reg_0,
-    D,
-    Dout,
-    E,
+   (addra,
     a,
-    spo,
+    ram_0_i_17,
+    wea,
+    \WR_OUT_reg[3] ,
+    MemAccessClock_reg,
     douta,
-    Q,
-    \Din_OUT_reg[15]_i_3 ,
+    spo,
+    \Din_OUT_reg[23]_i_5 ,
+    Dout,
     pulse,
     RST);
-  output [3:0]wea;
   output [10:0]addra;
-  output [3:0]MemAccessClock_reg;
-  output [10:0]MemAccessClock_reg_0;
-  output [31:0]D;
-  output [31:0]Dout;
-  output [0:0]E;
   output [9:0]a;
-  input [31:0]spo;
+  output [10:0]ram_0_i_17;
+  output [3:0]wea;
+  output [3:0]\WR_OUT_reg[3] ;
+  output [31:0]MemAccessClock_reg;
   input [31:0]douta;
-  input [31:0]Q;
-  input [31:0]\Din_OUT_reg[15]_i_3 ;
+  input [31:0]spo;
+  input [31:0]\Din_OUT_reg[23]_i_5 ;
+  input [0:0]Dout;
   input pulse;
   input RST;
 
   wire ALUOpcodeSrc;
   wire [31:0]ALUOut;
-  wire \ALUOut[30]_i_4_n_0 ;
+  wire \ALUOut[29]_i_4_n_0 ;
   wire \ALUOut[31]_i_3_n_0 ;
   wire \ALUOut[31]_i_5_n_0 ;
-  wire \ALUOut[31]_i_9_n_0 ;
+  wire \ALUOut[31]_i_8_n_0 ;
   wire [30:0]ALUResult;
   wire Carry;
-  wire [31:0]D;
   wire [31:0]Din_BIG;
-  wire [31:0]\Din_OUT_reg[15]_i_3 ;
-  wire [31:0]Dout;
-  wire [0:0]E;
+  wire [31:0]\Din_OUT_reg[23]_i_5 ;
+  wire [0:0]Dout;
   wire FlagInNegative;
   wire \IR_reg_n_0_[0] ;
   wire \IR_reg_n_0_[10] ;
@@ -123,15 +118,15 @@ module design_1_Motherboard_0_0_AMO
   wire \IR_reg_n_0_[8] ;
   wire \IR_reg_n_0_[9] ;
   wire [31:0]MDR;
-  wire [3:0]MemAccessClock_reg;
-  wire [10:0]MemAccessClock_reg_0;
+  wire [31:0]MemAccessClock_reg;
   wire MemWriteEn;
   wire [31:0]PC;
   wire [31:0]PC_next;
-  wire [31:0]Q;
   wire RST;
   wire [31:0]Rn;
   wire [31:0]Rs;
+  wire [3:0]WR;
+  wire [3:0]\WR_OUT_reg[3] ;
   wire [9:0]a;
   wire [10:0]addra;
   wire control_unit_n_0;
@@ -148,23 +143,9 @@ module design_1_Motherboard_0_0_AMO
   wire control_unit_n_108;
   wire control_unit_n_109;
   wire control_unit_n_11;
-  wire control_unit_n_110;
-  wire control_unit_n_111;
-  wire control_unit_n_112;
-  wire control_unit_n_113;
-  wire control_unit_n_114;
-  wire control_unit_n_115;
-  wire control_unit_n_116;
-  wire control_unit_n_117;
-  wire control_unit_n_118;
-  wire control_unit_n_119;
   wire control_unit_n_12;
-  wire control_unit_n_120;
-  wire control_unit_n_121;
-  wire control_unit_n_126;
   wire control_unit_n_13;
   wire control_unit_n_14;
-  wire control_unit_n_149;
   wire control_unit_n_15;
   wire control_unit_n_16;
   wire control_unit_n_17;
@@ -195,9 +176,21 @@ module design_1_Motherboard_0_0_AMO
   wire control_unit_n_31;
   wire control_unit_n_37;
   wire control_unit_n_38;
+  wire control_unit_n_39;
   wire control_unit_n_4;
   wire control_unit_n_40;
+  wire control_unit_n_41;
+  wire control_unit_n_42;
+  wire control_unit_n_43;
+  wire control_unit_n_44;
+  wire control_unit_n_45;
+  wire control_unit_n_46;
+  wire control_unit_n_47;
+  wire control_unit_n_48;
+  wire control_unit_n_49;
   wire control_unit_n_5;
+  wire control_unit_n_50;
+  wire control_unit_n_51;
   wire control_unit_n_52;
   wire control_unit_n_53;
   wire control_unit_n_54;
@@ -254,29 +247,26 @@ module design_1_Motherboard_0_0_AMO
   wire [31:0]data_out1;
   wire [31:0]data_out2;
   wire [31:0]douta;
-  wire memory_handler_n_32;
-  wire memory_handler_n_33;
-  wire memory_handler_n_34;
   wire [3:0]op_to_aluop;
   wire [4:0]p_0_in;
-  wire p_1_in;
-  wire [4:0]p_1_in_32;
+  wire [4:0]p_1_in;
   wire [4:0]p_2_in;
   wire pulse;
+  wire [10:0]ram_0_i_17;
   wire [31:0]spo;
   wire [5:1]state;
   wire [3:0]wea;
 
   LUT6 #(
     .INIT(64'h0101010000000000)) 
-    \ALUOut[30]_i_4 
+    \ALUOut[29]_i_4 
        (.I0(state[5]),
         .I1(state[3]),
         .I2(state[4]),
         .I3(state[1]),
         .I4(state[2]),
         .I5(op_to_aluop[1]),
-        .O(\ALUOut[30]_i_4_n_0 ));
+        .O(\ALUOut[29]_i_4_n_0 ));
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[31]_i_3 
@@ -296,14 +286,14 @@ module design_1_Motherboard_0_0_AMO
         .O(\ALUOut[31]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'h00000000FF00C0A8)) 
-    \ALUOut[31]_i_9 
+    \ALUOut[31]_i_8 
        (.I0(op_to_aluop[0]),
         .I1(state[2]),
         .I2(state[1]),
         .I3(state[4]),
         .I4(state[3]),
         .I5(state[5]),
-        .O(\ALUOut[31]_i_9_n_0 ));
+        .O(\ALUOut[31]_i_8_n_0 ));
   FDCE \ALUOut_reg[0] 
        (.C(pulse),
         .CE(1'b1),
@@ -500,7 +490,7 @@ module design_1_Motherboard_0_0_AMO
        (.C(pulse),
         .CE(1'b1),
         .CLR(RST),
-        .D(control_unit_n_149),
+        .D(control_unit_n_109),
         .Q(Carry));
   FDCE \IR_reg[0] 
        (.C(pulse),
@@ -549,25 +539,25 @@ module design_1_Motherboard_0_0_AMO
         .CE(control_unit_n_37),
         .CLR(RST),
         .D(Din_BIG[16]),
-        .Q(p_1_in_32[0]));
+        .Q(p_1_in[0]));
   FDCE \IR_reg[17] 
        (.C(pulse),
         .CE(control_unit_n_37),
         .CLR(RST),
         .D(Din_BIG[17]),
-        .Q(p_1_in_32[1]));
+        .Q(p_1_in[1]));
   FDCE \IR_reg[18] 
        (.C(pulse),
         .CE(control_unit_n_37),
         .CLR(RST),
         .D(Din_BIG[18]),
-        .Q(p_1_in_32[2]));
+        .Q(p_1_in[2]));
   FDCE \IR_reg[19] 
        (.C(pulse),
         .CE(control_unit_n_37),
         .CLR(RST),
         .D(Din_BIG[19]),
-        .Q(p_1_in_32[3]));
+        .Q(p_1_in[3]));
   FDCE \IR_reg[1] 
        (.C(pulse),
         .CE(control_unit_n_37),
@@ -579,7 +569,7 @@ module design_1_Motherboard_0_0_AMO
         .CE(control_unit_n_37),
         .CLR(RST),
         .D(Din_BIG[20]),
-        .Q(p_1_in_32[4]));
+        .Q(p_1_in[4]));
   FDCE \IR_reg[21] 
        (.C(pulse),
         .CE(control_unit_n_37),
@@ -888,193 +878,193 @@ module design_1_Motherboard_0_0_AMO
         .Q(MDR[9]));
   FDCE \PC_reg[0] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[0]),
         .Q(PC[0]));
   FDCE \PC_reg[10] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[10]),
         .Q(PC[10]));
   FDCE \PC_reg[11] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[11]),
         .Q(PC[11]));
   FDCE \PC_reg[12] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[12]),
         .Q(PC[12]));
   FDCE \PC_reg[13] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[13]),
         .Q(PC[13]));
   FDCE \PC_reg[14] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[14]),
         .Q(PC[14]));
   FDCE \PC_reg[15] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[15]),
         .Q(PC[15]));
   FDCE \PC_reg[16] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[16]),
         .Q(PC[16]));
   FDCE \PC_reg[17] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[17]),
         .Q(PC[17]));
   FDCE \PC_reg[18] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[18]),
         .Q(PC[18]));
   FDCE \PC_reg[19] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[19]),
         .Q(PC[19]));
   FDCE \PC_reg[1] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[1]),
         .Q(PC[1]));
   FDCE \PC_reg[20] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[20]),
         .Q(PC[20]));
   FDCE \PC_reg[21] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[21]),
         .Q(PC[21]));
   FDCE \PC_reg[22] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[22]),
         .Q(PC[22]));
   FDCE \PC_reg[23] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[23]),
         .Q(PC[23]));
   FDCE \PC_reg[24] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[24]),
         .Q(PC[24]));
   FDCE \PC_reg[25] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[25]),
         .Q(PC[25]));
   FDCE \PC_reg[26] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[26]),
         .Q(PC[26]));
   FDCE \PC_reg[27] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[27]),
         .Q(PC[27]));
   FDCE \PC_reg[28] 
        (.C(pulse),
-        .CE(control_unit_n_190),
+        .CE(control_unit_n_39),
         .CLR(RST),
         .D(PC_next[28]),
         .Q(PC[28]));
   FDCE \PC_reg[29] 
        (.C(pulse),
-        .CE(control_unit_n_190),
+        .CE(control_unit_n_39),
         .CLR(RST),
         .D(PC_next[29]),
         .Q(PC[29]));
   FDCE \PC_reg[2] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[2]),
         .Q(PC[2]));
   FDCE \PC_reg[30] 
        (.C(pulse),
-        .CE(control_unit_n_190),
+        .CE(control_unit_n_39),
         .CLR(RST),
         .D(PC_next[30]),
         .Q(PC[30]));
   FDCE \PC_reg[31] 
        (.C(pulse),
-        .CE(control_unit_n_190),
+        .CE(control_unit_n_39),
         .CLR(RST),
         .D(PC_next[31]),
         .Q(PC[31]));
   FDCE \PC_reg[3] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[3]),
         .Q(PC[3]));
   FDCE \PC_reg[4] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[4]),
         .Q(PC[4]));
   FDCE \PC_reg[5] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[5]),
         .Q(PC[5]));
   FDCE \PC_reg[6] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[6]),
         .Q(PC[6]));
   FDCE \PC_reg[7] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[7]),
         .Q(PC[7]));
   FDCE \PC_reg[8] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[8]),
         .Q(PC[8]));
   FDCE \PC_reg[9] 
        (.C(pulse),
-        .CE(control_unit_n_191),
+        .CE(control_unit_n_40),
         .CLR(RST),
         .D(PC_next[9]),
         .Q(PC[9]));
@@ -1464,82 +1454,79 @@ module design_1_Motherboard_0_0_AMO
         .Q(Rs[9]));
   design_1_Motherboard_0_0_ControlUnit control_unit
        (.ALUOpcodeSrc(ALUOpcodeSrc),
-        .\ALUOut_reg[1] (\ALUOut[31]_i_3_n_0 ),
-        .\ALUOut_reg[1]_0 (\ALUOut[31]_i_5_n_0 ),
-        .\ALUOut_reg[2] (\ALUOut[31]_i_9_n_0 ),
-        .\ALUOut_reg[31] (PC_next),
-        .\ALUOut_reg[5] (\ALUOut[30]_i_4_n_0 ),
-        .AR({control_unit_n_52,control_unit_n_53}),
-        .\CPSR_reg[1] (control_unit_n_149),
-        .\CPSR_reg[1]_0 (Rn),
+        .\ALUOut_reg[5] (\ALUOut[31]_i_5_n_0 ),
+        .\ALUOut_reg[5]_0 (\ALUOut[31]_i_8_n_0 ),
+        .\ALUOut_reg[5]_1 (\ALUOut[31]_i_3_n_0 ),
+        .\ALUOut_reg[9] (\ALUOut[29]_i_4_n_0 ),
+        .AR({control_unit_n_187,control_unit_n_188}),
+        .\CPSR_reg[1] (control_unit_n_109),
         .Carry(Carry),
-        .D({control_unit_n_54,control_unit_n_55,control_unit_n_56,control_unit_n_57,control_unit_n_58,control_unit_n_59,control_unit_n_60,control_unit_n_61,control_unit_n_62,control_unit_n_63,control_unit_n_64,control_unit_n_65,control_unit_n_66,control_unit_n_67,control_unit_n_68,control_unit_n_69,control_unit_n_70,control_unit_n_71,control_unit_n_72,control_unit_n_73,control_unit_n_74,control_unit_n_75,control_unit_n_76,control_unit_n_77,control_unit_n_78,control_unit_n_79,control_unit_n_80,control_unit_n_81,control_unit_n_82,control_unit_n_83,control_unit_n_84,control_unit_n_85}),
-        .\Din_OUT_reg[15]_i_3_0 (\Din_OUT_reg[15]_i_3 ),
-        .\Din_OUT_reg[7]_i_6_0 (Q),
+        .D({control_unit_n_41,control_unit_n_42,control_unit_n_43,control_unit_n_44,control_unit_n_45,control_unit_n_46,control_unit_n_47,control_unit_n_48,control_unit_n_49,control_unit_n_50,control_unit_n_51,control_unit_n_52,control_unit_n_53,control_unit_n_54,control_unit_n_55,control_unit_n_56,control_unit_n_57,control_unit_n_58,control_unit_n_59,control_unit_n_60,control_unit_n_61,control_unit_n_62,control_unit_n_63,control_unit_n_64,control_unit_n_65,control_unit_n_66,control_unit_n_67,control_unit_n_68,control_unit_n_69,control_unit_n_70,control_unit_n_71,control_unit_n_72}),
+        .\Din_OUT_reg[23]_i_5_0 (\Din_OUT_reg[23]_i_5 ),
+        .Dout(Dout),
         .E(control_unit_n_0),
-        .\IR_reg[16] (control_unit_n_3),
-        .\IR_reg[16]_0 (control_unit_n_26),
-        .\IR_reg[17] (control_unit_n_27),
-        .\IR_reg[17]_0 (control_unit_n_28),
-        .\IR_reg[18] (control_unit_n_1),
-        .\IR_reg[18]_0 (control_unit_n_11),
-        .\IR_reg[18]_1 (control_unit_n_12),
-        .\IR_reg[18]_2 (control_unit_n_14),
-        .\IR_reg[18]_3 (control_unit_n_16),
-        .\IR_reg[18]_4 (control_unit_n_24),
-        .\IR_reg[18]_5 (control_unit_n_25),
-        .\IR_reg[19] (control_unit_n_15),
-        .\IR_reg[19]_0 (control_unit_n_21),
-        .\IR_reg[19]_1 (control_unit_n_23),
-        .\IR_reg[19]_2 (control_unit_n_29),
-        .\IR_reg[19]_3 (control_unit_n_30),
-        .\IR_reg[19]_4 (control_unit_n_31),
-        .\IR_reg[20] (control_unit_n_2),
-        .\IR_reg[20]_0 (control_unit_n_4),
-        .\IR_reg[20]_1 (control_unit_n_5),
-        .\IR_reg[20]_10 (control_unit_n_19),
-        .\IR_reg[20]_11 (control_unit_n_20),
-        .\IR_reg[20]_12 (control_unit_n_22),
-        .\IR_reg[20]_2 (control_unit_n_6),
-        .\IR_reg[20]_3 (control_unit_n_7),
-        .\IR_reg[20]_4 (control_unit_n_8),
-        .\IR_reg[20]_5 (control_unit_n_9),
-        .\IR_reg[20]_6 (control_unit_n_10),
-        .\IR_reg[20]_7 (control_unit_n_13),
-        .\IR_reg[20]_8 (control_unit_n_17),
-        .\IR_reg[20]_9 (control_unit_n_18),
-        .MemAccessClock_reg_0(control_unit_n_40),
-        .MemAccessClock_reg_1({control_unit_n_118,control_unit_n_119,control_unit_n_120,control_unit_n_121}),
-        .MemAccessClock_reg_2(MemAccessClock_reg),
-        .MemAccessClock_reg_3(MemAccessClock_reg_0),
-        .MemAccessClock_reg_4({control_unit_n_183,control_unit_n_184,control_unit_n_185,control_unit_n_186}),
-        .MemAccessClock_reg_5({control_unit_n_187,control_unit_n_188}),
+        .\IR_reg[11] (control_unit_n_3),
+        .\IR_reg[11]_0 (control_unit_n_26),
+        .\IR_reg[12] (control_unit_n_27),
+        .\IR_reg[12]_0 (control_unit_n_28),
+        .\IR_reg[13] (control_unit_n_1),
+        .\IR_reg[13]_0 (control_unit_n_11),
+        .\IR_reg[13]_1 (control_unit_n_12),
+        .\IR_reg[13]_2 (control_unit_n_14),
+        .\IR_reg[13]_3 (control_unit_n_16),
+        .\IR_reg[13]_4 (control_unit_n_24),
+        .\IR_reg[13]_5 (control_unit_n_25),
+        .\IR_reg[14] (control_unit_n_15),
+        .\IR_reg[14]_0 (control_unit_n_21),
+        .\IR_reg[14]_1 (control_unit_n_23),
+        .\IR_reg[14]_2 (control_unit_n_29),
+        .\IR_reg[14]_3 (control_unit_n_30),
+        .\IR_reg[14]_4 (control_unit_n_31),
+        .\IR_reg[15] (control_unit_n_2),
+        .\IR_reg[15]_0 (control_unit_n_4),
+        .\IR_reg[15]_1 (control_unit_n_5),
+        .\IR_reg[15]_10 (control_unit_n_19),
+        .\IR_reg[15]_11 (control_unit_n_20),
+        .\IR_reg[15]_12 (control_unit_n_22),
+        .\IR_reg[15]_2 (control_unit_n_6),
+        .\IR_reg[15]_3 (control_unit_n_7),
+        .\IR_reg[15]_4 (control_unit_n_8),
+        .\IR_reg[15]_5 (control_unit_n_9),
+        .\IR_reg[15]_6 (control_unit_n_10),
+        .\IR_reg[15]_7 (control_unit_n_13),
+        .\IR_reg[15]_8 (control_unit_n_17),
+        .\IR_reg[15]_9 (control_unit_n_18),
+        .MemAccessClock_reg_0({control_unit_n_73,control_unit_n_74,control_unit_n_75,control_unit_n_76}),
+        .MemAccessClock_reg_1({control_unit_n_183,control_unit_n_184,control_unit_n_185,control_unit_n_186}),
+        .MemAccessClock_reg_2({control_unit_n_189,control_unit_n_190}),
         .\PC_reg[31] (data_in),
-        .\PC_reg[31]_0 (ALUOut),
-        .\PC_reg[8] (control_unit_n_126),
-        .Q(Rs),
+        .\PC_reg[31]_0 (Rs),
+        .\PC_reg[31]_1 (ALUOut),
+        .Q(PC),
         .RST(RST),
-        .\Rn_reg[31] ({control_unit_n_86,control_unit_n_87,control_unit_n_88,control_unit_n_89,control_unit_n_90,control_unit_n_91,control_unit_n_92,control_unit_n_93,control_unit_n_94,control_unit_n_95,control_unit_n_96,control_unit_n_97,control_unit_n_98,control_unit_n_99,control_unit_n_100,control_unit_n_101,control_unit_n_102,control_unit_n_103,control_unit_n_104,control_unit_n_105,control_unit_n_106,control_unit_n_107,control_unit_n_108,control_unit_n_109,control_unit_n_110,control_unit_n_111,control_unit_n_112,control_unit_n_113,control_unit_n_114,control_unit_n_115,control_unit_n_116,control_unit_n_117}),
+        .\Rn_reg[31] ({control_unit_n_77,control_unit_n_78,control_unit_n_79,control_unit_n_80,control_unit_n_81,control_unit_n_82,control_unit_n_83,control_unit_n_84,control_unit_n_85,control_unit_n_86,control_unit_n_87,control_unit_n_88,control_unit_n_89,control_unit_n_90,control_unit_n_91,control_unit_n_92,control_unit_n_93,control_unit_n_94,control_unit_n_95,control_unit_n_96,control_unit_n_97,control_unit_n_98,control_unit_n_99,control_unit_n_100,control_unit_n_101,control_unit_n_102,control_unit_n_103,control_unit_n_104,control_unit_n_105,control_unit_n_106,control_unit_n_107,control_unit_n_108}),
+        .\Rs_reg[31] (PC_next),
+        .\WR_OUT_reg[3] (\WR_OUT_reg[3] ),
         .a(a),
         .addra(addra),
-        .\data[31]_i_3_0 (E),
         .douta(douta),
         .op_to_aluop(op_to_aluop[3:1]),
         .pulse(pulse),
-        .ram_0({memory_handler_n_32,memory_handler_n_33,memory_handler_n_34,p_1_in}),
-        .\registers_reg[30][31] (PC),
+        .ram_0_i_17_0(ram_0_i_17),
+        .\registers_reg[30][31] (Rn),
         .\registers_reg[30][31]_0 (MDR),
         .spo(spo),
-        .\state_reg[0]_0 (control_unit_n_189),
-        .\state_reg[0]_1 ({\IR_reg_n_0_[31] ,\IR_reg_n_0_[30] ,\IR_reg_n_0_[29] ,\IR_reg_n_0_[28] ,\IR_reg_n_0_[27] ,\IR_reg_n_0_[26] ,p_0_in,p_1_in_32,p_2_in,\IR_reg_n_0_[10] ,\IR_reg_n_0_[9] ,\IR_reg_n_0_[8] ,\IR_reg_n_0_[7] ,\IR_reg_n_0_[6] ,\IR_reg_n_0_[5] ,\IR_reg_n_0_[4] ,\IR_reg_n_0_[3] ,\IR_reg_n_0_[2] ,\IR_reg_n_0_[1] ,\IR_reg_n_0_[0] }),
+        .\state_reg[0]_0 (control_unit_n_191),
+        .\state_reg[0]_1 ({\IR_reg_n_0_[31] ,\IR_reg_n_0_[30] ,\IR_reg_n_0_[29] ,\IR_reg_n_0_[28] ,\IR_reg_n_0_[27] ,\IR_reg_n_0_[26] ,p_0_in,p_1_in,p_2_in,\IR_reg_n_0_[10] ,\IR_reg_n_0_[9] ,\IR_reg_n_0_[8] ,\IR_reg_n_0_[7] ,\IR_reg_n_0_[6] ,\IR_reg_n_0_[5] ,\IR_reg_n_0_[4] ,\IR_reg_n_0_[3] ,\IR_reg_n_0_[2] ,\IR_reg_n_0_[1] ,\IR_reg_n_0_[0] }),
         .\state_reg[1]_0 (MemWriteEn),
         .\state_reg[2]_0 (control_unit_n_38),
-        .\state_reg[4]_0 ({control_unit_n_190,control_unit_n_191}),
         .\state_reg[5]_0 (state),
         .\state_reg[5]_1 (control_unit_n_37),
-        .\state_reg[5]_2 ({FlagInNegative,ALUResult}),
-        .wea(wea[0]));
-  (* SOFT_HLUTNM = "soft_lutpair185" *) 
+        .\state_reg[5]_2 ({control_unit_n_39,control_unit_n_40}),
+        .\state_reg[5]_3 ({FlagInNegative,ALUResult}),
+        .video_ram(WR),
+        .wea(wea));
+  (* SOFT_HLUTNM = "soft_lutpair148" *) 
   LUT5 #(
     .INIT(32'h00000254)) 
     g0_b0__0
@@ -1569,7 +1556,7 @@ module design_1_Motherboard_0_0_AMO
         .I4(\IR_reg_n_0_[30] ),
         .I5(\IR_reg_n_0_[31] ),
         .O(op_to_aluop[2]));
-  (* SOFT_HLUTNM = "soft_lutpair185" *) 
+  (* SOFT_HLUTNM = "soft_lutpair148" *) 
   LUT5 #(
     .INIT(32'h00000380)) 
     g0_b3__0
@@ -1580,21 +1567,17 @@ module design_1_Motherboard_0_0_AMO
         .I4(\IR_reg_n_0_[31] ),
         .O(op_to_aluop[3]));
   design_1_Motherboard_0_0_MemoryHandler memory_handler
-       (.AR(control_unit_n_189),
-        .D(D),
-        .Dout(Dout),
+       (.AR(control_unit_n_191),
+        .D({control_unit_n_77,control_unit_n_78,control_unit_n_79,control_unit_n_80,control_unit_n_81,control_unit_n_82,control_unit_n_83,control_unit_n_84,control_unit_n_85,control_unit_n_86,control_unit_n_87,control_unit_n_88,control_unit_n_89,control_unit_n_90,control_unit_n_91,control_unit_n_92,control_unit_n_93,control_unit_n_94,control_unit_n_95,control_unit_n_96,control_unit_n_97,control_unit_n_98,control_unit_n_99,control_unit_n_100,control_unit_n_101,control_unit_n_102,control_unit_n_103,control_unit_n_104,control_unit_n_105,control_unit_n_106,control_unit_n_107,control_unit_n_108}),
         .E(MemWriteEn),
         .\MDR_reg[25] ({control_unit_n_183,control_unit_n_184,control_unit_n_185,control_unit_n_186}),
-        .\MDR_reg[31] ({control_unit_n_54,control_unit_n_55,control_unit_n_56,control_unit_n_57,control_unit_n_58,control_unit_n_59,control_unit_n_60,control_unit_n_61,control_unit_n_62,control_unit_n_63,control_unit_n_64,control_unit_n_65,control_unit_n_66,control_unit_n_67,control_unit_n_68,control_unit_n_69,control_unit_n_70,control_unit_n_71,control_unit_n_72,control_unit_n_73,control_unit_n_74,control_unit_n_75,control_unit_n_76,control_unit_n_77,control_unit_n_78,control_unit_n_79,control_unit_n_80,control_unit_n_81,control_unit_n_82,control_unit_n_83,control_unit_n_84,control_unit_n_85}),
-        .MemAccessClock_reg(Din_BIG),
-        .Q({memory_handler_n_32,memory_handler_n_33,memory_handler_n_34,p_1_in}),
-        .\data_reg[0] (control_unit_n_126),
-        .\data_reg[0]_0 ({control_unit_n_187,control_unit_n_188}),
-        .\data_reg[0]_1 ({control_unit_n_52,control_unit_n_53}),
-        .\data_reg[7] ({control_unit_n_86,control_unit_n_87,control_unit_n_88,control_unit_n_89,control_unit_n_90,control_unit_n_91,control_unit_n_92,control_unit_n_93,control_unit_n_94,control_unit_n_95,control_unit_n_96,control_unit_n_97,control_unit_n_98,control_unit_n_99,control_unit_n_100,control_unit_n_101,control_unit_n_102,control_unit_n_103,control_unit_n_104,control_unit_n_105,control_unit_n_106,control_unit_n_107,control_unit_n_108,control_unit_n_109,control_unit_n_110,control_unit_n_111,control_unit_n_112,control_unit_n_113,control_unit_n_114,control_unit_n_115,control_unit_n_116,control_unit_n_117}),
-        .ram_0_i_1({control_unit_n_118,control_unit_n_119,control_unit_n_120,control_unit_n_121}),
-        .video_ram(control_unit_n_40),
-        .wea(wea[3:1]));
+        .\MDR_reg[31] ({control_unit_n_41,control_unit_n_42,control_unit_n_43,control_unit_n_44,control_unit_n_45,control_unit_n_46,control_unit_n_47,control_unit_n_48,control_unit_n_49,control_unit_n_50,control_unit_n_51,control_unit_n_52,control_unit_n_53,control_unit_n_54,control_unit_n_55,control_unit_n_56,control_unit_n_57,control_unit_n_58,control_unit_n_59,control_unit_n_60,control_unit_n_61,control_unit_n_62,control_unit_n_63,control_unit_n_64,control_unit_n_65,control_unit_n_66,control_unit_n_67,control_unit_n_68,control_unit_n_69,control_unit_n_70,control_unit_n_71,control_unit_n_72}),
+        .MemAccessClock_reg(MemAccessClock_reg),
+        .MemAccessClock_reg_0(WR),
+        .Q(Din_BIG),
+        .video_ram_i_1({control_unit_n_73,control_unit_n_74,control_unit_n_75,control_unit_n_76}),
+        .video_ram_i_1_0({control_unit_n_189,control_unit_n_190}),
+        .video_ram_i_1_1({control_unit_n_187,control_unit_n_188}));
   design_1_Motherboard_0_0_RegisterFile register_file
        (.D(data_out1),
         .I1(control_unit_n_4),
@@ -1629,7 +1612,7 @@ module design_1_Motherboard_0_0_AMO
         .I8(control_unit_n_2),
         .I9(control_unit_n_19),
         .\IR_reg[20] (data_out2),
-        .Q({p_0_in,p_1_in_32}),
+        .Q({p_0_in,p_1_in}),
         .RST(RST),
         .data_in(data_in),
         .pulse(pulse),
@@ -3917,7 +3900,7 @@ module design_1_Motherboard_0_0_ASCIIRom
         .I4(addr[4]),
         .I5(addr[5]),
         .O(g18_b7_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair186" *) 
+  (* SOFT_HLUTNM = "soft_lutpair149" *) 
   LUT5 #(
     .INIT(32'h00003E00)) 
     g19_b0
@@ -4582,7 +4565,7 @@ module design_1_Motherboard_0_0_ASCIIRom
         .I4(addr[4]),
         .I5(addr[5]),
         .O(g26_b7_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair186" *) 
+  (* SOFT_HLUTNM = "soft_lutpair149" *) 
   LUT5 #(
     .INIT(32'h00003800)) 
     g27_b0
@@ -5537,153 +5520,147 @@ endmodule
 (* ORIG_REF_NAME = "ControlUnit" *) 
 module design_1_Motherboard_0_0_ControlUnit
    (E,
-    \IR_reg[18] ,
-    \IR_reg[20] ,
-    \IR_reg[16] ,
-    \IR_reg[20]_0 ,
-    \IR_reg[20]_1 ,
-    \IR_reg[20]_2 ,
-    \IR_reg[20]_3 ,
-    \IR_reg[20]_4 ,
-    \IR_reg[20]_5 ,
-    \IR_reg[20]_6 ,
-    \IR_reg[18]_0 ,
-    \IR_reg[18]_1 ,
-    \IR_reg[20]_7 ,
-    \IR_reg[18]_2 ,
-    \IR_reg[19] ,
-    \IR_reg[18]_3 ,
-    \IR_reg[20]_8 ,
-    \IR_reg[20]_9 ,
-    \IR_reg[20]_10 ,
-    \IR_reg[20]_11 ,
-    \IR_reg[19]_0 ,
-    \IR_reg[20]_12 ,
-    \IR_reg[19]_1 ,
-    \IR_reg[18]_4 ,
-    \IR_reg[18]_5 ,
-    \IR_reg[16]_0 ,
-    \IR_reg[17] ,
-    \IR_reg[17]_0 ,
-    \IR_reg[19]_2 ,
-    \IR_reg[19]_3 ,
-    \IR_reg[19]_4 ,
+    \IR_reg[13] ,
+    \IR_reg[15] ,
+    \IR_reg[11] ,
+    \IR_reg[15]_0 ,
+    \IR_reg[15]_1 ,
+    \IR_reg[15]_2 ,
+    \IR_reg[15]_3 ,
+    \IR_reg[15]_4 ,
+    \IR_reg[15]_5 ,
+    \IR_reg[15]_6 ,
+    \IR_reg[13]_0 ,
+    \IR_reg[13]_1 ,
+    \IR_reg[15]_7 ,
+    \IR_reg[13]_2 ,
+    \IR_reg[14] ,
+    \IR_reg[13]_3 ,
+    \IR_reg[15]_8 ,
+    \IR_reg[15]_9 ,
+    \IR_reg[15]_10 ,
+    \IR_reg[15]_11 ,
+    \IR_reg[14]_0 ,
+    \IR_reg[15]_12 ,
+    \IR_reg[14]_1 ,
+    \IR_reg[13]_4 ,
+    \IR_reg[13]_5 ,
+    \IR_reg[11]_0 ,
+    \IR_reg[12] ,
+    \IR_reg[12]_0 ,
+    \IR_reg[14]_2 ,
+    \IR_reg[14]_3 ,
+    \IR_reg[14]_4 ,
     \state_reg[5]_0 ,
     \state_reg[5]_1 ,
     \state_reg[2]_0 ,
-    wea,
-    MemAccessClock_reg_0,
-    addra,
-    AR,
+    \state_reg[5]_2 ,
     D,
+    MemAccessClock_reg_0,
     \Rn_reg[31] ,
-    MemAccessClock_reg_1,
-    MemAccessClock_reg_2,
-    \PC_reg[8] ,
-    MemAccessClock_reg_3,
-    \data[31]_i_3_0 ,
-    a,
     \CPSR_reg[1] ,
     ALUOpcodeSrc,
-    \state_reg[5]_2 ,
-    MemAccessClock_reg_4,
-    MemAccessClock_reg_5,
+    addra,
+    a,
+    ram_0_i_17_0,
+    wea,
+    \WR_OUT_reg[3] ,
+    \state_reg[5]_3 ,
+    MemAccessClock_reg_1,
+    AR,
+    MemAccessClock_reg_2,
     \state_reg[0]_0 ,
-    \state_reg[4]_0 ,
-    \ALUOut_reg[31] ,
+    \Rs_reg[31] ,
     \PC_reg[31] ,
     \state_reg[1]_0 ,
-    \ALUOut_reg[2] ,
     \ALUOut_reg[5] ,
-    \ALUOut_reg[1] ,
     Q,
-    \registers_reg[30][31] ,
-    \ALUOut_reg[1]_0 ,
-    \state_reg[0]_1 ,
     \PC_reg[31]_0 ,
-    ram_0,
-    \CPSR_reg[1]_0 ,
-    spo,
+    \ALUOut_reg[5]_0 ,
+    \ALUOut_reg[9] ,
+    \ALUOut_reg[5]_1 ,
+    \PC_reg[31]_1 ,
+    \registers_reg[30][31] ,
+    \state_reg[0]_1 ,
     douta,
-    \Din_OUT_reg[7]_i_6_0 ,
-    \Din_OUT_reg[15]_i_3_0 ,
+    spo,
+    \Din_OUT_reg[23]_i_5_0 ,
     Carry,
+    Dout,
+    video_ram,
     op_to_aluop,
     \registers_reg[30][31]_0 ,
     pulse,
     RST);
   output [0:0]E;
-  output [0:0]\IR_reg[18] ;
-  output [0:0]\IR_reg[20] ;
-  output [0:0]\IR_reg[16] ;
-  output [0:0]\IR_reg[20]_0 ;
-  output [0:0]\IR_reg[20]_1 ;
-  output [0:0]\IR_reg[20]_2 ;
-  output [0:0]\IR_reg[20]_3 ;
-  output [0:0]\IR_reg[20]_4 ;
-  output [0:0]\IR_reg[20]_5 ;
-  output [0:0]\IR_reg[20]_6 ;
-  output [0:0]\IR_reg[18]_0 ;
-  output [0:0]\IR_reg[18]_1 ;
-  output [0:0]\IR_reg[20]_7 ;
-  output [0:0]\IR_reg[18]_2 ;
-  output [0:0]\IR_reg[19] ;
-  output [0:0]\IR_reg[18]_3 ;
-  output [0:0]\IR_reg[20]_8 ;
-  output [0:0]\IR_reg[20]_9 ;
-  output [0:0]\IR_reg[20]_10 ;
-  output [0:0]\IR_reg[20]_11 ;
-  output [0:0]\IR_reg[19]_0 ;
-  output [0:0]\IR_reg[20]_12 ;
-  output [0:0]\IR_reg[19]_1 ;
-  output [0:0]\IR_reg[18]_4 ;
-  output [0:0]\IR_reg[18]_5 ;
-  output [0:0]\IR_reg[16]_0 ;
-  output [0:0]\IR_reg[17] ;
-  output [0:0]\IR_reg[17]_0 ;
-  output [0:0]\IR_reg[19]_2 ;
-  output [0:0]\IR_reg[19]_3 ;
-  output [0:0]\IR_reg[19]_4 ;
+  output [0:0]\IR_reg[13] ;
+  output [0:0]\IR_reg[15] ;
+  output [0:0]\IR_reg[11] ;
+  output [0:0]\IR_reg[15]_0 ;
+  output [0:0]\IR_reg[15]_1 ;
+  output [0:0]\IR_reg[15]_2 ;
+  output [0:0]\IR_reg[15]_3 ;
+  output [0:0]\IR_reg[15]_4 ;
+  output [0:0]\IR_reg[15]_5 ;
+  output [0:0]\IR_reg[15]_6 ;
+  output [0:0]\IR_reg[13]_0 ;
+  output [0:0]\IR_reg[13]_1 ;
+  output [0:0]\IR_reg[15]_7 ;
+  output [0:0]\IR_reg[13]_2 ;
+  output [0:0]\IR_reg[14] ;
+  output [0:0]\IR_reg[13]_3 ;
+  output [0:0]\IR_reg[15]_8 ;
+  output [0:0]\IR_reg[15]_9 ;
+  output [0:0]\IR_reg[15]_10 ;
+  output [0:0]\IR_reg[15]_11 ;
+  output [0:0]\IR_reg[14]_0 ;
+  output [0:0]\IR_reg[15]_12 ;
+  output [0:0]\IR_reg[14]_1 ;
+  output [0:0]\IR_reg[13]_4 ;
+  output [0:0]\IR_reg[13]_5 ;
+  output [0:0]\IR_reg[11]_0 ;
+  output [0:0]\IR_reg[12] ;
+  output [0:0]\IR_reg[12]_0 ;
+  output [0:0]\IR_reg[14]_2 ;
+  output [0:0]\IR_reg[14]_3 ;
+  output [0:0]\IR_reg[14]_4 ;
   output [4:0]\state_reg[5]_0 ;
   output [0:0]\state_reg[5]_1 ;
   output \state_reg[2]_0 ;
-  output [0:0]wea;
-  output MemAccessClock_reg_0;
-  output [10:0]addra;
-  output [1:0]AR;
+  output [1:0]\state_reg[5]_2 ;
   output [31:0]D;
+  output [3:0]MemAccessClock_reg_0;
   output [31:0]\Rn_reg[31] ;
-  output [3:0]MemAccessClock_reg_1;
-  output [3:0]MemAccessClock_reg_2;
-  output \PC_reg[8] ;
-  output [10:0]MemAccessClock_reg_3;
-  output [0:0]\data[31]_i_3_0 ;
-  output [9:0]a;
   output \CPSR_reg[1] ;
   output ALUOpcodeSrc;
-  output [31:0]\state_reg[5]_2 ;
-  output [3:0]MemAccessClock_reg_4;
-  output [1:0]MemAccessClock_reg_5;
+  output [10:0]addra;
+  output [9:0]a;
+  output [10:0]ram_0_i_17_0;
+  output [3:0]wea;
+  output [3:0]\WR_OUT_reg[3] ;
+  output [31:0]\state_reg[5]_3 ;
+  output [3:0]MemAccessClock_reg_1;
+  output [1:0]AR;
+  output [1:0]MemAccessClock_reg_2;
   output [0:0]\state_reg[0]_0 ;
-  output [1:0]\state_reg[4]_0 ;
-  output [31:0]\ALUOut_reg[31] ;
+  output [31:0]\Rs_reg[31] ;
   output [31:0]\PC_reg[31] ;
   output [0:0]\state_reg[1]_0 ;
-  input \ALUOut_reg[2] ;
   input \ALUOut_reg[5] ;
-  input \ALUOut_reg[1] ;
   input [31:0]Q;
-  input [31:0]\registers_reg[30][31] ;
-  input \ALUOut_reg[1]_0 ;
-  input [31:0]\state_reg[0]_1 ;
   input [31:0]\PC_reg[31]_0 ;
-  input [3:0]ram_0;
-  input [31:0]\CPSR_reg[1]_0 ;
-  input [31:0]spo;
+  input \ALUOut_reg[5]_0 ;
+  input \ALUOut_reg[9] ;
+  input \ALUOut_reg[5]_1 ;
+  input [31:0]\PC_reg[31]_1 ;
+  input [31:0]\registers_reg[30][31] ;
+  input [31:0]\state_reg[0]_1 ;
   input [31:0]douta;
-  input [31:0]\Din_OUT_reg[7]_i_6_0 ;
-  input [31:0]\Din_OUT_reg[15]_i_3_0 ;
+  input [31:0]spo;
+  input [31:0]\Din_OUT_reg[23]_i_5_0 ;
   input Carry;
+  input [0:0]Dout;
+  input [3:0]video_ram;
   input [2:0]op_to_aluop;
   input [31:0]\registers_reg[30][31]_0 ;
   input pulse;
@@ -5692,12 +5669,10 @@ module design_1_Motherboard_0_0_ControlUnit
   wire ALUOpcodeSrc;
   wire \ALUOut[0]_i_10_n_0 ;
   wire \ALUOut[0]_i_11_n_0 ;
-  wire \ALUOut[0]_i_12_n_0 ;
   wire \ALUOut[0]_i_2_n_0 ;
   wire \ALUOut[0]_i_3_n_0 ;
   wire \ALUOut[0]_i_4_n_0 ;
   wire \ALUOut[0]_i_5_n_0 ;
-  wire \ALUOut[0]_i_6_n_0 ;
   wire \ALUOut[0]_i_7_n_0 ;
   wire \ALUOut[0]_i_8_n_0 ;
   wire \ALUOut[0]_i_9_n_0 ;
@@ -5706,13 +5681,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[10]_i_12_n_0 ;
   wire \ALUOut[10]_i_13_n_0 ;
   wire \ALUOut[10]_i_14_n_0 ;
-  wire \ALUOut[10]_i_15_n_0 ;
-  wire \ALUOut[10]_i_16_n_0 ;
-  wire \ALUOut[10]_i_17_n_0 ;
-  wire \ALUOut[10]_i_18_n_0 ;
-  wire \ALUOut[10]_i_19_n_0 ;
-  wire \ALUOut[10]_i_20_n_0 ;
-  wire \ALUOut[10]_i_21_n_0 ;
   wire \ALUOut[10]_i_2_n_0 ;
   wire \ALUOut[10]_i_3_n_0 ;
   wire \ALUOut[10]_i_4_n_0 ;
@@ -5724,21 +5692,16 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[11]_i_11_n_0 ;
   wire \ALUOut[11]_i_12_n_0 ;
   wire \ALUOut[11]_i_13_n_0 ;
-  wire \ALUOut[11]_i_14_n_0 ;
-  wire \ALUOut[11]_i_15_n_0 ;
-  wire \ALUOut[11]_i_16_n_0 ;
-  wire \ALUOut[11]_i_17_n_0 ;
-  wire \ALUOut[11]_i_3_n_0 ;
   wire \ALUOut[11]_i_4_n_0 ;
   wire \ALUOut[11]_i_5_n_0 ;
   wire \ALUOut[11]_i_6_n_0 ;
   wire \ALUOut[11]_i_7_n_0 ;
+  wire \ALUOut[11]_i_8_n_0 ;
   wire \ALUOut[11]_i_9_n_0 ;
   wire \ALUOut[12]_i_10_n_0 ;
   wire \ALUOut[12]_i_11_n_0 ;
   wire \ALUOut[12]_i_12_n_0 ;
   wire \ALUOut[12]_i_13_n_0 ;
-  wire \ALUOut[12]_i_14_n_0 ;
   wire \ALUOut[12]_i_15_n_0 ;
   wire \ALUOut[12]_i_16_n_0 ;
   wire \ALUOut[12]_i_17_n_0 ;
@@ -5749,6 +5712,7 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[12]_i_22_n_0 ;
   wire \ALUOut[12]_i_23_n_0 ;
   wire \ALUOut[12]_i_24_n_0 ;
+  wire \ALUOut[12]_i_25_n_0 ;
   wire \ALUOut[12]_i_3_n_0 ;
   wire \ALUOut[12]_i_4_n_0 ;
   wire \ALUOut[12]_i_5_n_0 ;
@@ -5761,7 +5725,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[13]_i_13_n_0 ;
   wire \ALUOut[13]_i_14_n_0 ;
   wire \ALUOut[13]_i_15_n_0 ;
-  wire \ALUOut[13]_i_16_n_0 ;
   wire \ALUOut[13]_i_3_n_0 ;
   wire \ALUOut[13]_i_4_n_0 ;
   wire \ALUOut[13]_i_5_n_0 ;
@@ -5779,6 +5742,13 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[14]_i_18_n_0 ;
   wire \ALUOut[14]_i_19_n_0 ;
   wire \ALUOut[14]_i_20_n_0 ;
+  wire \ALUOut[14]_i_21_n_0 ;
+  wire \ALUOut[14]_i_22_n_0 ;
+  wire \ALUOut[14]_i_23_n_0 ;
+  wire \ALUOut[14]_i_24_n_0 ;
+  wire \ALUOut[14]_i_25_n_0 ;
+  wire \ALUOut[14]_i_26_n_0 ;
+  wire \ALUOut[14]_i_27_n_0 ;
   wire \ALUOut[14]_i_3_n_0 ;
   wire \ALUOut[14]_i_4_n_0 ;
   wire \ALUOut[14]_i_5_n_0 ;
@@ -5795,6 +5765,8 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[15]_i_17_n_0 ;
   wire \ALUOut[15]_i_18_n_0 ;
   wire \ALUOut[15]_i_19_n_0 ;
+  wire \ALUOut[15]_i_20_n_0 ;
+  wire \ALUOut[15]_i_21_n_0 ;
   wire \ALUOut[15]_i_3_n_0 ;
   wire \ALUOut[15]_i_5_n_0 ;
   wire \ALUOut[15]_i_6_n_0 ;
@@ -5809,6 +5781,7 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[16]_i_15_n_0 ;
   wire \ALUOut[16]_i_16_n_0 ;
   wire \ALUOut[16]_i_17_n_0 ;
+  wire \ALUOut[16]_i_19_n_0 ;
   wire \ALUOut[16]_i_4_n_0 ;
   wire \ALUOut[16]_i_5_n_0 ;
   wire \ALUOut[16]_i_6_n_0 ;
@@ -5818,11 +5791,10 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[17]_i_10_n_0 ;
   wire \ALUOut[17]_i_11_n_0 ;
   wire \ALUOut[17]_i_12_n_0 ;
-  wire \ALUOut[17]_i_13_n_0 ;
+  wire \ALUOut[17]_i_14_n_0 ;
   wire \ALUOut[17]_i_15_n_0 ;
-  wire \ALUOut[17]_i_16_n_0 ;
+  wire \ALUOut[17]_i_17_n_0 ;
   wire \ALUOut[17]_i_18_n_0 ;
-  wire \ALUOut[17]_i_19_n_0 ;
   wire \ALUOut[17]_i_20_n_0 ;
   wire \ALUOut[17]_i_21_n_0 ;
   wire \ALUOut[17]_i_22_n_0 ;
@@ -5834,9 +5806,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[17]_i_28_n_0 ;
   wire \ALUOut[17]_i_29_n_0 ;
   wire \ALUOut[17]_i_30_n_0 ;
-  wire \ALUOut[17]_i_31_n_0 ;
-  wire \ALUOut[17]_i_32_n_0 ;
-  wire \ALUOut[17]_i_33_n_0 ;
   wire \ALUOut[17]_i_4_n_0 ;
   wire \ALUOut[17]_i_5_n_0 ;
   wire \ALUOut[17]_i_6_n_0 ;
@@ -5850,12 +5819,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[18]_i_14_n_0 ;
   wire \ALUOut[18]_i_15_n_0 ;
   wire \ALUOut[18]_i_16_n_0 ;
-  wire \ALUOut[18]_i_17_n_0 ;
-  wire \ALUOut[18]_i_18_n_0 ;
-  wire \ALUOut[18]_i_19_n_0 ;
-  wire \ALUOut[18]_i_20_n_0 ;
-  wire \ALUOut[18]_i_21_n_0 ;
-  wire \ALUOut[18]_i_22_n_0 ;
   wire \ALUOut[18]_i_4_n_0 ;
   wire \ALUOut[18]_i_5_n_0 ;
   wire \ALUOut[18]_i_6_n_0 ;
@@ -5865,6 +5828,7 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[19]_i_10_n_0 ;
   wire \ALUOut[19]_i_11_n_0 ;
   wire \ALUOut[19]_i_12_n_0 ;
+  wire \ALUOut[19]_i_13_n_0 ;
   wire \ALUOut[19]_i_4_n_0 ;
   wire \ALUOut[19]_i_5_n_0 ;
   wire \ALUOut[19]_i_6_n_0 ;
@@ -5872,38 +5836,45 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[19]_i_8_n_0 ;
   wire \ALUOut[19]_i_9_n_0 ;
   wire \ALUOut[1]_i_11_n_0 ;
+  wire \ALUOut[1]_i_12_n_0 ;
   wire \ALUOut[1]_i_13_n_0 ;
-  wire \ALUOut[1]_i_14_n_0 ;
-  wire \ALUOut[1]_i_15_n_0 ;
-  wire \ALUOut[1]_i_16_n_0 ;
   wire \ALUOut[1]_i_2_n_0 ;
   wire \ALUOut[1]_i_3_n_0 ;
   wire \ALUOut[1]_i_4_n_0 ;
   wire \ALUOut[1]_i_5_n_0 ;
+  wire \ALUOut[1]_i_6_n_0 ;
   wire \ALUOut[1]_i_7_n_0 ;
   wire \ALUOut[1]_i_8_n_0 ;
   wire \ALUOut[1]_i_9_n_0 ;
   wire \ALUOut[20]_i_10_n_0 ;
-  wire \ALUOut[20]_i_11_n_0 ;
   wire \ALUOut[20]_i_12_n_0 ;
-  wire \ALUOut[20]_i_13_n_0 ;
+  wire \ALUOut[20]_i_14_n_0 ;
   wire \ALUOut[20]_i_15_n_0 ;
+  wire \ALUOut[20]_i_16_n_0 ;
   wire \ALUOut[20]_i_17_n_0 ;
   wire \ALUOut[20]_i_18_n_0 ;
   wire \ALUOut[20]_i_19_n_0 ;
   wire \ALUOut[20]_i_20_n_0 ;
   wire \ALUOut[20]_i_21_n_0 ;
+  wire \ALUOut[20]_i_22_n_0 ;
+  wire \ALUOut[20]_i_23_n_0 ;
+  wire \ALUOut[20]_i_2_n_0 ;
   wire \ALUOut[20]_i_3_n_0 ;
   wire \ALUOut[20]_i_4_n_0 ;
   wire \ALUOut[20]_i_5_n_0 ;
   wire \ALUOut[20]_i_6_n_0 ;
   wire \ALUOut[20]_i_7_n_0 ;
+  wire \ALUOut[20]_i_8_n_0 ;
   wire \ALUOut[20]_i_9_n_0 ;
   wire \ALUOut[21]_i_10_n_0 ;
   wire \ALUOut[21]_i_11_n_0 ;
   wire \ALUOut[21]_i_12_n_0 ;
-  wire \ALUOut[21]_i_13_n_0 ;
   wire \ALUOut[21]_i_14_n_0 ;
+  wire \ALUOut[21]_i_15_n_0 ;
+  wire \ALUOut[21]_i_16_n_0 ;
+  wire \ALUOut[21]_i_17_n_0 ;
+  wire \ALUOut[21]_i_18_n_0 ;
+  wire \ALUOut[21]_i_19_n_0 ;
   wire \ALUOut[21]_i_4_n_0 ;
   wire \ALUOut[21]_i_5_n_0 ;
   wire \ALUOut[21]_i_6_n_0 ;
@@ -5914,9 +5885,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[22]_i_11_n_0 ;
   wire \ALUOut[22]_i_12_n_0 ;
   wire \ALUOut[22]_i_13_n_0 ;
-  wire \ALUOut[22]_i_15_n_0 ;
-  wire \ALUOut[22]_i_16_n_0 ;
-  wire \ALUOut[22]_i_17_n_0 ;
   wire \ALUOut[22]_i_4_n_0 ;
   wire \ALUOut[22]_i_5_n_0 ;
   wire \ALUOut[22]_i_6_n_0 ;
@@ -5924,12 +5892,25 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[22]_i_8_n_0 ;
   wire \ALUOut[22]_i_9_n_0 ;
   wire \ALUOut[23]_i_10_n_0 ;
-  wire \ALUOut[23]_i_11_n_0 ;
   wire \ALUOut[23]_i_12_n_0 ;
-  wire \ALUOut[23]_i_13_n_0 ;
   wire \ALUOut[23]_i_14_n_0 ;
   wire \ALUOut[23]_i_15_n_0 ;
   wire \ALUOut[23]_i_16_n_0 ;
+  wire \ALUOut[23]_i_17_n_0 ;
+  wire \ALUOut[23]_i_18_n_0 ;
+  wire \ALUOut[23]_i_19_n_0 ;
+  wire \ALUOut[23]_i_20_n_0 ;
+  wire \ALUOut[23]_i_21_n_0 ;
+  wire \ALUOut[23]_i_22_n_0 ;
+  wire \ALUOut[23]_i_23_n_0 ;
+  wire \ALUOut[23]_i_24_n_0 ;
+  wire \ALUOut[23]_i_25_n_0 ;
+  wire \ALUOut[23]_i_26_n_0 ;
+  wire \ALUOut[23]_i_27_n_0 ;
+  wire \ALUOut[23]_i_28_n_0 ;
+  wire \ALUOut[23]_i_29_n_0 ;
+  wire \ALUOut[23]_i_2_n_0 ;
+  wire \ALUOut[23]_i_30_n_0 ;
   wire \ALUOut[23]_i_3_n_0 ;
   wire \ALUOut[23]_i_4_n_0 ;
   wire \ALUOut[23]_i_5_n_0 ;
@@ -5941,24 +5922,16 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[24]_i_11_n_0 ;
   wire \ALUOut[24]_i_12_n_0 ;
   wire \ALUOut[24]_i_13_n_0 ;
-  wire \ALUOut[24]_i_14_n_0 ;
-  wire \ALUOut[24]_i_16_n_0 ;
-  wire \ALUOut[24]_i_17_n_0 ;
-  wire \ALUOut[24]_i_18_n_0 ;
-  wire \ALUOut[24]_i_19_n_0 ;
-  wire \ALUOut[24]_i_20_n_0 ;
-  wire \ALUOut[24]_i_21_n_0 ;
-  wire \ALUOut[24]_i_3_n_0 ;
   wire \ALUOut[24]_i_4_n_0 ;
   wire \ALUOut[24]_i_5_n_0 ;
   wire \ALUOut[24]_i_6_n_0 ;
+  wire \ALUOut[24]_i_7_n_0 ;
   wire \ALUOut[24]_i_8_n_0 ;
   wire \ALUOut[24]_i_9_n_0 ;
-  wire \ALUOut[25]_i_10_n_0 ;
   wire \ALUOut[25]_i_11_n_0 ;
-  wire \ALUOut[25]_i_12_n_0 ;
   wire \ALUOut[25]_i_13_n_0 ;
   wire \ALUOut[25]_i_14_n_0 ;
+  wire \ALUOut[25]_i_15_n_0 ;
   wire \ALUOut[25]_i_16_n_0 ;
   wire \ALUOut[25]_i_17_n_0 ;
   wire \ALUOut[25]_i_18_n_0 ;
@@ -5966,37 +5939,22 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[25]_i_20_n_0 ;
   wire \ALUOut[25]_i_21_n_0 ;
   wire \ALUOut[25]_i_22_n_0 ;
-  wire \ALUOut[25]_i_23_n_0 ;
-  wire \ALUOut[25]_i_24_n_0 ;
-  wire \ALUOut[25]_i_25_n_0 ;
-  wire \ALUOut[25]_i_26_n_0 ;
-  wire \ALUOut[25]_i_27_n_0 ;
-  wire \ALUOut[25]_i_28_n_0 ;
-  wire \ALUOut[25]_i_29_n_0 ;
-  wire \ALUOut[25]_i_30_n_0 ;
-  wire \ALUOut[25]_i_31_n_0 ;
-  wire \ALUOut[25]_i_32_n_0 ;
-  wire \ALUOut[25]_i_33_n_0 ;
-  wire \ALUOut[25]_i_34_n_0 ;
-  wire \ALUOut[25]_i_35_n_0 ;
+  wire \ALUOut[25]_i_2_n_0 ;
   wire \ALUOut[25]_i_3_n_0 ;
   wire \ALUOut[25]_i_4_n_0 ;
   wire \ALUOut[25]_i_5_n_0 ;
   wire \ALUOut[25]_i_6_n_0 ;
+  wire \ALUOut[25]_i_7_n_0 ;
   wire \ALUOut[25]_i_8_n_0 ;
   wire \ALUOut[25]_i_9_n_0 ;
   wire \ALUOut[26]_i_10_n_0 ;
   wire \ALUOut[26]_i_11_n_0 ;
   wire \ALUOut[26]_i_12_n_0 ;
-  wire \ALUOut[26]_i_13_n_0 ;
   wire \ALUOut[26]_i_14_n_0 ;
   wire \ALUOut[26]_i_15_n_0 ;
   wire \ALUOut[26]_i_16_n_0 ;
   wire \ALUOut[26]_i_17_n_0 ;
   wire \ALUOut[26]_i_18_n_0 ;
-  wire \ALUOut[26]_i_19_n_0 ;
-  wire \ALUOut[26]_i_2_n_0 ;
-  wire \ALUOut[26]_i_3_n_0 ;
   wire \ALUOut[26]_i_4_n_0 ;
   wire \ALUOut[26]_i_5_n_0 ;
   wire \ALUOut[26]_i_6_n_0 ;
@@ -6007,13 +5965,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[27]_i_11_n_0 ;
   wire \ALUOut[27]_i_12_n_0 ;
   wire \ALUOut[27]_i_13_n_0 ;
-  wire \ALUOut[27]_i_14_n_0 ;
-  wire \ALUOut[27]_i_15_n_0 ;
-  wire \ALUOut[27]_i_16_n_0 ;
-  wire \ALUOut[27]_i_17_n_0 ;
-  wire \ALUOut[27]_i_18_n_0 ;
-  wire \ALUOut[27]_i_2_n_0 ;
-  wire \ALUOut[27]_i_3_n_0 ;
   wire \ALUOut[27]_i_4_n_0 ;
   wire \ALUOut[27]_i_5_n_0 ;
   wire \ALUOut[27]_i_6_n_0 ;
@@ -6021,22 +5972,30 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[27]_i_8_n_0 ;
   wire \ALUOut[27]_i_9_n_0 ;
   wire \ALUOut[28]_i_10_n_0 ;
-  wire \ALUOut[28]_i_11_n_0 ;
   wire \ALUOut[28]_i_12_n_0 ;
-  wire \ALUOut[28]_i_13_n_0 ;
   wire \ALUOut[28]_i_14_n_0 ;
+  wire \ALUOut[28]_i_15_n_0 ;
   wire \ALUOut[28]_i_16_n_0 ;
+  wire \ALUOut[28]_i_17_n_0 ;
   wire \ALUOut[28]_i_18_n_0 ;
   wire \ALUOut[28]_i_19_n_0 ;
   wire \ALUOut[28]_i_20_n_0 ;
+  wire \ALUOut[28]_i_21_n_0 ;
+  wire \ALUOut[28]_i_22_n_0 ;
+  wire \ALUOut[28]_i_23_n_0 ;
+  wire \ALUOut[28]_i_24_n_0 ;
+  wire \ALUOut[28]_i_25_n_0 ;
+  wire \ALUOut[28]_i_26_n_0 ;
+  wire \ALUOut[28]_i_27_n_0 ;
+  wire \ALUOut[28]_i_2_n_0 ;
   wire \ALUOut[28]_i_3_n_0 ;
   wire \ALUOut[28]_i_4_n_0 ;
   wire \ALUOut[28]_i_5_n_0 ;
   wire \ALUOut[28]_i_6_n_0 ;
+  wire \ALUOut[28]_i_7_n_0 ;
   wire \ALUOut[28]_i_8_n_0 ;
   wire \ALUOut[28]_i_9_n_0 ;
   wire \ALUOut[29]_i_10_n_0 ;
-  wire \ALUOut[29]_i_11_n_0 ;
   wire \ALUOut[29]_i_12_n_0 ;
   wire \ALUOut[29]_i_13_n_0 ;
   wire \ALUOut[29]_i_14_n_0 ;
@@ -6044,13 +6003,18 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[29]_i_16_n_0 ;
   wire \ALUOut[29]_i_17_n_0 ;
   wire \ALUOut[29]_i_18_n_0 ;
-  wire \ALUOut[29]_i_19_n_0 ;
   wire \ALUOut[29]_i_20_n_0 ;
   wire \ALUOut[29]_i_21_n_0 ;
+  wire \ALUOut[29]_i_22_n_0 ;
+  wire \ALUOut[29]_i_23_n_0 ;
+  wire \ALUOut[29]_i_24_n_0 ;
+  wire \ALUOut[29]_i_25_n_0 ;
+  wire \ALUOut[29]_i_26_n_0 ;
+  wire \ALUOut[29]_i_27_n_0 ;
+  wire \ALUOut[29]_i_29_n_0 ;
   wire \ALUOut[29]_i_2_n_0 ;
+  wire \ALUOut[29]_i_30_n_0 ;
   wire \ALUOut[29]_i_3_n_0 ;
-  wire \ALUOut[29]_i_4_n_0 ;
-  wire \ALUOut[29]_i_5_n_0 ;
   wire \ALUOut[29]_i_6_n_0 ;
   wire \ALUOut[29]_i_7_n_0 ;
   wire \ALUOut[29]_i_8_n_0 ;
@@ -6059,13 +6023,18 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[2]_i_11_n_0 ;
   wire \ALUOut[2]_i_12_n_0 ;
   wire \ALUOut[2]_i_13_n_0 ;
+  wire \ALUOut[2]_i_14_n_0 ;
   wire \ALUOut[2]_i_15_n_0 ;
   wire \ALUOut[2]_i_16_n_0 ;
   wire \ALUOut[2]_i_17_n_0 ;
   wire \ALUOut[2]_i_18_n_0 ;
   wire \ALUOut[2]_i_19_n_0 ;
   wire \ALUOut[2]_i_20_n_0 ;
+  wire \ALUOut[2]_i_21_n_0 ;
+  wire \ALUOut[2]_i_22_n_0 ;
+  wire \ALUOut[2]_i_23_n_0 ;
   wire \ALUOut[2]_i_2_n_0 ;
+  wire \ALUOut[2]_i_3_n_0 ;
   wire \ALUOut[2]_i_4_n_0 ;
   wire \ALUOut[2]_i_5_n_0 ;
   wire \ALUOut[2]_i_6_n_0 ;
@@ -6075,29 +6044,16 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[30]_i_10_n_0 ;
   wire \ALUOut[30]_i_11_n_0 ;
   wire \ALUOut[30]_i_12_n_0 ;
+  wire \ALUOut[30]_i_13_n_0 ;
   wire \ALUOut[30]_i_14_n_0 ;
-  wire \ALUOut[30]_i_15_n_0 ;
-  wire \ALUOut[30]_i_16_n_0 ;
-  wire \ALUOut[30]_i_17_n_0 ;
-  wire \ALUOut[30]_i_18_n_0 ;
-  wire \ALUOut[30]_i_19_n_0 ;
-  wire \ALUOut[30]_i_20_n_0 ;
-  wire \ALUOut[30]_i_21_n_0 ;
-  wire \ALUOut[30]_i_22_n_0 ;
-  wire \ALUOut[30]_i_24_n_0 ;
-  wire \ALUOut[30]_i_25_n_0 ;
-  wire \ALUOut[30]_i_26_n_0 ;
-  wire \ALUOut[30]_i_27_n_0 ;
-  wire \ALUOut[30]_i_28_n_0 ;
-  wire \ALUOut[30]_i_29_n_0 ;
-  wire \ALUOut[30]_i_30_n_0 ;
-  wire \ALUOut[30]_i_31_n_0 ;
-  wire \ALUOut[30]_i_32_n_0 ;
+  wire \ALUOut[30]_i_2_n_0 ;
   wire \ALUOut[30]_i_3_n_0 ;
+  wire \ALUOut[30]_i_4_n_0 ;
   wire \ALUOut[30]_i_5_n_0 ;
   wire \ALUOut[30]_i_6_n_0 ;
   wire \ALUOut[30]_i_7_n_0 ;
-  wire \ALUOut[30]_i_9_n_0 ;
+  wire \ALUOut[30]_i_8_n_0 ;
+  wire \ALUOut[31]_i_10_n_0 ;
   wire \ALUOut[31]_i_12_n_0 ;
   wire \ALUOut[31]_i_13_n_0 ;
   wire \ALUOut[31]_i_14_n_0 ;
@@ -6110,49 +6066,58 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[31]_i_21_n_0 ;
   wire \ALUOut[31]_i_23_n_0 ;
   wire \ALUOut[31]_i_24_n_0 ;
-  wire \ALUOut[31]_i_25_n_0 ;
   wire \ALUOut[31]_i_26_n_0 ;
+  wire \ALUOut[31]_i_27_n_0 ;
+  wire \ALUOut[31]_i_28_n_0 ;
+  wire \ALUOut[31]_i_29_n_0 ;
   wire \ALUOut[31]_i_2_n_0 ;
+  wire \ALUOut[31]_i_30_n_0 ;
+  wire \ALUOut[31]_i_31_n_0 ;
+  wire \ALUOut[31]_i_32_n_0 ;
+  wire \ALUOut[31]_i_33_n_0 ;
+  wire \ALUOut[31]_i_34_n_0 ;
+  wire \ALUOut[31]_i_35_n_0 ;
+  wire \ALUOut[31]_i_36_n_0 ;
+  wire \ALUOut[31]_i_37_n_0 ;
+  wire \ALUOut[31]_i_38_n_0 ;
+  wire \ALUOut[31]_i_39_n_0 ;
   wire \ALUOut[31]_i_4_n_0 ;
   wire \ALUOut[31]_i_6_n_0 ;
-  wire \ALUOut[31]_i_7_n_0 ;
-  wire \ALUOut[31]_i_8_n_0 ;
+  wire \ALUOut[31]_i_9_n_0 ;
   wire \ALUOut[3]_i_10_n_0 ;
-  wire \ALUOut[3]_i_11_n_0 ;
-  wire \ALUOut[3]_i_12_n_0 ;
   wire \ALUOut[3]_i_2_n_0 ;
   wire \ALUOut[3]_i_3_n_0 ;
+  wire \ALUOut[3]_i_4_n_0 ;
   wire \ALUOut[3]_i_5_n_0 ;
   wire \ALUOut[3]_i_6_n_0 ;
   wire \ALUOut[3]_i_7_n_0 ;
   wire \ALUOut[3]_i_8_n_0 ;
   wire \ALUOut[3]_i_9_n_0 ;
+  wire \ALUOut[4]_i_10_n_0 ;
+  wire \ALUOut[4]_i_11_n_0 ;
+  wire \ALUOut[4]_i_12_n_0 ;
+  wire \ALUOut[4]_i_13_n_0 ;
   wire \ALUOut[4]_i_2_n_0 ;
   wire \ALUOut[4]_i_3_n_0 ;
+  wire \ALUOut[4]_i_4_n_0 ;
   wire \ALUOut[4]_i_5_n_0 ;
   wire \ALUOut[4]_i_6_n_0 ;
   wire \ALUOut[4]_i_7_n_0 ;
   wire \ALUOut[4]_i_8_n_0 ;
+  wire \ALUOut[4]_i_9_n_0 ;
+  wire \ALUOut[5]_i_10_n_0 ;
   wire \ALUOut[5]_i_11_n_0 ;
   wire \ALUOut[5]_i_12_n_0 ;
-  wire \ALUOut[5]_i_13_n_0 ;
-  wire \ALUOut[5]_i_14_n_0 ;
-  wire \ALUOut[5]_i_15_n_0 ;
-  wire \ALUOut[5]_i_17_n_0 ;
-  wire \ALUOut[5]_i_18_n_0 ;
-  wire \ALUOut[5]_i_19_n_0 ;
-  wire \ALUOut[5]_i_20_n_0 ;
-  wire \ALUOut[5]_i_21_n_0 ;
-  wire \ALUOut[5]_i_22_n_0 ;
-  wire \ALUOut[5]_i_2_n_0 ;
   wire \ALUOut[5]_i_3_n_0 ;
-  wire \ALUOut[5]_i_4_n_0 ;
   wire \ALUOut[5]_i_5_n_0 ;
   wire \ALUOut[5]_i_6_n_0 ;
   wire \ALUOut[5]_i_7_n_0 ;
   wire \ALUOut[5]_i_8_n_0 ;
   wire \ALUOut[5]_i_9_n_0 ;
   wire \ALUOut[6]_i_10_n_0 ;
+  wire \ALUOut[6]_i_11_n_0 ;
+  wire \ALUOut[6]_i_12_n_0 ;
+  wire \ALUOut[6]_i_13_n_0 ;
   wire \ALUOut[6]_i_3_n_0 ;
   wire \ALUOut[6]_i_5_n_0 ;
   wire \ALUOut[6]_i_6_n_0 ;
@@ -6178,26 +6143,39 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut[8]_i_12_n_0 ;
   wire \ALUOut[8]_i_13_n_0 ;
   wire \ALUOut[8]_i_14_n_0 ;
-  wire \ALUOut[8]_i_2_n_0 ;
   wire \ALUOut[8]_i_3_n_0 ;
   wire \ALUOut[8]_i_4_n_0 ;
+  wire \ALUOut[8]_i_5_n_0 ;
   wire \ALUOut[8]_i_6_n_0 ;
-  wire \ALUOut[8]_i_7_n_0 ;
   wire \ALUOut[8]_i_8_n_0 ;
   wire \ALUOut[8]_i_9_n_0 ;
   wire \ALUOut[9]_i_10_n_0 ;
   wire \ALUOut[9]_i_11_n_0 ;
-  wire \ALUOut[9]_i_12_n_0 ;
-  wire \ALUOut[9]_i_13_n_0 ;
   wire \ALUOut[9]_i_14_n_0 ;
+  wire \ALUOut[9]_i_15_n_0 ;
+  wire \ALUOut[9]_i_17_n_0 ;
+  wire \ALUOut[9]_i_18_n_0 ;
+  wire \ALUOut[9]_i_19_n_0 ;
+  wire \ALUOut[9]_i_20_n_0 ;
+  wire \ALUOut[9]_i_21_n_0 ;
+  wire \ALUOut[9]_i_22_n_0 ;
+  wire \ALUOut[9]_i_23_n_0 ;
+  wire \ALUOut[9]_i_24_n_0 ;
+  wire \ALUOut[9]_i_25_n_0 ;
+  wire \ALUOut[9]_i_26_n_0 ;
+  wire \ALUOut[9]_i_27_n_0 ;
+  wire \ALUOut[9]_i_28_n_0 ;
+  wire \ALUOut[9]_i_29_n_0 ;
   wire \ALUOut[9]_i_2_n_0 ;
   wire \ALUOut[9]_i_3_n_0 ;
   wire \ALUOut[9]_i_4_n_0 ;
+  wire \ALUOut[9]_i_5_n_0 ;
   wire \ALUOut[9]_i_6_n_0 ;
   wire \ALUOut[9]_i_7_n_0 ;
   wire \ALUOut[9]_i_8_n_0 ;
   wire \ALUOut[9]_i_9_n_0 ;
   wire \ALUOut_reg[11]_i_2_n_0 ;
+  wire \ALUOut_reg[11]_i_3_n_0 ;
   wire \ALUOut_reg[12]_i_2_n_0 ;
   wire \ALUOut_reg[13]_i_2_n_0 ;
   wire \ALUOut_reg[14]_i_2_n_0 ;
@@ -6211,116 +6189,84 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \ALUOut_reg[18]_i_3_n_0 ;
   wire \ALUOut_reg[19]_i_2_n_0 ;
   wire \ALUOut_reg[19]_i_3_n_0 ;
-  wire \ALUOut_reg[1] ;
-  wire \ALUOut_reg[1]_0 ;
-  wire \ALUOut_reg[1]_i_6_n_0 ;
-  wire \ALUOut_reg[20]_i_2_n_0 ;
   wire \ALUOut_reg[21]_i_2_n_0 ;
   wire \ALUOut_reg[21]_i_3_n_0 ;
-  wire \ALUOut_reg[22]_i_14_n_0 ;
   wire \ALUOut_reg[22]_i_2_n_0 ;
   wire \ALUOut_reg[22]_i_3_n_0 ;
-  wire \ALUOut_reg[23]_i_2_n_0 ;
   wire \ALUOut_reg[24]_i_2_n_0 ;
-  wire \ALUOut_reg[25]_i_2_n_0 ;
-  wire \ALUOut_reg[28]_i_2_n_0 ;
-  wire \ALUOut_reg[2] ;
-  wire \ALUOut_reg[30]_i_2_n_0 ;
-  wire [31:0]\ALUOut_reg[31] ;
+  wire \ALUOut_reg[24]_i_3_n_0 ;
+  wire \ALUOut_reg[26]_i_2_n_0 ;
+  wire \ALUOut_reg[26]_i_3_n_0 ;
+  wire \ALUOut_reg[27]_i_2_n_0 ;
+  wire \ALUOut_reg[27]_i_3_n_0 ;
+  wire \ALUOut_reg[29]_i_5_n_0 ;
   wire \ALUOut_reg[5] ;
-  wire \ALUOut_reg[5]_i_10_n_0 ;
+  wire \ALUOut_reg[5]_0 ;
+  wire \ALUOut_reg[5]_1 ;
+  wire \ALUOut_reg[5]_i_2_n_0 ;
   wire \ALUOut_reg[6]_i_2_n_0 ;
   wire \ALUOut_reg[7]_i_2_n_0 ;
+  wire \ALUOut_reg[8]_i_2_n_0 ;
+  wire \ALUOut_reg[9] ;
   wire [1:0]AR;
   wire \CPSR[1]_i_4_n_0 ;
-  wire \CPSR[1]_i_5_n_0 ;
   wire \CPSR[1]_i_6_n_0 ;
-  wire \CPSR[1]_i_7_n_0 ;
-  wire \CPSR[1]_i_8_n_0 ;
-  wire \CPSR[1]_i_9_n_0 ;
   wire \CPSR_reg[1] ;
-  wire [31:0]\CPSR_reg[1]_0 ;
   wire Carry;
   wire [31:0]D;
   wire [31:0]Din;
+  wire Din1;
+  wire Din3;
+  wire Din4;
+  wire Din43_in;
+  wire Din51_in;
   wire \Din_OUT_reg[0]_i_3_n_0 ;
   wire \Din_OUT_reg[0]_i_4_n_0 ;
+  wire \Din_OUT_reg[0]_i_7_n_0 ;
+  wire \Din_OUT_reg[0]_i_8_n_0 ;
   wire \Din_OUT_reg[10]_i_3_n_0 ;
-  wire \Din_OUT_reg[10]_i_4_n_0 ;
   wire \Din_OUT_reg[11]_i_3_n_0 ;
-  wire \Din_OUT_reg[11]_i_4_n_0 ;
   wire \Din_OUT_reg[12]_i_3_n_0 ;
-  wire \Din_OUT_reg[12]_i_4_n_0 ;
   wire \Din_OUT_reg[13]_i_3_n_0 ;
-  wire \Din_OUT_reg[13]_i_4_n_0 ;
   wire \Din_OUT_reg[14]_i_3_n_0 ;
-  wire \Din_OUT_reg[14]_i_4_n_0 ;
-  wire [31:0]\Din_OUT_reg[15]_i_3_0 ;
   wire \Din_OUT_reg[15]_i_4_n_0 ;
   wire \Din_OUT_reg[15]_i_5_n_0 ;
   wire \Din_OUT_reg[15]_i_6_n_0 ;
-  wire \Din_OUT_reg[15]_i_7_n_0 ;
   wire \Din_OUT_reg[16]_i_3_n_0 ;
-  wire \Din_OUT_reg[16]_i_4_n_0 ;
   wire \Din_OUT_reg[17]_i_3_n_0 ;
-  wire \Din_OUT_reg[17]_i_4_n_0 ;
   wire \Din_OUT_reg[18]_i_3_n_0 ;
-  wire \Din_OUT_reg[18]_i_4_n_0 ;
   wire \Din_OUT_reg[19]_i_3_n_0 ;
-  wire \Din_OUT_reg[19]_i_4_n_0 ;
   wire \Din_OUT_reg[1]_i_3_n_0 ;
-  wire \Din_OUT_reg[1]_i_4_n_0 ;
   wire \Din_OUT_reg[20]_i_3_n_0 ;
-  wire \Din_OUT_reg[20]_i_4_n_0 ;
   wire \Din_OUT_reg[21]_i_3_n_0 ;
-  wire \Din_OUT_reg[21]_i_4_n_0 ;
   wire \Din_OUT_reg[22]_i_3_n_0 ;
-  wire \Din_OUT_reg[22]_i_4_n_0 ;
   wire \Din_OUT_reg[23]_i_4_n_0 ;
+  wire [31:0]\Din_OUT_reg[23]_i_5_0 ;
   wire \Din_OUT_reg[23]_i_5_n_0 ;
   wire \Din_OUT_reg[23]_i_6_n_0 ;
-  wire \Din_OUT_reg[23]_i_7_n_0 ;
-  wire \Din_OUT_reg[23]_i_8_n_0 ;
   wire \Din_OUT_reg[24]_i_3_n_0 ;
-  wire \Din_OUT_reg[24]_i_4_n_0 ;
   wire \Din_OUT_reg[25]_i_3_n_0 ;
-  wire \Din_OUT_reg[25]_i_4_n_0 ;
   wire \Din_OUT_reg[26]_i_3_n_0 ;
-  wire \Din_OUT_reg[26]_i_4_n_0 ;
   wire \Din_OUT_reg[27]_i_3_n_0 ;
-  wire \Din_OUT_reg[27]_i_4_n_0 ;
   wire \Din_OUT_reg[28]_i_3_n_0 ;
-  wire \Din_OUT_reg[28]_i_4_n_0 ;
   wire \Din_OUT_reg[29]_i_3_n_0 ;
-  wire \Din_OUT_reg[29]_i_4_n_0 ;
   wire \Din_OUT_reg[2]_i_3_n_0 ;
-  wire \Din_OUT_reg[2]_i_4_n_0 ;
   wire \Din_OUT_reg[30]_i_3_n_0 ;
-  wire \Din_OUT_reg[30]_i_4_n_0 ;
   wire \Din_OUT_reg[31]_i_4_n_0 ;
   wire \Din_OUT_reg[31]_i_5_n_0 ;
-  wire \Din_OUT_reg[31]_i_6_n_0 ;
   wire \Din_OUT_reg[31]_i_7_n_0 ;
   wire \Din_OUT_reg[31]_i_8_n_0 ;
-  wire \Din_OUT_reg[31]_i_9_n_0 ;
   wire \Din_OUT_reg[3]_i_3_n_0 ;
-  wire \Din_OUT_reg[3]_i_4_n_0 ;
   wire \Din_OUT_reg[4]_i_3_n_0 ;
-  wire \Din_OUT_reg[4]_i_4_n_0 ;
   wire \Din_OUT_reg[5]_i_3_n_0 ;
-  wire \Din_OUT_reg[5]_i_4_n_0 ;
   wire \Din_OUT_reg[6]_i_3_n_0 ;
-  wire \Din_OUT_reg[6]_i_4_n_0 ;
   wire \Din_OUT_reg[7]_i_4_n_0 ;
   wire \Din_OUT_reg[7]_i_5_n_0 ;
-  wire [31:0]\Din_OUT_reg[7]_i_6_0 ;
   wire \Din_OUT_reg[7]_i_6_n_0 ;
   wire \Din_OUT_reg[7]_i_7_n_0 ;
-  wire \Din_OUT_reg[7]_i_8_n_0 ;
   wire \Din_OUT_reg[8]_i_3_n_0 ;
-  wire \Din_OUT_reg[8]_i_4_n_0 ;
   wire \Din_OUT_reg[9]_i_3_n_0 ;
-  wire \Din_OUT_reg[9]_i_4_n_0 ;
+  wire [0:0]Dout;
   wire \Dout_OUT_reg[0]_i_2_n_0 ;
   wire \Dout_OUT_reg[10]_i_2_n_0 ;
   wire \Dout_OUT_reg[11]_i_2_n_0 ;
@@ -6397,116 +6343,100 @@ module design_1_Motherboard_0_0_ControlUnit
   wire [0:0]E;
   wire ExtendImm;
   wire FlagInCarry;
-  wire FlagInOverflow;
-  wire FlagInZero;
-  wire [0:0]\IR_reg[16] ;
-  wire [0:0]\IR_reg[16]_0 ;
-  wire [0:0]\IR_reg[17] ;
-  wire [0:0]\IR_reg[17]_0 ;
-  wire [0:0]\IR_reg[18] ;
-  wire [0:0]\IR_reg[18]_0 ;
-  wire [0:0]\IR_reg[18]_1 ;
-  wire [0:0]\IR_reg[18]_2 ;
-  wire [0:0]\IR_reg[18]_3 ;
-  wire [0:0]\IR_reg[18]_4 ;
-  wire [0:0]\IR_reg[18]_5 ;
-  wire [0:0]\IR_reg[19] ;
-  wire [0:0]\IR_reg[19]_0 ;
-  wire [0:0]\IR_reg[19]_1 ;
-  wire [0:0]\IR_reg[19]_2 ;
-  wire [0:0]\IR_reg[19]_3 ;
-  wire [0:0]\IR_reg[19]_4 ;
-  wire [0:0]\IR_reg[20] ;
-  wire [0:0]\IR_reg[20]_0 ;
-  wire [0:0]\IR_reg[20]_1 ;
-  wire [0:0]\IR_reg[20]_10 ;
-  wire [0:0]\IR_reg[20]_11 ;
-  wire [0:0]\IR_reg[20]_12 ;
-  wire [0:0]\IR_reg[20]_2 ;
-  wire [0:0]\IR_reg[20]_3 ;
-  wire [0:0]\IR_reg[20]_4 ;
-  wire [0:0]\IR_reg[20]_5 ;
-  wire [0:0]\IR_reg[20]_6 ;
-  wire [0:0]\IR_reg[20]_7 ;
-  wire [0:0]\IR_reg[20]_8 ;
-  wire [0:0]\IR_reg[20]_9 ;
+  wire [0:0]\IR_reg[11] ;
+  wire [0:0]\IR_reg[11]_0 ;
+  wire [0:0]\IR_reg[12] ;
+  wire [0:0]\IR_reg[12]_0 ;
+  wire [0:0]\IR_reg[13] ;
+  wire [0:0]\IR_reg[13]_0 ;
+  wire [0:0]\IR_reg[13]_1 ;
+  wire [0:0]\IR_reg[13]_2 ;
+  wire [0:0]\IR_reg[13]_3 ;
+  wire [0:0]\IR_reg[13]_4 ;
+  wire [0:0]\IR_reg[13]_5 ;
+  wire [0:0]\IR_reg[14] ;
+  wire [0:0]\IR_reg[14]_0 ;
+  wire [0:0]\IR_reg[14]_1 ;
+  wire [0:0]\IR_reg[14]_2 ;
+  wire [0:0]\IR_reg[14]_3 ;
+  wire [0:0]\IR_reg[14]_4 ;
+  wire [0:0]\IR_reg[15] ;
+  wire [0:0]\IR_reg[15]_0 ;
+  wire [0:0]\IR_reg[15]_1 ;
+  wire [0:0]\IR_reg[15]_10 ;
+  wire [0:0]\IR_reg[15]_11 ;
+  wire [0:0]\IR_reg[15]_12 ;
+  wire [0:0]\IR_reg[15]_2 ;
+  wire [0:0]\IR_reg[15]_3 ;
+  wire [0:0]\IR_reg[15]_4 ;
+  wire [0:0]\IR_reg[15]_5 ;
+  wire [0:0]\IR_reg[15]_6 ;
+  wire [0:0]\IR_reg[15]_7 ;
+  wire [0:0]\IR_reg[15]_8 ;
+  wire [0:0]\IR_reg[15]_9 ;
   wire [1:1]MemAccess;
   wire MemAccessClock;
   wire MemAccessClock_i_1_n_0;
-  wire MemAccessClock_reg_0;
+  wire [3:0]MemAccessClock_reg_0;
   wire [3:0]MemAccessClock_reg_1;
-  wire [3:0]MemAccessClock_reg_2;
-  wire [10:0]MemAccessClock_reg_3;
-  wire [3:0]MemAccessClock_reg_4;
-  wire [1:0]MemAccessClock_reg_5;
+  wire [1:0]MemAccessClock_reg_2;
   wire MemAddrSrc;
   wire [1:1]PCSource;
   wire PCWrite;
   wire PCWriteCond;
-  wire [2:1]PCWriteCondSrc;
-  wire \PC[10]_i_2_n_0 ;
-  wire \PC[11]_i_2_n_0 ;
-  wire \PC[12]_i_2_n_0 ;
-  wire \PC[13]_i_2_n_0 ;
-  wire \PC[14]_i_2_n_0 ;
-  wire \PC[15]_i_2_n_0 ;
-  wire \PC[16]_i_2_n_0 ;
-  wire \PC[17]_i_2_n_0 ;
-  wire \PC[18]_i_2_n_0 ;
-  wire \PC[19]_i_2_n_0 ;
-  wire \PC[20]_i_2_n_0 ;
-  wire \PC[21]_i_2_n_0 ;
-  wire \PC[22]_i_2_n_0 ;
-  wire \PC[23]_i_2_n_0 ;
-  wire \PC[24]_i_2_n_0 ;
-  wire \PC[25]_i_2_n_0 ;
-  wire \PC[26]_i_2_n_0 ;
-  wire \PC[27]_i_3_n_0 ;
+  wire [1:1]PCWriteCondSrc;
   wire \PC[27]_i_4_n_0 ;
-  wire \PC[27]_i_5_n_0 ;
-  wire \PC[2]_i_2_n_0 ;
   wire \PC[31]_i_10_n_0 ;
   wire \PC[31]_i_12_n_0 ;
+  wire \PC[31]_i_13_n_0 ;
+  wire \PC[31]_i_14_n_0 ;
   wire \PC[31]_i_15_n_0 ;
+  wire \PC[31]_i_16_n_0 ;
   wire \PC[31]_i_17_n_0 ;
-  wire \PC[31]_i_18_n_0 ;
   wire \PC[31]_i_19_n_0 ;
   wire \PC[31]_i_20_n_0 ;
   wire \PC[31]_i_21_n_0 ;
   wire \PC[31]_i_22_n_0 ;
   wire \PC[31]_i_23_n_0 ;
+  wire \PC[31]_i_24_n_0 ;
+  wire \PC[31]_i_25_n_0 ;
+  wire \PC[31]_i_26_n_0 ;
+  wire \PC[31]_i_27_n_0 ;
+  wire \PC[31]_i_28_n_0 ;
+  wire \PC[31]_i_29_n_0 ;
+  wire \PC[31]_i_30_n_0 ;
+  wire \PC[31]_i_31_n_0 ;
+  wire \PC[31]_i_32_n_0 ;
+  wire \PC[31]_i_33_n_0 ;
+  wire \PC[31]_i_34_n_0 ;
+  wire \PC[31]_i_35_n_0 ;
+  wire \PC[31]_i_4_n_0 ;
+  wire \PC[31]_i_5_n_0 ;
   wire \PC[31]_i_6_n_0 ;
-  wire \PC[31]_i_7_n_0 ;
   wire \PC[31]_i_8_n_0 ;
   wire \PC[31]_i_9_n_0 ;
   wire \PC[3]_i_2_n_0 ;
-  wire \PC[3]_i_4_n_0 ;
-  wire \PC[3]_i_5_n_0 ;
-  wire \PC[4]_i_2_n_0 ;
-  wire \PC[5]_i_2_n_0 ;
-  wire \PC[6]_i_2_n_0 ;
-  wire \PC[7]_i_2_n_0 ;
-  wire \PC[8]_i_2_n_0 ;
-  wire \PC[9]_i_2_n_0 ;
   wire [31:0]\PC_reg[31] ;
   wire [31:0]\PC_reg[31]_0 ;
-  wire \PC_reg[8] ;
+  wire [31:0]\PC_reg[31]_1 ;
+  wire \PC_reg[31]_i_18_n_0 ;
   wire [31:0]Q;
   wire RST;
   wire [0:0]RegWriteSrc;
   wire [31:0]\Rn_reg[31] ;
+  wire [31:0]\Rs_reg[31] ;
   wire \WR_OUT_reg[1]_i_2_n_0 ;
   wire \WR_OUT_reg[1]_i_3_n_0 ;
   wire \WR_OUT_reg[1]_i_4_n_0 ;
   wire \WR_OUT_reg[1]_i_5_n_0 ;
   wire \WR_OUT_reg[1]_i_6_n_0 ;
+  wire [3:0]\WR_OUT_reg[3] ;
   wire [9:0]a;
   wire [10:0]addra;
   wire [31:0]alu_A;
   wire carry0;
-  wire [0:0]\data[31]_i_3_0 ;
-  wire \data[31]_i_4_n_0 ;
   wire [31:0]douta;
+  wire [16:16]extend16;
   wire g0_b0_n_0;
   wire g0_b1_n_0;
   wire g0_b2_n_0;
@@ -6514,37 +6444,37 @@ module design_1_Motherboard_0_0_ControlUnit
   wire g0_b4_n_0;
   wire g0_b5_n_0;
   wire [12:12]graphics_address0;
-  wire is_true;
+  wire graphics_write_enable1;
+  wire [17:16]imm16;
   wire [29:1]\memory_handler/Aout_OUT0 ;
   wire [5:0]next_state;
   wire [2:0]op_to_aluop;
   wire [19:0]p_0_in__0;
+  wire [27:2]p_1_in__0;
   wire pulse;
-  wire [3:0]ram_0;
-  wire ram_0_i_16_n_0;
-  wire ram_0_i_17_n_0;
+  wire [10:0]ram_0_i_17_0;
+  wire ram_0_i_17_n_2;
+  wire ram_0_i_17_n_3;
   wire ram_0_i_18_n_0;
+  wire ram_0_i_18_n_1;
+  wire ram_0_i_18_n_2;
+  wire ram_0_i_18_n_3;
   wire ram_0_i_19_n_0;
-  wire ram_0_i_20_n_2;
-  wire ram_0_i_20_n_3;
-  wire ram_0_i_21_n_0;
-  wire ram_0_i_21_n_1;
-  wire ram_0_i_21_n_2;
-  wire ram_0_i_21_n_3;
+  wire ram_0_i_19_n_1;
+  wire ram_0_i_19_n_2;
+  wire ram_0_i_19_n_3;
+  wire ram_0_i_20_n_0;
   wire ram_0_i_22_n_0;
-  wire ram_0_i_22_n_1;
-  wire ram_0_i_22_n_2;
-  wire ram_0_i_22_n_3;
   wire ram_0_i_23_n_0;
   wire ram_0_i_24_n_0;
   wire ram_0_i_25_n_0;
-  wire ram_0_i_26_n_0;
   wire ram_0_i_27_n_0;
   wire ram_0_i_28_n_0;
   wire ram_0_i_29_n_0;
   wire ram_0_i_30_n_0;
   wire ram_0_i_31_n_0;
   wire ram_0_i_32_n_0;
+  wire ram_0_i_33_n_0;
   wire ram_0_i_34_n_0;
   wire ram_0_i_35_n_0;
   wire ram_0_i_36_n_0;
@@ -6564,9 +6494,6 @@ module design_1_Motherboard_0_0_ControlUnit
   wire ram_0_i_48_n_2;
   wire ram_0_i_48_n_3;
   wire ram_0_i_49_n_0;
-  wire ram_0_i_49_n_1;
-  wire ram_0_i_49_n_2;
-  wire ram_0_i_49_n_3;
   wire ram_0_i_50_n_0;
   wire ram_0_i_51_n_0;
   wire ram_0_i_51_n_1;
@@ -6578,40 +6505,8 @@ module design_1_Motherboard_0_0_ControlUnit
   wire ram_0_i_55_n_0;
   wire ram_0_i_56_n_0;
   wire ram_0_i_57_n_0;
-  wire ram_0_i_57_n_1;
-  wire ram_0_i_57_n_2;
-  wire ram_0_i_57_n_3;
   wire ram_0_i_58_n_0;
-  wire ram_0_i_60_n_0;
-  wire ram_0_i_61_n_0;
-  wire ram_0_i_62_n_0;
-  wire ram_0_i_63_n_0;
-  wire ram_0_i_64_n_0;
-  wire ram_0_i_65_n_0;
-  wire ram_0_i_66_n_0;
-  wire ram_0_i_67_n_0;
-  wire ram_0_i_68_n_0;
-  wire ram_0_i_69_n_0;
-  wire ram_0_i_70_n_0;
-  wire ram_0_i_71_n_0;
-  wire ram_0_i_72_n_0;
-  wire ram_0_i_73_n_0;
-  wire ram_0_i_74_n_0;
-  wire ram_0_i_75_n_0;
-  wire ram_0_i_76_n_0;
-  wire ram_0_i_77_n_0;
-  wire ram_0_i_78_n_0;
-  wire ram_0_i_79_n_0;
-  wire ram_0_i_80_n_0;
-  wire ram_0_i_81_n_0;
-  wire ram_0_i_82_n_0;
-  wire ram_0_i_83_n_0;
-  wire ram_0_i_84_n_0;
-  wire ram_0_i_85_n_0;
-  wire ram_0_i_86_n_0;
-  wire ram_0_i_87_n_0;
-  wire ram_0_i_88_n_0;
-  wire ram_0_i_89_n_0;
+  wire ram_0_i_59_n_0;
   wire [12:2]ram_address0;
   wire \registers[0][19]_i_3_n_0 ;
   wire \registers[0][19]_i_4_n_0 ;
@@ -6629,7 +6524,7 @@ module design_1_Motherboard_0_0_ControlUnit
   wire \registers[0][31]_i_10_n_0 ;
   wire \registers[0][31]_i_11_n_0 ;
   wire \registers[0][31]_i_12_n_0 ;
-  wire \registers[0][31]_i_14_n_0 ;
+  wire \registers[0][31]_i_13_n_0 ;
   wire \registers[0][31]_i_15_n_0 ;
   wire \registers[0][31]_i_16_n_0 ;
   wire \registers[0][31]_i_3_n_0 ;
@@ -6658,10 +6553,11 @@ module design_1_Motherboard_0_0_ControlUnit
   wire [31:0]\state_reg[0]_1 ;
   wire [0:0]\state_reg[1]_0 ;
   wire \state_reg[2]_0 ;
-  wire [1:0]\state_reg[4]_0 ;
   wire [4:0]\state_reg[5]_0 ;
   wire [0:0]\state_reg[5]_1 ;
-  wire [31:0]\state_reg[5]_2 ;
+  wire [1:0]\state_reg[5]_2 ;
+  wire [31:0]\state_reg[5]_3 ;
+  wire [3:0]video_ram;
   wire video_ram_i_20_n_0;
   wire video_ram_i_20_n_1;
   wire video_ram_i_20_n_2;
@@ -6690,11 +6586,48 @@ module design_1_Motherboard_0_0_ControlUnit
   wire video_ram_i_41_n_0;
   wire video_ram_i_42_n_0;
   wire video_ram_i_43_n_0;
-  wire [0:0]wea;
-  wire [3:2]NLW_ram_0_i_20_CO_UNCONNECTED;
-  wire [3:3]NLW_ram_0_i_20_O_UNCONNECTED;
-  wire [3:0]NLW_ram_0_i_59_CO_UNCONNECTED;
-  wire [3:1]NLW_ram_0_i_59_O_UNCONNECTED;
+  wire video_ram_i_44_n_0;
+  wire video_ram_i_45_n_0;
+  wire video_ram_i_46_n_0;
+  wire video_ram_i_51_n_0;
+  wire video_ram_i_52_n_0;
+  wire video_ram_i_53_n_0;
+  wire video_ram_i_54_n_0;
+  wire video_ram_i_54_n_1;
+  wire video_ram_i_54_n_2;
+  wire video_ram_i_54_n_3;
+  wire video_ram_i_55_n_0;
+  wire video_ram_i_56_n_0;
+  wire video_ram_i_57_n_0;
+  wire video_ram_i_58_n_0;
+  wire video_ram_i_59_n_0;
+  wire video_ram_i_60_n_0;
+  wire video_ram_i_61_n_0;
+  wire video_ram_i_62_n_0;
+  wire video_ram_i_63_n_0;
+  wire video_ram_i_64_n_0;
+  wire video_ram_i_64_n_1;
+  wire video_ram_i_64_n_2;
+  wire video_ram_i_64_n_3;
+  wire video_ram_i_65_n_0;
+  wire video_ram_i_66_n_0;
+  wire video_ram_i_67_n_0;
+  wire video_ram_i_68_n_0;
+  wire video_ram_i_70_n_0;
+  wire video_ram_i_71_n_0;
+  wire video_ram_i_72_n_0;
+  wire video_ram_i_73_n_0;
+  wire video_ram_i_74_n_0;
+  wire video_ram_i_75_n_0;
+  wire video_ram_i_76_n_0;
+  wire video_ram_i_77_n_0;
+  wire video_ram_i_78_n_0;
+  wire video_ram_i_79_n_0;
+  wire [3:0]wea;
+  wire [3:2]NLW_ram_0_i_17_CO_UNCONNECTED;
+  wire [3:3]NLW_ram_0_i_17_O_UNCONNECTED;
+  wire [3:0]NLW_video_ram_i_69_CO_UNCONNECTED;
+  wire [3:1]NLW_video_ram_i_69_O_UNCONNECTED;
 
   LUT6 #(
     .INIT(64'hABFFAAAAABAAAAAA)) 
@@ -6702,1117 +6635,1072 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(\ALUOut[0]_i_2_n_0 ),
         .I1(\ALUOut[0]_i_3_n_0 ),
         .I2(\ALUOut[0]_i_4_n_0 ),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut[0]_i_5_n_0 ),
-        .I5(\ALUOut[0]_i_6_n_0 ),
-        .O(\state_reg[5]_2 [0]));
+        .I3(\ALUOut_reg[9] ),
+        .I4(\ALUOut[1]_i_6_n_0 ),
+        .I5(\ALUOut[0]_i_5_n_0 ),
+        .O(\state_reg[5]_3 [0]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \ALUOut[0]_i_10 
-       (.I0(alu_A[28]),
-        .I1(alu_A[12]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[20]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[4]),
-        .O(\ALUOut[0]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[0]_i_11 
        (.I0(alu_A[24]),
         .I1(alu_A[8]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
         .I3(alu_A[16]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .I5(alu_A[0]),
-        .O(\ALUOut[0]_i_11_n_0 ));
+        .O(\ALUOut[0]_i_10_n_0 ));
   LUT2 #(
     .INIT(4'h8)) 
-    \ALUOut[0]_i_12 
+    \ALUOut[0]_i_11 
        (.I0(\state_reg[5]_0 [0]),
         .I1(\state_reg[5]_0 [1]),
-        .O(\ALUOut[0]_i_12_n_0 ));
+        .O(\ALUOut[0]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'h1000000055555555)) 
     \ALUOut[0]_i_2 
-       (.I0(\ALUOut_reg[1]_0 ),
-        .I1(\ALUOut[30]_i_11_n_0 ),
+       (.I0(\ALUOut_reg[5] ),
+        .I1(\ALUOut[29]_i_13_n_0 ),
         .I2(alu_A[0]),
-        .I3(\ALUOut_reg[5] ),
+        .I3(\ALUOut_reg[9] ),
         .I4(\ALUOut[31]_i_15_n_0 ),
         .I5(\ALUOut[0]_i_7_n_0 ),
         .O(\ALUOut[0]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
-  LUT2 #(
-    .INIT(4'hB)) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT3 #(
+    .INIT(8'hEF)) 
     \ALUOut[0]_i_3 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[31]_i_8_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[0]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
-    .INIT(32'hBFBBBFFF)) 
+    .INIT(32'hAFBBFFFF)) 
     \ALUOut[0]_i_4 
-       (.I0(\ALUOut[30]_i_10_n_0 ),
-        .I1(\ALUOut[1]_i_11_n_0 ),
-        .I2(\registers_reg[30][31] [0]),
+       (.I0(\ALUOut[29]_i_12_n_0 ),
+        .I1(\PC_reg[31]_0 [0]),
+        .I2(Q[0]),
         .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(Q[0]),
+        .I4(\ALUOut[14]_i_12_n_0 ),
         .O(\ALUOut[0]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair167" *) 
-  LUT2 #(
-    .INIT(4'h2)) 
-    \ALUOut[0]_i_5 
-       (.I0(\ALUOut_reg[1]_0 ),
-        .I1(\ALUOut_reg[1] ),
-        .O(\ALUOut[0]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'hDF1FD010D010D010)) 
-    \ALUOut[0]_i_6 
+    .INIT(64'hEF2FE020E020E020)) 
+    \ALUOut[0]_i_5 
        (.I0(\ALUOut[0]_i_8_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[27]_i_11_n_0 ),
-        .I3(\ALUOut[1]_i_7_n_0 ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[31]),
-        .O(\ALUOut[0]_i_6_n_0 ));
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[1]_i_8_n_0 ),
+        .I4(alu_A[31]),
+        .I5(\ALUOut_reg[5]_0 ),
+        .O(\ALUOut[0]_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[0]_i_6 
+       (.I0(\PC_reg[31]_0 [0]),
+        .I1(Q[0]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[0]));
   LUT6 #(
     .INIT(64'hFF66C917FF99C917)) 
     \ALUOut[0]_i_7 
        (.I0(alu_A[0]),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[1] ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut_reg[9] ),
+        .I4(\ALUOut_reg[5]_1 ),
         .I5(\ALUOut[0]_i_9_n_0 ),
         .O(\ALUOut[0]_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h4747474700CC33FF)) 
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
     \ALUOut[0]_i_8 
-       (.I0(\ALUOut[2]_i_18_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[2]_i_19_n_0 ),
-        .I3(\ALUOut[0]_i_10_n_0 ),
-        .I4(\ALUOut[0]_i_11_n_0 ),
-        .I5(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[2]_i_12_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[2]_i_18_n_0 ),
+        .I3(\ALUOut[2]_i_13_n_0 ),
+        .I4(\ALUOut[0]_i_10_n_0 ),
         .O(\ALUOut[0]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'h0000000000000020)) 
     \ALUOut[0]_i_9 
        (.I0(Carry),
         .I1(\state_reg[5]_0 [4]),
-        .I2(\ALUOut[0]_i_12_n_0 ),
+        .I2(\ALUOut[0]_i_11_n_0 ),
         .I3(\state_reg[5]_0 [3]),
         .I4(\state_reg[5]_0 [2]),
-        .I5(\ALUOut[23]_i_7_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
         .O(\ALUOut[0]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000CFC0AAAAAAAA)) 
-    \ALUOut[10]_i_10 
-       (.I0(\ALUOut[10]_i_16_n_0 ),
-        .I1(alu_A[24]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[16]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[10]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'h2F20FFFF2F200000)) 
-    \ALUOut[10]_i_11 
-       (.I0(alu_A[22]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[10]_i_17_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[10]_i_18_n_0 ),
-        .O(\ALUOut[10]_i_11_n_0 ));
   LUT5 #(
     .INIT(32'hBBBBB888)) 
-    \ALUOut[10]_i_12 
-       (.I0(\ALUOut[10]_i_19_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[18]_i_16_n_0 ),
-        .I4(\ALUOut[10]_i_11_n_0 ),
-        .O(\ALUOut[10]_i_12_n_0 ));
+    \ALUOut[10]_i_10 
+       (.I0(\ALUOut[10]_i_12_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[16]_i_16_n_0 ),
+        .I4(\ALUOut[9]_i_21_n_0 ),
+        .O(\ALUOut[10]_i_10_n_0 ));
   LUT5 #(
     .INIT(32'hFFF888F8)) 
-    \ALUOut[10]_i_13 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(\ALUOut[18]_i_16_n_0 ),
-        .I2(\ALUOut[11]_i_15_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[10]_i_20_n_0 ),
-        .O(\ALUOut[10]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+    \ALUOut[10]_i_11 
+       (.I0(\ALUOut[31]_i_20_n_0 ),
+        .I1(\ALUOut[16]_i_16_n_0 ),
+        .I2(\ALUOut[9]_i_18_n_0 ),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .I4(\ALUOut[10]_i_13_n_0 ),
+        .O(\ALUOut[10]_i_11_n_0 ));
+  LUT5 #(
+    .INIT(32'hFEFCFE30)) 
+    \ALUOut[10]_i_12 
+       (.I0(\ALUOut[31]_i_20_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[9]_i_27_n_0 ),
+        .I3(\ALUOut[16]_i_16_n_0 ),
+        .I4(\ALUOut[10]_i_14_n_0 ),
+        .O(\ALUOut[10]_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hFACA)) 
+    \ALUOut[10]_i_13 
+       (.I0(\ALUOut[9]_i_25_n_0 ),
+        .I1(\ALUOut[16]_i_16_n_0 ),
+        .I2(\ALUOut[2]_i_13_n_0 ),
+        .I3(\ALUOut[17]_i_21_n_0 ),
+        .O(\ALUOut[10]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000D8FFD800)) 
     \ALUOut[10]_i_14 
-       (.I0(Q[31]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [31]),
-        .I3(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[24]),
+        .I2(\PC_reg[31]_0 [24]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(alu_A[16]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
         .O(\ALUOut[10]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
-    \ALUOut[10]_i_15 
-       (.I0(alu_A[3]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[7]),
-        .I3(\ALUOut[5]_i_15_n_0 ),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .I5(\ALUOut[12]_i_15_n_0 ),
-        .O(\ALUOut[10]_i_15_n_0 ));
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \ALUOut[10]_i_16 
-       (.I0(alu_A[20]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[28]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(alu_A[12]),
-        .O(\ALUOut[10]_i_16_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[10]_i_17 
-       (.I0(\registers_reg[30][31] [30]),
-        .I1(Q[30]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\registers_reg[30][31] [14]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[14]),
-        .O(\ALUOut[10]_i_17_n_0 ));
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \ALUOut[10]_i_18 
-       (.I0(alu_A[18]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[26]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(alu_A[10]),
-        .O(\ALUOut[10]_i_18_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFCFFAC0)) 
-    \ALUOut[10]_i_19 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(\ALUOut[10]_i_21_n_0 ),
-        .I2(\ALUOut[2]_i_6_n_0 ),
-        .I3(\ALUOut[18]_i_16_n_0 ),
-        .I4(\ALUOut[10]_i_16_n_0 ),
-        .O(\ALUOut[10]_i_19_n_0 ));
   LUT6 #(
     .INIT(64'hEFEAEAEAAAAAAAAA)) 
     \ALUOut[10]_i_2 
        (.I0(\ALUOut[10]_i_4_n_0 ),
         .I1(alu_A[10]),
-        .I2(\ALUOut[30]_i_10_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
+        .I2(\ALUOut[29]_i_12_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
         .I4(alu_A[7]),
         .I5(\ALUOut[14]_i_5_n_0 ),
         .O(\ALUOut[10]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
-  LUT4 #(
-    .INIT(16'hFACA)) 
-    \ALUOut[10]_i_20 
-       (.I0(\ALUOut[13]_i_16_n_0 ),
-        .I1(\ALUOut[18]_i_16_n_0 ),
-        .I2(\ALUOut[2]_i_6_n_0 ),
-        .I3(\ALUOut[17]_i_24_n_0 ),
-        .O(\ALUOut[10]_i_20_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000E2FFE200)) 
-    \ALUOut[10]_i_21 
-       (.I0(Q[24]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [24]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[16]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[10]_i_21_n_0 ));
   LUT6 #(
     .INIT(64'h0000015105050151)) 
     \ALUOut[10]_i_3 
-       (.I0(\ALUOut_reg[1] ),
+       (.I0(\ALUOut_reg[5]_1 ),
         .I1(\ALUOut[10]_i_6_n_0 ),
-        .I2(\ALUOut_reg[2] ),
+        .I2(\ALUOut_reg[5]_0 ),
         .I3(\ALUOut[10]_i_7_n_0 ),
-        .I4(\ALUOut_reg[5] ),
+        .I4(\ALUOut_reg[9] ),
         .I5(\ALUOut[10]_i_8_n_0 ),
         .O(\ALUOut[10]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h0000FF003636E8E8)) 
     \ALUOut[10]_i_4 
        (.I0(alu_A[10]),
-        .I1(\ALUOut[11]_i_13_n_0 ),
-        .I2(\ALUOut_reg[2] ),
+        .I1(\ALUOut[11]_i_12_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
         .I3(\ALUOut[10]_i_9_n_0 ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut_reg[1] ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[5]_1 ),
         .O(\ALUOut[10]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair129" *) 
+  (* SOFT_HLUTNM = "soft_lutpair119" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hCA)) 
     \ALUOut[10]_i_5 
-       (.I0(\registers_reg[30][31] [10]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[10]),
+       (.I0(\PC_reg[31]_0 [10]),
+        .I1(Q[10]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[10]));
-  LUT6 #(
-    .INIT(64'h00FF47FFFFFF47FF)) 
+  LUT4 #(
+    .INIT(16'h57F7)) 
     \ALUOut[10]_i_6 
-       (.I0(\ALUOut[10]_i_10_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[10]_i_11_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[11]_i_11_n_0 ),
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[9]_i_10_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[11]_i_10_n_0 ),
         .O(\ALUOut[10]_i_6_n_0 ));
   LUT5 #(
-    .INIT(32'h00000777)) 
+    .INIT(32'h350035FF)) 
     \ALUOut[10]_i_7 
-       (.I0(\ALUOut[10]_i_12_n_0 ),
-        .I1(\ALUOut[31]_i_8_n_0 ),
-        .I2(\ALUOut[10]_i_13_n_0 ),
-        .I3(\ALUOut[27]_i_5_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
+       (.I0(\ALUOut[10]_i_10_n_0 ),
+        .I1(\ALUOut[10]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(alu_A[31]),
         .O(\ALUOut[10]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
   LUT4 #(
     .INIT(16'h57F7)) 
     \ALUOut[10]_i_8 
-       (.I0(\ALUOut[27]_i_11_n_0 ),
-        .I1(\ALUOut[11]_i_12_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[10]_i_15_n_0 ),
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[11]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[9]_i_6_n_0 ),
         .O(\ALUOut[10]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'h6996696969969696)) 
+    .INIT(64'h6969969669966996)) 
     \ALUOut[10]_i_9 
-       (.I0(\ALUOut[11]_i_14_n_0 ),
-        .I1(\ALUOut[11]_i_13_n_0 ),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\registers_reg[30][31] [10]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[10]),
+       (.I0(\ALUOut[11]_i_13_n_0 ),
+        .I1(\ALUOut[11]_i_12_n_0 ),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\PC_reg[31]_0 [10]),
+        .I4(Q[10]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[10]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'h1F101F1F1F101F10)) 
+    .INIT(64'h3377337700470347)) 
     \ALUOut[11]_i_1 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut_reg[11]_i_2_n_0 ),
-        .I2(\ALUOut_reg[1]_0 ),
-        .I3(\ALUOut[11]_i_3_n_0 ),
-        .I4(\ALUOut[11]_i_4_n_0 ),
-        .I5(\ALUOut[14]_i_5_n_0 ),
-        .O(\state_reg[5]_2 [11]));
-  LUT5 #(
-    .INIT(32'h00000777)) 
+       (.I0(\ALUOut_reg[11]_i_2_n_0 ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut_reg[11]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut[11]_i_4_n_0 ),
+        .O(\state_reg[5]_3 [11]));
+  (* SOFT_HLUTNM = "soft_lutpair94" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \ALUOut[11]_i_10 
-       (.I0(\ALUOut[12]_i_14_n_0 ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[10]_i_13_n_0 ),
-        .I3(\ALUOut[31]_i_8_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
+       (.I0(\ALUOut[13]_i_14_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[9]_i_18_n_0 ),
         .O(\ALUOut[11]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair108" *) 
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[11]_i_11 
-       (.I0(\ALUOut[13]_i_14_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[11]_i_15_n_0 ),
-        .O(\ALUOut[11]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair93" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[11]_i_12 
-       (.I0(\ALUOut[11]_i_16_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[9]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
         .I2(\ALUOut[13]_i_15_n_0 ),
+        .O(\ALUOut[11]_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'h0F00DFDF0F008080)) 
+    \ALUOut[11]_i_12 
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [8]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [10]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [10]),
         .O(\ALUOut[11]_i_12_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[11]_i_13 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [10]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [8]),
-        .I4(\CPSR_reg[1]_0 [10]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(\ALUOut[8]_i_12_n_0 ),
+        .I1(alu_A[8]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[8]_i_8_n_0 ),
+        .I4(alu_A[9]),
+        .I5(\ALUOut[9]_i_22_n_0 ),
         .O(\ALUOut[11]_i_13_n_0 ));
   LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
-    \ALUOut[11]_i_14 
-       (.I0(\ALUOut[11]_i_17_n_0 ),
-        .I1(alu_A[8]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[8]_i_9_n_0 ),
-        .I4(alu_A[9]),
-        .I5(\ALUOut[9]_i_9_n_0 ),
-        .O(\ALUOut[11]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'h88B8BBBB88B88888)) 
-    \ALUOut[11]_i_15 
-       (.I0(\ALUOut[15]_i_16_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[19]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[5]_i_19_n_0 ),
-        .O(\ALUOut[11]_i_15_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000030BB3088)) 
-    \ALUOut[11]_i_16 
-       (.I0(alu_A[4]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[0]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[8]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[11]_i_16_n_0 ));
-  LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
-    \ALUOut[11]_i_17 
-       (.I0(\ALUOut[7]_i_12_n_0 ),
-        .I1(alu_A[6]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[6]_i_7_n_0 ),
-        .I4(alu_A[7]),
-        .I5(\ALUOut[7]_i_7_n_0 ),
-        .O(\ALUOut[11]_i_17_n_0 ));
-  LUT6 #(
-    .INIT(64'h000056E800FF56E8)) 
-    \ALUOut[11]_i_3 
-       (.I0(\ALUOut[11]_i_7_n_0 ),
-        .I1(alu_A[11]),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[1] ),
-        .I5(\ALUOut[11]_i_9_n_0 ),
-        .O(\ALUOut[11]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h4747474700FFFFFF)) 
+    .INIT(64'hA8A888A8A8888888)) 
     \ALUOut[11]_i_4 
-       (.I0(\registers_reg[30][31] [11]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[11]),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(alu_A[7]),
-        .I5(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[14]_i_5_n_0 ),
+        .I1(\ALUOut[15]_i_7_n_0 ),
+        .I2(\ALUOut[29]_i_12_n_0 ),
+        .I3(\ALUOut[15]_i_8_n_0 ),
+        .I4(Q[11]),
+        .I5(\PC_reg[31]_0 [11]),
         .O(\ALUOut[11]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h8B8B8BBBBBBB8BBB)) 
     \ALUOut[11]_i_5 
-       (.I0(\ALUOut[11]_i_10_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[27]_i_11_n_0 ),
-        .I3(\ALUOut[11]_i_11_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\ALUOut[11]_i_9_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[11]_i_10_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
         .I5(\ALUOut[12]_i_11_n_0 ),
         .O(\ALUOut[11]_i_5_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[11]_i_6 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[11]_i_12_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[11]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
         .I3(\ALUOut[12]_i_12_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[11]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'hFFD80027002727FF)) 
     \ALUOut[11]_i_7 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [11]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [9]),
-        .I4(\CPSR_reg[1]_0 [11]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[11]),
+        .I2(\PC_reg[31]_0 [11]),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(\ALUOut[12]_i_13_n_0 ),
+        .I5(\ALUOut_reg[9] ),
         .O(\ALUOut[11]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair130" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[11]_i_8 
-       (.I0(\registers_reg[30][31] [11]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[11]),
-        .O(alu_A[11]));
   LUT6 #(
     .INIT(64'hD42B17E82BD4E817)) 
-    \ALUOut[11]_i_9 
-       (.I0(\ALUOut[11]_i_13_n_0 ),
+    \ALUOut[11]_i_8 
+       (.I0(\ALUOut[11]_i_12_n_0 ),
         .I1(alu_A[10]),
-        .I2(\ALUOut[11]_i_14_n_0 ),
+        .I2(\ALUOut[11]_i_13_n_0 ),
         .I3(alu_A[11]),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(\ALUOut[11]_i_7_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[12]_i_13_n_0 ),
+        .O(\ALUOut[11]_i_8_n_0 ));
+  LUT5 #(
+    .INIT(32'h530053FF)) 
+    \ALUOut[11]_i_9 
+       (.I0(\ALUOut[12]_i_16_n_0 ),
+        .I1(\ALUOut[10]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(alu_A[31]),
         .O(\ALUOut[11]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h1F101F1F1F101F10)) 
     \ALUOut[12]_i_1 
-       (.I0(\ALUOut_reg[1] ),
+       (.I0(\ALUOut_reg[5]_1 ),
         .I1(\ALUOut_reg[12]_i_2_n_0 ),
-        .I2(\ALUOut_reg[1]_0 ),
+        .I2(\ALUOut_reg[5] ),
         .I3(\ALUOut[12]_i_3_n_0 ),
         .I4(\ALUOut[12]_i_4_n_0 ),
         .I5(\ALUOut[14]_i_5_n_0 ),
-        .O(\state_reg[5]_2 [12]));
+        .O(\state_reg[5]_3 [12]));
   LUT5 #(
-    .INIT(32'h00000777)) 
+    .INIT(32'h350035FF)) 
     \ALUOut[12]_i_10 
-       (.I0(\ALUOut[12]_i_14_n_0 ),
-        .I1(\ALUOut[31]_i_8_n_0 ),
-        .I2(\ALUOut[13]_i_13_n_0 ),
-        .I3(\ALUOut[27]_i_5_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
+       (.I0(\ALUOut[12]_i_16_n_0 ),
+        .I1(\ALUOut[13]_i_13_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(alu_A[31]),
         .O(\ALUOut[12]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair104" *) 
+  (* SOFT_HLUTNM = "soft_lutpair85" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[12]_i_11 
-       (.I0(\ALUOut[14]_i_17_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[10]_i_10_n_0 ),
+       (.I0(\ALUOut[14]_i_24_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[9]_i_20_n_0 ),
         .O(\ALUOut[12]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair94" *) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[12]_i_12 
-       (.I0(\ALUOut[12]_i_15_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[14]_i_18_n_0 ),
+       (.I0(\ALUOut[9]_i_17_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[14]_i_25_n_0 ),
         .O(\ALUOut[12]_i_12_n_0 ));
   LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[12]_i_13 
-       (.I0(\ALUOut[12]_i_16_n_0 ),
-        .I1(alu_A[9]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[9]_i_9_n_0 ),
-        .I4(alu_A[10]),
-        .I5(\ALUOut[11]_i_13_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [9]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [11]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [11]),
         .O(\ALUOut[12]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair104" *) 
+  (* SOFT_HLUTNM = "soft_lutpair118" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[12]_i_14 
+       (.I0(\PC_reg[31]_0 [11]),
+        .I1(Q[11]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[11]));
+  LUT6 #(
+    .INIT(64'h8FEF0E08FEF880E0)) 
+    \ALUOut[12]_i_15 
+       (.I0(\ALUOut[12]_i_17_n_0 ),
+        .I1(alu_A[9]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[9]_i_22_n_0 ),
+        .I4(alu_A[10]),
+        .I5(\ALUOut[11]_i_12_n_0 ),
+        .O(\ALUOut[12]_i_15_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair85" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \ALUOut[12]_i_14 
-       (.I0(\ALUOut[14]_i_19_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[10]_i_19_n_0 ),
-        .O(\ALUOut[12]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000030BB3088)) 
-    \ALUOut[12]_i_15 
-       (.I0(alu_A[5]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[1]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[9]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[12]_i_15_n_0 ));
-  LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[12]_i_16 
-       (.I0(\ALUOut[12]_i_17_n_0 ),
-        .I1(alu_A[7]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[7]_i_7_n_0 ),
-        .I4(alu_A[8]),
-        .I5(\ALUOut[8]_i_9_n_0 ),
+       (.I0(\ALUOut[14]_i_27_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[10]_i_12_n_0 ),
         .O(\ALUOut[12]_i_16_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF110F1100000)) 
+    .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[12]_i_17 
        (.I0(\ALUOut[12]_i_18_n_0 ),
-        .I1(\ALUOut[12]_i_19_n_0 ),
-        .I2(alu_A[5]),
-        .I3(\ALUOut[12]_i_20_n_0 ),
-        .I4(alu_A[6]),
-        .I5(\ALUOut[12]_i_21_n_0 ),
+        .I1(alu_A[7]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[7]_i_7_n_0 ),
+        .I4(alu_A[8]),
+        .I5(\ALUOut[8]_i_8_n_0 ),
         .O(\ALUOut[12]_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFF110F1100000)) 
+    \ALUOut[12]_i_18 
+       (.I0(\ALUOut[12]_i_19_n_0 ),
+        .I1(\ALUOut[12]_i_20_n_0 ),
+        .I2(alu_A[5]),
+        .I3(\ALUOut[12]_i_21_n_0 ),
+        .I4(alu_A[6]),
+        .I5(\ALUOut[12]_i_22_n_0 ),
+        .O(\ALUOut[12]_i_18_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
-    .INIT(32'h1D00001D)) 
-    \ALUOut[12]_i_18 
-       (.I0(Q[4]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [4]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[12]_i_18_n_0 ));
+    .INIT(32'h27000027)) 
+    \ALUOut[12]_i_19 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[4]),
+        .I2(\PC_reg[31]_0 [4]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[12]_i_19_n_0 ));
   LUT6 #(
     .INIT(64'h0202022A022A2A2A)) 
-    \ALUOut[12]_i_19 
-       (.I0(\ALUOut[12]_i_22_n_0 ),
-        .I1(\ALUOut[12]_i_23_n_0 ),
-        .I2(alu_A[3]),
-        .I3(\ALUOut[12]_i_24_n_0 ),
-        .I4(alu_A[2]),
-        .I5(\ALUOut[2]_i_15_n_0 ),
-        .O(\ALUOut[12]_i_19_n_0 ));
-  LUT2 #(
-    .INIT(4'h6)) 
     \ALUOut[12]_i_20 
-       (.I0(\ALUOut[30]_i_29_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
+       (.I0(\ALUOut[12]_i_23_n_0 ),
+        .I1(\ALUOut[12]_i_24_n_0 ),
+        .I2(alu_A[3]),
+        .I3(\ALUOut[12]_i_25_n_0 ),
+        .I4(alu_A[2]),
+        .I5(\ALUOut[2]_i_23_n_0 ),
         .O(\ALUOut[12]_i_20_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair166" *) 
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \ALUOut[12]_i_21 
-       (.I0(\ALUOut[6]_i_7_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
+       (.I0(\ALUOut[5]_i_7_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
         .O(\ALUOut[12]_i_21_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT5 #(
-    .INIT(32'hFF1D1DFF)) 
-    \ALUOut[12]_i_22 
-       (.I0(Q[4]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [4]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[12]_i_22_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair160" *) 
   LUT2 #(
     .INIT(4'h6)) 
+    \ALUOut[12]_i_22 
+       (.I0(\ALUOut[6]_i_7_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[12]_i_22_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT5 #(
+    .INIT(32'hFF2727FF)) 
     \ALUOut[12]_i_23 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[4]),
+        .I2(\PC_reg[31]_0 [4]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .O(\ALUOut[12]_i_23_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  (* SOFT_HLUTNM = "soft_lutpair136" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \ALUOut[12]_i_24 
-       (.I0(\ALUOut[2]_i_6_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
+       (.I0(\ALUOut[31]_i_20_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
         .O(\ALUOut[12]_i_24_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \ALUOut[12]_i_25 
+       (.I0(\ALUOut[2]_i_13_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[12]_i_25_n_0 ));
   LUT6 #(
     .INIT(64'h0000FF003636E8E8)) 
     \ALUOut[12]_i_3 
        (.I0(alu_A[12]),
         .I1(\ALUOut[12]_i_8_n_0 ),
-        .I2(\ALUOut_reg[2] ),
+        .I2(\ALUOut_reg[5]_0 ),
         .I3(\ALUOut[12]_i_9_n_0 ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut_reg[1] ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[5]_1 ),
         .O(\ALUOut[12]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h4747474700FFFFFF)) 
+    .INIT(64'h3535353500FFFFFF)) 
     \ALUOut[12]_i_4 
-       (.I0(\registers_reg[30][31] [12]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[12]),
-        .I3(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\PC_reg[31]_0 [12]),
+        .I1(Q[12]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
         .I4(alu_A[7]),
-        .I5(\ALUOut[30]_i_10_n_0 ),
+        .I5(\ALUOut[29]_i_12_n_0 ),
         .O(\ALUOut[12]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h8B8B8BBBBBBB8BBB)) 
     \ALUOut[12]_i_5 
        (.I0(\ALUOut[12]_i_10_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[27]_i_11_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
         .I3(\ALUOut[12]_i_11_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
         .I5(\ALUOut[13]_i_11_n_0 ),
         .O(\ALUOut[12]_i_5_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[12]_i_6 
-       (.I0(\ALUOut_reg[2] ),
+       (.I0(\ALUOut_reg[5]_0 ),
         .I1(\ALUOut[12]_i_12_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
         .I3(\ALUOut[13]_i_12_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[12]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair131" *) 
+  (* SOFT_HLUTNM = "soft_lutpair117" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hCA)) 
     \ALUOut[12]_i_7 
-       (.I0(\registers_reg[30][31] [12]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[12]),
+       (.I0(\PC_reg[31]_0 [12]),
+        .I1(Q[12]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[12]));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[12]_i_8 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [12]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [10]),
-        .I4(\CPSR_reg[1]_0 [12]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [10]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [12]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [12]),
         .O(\ALUOut[12]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'h2BD4E817D42B17E8)) 
     \ALUOut[12]_i_9 
-       (.I0(\ALUOut[11]_i_7_n_0 ),
+       (.I0(\ALUOut[12]_i_13_n_0 ),
         .I1(alu_A[11]),
-        .I2(\ALUOut[12]_i_13_n_0 ),
+        .I2(\ALUOut[12]_i_15_n_0 ),
         .I3(\ALUOut[12]_i_8_n_0 ),
-        .I4(\ALUOut[23]_i_7_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
         .I5(alu_A[12]),
         .O(\ALUOut[12]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h1F101F1F1F101F10)) 
     \ALUOut[13]_i_1 
-       (.I0(\ALUOut_reg[1] ),
+       (.I0(\ALUOut_reg[5]_1 ),
         .I1(\ALUOut_reg[13]_i_2_n_0 ),
-        .I2(\ALUOut_reg[1]_0 ),
+        .I2(\ALUOut_reg[5] ),
         .I3(\ALUOut[13]_i_3_n_0 ),
         .I4(\ALUOut[13]_i_4_n_0 ),
         .I5(\ALUOut[14]_i_5_n_0 ),
-        .O(\state_reg[5]_2 [13]));
+        .O(\state_reg[5]_3 [13]));
   LUT5 #(
-    .INIT(32'h00000777)) 
+    .INIT(32'h530053FF)) 
     \ALUOut[13]_i_10 
-       (.I0(\ALUOut[14]_i_16_n_0 ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[13]_i_13_n_0 ),
-        .I3(\ALUOut[31]_i_8_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
+       (.I0(\ALUOut[14]_i_23_n_0 ),
+        .I1(\ALUOut[13]_i_13_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(alu_A[31]),
         .O(\ALUOut[13]_i_10_n_0 ));
   LUT5 #(
     .INIT(32'hB8FFB800)) 
     \ALUOut[13]_i_11 
-       (.I0(\ALUOut[15]_i_15_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[15]_i_16_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[15]_i_16_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[15]_i_17_n_0 ),
+        .I3(\ALUOut[29]_i_12_n_0 ),
         .I4(\ALUOut[13]_i_14_n_0 ),
         .O(\ALUOut[13]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair93" *) 
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[13]_i_12 
        (.I0(\ALUOut[13]_i_15_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[15]_i_17_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[15]_i_19_n_0 ),
         .O(\ALUOut[13]_i_12_n_0 ));
   LUT5 #(
     .INIT(32'hBBBBB888)) 
     \ALUOut[13]_i_13 
-       (.I0(\ALUOut[15]_i_18_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[18]_i_16_n_0 ),
-        .I4(\ALUOut[10]_i_20_n_0 ),
+       (.I0(\ALUOut[15]_i_20_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[16]_i_16_n_0 ),
+        .I4(\ALUOut[10]_i_13_n_0 ),
         .O(\ALUOut[13]_i_13_n_0 ));
   LUT6 #(
     .INIT(64'h0000CFC0AAAAAAAA)) 
     \ALUOut[13]_i_14 
-       (.I0(\ALUOut[13]_i_16_n_0 ),
+       (.I0(\ALUOut[9]_i_25_n_0 ),
         .I1(alu_A[25]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
         .I3(alu_A[17]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
         .O(\ALUOut[13]_i_14_n_0 ));
   LUT6 #(
     .INIT(64'h0000000030BB3088)) 
     \ALUOut[13]_i_15 
        (.I0(alu_A[6]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
         .I2(alu_A[2]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[10]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[13]_i_15_n_0 ));
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \ALUOut[13]_i_16 
-       (.I0(alu_A[21]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[29]),
         .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(alu_A[13]),
-        .O(\ALUOut[13]_i_16_n_0 ));
+        .I4(alu_A[10]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[13]_i_15_n_0 ));
   LUT6 #(
     .INIT(64'h0000FF003636E8E8)) 
     \ALUOut[13]_i_3 
        (.I0(alu_A[13]),
         .I1(\ALUOut[13]_i_8_n_0 ),
-        .I2(\ALUOut_reg[2] ),
+        .I2(\ALUOut_reg[5]_0 ),
         .I3(\ALUOut[13]_i_9_n_0 ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut_reg[1] ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[5]_1 ),
         .O(\ALUOut[13]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h1D001DFF1DFF1DFF)) 
+    .INIT(64'h270027FF27FF27FF)) 
     \ALUOut[13]_i_4 
-       (.I0(Q[13]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [13]),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[13]),
+        .I2(\PC_reg[31]_0 [13]),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
         .I5(alu_A[7]),
         .O(\ALUOut[13]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h8B8B8BBBBBBB8BBB)) 
     \ALUOut[13]_i_5 
        (.I0(\ALUOut[13]_i_10_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[27]_i_11_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
         .I3(\ALUOut[13]_i_11_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[14]_i_12_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[14]_i_15_n_0 ),
         .O(\ALUOut[13]_i_5_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[13]_i_6 
-       (.I0(\ALUOut_reg[2] ),
+       (.I0(\ALUOut_reg[5]_0 ),
         .I1(\ALUOut[13]_i_12_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[14]_i_13_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[14]_i_16_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[13]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair132" *) 
+  (* SOFT_HLUTNM = "soft_lutpair116" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hCA)) 
     \ALUOut[13]_i_7 
-       (.I0(\registers_reg[30][31] [13]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[13]),
+       (.I0(\PC_reg[31]_0 [13]),
+        .I1(Q[13]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[13]));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[13]_i_8 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [13]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [11]),
-        .I4(\CPSR_reg[1]_0 [13]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [11]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [13]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [13]),
         .O(\ALUOut[13]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'h6996696969969696)) 
+    .INIT(64'h6969969669966996)) 
     \ALUOut[13]_i_9 
-       (.I0(\ALUOut[14]_i_15_n_0 ),
+       (.I0(\ALUOut[14]_i_17_n_0 ),
         .I1(\ALUOut[13]_i_8_n_0 ),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\registers_reg[30][31] [13]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[13]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\PC_reg[31]_0 [13]),
+        .I4(Q[13]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[13]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h1F101F1F1F101F10)) 
     \ALUOut[14]_i_1 
-       (.I0(\ALUOut_reg[1] ),
+       (.I0(\ALUOut_reg[5]_1 ),
         .I1(\ALUOut_reg[14]_i_2_n_0 ),
-        .I2(\ALUOut_reg[1]_0 ),
+        .I2(\ALUOut_reg[5] ),
         .I3(\ALUOut[14]_i_3_n_0 ),
         .I4(\ALUOut[14]_i_4_n_0 ),
         .I5(\ALUOut[14]_i_5_n_0 ),
-        .O(\state_reg[5]_2 [14]));
+        .O(\state_reg[5]_3 [14]));
   LUT6 #(
     .INIT(64'hD42B17E82BD4E817)) 
     \ALUOut[14]_i_10 
        (.I0(\ALUOut[13]_i_8_n_0 ),
         .I1(alu_A[13]),
-        .I2(\ALUOut[14]_i_15_n_0 ),
+        .I2(\ALUOut[14]_i_17_n_0 ),
         .I3(\ALUOut[14]_i_8_n_0 ),
-        .I4(\ALUOut[23]_i_7_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
         .I5(alu_A[14]),
         .O(\ALUOut[14]_i_10_n_0 ));
-  LUT5 #(
-    .INIT(32'h00000777)) 
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  LUT4 #(
+    .INIT(16'h0001)) 
     \ALUOut[14]_i_11 
-       (.I0(\ALUOut[15]_i_14_n_0 ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[31]_i_8_n_0 ),
-        .I3(\ALUOut[14]_i_16_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
+       (.I0(\ALUOut[14]_i_8_n_0 ),
+        .I1(\ALUOut[5]_i_7_n_0 ),
+        .I2(\ALUOut[23]_i_14_n_0 ),
+        .I3(\ALUOut[13]_i_8_n_0 ),
         .O(\ALUOut[14]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'h01)) 
     \ALUOut[14]_i_12 
-       (.I0(\ALUOut[16]_i_14_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[14]_i_17_n_0 ),
+       (.I0(\ALUOut[2]_i_13_n_0 ),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
         .O(\ALUOut[14]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair94" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT5 #(
+    .INIT(32'hFFFFFFFE)) 
     \ALUOut[14]_i_13 
        (.I0(\ALUOut[14]_i_18_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[16]_i_15_n_0 ),
+        .I1(\ALUOut[14]_i_19_n_0 ),
+        .I2(\ALUOut[14]_i_20_n_0 ),
+        .I3(\ALUOut[14]_i_21_n_0 ),
+        .I4(\ALUOut[14]_i_22_n_0 ),
         .O(\ALUOut[14]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000010000)) 
+  LUT5 #(
+    .INIT(32'h40704F7F)) 
     \ALUOut[14]_i_14 
-       (.I0(\state_reg[5]_0 [1]),
-        .I1(\state_reg[5]_0 [2]),
-        .I2(\state_reg[5]_0 [3]),
-        .I3(\state_reg[5]_0 [0]),
-        .I4(state),
-        .I5(\state_reg[5]_0 [4]),
+       (.I0(\ALUOut[15]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[14]_i_23_n_0 ),
+        .I4(alu_A[31]),
         .O(\ALUOut[14]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \ALUOut[14]_i_15 
-       (.I0(\ALUOut[12]_i_13_n_0 ),
-        .I1(alu_A[11]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[11]_i_7_n_0 ),
-        .I4(alu_A[12]),
-        .I5(\ALUOut[12]_i_8_n_0 ),
+       (.I0(\ALUOut[15]_i_18_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[14]_i_24_n_0 ),
         .O(\ALUOut[14]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair68" *) 
-  LUT4 #(
-    .INIT(16'hEEF0)) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \ALUOut[14]_i_16 
-       (.I0(\ALUOut[16]_i_14_n_0 ),
-        .I1(\ALUOut[18]_i_16_n_0 ),
-        .I2(\ALUOut[14]_i_19_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[14]_i_25_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[16]_i_17_n_0 ),
         .O(\ALUOut[14]_i_16_n_0 ));
   LUT6 #(
-    .INIT(64'h0000CFC0AAAAAAAA)) 
+    .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[14]_i_17 
-       (.I0(\ALUOut[14]_i_20_n_0 ),
-        .I1(alu_A[26]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[18]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
+       (.I0(\ALUOut[12]_i_15_n_0 ),
+        .I1(alu_A[11]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[12]_i_13_n_0 ),
+        .I4(alu_A[12]),
+        .I5(\ALUOut[12]_i_8_n_0 ),
         .O(\ALUOut[14]_i_17_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair69" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \ALUOut[14]_i_18 
+       (.I0(\ALUOut[28]_i_12_n_0 ),
+        .I1(\ALUOut[26]_i_12_n_0 ),
+        .I2(\ALUOut[28]_i_14_n_0 ),
+        .I3(\ALUOut[16]_i_13_n_0 ),
+        .O(\ALUOut[14]_i_18_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair70" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \ALUOut[14]_i_19 
+       (.I0(\ALUOut[16]_i_12_n_0 ),
+        .I1(\ALUOut[8]_i_8_n_0 ),
+        .I2(\ALUOut[25]_i_11_n_0 ),
+        .I3(\ALUOut[7]_i_7_n_0 ),
+        .O(\ALUOut[14]_i_19_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \ALUOut[14]_i_20 
+       (.I0(\ALUOut[14]_i_26_n_0 ),
+        .I1(\ALUOut[31]_i_24_n_0 ),
+        .I2(\ALUOut[20]_i_12_n_0 ),
+        .I3(\ALUOut[30]_i_10_n_0 ),
+        .I4(\ALUOut[9]_i_22_n_0 ),
+        .I5(\ALUOut[11]_i_12_n_0 ),
+        .O(\ALUOut[14]_i_20_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \ALUOut[14]_i_21 
+       (.I0(\ALUOut[31]_i_26_n_0 ),
+        .I1(\ALUOut[20]_i_14_n_0 ),
+        .I2(\ALUOut[23]_i_12_n_0 ),
+        .I3(\ALUOut[12]_i_13_n_0 ),
+        .O(\ALUOut[14]_i_21_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair67" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \ALUOut[14]_i_22 
+       (.I0(\ALUOut[25]_i_13_n_0 ),
+        .I1(\ALUOut[17]_i_11_n_0 ),
+        .I2(\ALUOut[21]_i_12_n_0 ),
+        .I3(\ALUOut[12]_i_8_n_0 ),
+        .O(\ALUOut[14]_i_22_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  LUT4 #(
+    .INIT(16'hEEF0)) 
+    \ALUOut[14]_i_23 
+       (.I0(\ALUOut[15]_i_18_n_0 ),
+        .I1(\ALUOut[16]_i_16_n_0 ),
+        .I2(\ALUOut[14]_i_27_n_0 ),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .O(\ALUOut[14]_i_23_n_0 ));
+  LUT6 #(
+    .INIT(64'h00B8FFFF00B80000)) 
+    \ALUOut[14]_i_24 
+       (.I0(alu_A[26]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[18]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[9]_i_28_n_0 ),
+        .O(\ALUOut[14]_i_24_n_0 ));
   LUT6 #(
     .INIT(64'h0000000030BB3088)) 
-    \ALUOut[14]_i_18 
+    \ALUOut[14]_i_25 
        (.I0(alu_A[7]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
         .I2(alu_A[3]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[11]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[14]_i_18_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFCFFAC0)) 
-    \ALUOut[14]_i_19 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(\ALUOut[18]_i_20_n_0 ),
-        .I2(\ALUOut[2]_i_6_n_0 ),
-        .I3(\ALUOut[18]_i_16_n_0 ),
-        .I4(\ALUOut[14]_i_20_n_0 ),
-        .O(\ALUOut[14]_i_19_n_0 ));
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \ALUOut[14]_i_20 
-       (.I0(alu_A[22]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[30]),
         .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(alu_A[14]),
-        .O(\ALUOut[14]_i_20_n_0 ));
+        .I4(alu_A[11]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[14]_i_25_n_0 ));
+  LUT6 #(
+    .INIT(64'hF2F2F2F2FFFCF3F0)) 
+    \ALUOut[14]_i_26 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[6]_i_7_n_0 ),
+        .I3(\state_reg[0]_1 [20]),
+        .I4(\registers_reg[30][31] [31]),
+        .I5(\ALUOut[29]_i_20_n_0 ),
+        .O(\ALUOut[14]_i_26_n_0 ));
+  LUT5 #(
+    .INIT(32'hBBBBB888)) 
+    \ALUOut[14]_i_27 
+       (.I0(\ALUOut[18]_i_14_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[16]_i_16_n_0 ),
+        .I4(\ALUOut[9]_i_28_n_0 ),
+        .O(\ALUOut[14]_i_27_n_0 ));
   LUT6 #(
     .INIT(64'h000056E800FF56E8)) 
     \ALUOut[14]_i_3 
        (.I0(\ALUOut[14]_i_8_n_0 ),
         .I1(alu_A[14]),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[1] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut_reg[9] ),
+        .I4(\ALUOut_reg[5]_1 ),
         .I5(\ALUOut[14]_i_10_n_0 ),
         .O(\ALUOut[14]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h1D001DFF1DFF1DFF)) 
+    .INIT(64'h270027FF27FF27FF)) 
     \ALUOut[14]_i_4 
-       (.I0(Q[14]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [14]),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[14]),
+        .I2(\PC_reg[31]_0 [14]),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
         .I5(alu_A[7]),
         .O(\ALUOut[14]_i_4_n_0 ));
-  LUT3 #(
-    .INIT(8'h04)) 
+  LUT5 #(
+    .INIT(32'h00004000)) 
     \ALUOut[14]_i_5 
-       (.I0(\ALUOut_reg[2] ),
+       (.I0(\ALUOut_reg[5]_0 ),
         .I1(\ALUOut[31]_i_12_n_0 ),
-        .I2(\ALUOut[30]_i_11_n_0 ),
+        .I2(\ALUOut[14]_i_11_n_0 ),
+        .I3(\ALUOut[14]_i_12_n_0 ),
+        .I4(\ALUOut[14]_i_13_n_0 ),
         .O(\ALUOut[14]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'h8B8B8BBBBBBB8BBB)) 
     \ALUOut[14]_i_6 
-       (.I0(\ALUOut[14]_i_11_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[27]_i_11_n_0 ),
-        .I3(\ALUOut[14]_i_12_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\ALUOut[14]_i_14_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[14]_i_15_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
         .I5(\ALUOut[15]_i_12_n_0 ),
         .O(\ALUOut[14]_i_6_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[14]_i_7 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[14]_i_13_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[15]_i_13_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[14]_i_16_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[15]_i_14_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[14]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[14]_i_8 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [14]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [12]),
-        .I4(\CPSR_reg[1]_0 [14]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [12]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [14]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [14]),
         .O(\ALUOut[14]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair133" *) 
+  (* SOFT_HLUTNM = "soft_lutpair115" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hCA)) 
     \ALUOut[14]_i_9 
-       (.I0(\registers_reg[30][31] [14]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[14]),
+       (.I0(\PC_reg[31]_0 [14]),
+        .I1(Q[14]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[14]));
   LUT6 #(
     .INIT(64'h3030747730337477)) 
     \ALUOut[15]_i_1 
        (.I0(\ALUOut_reg[15]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
+        .I1(\ALUOut_reg[5] ),
         .I2(\ALUOut[15]_i_3_n_0 ),
         .I3(\ALUOut_reg[15]_i_4_n_0 ),
-        .I4(\ALUOut_reg[1] ),
-        .I5(\ALUOut_reg[5] ),
-        .O(\state_reg[5]_2 [15]));
+        .I4(\ALUOut_reg[5]_1 ),
+        .I5(\ALUOut_reg[9] ),
+        .O(\state_reg[5]_3 [15]));
   LUT6 #(
-    .INIT(64'hA95956A656A6A959)) 
+    .INIT(64'hA695596A596AA695)) 
     \ALUOut[15]_i_10 
-       (.I0(\ALUOut[16]_i_13_n_0 ),
-        .I1(Q[15]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [15]),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(\ALUOut[16]_i_12_n_0 ),
+       (.I0(\ALUOut[16]_i_14_n_0 ),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[15]),
+        .I3(\PC_reg[31]_0 [15]),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[16]_i_13_n_0 ),
         .O(\ALUOut[15]_i_10_n_0 ));
   LUT6 #(
-    .INIT(64'h10001F0030FF3FFF)) 
+    .INIT(64'h101010D01FDF1FDF)) 
     \ALUOut[15]_i_11 
-       (.I0(\ALUOut[31]_i_20_n_0 ),
-        .I1(\ALUOut[16]_i_9_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(\ALUOut[15]_i_14_n_0 ),
+       (.I0(\ALUOut[15]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[15]_i_13_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .I5(alu_A[31]),
         .O(\ALUOut[15]_i_11_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \ALUOut[15]_i_12 
-       (.I0(\ALUOut[17]_i_19_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[15]_i_15_n_0 ),
-        .I3(\ALUOut[2]_i_6_n_0 ),
-        .I4(\ALUOut[15]_i_16_n_0 ),
+       (.I0(\ALUOut[17]_i_17_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[15]_i_16_n_0 ),
+        .I3(\ALUOut[2]_i_13_n_0 ),
+        .I4(\ALUOut[15]_i_17_n_0 ),
         .O(\ALUOut[15]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair109" *) 
+  (* SOFT_HLUTNM = "soft_lutpair82" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[15]_i_13 
-       (.I0(\ALUOut[15]_i_17_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[17]_i_20_n_0 ),
+       (.I0(\ALUOut[18]_i_12_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[15]_i_18_n_0 ),
         .O(\ALUOut[15]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair70" *) 
+  (* SOFT_HLUTNM = "soft_lutpair95" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \ALUOut[15]_i_14 
+       (.I0(\ALUOut[15]_i_19_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[17]_i_18_n_0 ),
+        .O(\ALUOut[15]_i_14_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT4 #(
     .INIT(16'hEFE0)) 
-    \ALUOut[15]_i_14 
-       (.I0(\ALUOut[18]_i_16_n_0 ),
-        .I1(\ALUOut[17]_i_19_n_0 ),
-        .I2(\ALUOut[30]_i_10_n_0 ),
-        .I3(\ALUOut[15]_i_18_n_0 ),
-        .O(\ALUOut[15]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000BBB888B8)) 
     \ALUOut[15]_i_15 
-       (.I0(alu_A[27]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(Q[19]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [19]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
+       (.I0(\ALUOut[16]_i_16_n_0 ),
+        .I1(\ALUOut[17]_i_17_n_0 ),
+        .I2(\ALUOut[29]_i_12_n_0 ),
+        .I3(\ALUOut[15]_i_20_n_0 ),
         .O(\ALUOut[15]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000BB8BB888)) 
+    \ALUOut[15]_i_16 
+       (.I0(alu_A[27]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[19]),
+        .I4(\PC_reg[31]_0 [19]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[15]_i_16_n_0 ));
   LUT5 #(
     .INIT(32'h3300B8B8)) 
-    \ALUOut[15]_i_16 
+    \ALUOut[15]_i_17 
        (.I0(alu_A[23]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I1(\ALUOut[31]_i_20_n_0 ),
         .I2(alu_A[15]),
         .I3(alu_A[31]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[15]_i_16_n_0 ));
-  LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
-    \ALUOut[15]_i_17 
-       (.I0(alu_A[0]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[8]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[15]_i_19_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .O(\ALUOut[15]_i_17_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFCB8B8)) 
+  LUT6 #(
+    .INIT(64'h88888888B8BBB888)) 
     \ALUOut[15]_i_18 
-       (.I0(\ALUOut[15]_i_15_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[15]_i_16_n_0 ),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(\ALUOut[18]_i_16_n_0 ),
+       (.I0(\ALUOut[20]_i_23_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[24]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(alu_A[16]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
         .O(\ALUOut[15]_i_18_n_0 ));
   LUT6 #(
-    .INIT(64'h00000000BBB888B8)) 
+    .INIT(64'h00B8FFFF00B80000)) 
     \ALUOut[15]_i_19 
-       (.I0(alu_A[4]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(Q[12]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [12]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
+       (.I0(alu_A[0]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[8]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[15]_i_21_n_0 ),
         .O(\ALUOut[15]_i_19_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFBBFC88)) 
+    \ALUOut[15]_i_20 
+       (.I0(\ALUOut[15]_i_16_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[16]_i_16_n_0 ),
+        .I4(\ALUOut[15]_i_17_n_0 ),
+        .O(\ALUOut[15]_i_20_n_0 ));
   LUT6 #(
-    .INIT(64'hA8A8A8888888A888)) 
+    .INIT(64'h00000000BB8BB888)) 
+    \ALUOut[15]_i_21 
+       (.I0(alu_A[4]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[12]),
+        .I4(\PC_reg[31]_0 [12]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[15]_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hA8A888A8A8888888)) 
     \ALUOut[15]_i_3 
        (.I0(\ALUOut[14]_i_5_n_0 ),
         .I1(\ALUOut[15]_i_7_n_0 ),
-        .I2(\ALUOut[30]_i_10_n_0 ),
-        .I3(Q[15]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(\registers_reg[30][31] [15]),
+        .I2(\ALUOut[29]_i_12_n_0 ),
+        .I3(\ALUOut[15]_i_8_n_0 ),
+        .I4(Q[15]),
+        .I5(\PC_reg[31]_0 [15]),
         .O(\ALUOut[15]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h8B8B8BBBBBBB8BBB)) 
     \ALUOut[15]_i_5 
        (.I0(\ALUOut[15]_i_11_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[27]_i_11_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
         .I3(\ALUOut[15]_i_12_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[16]_i_9_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[15]_i_13_n_0 ),
         .O(\ALUOut[15]_i_5_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[15]_i_6 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[15]_i_13_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[16]_i_10_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[15]_i_14_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[16]_i_11_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[15]_i_6_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
-    .INIT(32'h45400000)) 
+    .INIT(32'h50440000)) 
     \ALUOut[15]_i_7 
-       (.I0(\ALUOut[30]_i_10_n_0 ),
-        .I1(\registers_reg[30][31] [7]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(Q[7]),
-        .I4(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\ALUOut[29]_i_12_n_0 ),
+        .I1(\PC_reg[31]_0 [7]),
+        .I2(Q[7]),
+        .I3(\ALUOut[15]_i_8_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
         .O(\ALUOut[15]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hEFFC9998639D0099)) 
@@ -7825,2771 +7713,2742 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\state_reg[5]_0 [3]),
         .O(\ALUOut[15]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'hFFE2001D001D1DFF)) 
+    .INIT(64'hFFD80027002727FF)) 
     \ALUOut[15]_i_9 
-       (.I0(Q[15]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [15]),
-        .I3(\ALUOut_reg[2] ),
-        .I4(\ALUOut[16]_i_12_n_0 ),
-        .I5(\ALUOut_reg[5] ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[15]),
+        .I2(\PC_reg[31]_0 [15]),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(\ALUOut[16]_i_13_n_0 ),
+        .I5(\ALUOut_reg[9] ),
         .O(\ALUOut[15]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h3077337730440044)) 
     \ALUOut[16]_i_1 
        (.I0(\ALUOut_reg[16]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
         .I5(\ALUOut_reg[16]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [16]));
-  (* SOFT_HLUTNM = "soft_lutpair97" *) 
+        .O(\state_reg[5]_3 [16]));
+  LUT6 #(
+    .INIT(64'h0838383808380808)) 
+    \ALUOut[16]_i_10 
+       (.I0(alu_A[31]),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[17]_i_9_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[15]_i_13_n_0 ),
+        .O(\ALUOut[16]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair90" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \ALUOut[16]_i_10 
-       (.I0(\ALUOut[16]_i_15_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[18]_i_18_n_0 ),
-        .O(\ALUOut[16]_i_10_n_0 ));
-  LUT4 #(
-    .INIT(16'hFEEE)) 
     \ALUOut[16]_i_11 
-       (.I0(\ALUOut[16]_i_16_n_0 ),
-        .I1(\ALUOut[17]_i_22_n_0 ),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [14]),
+       (.I0(\ALUOut[16]_i_17_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[18]_i_13_n_0 ),
         .O(\ALUOut[16]_i_11_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     \ALUOut[16]_i_12 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [15]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [13]),
-        .I4(\CPSR_reg[1]_0 [15]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(imm16[16]),
+        .I1(\ALUOut[29]_i_20_n_0 ),
+        .I2(\registers_reg[30][31] [16]),
+        .I3(\ALUOut[29]_i_21_n_0 ),
+        .I4(\state_reg[0]_1 [16]),
         .O(\ALUOut[16]_i_12_n_0 ));
   LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[16]_i_13 
-       (.I0(\ALUOut[14]_i_15_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [13]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [15]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [15]),
+        .O(\ALUOut[16]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'h8FEF0E08FEF880E0)) 
+    \ALUOut[16]_i_14 
+       (.I0(\ALUOut[14]_i_17_n_0 ),
         .I1(alu_A[13]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
+        .I2(\ALUOut[31]_i_23_n_0 ),
         .I3(\ALUOut[13]_i_8_n_0 ),
         .I4(alu_A[14]),
         .I5(\ALUOut[14]_i_8_n_0 ),
-        .O(\ALUOut[16]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h88888888B8BBB888)) 
-    \ALUOut[16]_i_14 
-       (.I0(\ALUOut[18]_i_21_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[24]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[16]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
         .O(\ALUOut[16]_i_14_n_0 ));
   LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
+    .INIT(64'hF0E4F0E4FFFFF000)) 
     \ALUOut[16]_i_15 
-       (.I0(alu_A[1]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[9]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[16]_i_17_n_0 ),
+       (.I0(\ALUOut[31]_i_20_n_0 ),
+        .I1(alu_A[23]),
+        .I2(alu_A[31]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[15]_i_16_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
         .O(\ALUOut[16]_i_15_n_0 ));
   LUT4 #(
-    .INIT(16'hF888)) 
+    .INIT(16'hA280)) 
     \ALUOut[16]_i_16 
-       (.I0(\state_reg[0]_1 [16]),
-        .I1(\ALUOut[20]_i_21_n_0 ),
-        .I2(\CPSR_reg[1]_0 [16]),
-        .I3(\CPSR[1]_i_5_n_0 ),
+       (.I0(\ALUOut[31]_i_19_n_0 ),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[31]),
+        .I3(\PC_reg[31]_0 [31]),
         .O(\ALUOut[16]_i_16_n_0 ));
   LUT6 #(
-    .INIT(64'h00000000E2FFE200)) 
+    .INIT(64'h00B8FFFF00B80000)) 
     \ALUOut[16]_i_17 
-       (.I0(Q[5]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [5]),
+       (.I0(alu_A[1]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[9]),
         .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[13]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[16]_i_19_n_0 ),
         .O(\ALUOut[16]_i_17_n_0 ));
   LUT6 #(
-    .INIT(64'h8B8B8BBBBBBB8BBB)) 
+    .INIT(64'hFFFFFFFE00000002)) 
+    \ALUOut[16]_i_18 
+       (.I0(\state_reg[0]_1 [14]),
+        .I1(\state_reg[5]_0 [4]),
+        .I2(\state_reg[5]_0 [1]),
+        .I3(\state_reg[5]_0 [0]),
+        .I4(\state_reg[5]_0 [3]),
+        .I5(extend16),
+        .O(imm16[16]));
+  LUT6 #(
+    .INIT(64'h00000000D8FFD800)) 
+    \ALUOut[16]_i_19 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[5]),
+        .I2(\PC_reg[31]_0 [5]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(alu_A[13]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[16]_i_19_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000005FFF77FF)) 
     \ALUOut[16]_i_4 
-       (.I0(\ALUOut[16]_i_8_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[27]_i_11_n_0 ),
-        .I3(\ALUOut[16]_i_9_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[17]_i_9_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[16]_i_8_n_0 ),
+        .I2(\ALUOut[16]_i_9_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[16]_i_10_n_0 ),
         .O(\ALUOut[16]_i_4_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[16]_i_5 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[16]_i_10_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[17]_i_11_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[16]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[17]_i_10_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[16]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h7668767676686868)) 
+    .INIT(64'h7676686876687668)) 
     \ALUOut[16]_i_6 
-       (.I0(\ALUOut[16]_i_11_n_0 ),
-        .I1(\ALUOut_reg[5] ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\registers_reg[30][31] [16]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[16]),
+       (.I0(\ALUOut[16]_i_12_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [16]),
+        .I4(Q[16]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[16]_i_6_n_0 ));
   LUT6 #(
     .INIT(64'hF660099F099FF660)) 
     \ALUOut[16]_i_7 
-       (.I0(\ALUOut[16]_i_12_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
+       (.I0(\ALUOut[16]_i_13_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
         .I2(alu_A[15]),
-        .I3(\ALUOut[16]_i_13_n_0 ),
-        .I4(\ALUOut[17]_i_13_n_0 ),
+        .I3(\ALUOut[16]_i_14_n_0 ),
+        .I4(\ALUOut[17]_i_12_n_0 ),
         .I5(alu_A[16]),
         .O(\ALUOut[16]_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h0100F10003FFF3FF)) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  LUT5 #(
+    .INIT(32'hFFFFCA00)) 
     \ALUOut[16]_i_8 
-       (.I0(\ALUOut[31]_i_20_n_0 ),
-        .I1(\ALUOut[16]_i_9_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(\ALUOut[17]_i_18_n_0 ),
-        .I5(alu_A[31]),
+       (.I0(\PC_reg[31]_0 [31]),
+        .I1(Q[31]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[15]_i_13_n_0 ),
         .O(\ALUOut[16]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair101" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  LUT4 #(
+    .INIT(16'hBBB8)) 
     \ALUOut[16]_i_9 
-       (.I0(\ALUOut[18]_i_15_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[16]_i_14_n_0 ),
+       (.I0(\ALUOut[16]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[16]_i_16_n_0 ),
+        .I3(\ALUOut[17]_i_17_n_0 ),
         .O(\ALUOut[16]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h3077337730440044)) 
     \ALUOut[17]_i_1 
        (.I0(\ALUOut_reg[17]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
         .I5(\ALUOut_reg[17]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [17]));
-  (* SOFT_HLUTNM = "soft_lutpair101" *) 
-  LUT3 #(
-    .INIT(8'h2E)) 
-    \ALUOut[17]_i_10 
-       (.I0(\ALUOut[18]_i_15_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[20]_i_19_n_0 ),
-        .O(\ALUOut[17]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair100" *) 
+        .O(\state_reg[5]_3 [17]));
+  (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT3 #(
     .INIT(8'hB8)) 
+    \ALUOut[17]_i_10 
+       (.I0(\ALUOut[17]_i_18_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[19]_i_13_n_0 ),
+        .O(\ALUOut[17]_i_10_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
     \ALUOut[17]_i_11 
-       (.I0(\ALUOut[17]_i_20_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[19]_i_12_n_0 ),
+       (.I0(imm16[17]),
+        .I1(\ALUOut[29]_i_20_n_0 ),
+        .I2(\registers_reg[30][31] [17]),
+        .I3(\ALUOut[29]_i_21_n_0 ),
+        .I4(\state_reg[0]_1 [17]),
         .O(\ALUOut[17]_i_11_n_0 ));
-  LUT4 #(
-    .INIT(16'hFEEE)) 
-    \ALUOut[17]_i_12 
-       (.I0(\ALUOut[17]_i_21_n_0 ),
-        .I1(\ALUOut[17]_i_22_n_0 ),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [15]),
-        .O(\ALUOut[17]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair162" *) 
+  (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT2 #(
     .INIT(4'h6)) 
-    \ALUOut[17]_i_13 
-       (.I0(\ALUOut[16]_i_11_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[17]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+    \ALUOut[17]_i_12 
+       (.I0(\ALUOut[16]_i_12_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[17]_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[17]_i_14 
-       (.I0(\registers_reg[30][31] [16]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[16]),
+    .INIT(8'hCA)) 
+    \ALUOut[17]_i_13 
+       (.I0(\PC_reg[31]_0 [16]),
+        .I1(Q[16]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[16]));
   LUT6 #(
     .INIT(64'h8FEF0E08FEF880E0)) 
-    \ALUOut[17]_i_15 
-       (.I0(\ALUOut[17]_i_23_n_0 ),
+    \ALUOut[17]_i_14 
+       (.I0(\ALUOut[17]_i_20_n_0 ),
         .I1(alu_A[14]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
+        .I2(\ALUOut[31]_i_23_n_0 ),
         .I3(\ALUOut[14]_i_8_n_0 ),
         .I4(alu_A[15]),
-        .I5(\ALUOut[16]_i_12_n_0 ),
-        .O(\ALUOut[17]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair162" *) 
+        .I5(\ALUOut[16]_i_13_n_0 ),
+        .O(\ALUOut[17]_i_14_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair67" *) 
   LUT2 #(
     .INIT(4'h6)) 
-    \ALUOut[17]_i_16 
-       (.I0(\ALUOut[17]_i_12_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[17]_i_16_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair136" *) 
+    \ALUOut[17]_i_15 
+       (.I0(\ALUOut[17]_i_11_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[17]_i_15_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair112" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[17]_i_17 
-       (.I0(\registers_reg[30][31] [17]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[17]),
+    .INIT(8'hCA)) 
+    \ALUOut[17]_i_16 
+       (.I0(\PC_reg[31]_0 [17]),
+        .I1(Q[17]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[17]));
-  (* SOFT_HLUTNM = "soft_lutpair70" *) 
-  LUT4 #(
-    .INIT(16'hBBB8)) 
+  LUT6 #(
+    .INIT(64'h00B8FFFF00B80000)) 
+    \ALUOut[17]_i_17 
+       (.I0(alu_A[29]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[21]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[17]_i_21_n_0 ),
+        .O(\ALUOut[17]_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'h00B8FFFF00B80000)) 
     \ALUOut[17]_i_18 
-       (.I0(\ALUOut[18]_i_14_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[18]_i_16_n_0 ),
-        .I3(\ALUOut[17]_i_19_n_0 ),
+       (.I0(alu_A[2]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[10]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[17]_i_22_n_0 ),
         .O(\ALUOut[17]_i_18_n_0 ));
   LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
+    .INIT(64'hFFFFFFFE00000002)) 
     \ALUOut[17]_i_19 
-       (.I0(alu_A[29]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[21]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[17]_i_24_n_0 ),
-        .O(\ALUOut[17]_i_19_n_0 ));
-  LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
-    \ALUOut[17]_i_20 
-       (.I0(alu_A[2]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[10]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[17]_i_25_n_0 ),
-        .O(\ALUOut[17]_i_20_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \ALUOut[17]_i_21 
-       (.I0(\state_reg[0]_1 [17]),
-        .I1(\ALUOut[20]_i_21_n_0 ),
-        .I2(\CPSR_reg[1]_0 [17]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .O(\ALUOut[17]_i_21_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
-  LUT5 #(
-    .INIT(32'h02000000)) 
-    \ALUOut[17]_i_22 
-       (.I0(\ALUOut[2]_i_12_n_0 ),
-        .I1(\ALUOut[2]_i_13_n_0 ),
-        .I2(ExtendImm),
-        .I3(\state_reg[0]_1 [15]),
-        .I4(\CPSR[1]_i_9_n_0 ),
-        .O(\ALUOut[17]_i_22_n_0 ));
+       (.I0(\state_reg[0]_1 [15]),
+        .I1(\state_reg[5]_0 [4]),
+        .I2(\state_reg[5]_0 [1]),
+        .I3(\state_reg[5]_0 [0]),
+        .I4(\state_reg[5]_0 [3]),
+        .I5(extend16),
+        .O(imm16[17]));
   LUT6 #(
     .INIT(64'h8FEF0E08FEF880E0)) 
-    \ALUOut[17]_i_23 
-       (.I0(\ALUOut[17]_i_26_n_0 ),
+    \ALUOut[17]_i_20 
+       (.I0(\ALUOut[17]_i_23_n_0 ),
         .I1(alu_A[12]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
+        .I2(\ALUOut[31]_i_23_n_0 ),
         .I3(\ALUOut[12]_i_8_n_0 ),
         .I4(alu_A[13]),
         .I5(\ALUOut[13]_i_8_n_0 ),
-        .O(\ALUOut[17]_i_23_n_0 ));
+        .O(\ALUOut[17]_i_20_n_0 ));
   LUT6 #(
-    .INIT(64'h00000000E2FFE200)) 
-    \ALUOut[17]_i_24 
-       (.I0(Q[25]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [25]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
+    .INIT(64'h00000000D8FFD800)) 
+    \ALUOut[17]_i_21 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[25]),
+        .I2(\PC_reg[31]_0 [25]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
         .I4(alu_A[17]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[17]_i_24_n_0 ));
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[17]_i_21_n_0 ));
   LUT6 #(
-    .INIT(64'h00000000BBB888B8)) 
-    \ALUOut[17]_i_25 
+    .INIT(64'h00000000BB8BB888)) 
+    \ALUOut[17]_i_22 
        (.I0(alu_A[6]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(Q[14]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [14]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[17]_i_25_n_0 ));
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[14]),
+        .I4(\PC_reg[31]_0 [14]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[17]_i_22_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFF220F2200000)) 
-    \ALUOut[17]_i_26 
-       (.I0(\ALUOut[17]_i_27_n_0 ),
-        .I1(\ALUOut[17]_i_28_n_0 ),
+    \ALUOut[17]_i_23 
+       (.I0(\ALUOut[17]_i_24_n_0 ),
+        .I1(\ALUOut[17]_i_25_n_0 ),
         .I2(alu_A[10]),
-        .I3(\ALUOut[17]_i_29_n_0 ),
+        .I3(\ALUOut[17]_i_26_n_0 ),
         .I4(alu_A[11]),
-        .I5(\ALUOut[17]_i_30_n_0 ),
-        .O(\ALUOut[17]_i_26_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+        .I5(\ALUOut[17]_i_27_n_0 ),
+        .O(\ALUOut[17]_i_23_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT5 #(
-    .INIT(32'hE2FFFFE2)) 
-    \ALUOut[17]_i_27 
-       (.I0(Q[9]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [9]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .I4(\ALUOut[9]_i_9_n_0 ),
-        .O(\ALUOut[17]_i_27_n_0 ));
+    .INIT(32'hD8FFFFD8)) 
+    \ALUOut[17]_i_24 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[9]),
+        .I2(\PC_reg[31]_0 [9]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[9]_i_22_n_0 ),
+        .O(\ALUOut[17]_i_24_n_0 ));
   LUT6 #(
     .INIT(64'h0202022A022A2A2A)) 
-    \ALUOut[17]_i_28 
-       (.I0(\ALUOut[17]_i_31_n_0 ),
-        .I1(\ALUOut[17]_i_32_n_0 ),
+    \ALUOut[17]_i_25 
+       (.I0(\ALUOut[17]_i_28_n_0 ),
+        .I1(\ALUOut[17]_i_29_n_0 ),
         .I2(alu_A[8]),
-        .I3(\ALUOut[17]_i_33_n_0 ),
+        .I3(\ALUOut[17]_i_30_n_0 ),
         .I4(alu_A[7]),
-        .I5(\ALUOut[12]_i_17_n_0 ),
+        .I5(\ALUOut[12]_i_18_n_0 ),
+        .O(\ALUOut[17]_i_25_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair146" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \ALUOut[17]_i_26 
+       (.I0(\ALUOut[11]_i_12_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[17]_i_26_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \ALUOut[17]_i_27 
+       (.I0(\ALUOut[12]_i_13_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[17]_i_27_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  LUT5 #(
+    .INIT(32'hFF2727FF)) 
+    \ALUOut[17]_i_28 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[9]),
+        .I2(\PC_reg[31]_0 [9]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[9]_i_22_n_0 ),
         .O(\ALUOut[17]_i_28_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair165" *) 
+  (* SOFT_HLUTNM = "soft_lutpair147" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \ALUOut[17]_i_29 
-       (.I0(\ALUOut[11]_i_13_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
+       (.I0(\ALUOut[8]_i_8_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
         .O(\ALUOut[17]_i_29_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair164" *) 
+  (* SOFT_HLUTNM = "soft_lutpair147" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \ALUOut[17]_i_30 
-       (.I0(\ALUOut[11]_i_7_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[17]_i_30_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
-  LUT5 #(
-    .INIT(32'hFF1D1DFF)) 
-    \ALUOut[17]_i_31 
-       (.I0(Q[9]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [9]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .I4(\ALUOut[9]_i_9_n_0 ),
-        .O(\ALUOut[17]_i_31_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair165" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
-    \ALUOut[17]_i_32 
-       (.I0(\ALUOut[8]_i_9_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[17]_i_32_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair166" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
-    \ALUOut[17]_i_33 
        (.I0(\ALUOut[7]_i_7_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[17]_i_33_n_0 ));
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[17]_i_30_n_0 ));
   LUT6 #(
-    .INIT(64'h8B8B8BBBBBBB8BBB)) 
+    .INIT(64'hBBB888B8BBBBBBBB)) 
     \ALUOut[17]_i_4 
        (.I0(\ALUOut[17]_i_8_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[27]_i_11_n_0 ),
-        .I3(\ALUOut[17]_i_9_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[17]_i_10_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[17]_i_9_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[18]_i_9_n_0 ),
+        .I5(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[17]_i_4_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[17]_i_5 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[17]_i_11_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[18]_i_11_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[17]_i_10_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[18]_i_10_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[17]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h7668767676686868)) 
+    .INIT(64'h7676686876687668)) 
     \ALUOut[17]_i_6 
-       (.I0(\ALUOut[17]_i_12_n_0 ),
-        .I1(\ALUOut_reg[5] ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\registers_reg[30][31] [17]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[17]),
+       (.I0(\ALUOut[17]_i_11_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [17]),
+        .I4(Q[17]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[17]_i_6_n_0 ));
   LUT5 #(
     .INIT(32'hE81717E8)) 
     \ALUOut[17]_i_7 
-       (.I0(\ALUOut[17]_i_13_n_0 ),
+       (.I0(\ALUOut[17]_i_12_n_0 ),
         .I1(alu_A[16]),
-        .I2(\ALUOut[17]_i_15_n_0 ),
-        .I3(\ALUOut[17]_i_16_n_0 ),
+        .I2(\ALUOut[17]_i_14_n_0 ),
+        .I3(\ALUOut[17]_i_15_n_0 ),
         .I4(alu_A[17]),
         .O(\ALUOut[17]_i_7_n_0 ));
   LUT5 #(
-    .INIT(32'h00000777)) 
+    .INIT(32'h40704F7F)) 
     \ALUOut[17]_i_8 
-       (.I0(\ALUOut[17]_i_18_n_0 ),
-        .I1(\ALUOut[31]_i_8_n_0 ),
-        .I2(\ALUOut[27]_i_5_n_0 ),
-        .I3(\ALUOut[18]_i_9_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
+       (.I0(\ALUOut[18]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[16]_i_9_n_0 ),
+        .I4(alu_A[31]),
         .O(\ALUOut[17]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair105" *) 
+  (* SOFT_HLUTNM = "soft_lutpair91" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'h8B)) 
     \ALUOut[17]_i_9 
-       (.I0(\ALUOut[19]_i_11_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[17]_i_19_n_0 ),
+       (.I0(\ALUOut[19]_i_12_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[17]_i_17_n_0 ),
         .O(\ALUOut[17]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h3030447700334477)) 
     \ALUOut[18]_i_1 
        (.I0(\ALUOut_reg[18]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
         .I3(\ALUOut_reg[18]_i_3_n_0 ),
-        .I4(\ALUOut_reg[1] ),
-        .I5(\ALUOut_reg[5] ),
-        .O(\state_reg[5]_2 [18]));
-  LUT6 #(
-    .INIT(64'h0838383808380808)) 
-    \ALUOut[18]_i_10 
-       (.I0(alu_A[31]),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[27]_i_11_n_0 ),
-        .I3(\ALUOut[19]_i_9_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[17]_i_10_n_0 ),
-        .O(\ALUOut[18]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair97" *) 
+        .I4(\ALUOut_reg[5]_1 ),
+        .I5(\ALUOut_reg[9] ),
+        .O(\state_reg[5]_3 [18]));
+  (* SOFT_HLUTNM = "soft_lutpair90" *) 
   LUT3 #(
     .INIT(8'hB8)) 
+    \ALUOut[18]_i_10 
+       (.I0(\ALUOut[18]_i_13_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[20]_i_22_n_0 ),
+        .O(\ALUOut[18]_i_10_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
     \ALUOut[18]_i_11 
-       (.I0(\ALUOut[18]_i_18_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[20]_i_20_n_0 ),
+       (.I0(\ALUOut[20]_i_21_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[21]_i_17_n_0 ),
+        .I3(\ALUOut[2]_i_13_n_0 ),
+        .I4(\ALUOut[18]_i_14_n_0 ),
         .O(\ALUOut[18]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair160" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
+  LUT6 #(
+    .INIT(64'h00B8FFFF00B80000)) 
     \ALUOut[18]_i_12 
-       (.I0(\ALUOut[20]_i_15_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
+       (.I0(alu_A[30]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[22]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[18]_i_15_n_0 ),
         .O(\ALUOut[18]_i_12_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFCFFAA0030AAAA)) 
-    \ALUOut[18]_i_13 
-       (.I0(\ALUOut[18]_i_19_n_0 ),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[25]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(alu_A[31]),
-        .O(\ALUOut[18]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'hF0E4F0E4FFFFF000)) 
-    \ALUOut[18]_i_14 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(alu_A[23]),
-        .I2(alu_A[31]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[15]_i_15_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[18]_i_14_n_0 ));
-  LUT6 #(
     .INIT(64'h00B8FFFF00B80000)) 
-    \ALUOut[18]_i_15 
-       (.I0(alu_A[30]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[22]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[18]_i_20_n_0 ),
-        .O(\ALUOut[18]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair69" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \ALUOut[18]_i_16 
-       (.I0(\ALUOut[31]_i_20_n_0 ),
-        .I1(Q[31]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [31]),
-        .O(\ALUOut[18]_i_16_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF00FC0CFAAAFAAA)) 
-    \ALUOut[18]_i_17 
-       (.I0(\ALUOut[18]_i_21_n_0 ),
-        .I1(alu_A[24]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
+    \ALUOut[18]_i_13 
+       (.I0(alu_A[3]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[11]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[18]_i_16_n_0 ),
+        .O(\ALUOut[18]_i_13_n_0 ));
+  LUT5 #(
+    .INIT(32'hFF00B8B8)) 
+    \ALUOut[18]_i_14 
+       (.I0(alu_A[26]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[18]),
         .I3(alu_A[31]),
         .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[18]_i_17_n_0 ));
+        .O(\ALUOut[18]_i_14_n_0 ));
   LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
-    \ALUOut[18]_i_18 
-       (.I0(alu_A[3]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[11]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[18]_i_22_n_0 ),
-        .O(\ALUOut[18]_i_18_n_0 ));
+    .INIT(64'h00000000BB8BB888)) 
+    \ALUOut[18]_i_15 
+       (.I0(alu_A[26]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[18]),
+        .I4(\PC_reg[31]_0 [18]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[18]_i_15_n_0 ));
   LUT6 #(
-    .INIT(64'h00000000BBB888B8)) 
-    \ALUOut[18]_i_19 
-       (.I0(alu_A[29]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(Q[21]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [21]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[18]_i_19_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000E2FFE200)) 
-    \ALUOut[18]_i_20 
-       (.I0(Q[26]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [26]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[18]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[18]_i_20_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000BBB888B8)) 
-    \ALUOut[18]_i_21 
-       (.I0(alu_A[28]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(Q[20]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [20]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[18]_i_21_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000BBB888B8)) 
-    \ALUOut[18]_i_22 
+    .INIT(64'h00000000BB8BB888)) 
+    \ALUOut[18]_i_16 
        (.I0(alu_A[7]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(Q[15]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [15]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[18]_i_22_n_0 ));
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[15]),
+        .I4(\PC_reg[31]_0 [15]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[18]_i_16_n_0 ));
   LUT6 #(
-    .INIT(64'h00000000557F7F7F)) 
+    .INIT(64'hBBB888B8BBBBBBBB)) 
     \ALUOut[18]_i_4 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[18]_i_8_n_0 ),
-        .I2(\ALUOut[27]_i_5_n_0 ),
-        .I3(\ALUOut[18]_i_9_n_0 ),
-        .I4(\ALUOut[31]_i_8_n_0 ),
-        .I5(\ALUOut[18]_i_10_n_0 ),
+       (.I0(\ALUOut[18]_i_8_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[18]_i_9_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[19]_i_9_n_0 ),
+        .I5(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[18]_i_4_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[18]_i_5 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[18]_i_11_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[18]_i_10_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
         .I3(\ALUOut[19]_i_10_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[18]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'hFFE2001D001D1DFF)) 
+    .INIT(64'hFFD80027002727FF)) 
     \ALUOut[18]_i_6 
-       (.I0(Q[18]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [18]),
-        .I3(\ALUOut_reg[2] ),
-        .I4(\ALUOut[20]_i_15_n_0 ),
-        .I5(\ALUOut_reg[5] ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[18]),
+        .I2(\PC_reg[31]_0 [18]),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(\ALUOut[20]_i_12_n_0 ),
+        .I5(\ALUOut_reg[9] ),
         .O(\ALUOut[18]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h69666999)) 
+  LUT6 #(
+    .INIT(64'hA695596A596AA695)) 
     \ALUOut[18]_i_7 
-       (.I0(\ALUOut[20]_i_13_n_0 ),
-        .I1(\ALUOut[18]_i_12_n_0 ),
-        .I2(\registers_reg[30][31] [18]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(Q[18]),
+       (.I0(\ALUOut[20]_i_10_n_0 ),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[18]),
+        .I3(\PC_reg[31]_0 [18]),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[20]_i_12_n_0 ),
         .O(\ALUOut[18]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair109" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT5 #(
+    .INIT(32'h10D01FDF)) 
     \ALUOut[18]_i_8 
-       (.I0(\ALUOut[18]_i_13_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[18]_i_14_n_0 ),
+       (.I0(\ALUOut[18]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[19]_i_11_n_0 ),
+        .I4(alu_A[31]),
         .O(\ALUOut[18]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair67" *) 
-  LUT4 #(
-    .INIT(16'hF0EE)) 
+  (* SOFT_HLUTNM = "soft_lutpair82" *) 
+  LUT3 #(
+    .INIT(8'hD1)) 
     \ALUOut[18]_i_9 
-       (.I0(\ALUOut[18]_i_15_n_0 ),
-        .I1(\ALUOut[18]_i_16_n_0 ),
-        .I2(\ALUOut[18]_i_17_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[18]_i_12_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[20]_i_19_n_0 ),
         .O(\ALUOut[18]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'h3030447700334477)) 
+    .INIT(64'h3077337730440044)) 
     \ALUOut[19]_i_1 
        (.I0(\ALUOut_reg[19]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[19]_i_3_n_0 ),
-        .I4(\ALUOut_reg[1] ),
-        .I5(\ALUOut_reg[5] ),
-        .O(\state_reg[5]_2 [19]));
-  (* SOFT_HLUTNM = "soft_lutpair100" *) 
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[19]_i_3_n_0 ),
+        .O(\state_reg[5]_3 [19]));
+  (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[19]_i_10 
-       (.I0(\ALUOut[19]_i_12_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[21]_i_13_n_0 ),
+       (.I0(\ALUOut[19]_i_13_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[21]_i_16_n_0 ),
         .O(\ALUOut[19]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
+  (* SOFT_HLUTNM = "soft_lutpair95" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \ALUOut[19]_i_11 
-       (.I0(alu_A[31]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[23]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[15]_i_15_n_0 ),
+       (.I0(\ALUOut[21]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[16]_i_15_n_0 ),
         .O(\ALUOut[19]_i_11_n_0 ));
   LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
+    .INIT(64'hFF470000FF47FFFF)) 
     \ALUOut[19]_i_12 
-       (.I0(alu_A[4]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[12]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[23]_i_16_n_0 ),
+       (.I0(alu_A[31]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[23]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[15]_i_16_n_0 ),
         .O(\ALUOut[19]_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'h00B8FFFF00B80000)) 
+    \ALUOut[19]_i_13 
+       (.I0(alu_A[4]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[12]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[23]_i_24_n_0 ),
+        .O(\ALUOut[19]_i_13_n_0 ));
   LUT6 #(
     .INIT(64'hBBB888B8BBBBBBBB)) 
     \ALUOut[19]_i_4 
        (.I0(\ALUOut[19]_i_8_n_0 ),
-        .I1(\ALUOut_reg[2] ),
+        .I1(\ALUOut_reg[5]_0 ),
         .I2(\ALUOut[19]_i_9_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[20]_i_11_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[20]_i_15_n_0 ),
+        .I5(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[19]_i_4_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[19]_i_5 
-       (.I0(\ALUOut_reg[2] ),
+       (.I0(\ALUOut_reg[5]_0 ),
         .I1(\ALUOut[19]_i_10_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[20]_i_12_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[20]_i_18_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[19]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'hFFE2001D001D1DFF)) 
+    .INIT(64'h7676686876687668)) 
     \ALUOut[19]_i_6 
-       (.I0(Q[19]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [19]),
-        .I3(\ALUOut_reg[2] ),
-        .I4(\ALUOut[20]_i_17_n_0 ),
-        .I5(\ALUOut_reg[5] ),
+       (.I0(\ALUOut[20]_i_14_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [19]),
+        .I4(Q[19]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[19]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hD42B17E82BD4E817)) 
+    .INIT(64'h2BD4E817D42B17E8)) 
     \ALUOut[19]_i_7 
-       (.I0(\ALUOut[20]_i_15_n_0 ),
+       (.I0(\ALUOut[20]_i_12_n_0 ),
         .I1(alu_A[18]),
-        .I2(\ALUOut[20]_i_13_n_0 ),
-        .I3(alu_A[19]),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(\ALUOut[20]_i_17_n_0 ),
+        .I2(\ALUOut[20]_i_10_n_0 ),
+        .I3(\ALUOut[20]_i_14_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(alu_A[19]),
         .O(\ALUOut[19]_i_7_n_0 ));
   LUT5 #(
-    .INIT(32'h00000777)) 
+    .INIT(32'h10D01FDF)) 
     \ALUOut[19]_i_8 
-       (.I0(\ALUOut[20]_i_18_n_0 ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[31]_i_8_n_0 ),
-        .I3(\ALUOut[18]_i_8_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
+       (.I0(\ALUOut[19]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[20]_i_17_n_0 ),
+        .I4(alu_A[31]),
         .O(\ALUOut[19]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair105" *) 
+  (* SOFT_HLUTNM = "soft_lutpair91" *) 
   LUT3 #(
-    .INIT(8'h8B)) 
+    .INIT(8'hB8)) 
     \ALUOut[19]_i_9 
-       (.I0(\ALUOut[21]_i_12_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[19]_i_11_n_0 ),
+       (.I0(\ALUOut[20]_i_20_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[19]_i_12_n_0 ),
         .O(\ALUOut[19]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'h00005555FF035555)) 
+    .INIT(64'hFFFFBBABAAAAAAAA)) 
     \ALUOut[1]_i_1 
        (.I0(\ALUOut[1]_i_2_n_0 ),
         .I1(\ALUOut[1]_i_3_n_0 ),
-        .I2(\ALUOut[1]_i_4_n_0 ),
-        .I3(\ALUOut[1]_i_5_n_0 ),
-        .I4(\ALUOut_reg[1]_0 ),
-        .I5(\ALUOut_reg[1] ),
-        .O(\state_reg[5]_2 [1]));
-  (* SOFT_HLUTNM = "soft_lutpair139" *) 
+        .I2(\ALUOut[2]_i_6_n_0 ),
+        .I3(\ALUOut[1]_i_4_n_0 ),
+        .I4(\ALUOut[1]_i_5_n_0 ),
+        .I5(\ALUOut[1]_i_6_n_0 ),
+        .O(\state_reg[5]_3 [1]));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hCA)) 
     \ALUOut[1]_i_10 
-       (.I0(\registers_reg[30][31] [1]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[1]),
-        .O(alu_A[1]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT3 #(
-    .INIT(8'h01)) 
-    \ALUOut[1]_i_11 
-       (.I0(\ALUOut[2]_i_6_n_0 ),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .O(\ALUOut[1]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[1]_i_12 
-       (.I0(\registers_reg[30][31] [0]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[0]),
-        .O(alu_A[0]));
-  LUT6 #(
-    .INIT(64'hEFEA10151015757F)) 
-    \ALUOut[1]_i_13 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\registers_reg[30][31] [1]),
+       (.I0(\PC_reg[31]_0 [1]),
+        .I1(Q[1]),
         .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(Q[1]),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[1]_i_13_n_0 ));
+        .O(alu_A[1]));
   LUT6 #(
     .INIT(64'hFB0417E804FBE817)) 
-    \ALUOut[1]_i_14 
+    \ALUOut[1]_i_11 
        (.I0(alu_A[0]),
-        .I1(\ALUOut[30]_i_9_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
         .I2(\ALUOut[0]_i_9_n_0 ),
         .I3(alu_A[1]),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[1]_i_14_n_0 ));
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[29]_i_12_n_0 ),
+        .O(\ALUOut[1]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[1]_i_15 
+    \ALUOut[1]_i_12 
        (.I0(alu_A[29]),
         .I1(alu_A[13]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
         .I3(alu_A[21]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .I5(alu_A[5]),
-        .O(\ALUOut[1]_i_15_n_0 ));
+        .O(\ALUOut[1]_i_12_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[1]_i_16 
+    \ALUOut[1]_i_13 
        (.I0(alu_A[25]),
         .I1(alu_A[9]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
         .I3(alu_A[17]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .I5(alu_A[1]),
-        .O(\ALUOut[1]_i_16_n_0 ));
+        .O(\ALUOut[1]_i_13_n_0 ));
   LUT6 #(
-    .INIT(64'h0EEE0E0E0EEEEEEE)) 
+    .INIT(64'h5140000055555555)) 
     \ALUOut[1]_i_2 
-       (.I0(\ALUOut_reg[1]_i_6_n_0 ),
-        .I1(\ALUOut[31]_i_12_n_0 ),
-        .I2(\ALUOut[14]_i_5_n_0 ),
-        .I3(\registers_reg[30][31] [1]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[1]),
+       (.I0(\ALUOut_reg[5] ),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[1]),
+        .I3(\PC_reg[31]_0 [1]),
+        .I4(\ALUOut[14]_i_5_n_0 ),
+        .I5(\ALUOut[1]_i_7_n_0 ),
         .O(\ALUOut[1]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFF11110FFF)) 
     \ALUOut[1]_i_3 
-       (.I0(\ALUOut[1]_i_7_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut_reg[2] ),
+       (.I0(\ALUOut[1]_i_8_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
         .I3(alu_A[31]),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .I5(\ALUOut_reg[5] ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(\ALUOut_reg[9] ),
         .O(\ALUOut[1]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h000000002AAA0000)) 
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  LUT4 #(
+    .INIT(16'hB8FF)) 
     \ALUOut[1]_i_4 
-       (.I0(\ALUOut[2]_i_10_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[1]_i_8_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[1]_i_9_n_0 ),
+       (.I0(\ALUOut[2]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[2]_i_12_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
         .O(\ALUOut[1]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h0000A80000002000)) 
+    .INIT(64'h0020000020202000)) 
     \ALUOut[1]_i_5 
-       (.I0(\ALUOut[29]_i_8_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(alu_A[1]),
-        .I3(\ALUOut[1]_i_11_n_0 ),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .I5(alu_A[0]),
+       (.I0(\ALUOut_reg[9] ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[1]_i_9_n_0 ),
+        .I5(\ALUOut[0]_i_4_n_0 ),
         .O(\ALUOut[1]_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
+    \ALUOut[1]_i_6 
+       (.I0(\ALUOut_reg[5] ),
+        .I1(\ALUOut_reg[5]_1 ),
+        .O(\ALUOut[1]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hB8FFB833B8CCB800)) 
+    .INIT(64'hFFFFA917FF00A917)) 
     \ALUOut[1]_i_7 
-       (.I0(\ALUOut[2]_i_16_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[2]_i_17_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[1]_i_15_n_0 ),
-        .I5(\ALUOut[1]_i_16_n_0 ),
+       (.I0(\ALUOut[29]_i_12_n_0 ),
+        .I1(alu_A[1]),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut_reg[9] ),
+        .I4(\ALUOut_reg[5]_1 ),
+        .I5(\ALUOut[1]_i_11_n_0 ),
         .O(\ALUOut[1]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h8880008000000000)) 
+    .INIT(64'hB8FFB833B8CCB800)) 
     \ALUOut[1]_i_8 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(Q[31]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [31]),
-        .I5(\ALUOut[2]_i_6_n_0 ),
+       (.I0(\ALUOut[2]_i_21_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[2]_i_22_n_0 ),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .I4(\ALUOut[1]_i_12_n_0 ),
+        .I5(\ALUOut[1]_i_13_n_0 ),
         .O(\ALUOut[1]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT5 #(
-    .INIT(32'h00008A80)) 
+    .INIT(32'h0000A088)) 
     \ALUOut[1]_i_9 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\registers_reg[30][31] [31]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(Q[31]),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut[14]_i_12_n_0 ),
+        .I1(\PC_reg[31]_0 [1]),
+        .I2(Q[1]),
+        .I3(\ALUOut[15]_i_8_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
         .O(\ALUOut[1]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'h3077337730440044)) 
-    \ALUOut[20]_i_1 
-       (.I0(\ALUOut_reg[20]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut[20]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [20]));
-  LUT5 #(
-    .INIT(32'h00000777)) 
-    \ALUOut[20]_i_10 
-       (.I0(\ALUOut[20]_i_18_n_0 ),
-        .I1(\ALUOut[31]_i_8_n_0 ),
-        .I2(\ALUOut[27]_i_5_n_0 ),
-        .I3(\ALUOut[21]_i_11_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
-        .O(\ALUOut[20]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair102" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[20]_i_11 
-       (.I0(\ALUOut[22]_i_12_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[20]_i_19_n_0 ),
-        .O(\ALUOut[20]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair96" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[20]_i_12 
-       (.I0(\ALUOut[20]_i_20_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[22]_i_13_n_0 ),
-        .O(\ALUOut[20]_i_12_n_0 ));
   LUT5 #(
     .INIT(32'hFFE8E800)) 
-    \ALUOut[20]_i_13 
-       (.I0(\ALUOut[17]_i_15_n_0 ),
+    \ALUOut[20]_i_10 
+       (.I0(\ALUOut[17]_i_14_n_0 ),
         .I1(alu_A[16]),
-        .I2(\ALUOut[17]_i_13_n_0 ),
+        .I2(\ALUOut[17]_i_12_n_0 ),
         .I3(alu_A[17]),
-        .I4(\ALUOut[17]_i_16_n_0 ),
-        .O(\ALUOut[20]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair137" *) 
+        .I4(\ALUOut[17]_i_15_n_0 ),
+        .O(\ALUOut[20]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair111" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[20]_i_14 
-       (.I0(\registers_reg[30][31] [18]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[18]),
+    .INIT(8'hCA)) 
+    \ALUOut[20]_i_11 
+       (.I0(\PC_reg[31]_0 [18]),
+        .I1(Q[18]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[18]));
   LUT5 #(
-    .INIT(32'hFFEAEAEA)) 
-    \ALUOut[20]_i_15 
-       (.I0(\CPSR[1]_i_7_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [18]),
-        .I3(\state_reg[0]_1 [18]),
-        .I4(\ALUOut[20]_i_21_n_0 ),
-        .O(\ALUOut[20]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair138" *) 
+    .INIT(32'h2F232C20)) 
+    \ALUOut[20]_i_12 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [18]),
+        .I4(\state_reg[0]_1 [18]),
+        .O(\ALUOut[20]_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair110" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[20]_i_16 
-       (.I0(\registers_reg[30][31] [19]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[19]),
+    .INIT(8'hCA)) 
+    \ALUOut[20]_i_13 
+       (.I0(\PC_reg[31]_0 [19]),
+        .I1(Q[19]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[19]));
   LUT5 #(
-    .INIT(32'hFFEAEAEA)) 
+    .INIT(32'h2F232C20)) 
+    \ALUOut[20]_i_14 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [19]),
+        .I4(\state_reg[0]_1 [19]),
+        .O(\ALUOut[20]_i_14_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair83" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \ALUOut[20]_i_15 
+       (.I0(\ALUOut[22]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[20]_i_19_n_0 ),
+        .O(\ALUOut[20]_i_15_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair92" *) 
+  LUT3 #(
+    .INIT(8'h5C)) 
+    \ALUOut[20]_i_16 
+       (.I0(\ALUOut[23]_i_20_n_0 ),
+        .I1(\ALUOut[20]_i_20_n_0 ),
+        .I2(\ALUOut[29]_i_12_n_0 ),
+        .O(\ALUOut[20]_i_16_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair84" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \ALUOut[20]_i_17 
-       (.I0(\CPSR[1]_i_7_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [19]),
-        .I3(\state_reg[0]_1 [19]),
-        .I4(\ALUOut[20]_i_21_n_0 ),
+       (.I0(\ALUOut[21]_i_14_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[20]_i_21_n_0 ),
         .O(\ALUOut[20]_i_17_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair67" *) 
+  (* SOFT_HLUTNM = "soft_lutpair89" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[20]_i_18 
-       (.I0(\ALUOut_reg[22]_i_14_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[18]_i_17_n_0 ),
+       (.I0(\ALUOut[20]_i_22_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[22]_i_12_n_0 ),
         .O(\ALUOut[20]_i_18_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFF0FFF5F5F3F3)) 
     \ALUOut[20]_i_19 
        (.I0(alu_A[28]),
         .I1(alu_A[20]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[31]_i_19_n_0 ),
         .I3(alu_A[24]),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
         .O(\ALUOut[20]_i_19_n_0 ));
   LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
+    .INIT(64'h8BB8BBBB8BB88888)) 
+    \ALUOut[20]_i_2 
+       (.I0(\ALUOut[29]_i_3_n_0 ),
+        .I1(\ALUOut[31]_i_12_n_0 ),
+        .I2(\ALUOut[20]_i_4_n_0 ),
+        .I3(\ALUOut[20]_i_5_n_0 ),
+        .I4(\ALUOut[31]_i_15_n_0 ),
+        .I5(\ALUOut[20]_i_6_n_0 ),
+        .O(\ALUOut[20]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFF5FFF5FF03FFF3)) 
     \ALUOut[20]_i_20 
-       (.I0(alu_A[5]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[13]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[24]_i_21_n_0 ),
+       (.I0(alu_A[29]),
+        .I1(alu_A[21]),
+        .I2(\ALUOut[2]_i_13_n_0 ),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(alu_A[25]),
+        .I5(\ALUOut[31]_i_20_n_0 ),
         .O(\ALUOut[20]_i_20_n_0 ));
   LUT6 #(
-    .INIT(64'h0719131D148C108C)) 
+    .INIT(64'hFF00FC0CFAAAFAAA)) 
     \ALUOut[20]_i_21 
-       (.I0(\state_reg[5]_0 [1]),
-        .I1(\state_reg[5]_0 [2]),
-        .I2(\state_reg[5]_0 [3]),
-        .I3(\state_reg[5]_0 [0]),
-        .I4(state),
-        .I5(\state_reg[5]_0 [4]),
+       (.I0(\ALUOut[20]_i_23_n_0 ),
+        .I1(alu_A[24]),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(alu_A[31]),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
         .O(\ALUOut[20]_i_21_n_0 ));
   LUT6 #(
-    .INIT(64'h6996FFFF69960000)) 
+    .INIT(64'h00B8FFFF00B80000)) 
+    \ALUOut[20]_i_22 
+       (.I0(alu_A[5]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[13]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[24]_i_13_n_0 ),
+        .O(\ALUOut[20]_i_22_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000BB8BB888)) 
+    \ALUOut[20]_i_23 
+       (.I0(alu_A[28]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[20]),
+        .I4(\PC_reg[31]_0 [20]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[20]_i_23_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000015105050151)) 
     \ALUOut[20]_i_3 
-       (.I0(\ALUOut[20]_i_6_n_0 ),
+       (.I0(\ALUOut_reg[5]_1 ),
         .I1(\ALUOut[20]_i_7_n_0 ),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(alu_A[20]),
-        .I4(\ALUOut[31]_i_15_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut[20]_i_8_n_0 ),
+        .I4(\ALUOut_reg[9] ),
         .I5(\ALUOut[20]_i_9_n_0 ),
         .O(\ALUOut[20]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hBBB888B8BBBBBBBB)) 
+    .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[20]_i_4 
        (.I0(\ALUOut[20]_i_10_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[20]_i_11_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[21]_i_9_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
+        .I1(alu_A[18]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[20]_i_12_n_0 ),
+        .I4(alu_A[19]),
+        .I5(\ALUOut[20]_i_14_n_0 ),
         .O(\ALUOut[20]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT5 #(
-    .INIT(32'hBABFFFFF)) 
+    .INIT(32'hD82727D8)) 
     \ALUOut[20]_i_5 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[20]_i_12_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[21]_i_10_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[20]),
+        .I2(\PC_reg[31]_0 [20]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[21]_i_12_n_0 ),
         .O(\ALUOut[20]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
+    .INIT(64'h7676686876687668)) 
     \ALUOut[20]_i_6 
-       (.I0(\ALUOut[20]_i_13_n_0 ),
-        .I1(alu_A[18]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[20]_i_15_n_0 ),
-        .I4(alu_A[19]),
-        .I5(\ALUOut[20]_i_17_n_0 ),
+       (.I0(\ALUOut[21]_i_12_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [20]),
+        .I4(Q[20]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[20]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
-  LUT3 #(
-    .INIT(8'hF8)) 
+  LUT4 #(
+    .INIT(16'hE2FF)) 
     \ALUOut[20]_i_7 
-       (.I0(\CPSR_reg[1]_0 [20]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
+       (.I0(\ALUOut[20]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[20]_i_16_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[20]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair140" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT5 #(
+    .INIT(32'h40704F7F)) 
     \ALUOut[20]_i_8 
-       (.I0(\registers_reg[30][31] [20]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[20]),
-        .O(alu_A[20]));
-  LUT6 #(
-    .INIT(64'h7668767676686868)) 
+       (.I0(\ALUOut[21]_i_9_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[20]_i_17_n_0 ),
+        .I4(alu_A[31]),
+        .O(\ALUOut[20]_i_8_n_0 ));
+  LUT4 #(
+    .INIT(16'h57F7)) 
     \ALUOut[20]_i_9 
-       (.I0(\ALUOut[20]_i_7_n_0 ),
-        .I1(\ALUOut_reg[5] ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\registers_reg[30][31] [20]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[20]),
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[21]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[20]_i_18_n_0 ),
         .O(\ALUOut[20]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h3077337730440044)) 
     \ALUOut[21]_i_1 
        (.I0(\ALUOut_reg[21]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
         .I5(\ALUOut_reg[21]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [21]));
-  (* SOFT_HLUTNM = "soft_lutpair99" *) 
+        .O(\state_reg[5]_3 [21]));
+  LUT6 #(
+    .INIT(64'h3808080838380838)) 
+    \ALUOut[21]_i_10 
+       (.I0(alu_A[31]),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[22]_i_9_n_0 ),
+        .I5(\ALUOut[20]_i_16_n_0 ),
+        .O(\ALUOut[21]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair80" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \ALUOut[21]_i_10 
-       (.I0(\ALUOut[21]_i_13_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[23]_i_14_n_0 ),
-        .O(\ALUOut[21]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair110" *) 
-  LUT3 #(
-    .INIT(8'h74)) 
     \ALUOut[21]_i_11 
-       (.I0(\ALUOut[23]_i_15_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[18]_i_13_n_0 ),
+       (.I0(\ALUOut[21]_i_16_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[23]_i_22_n_0 ),
         .O(\ALUOut[21]_i_11_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF5FFF5FF03FFF3)) 
-    \ALUOut[21]_i_12 
-       (.I0(alu_A[29]),
-        .I1(alu_A[21]),
-        .I2(\ALUOut[2]_i_6_n_0 ),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(alu_A[25]),
-        .I5(\ALUOut[31]_i_19_n_0 ),
-        .O(\ALUOut[21]_i_12_n_0 ));
-  LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
-    \ALUOut[21]_i_13 
-       (.I0(alu_A[6]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[14]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[21]_i_14_n_0 ),
-        .O(\ALUOut[21]_i_13_n_0 ));
   LUT5 #(
-    .INIT(32'h30BB3088)) 
+    .INIT(32'h2F232C20)) 
+    \ALUOut[21]_i_12 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [20]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[21]_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[21]_i_13 
+       (.I0(\PC_reg[31]_0 [20]),
+        .I1(Q[20]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[20]));
+  LUT6 #(
+    .INIT(64'hF0E2FFFFF0E20000)) 
     \ALUOut[21]_i_14 
-       (.I0(alu_A[10]),
+       (.I0(alu_A[26]),
         .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[2]),
+        .I2(alu_A[31]),
         .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(alu_A[18]),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[21]_i_17_n_0 ),
         .O(\ALUOut[21]_i_14_n_0 ));
   LUT6 #(
-    .INIT(64'hBBB888B8BBBBBBBB)) 
+    .INIT(64'hFFFCFFAA0030AAAA)) 
+    \ALUOut[21]_i_15 
+       (.I0(\ALUOut[21]_i_18_n_0 ),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[25]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(alu_A[31]),
+        .O(\ALUOut[21]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'h00B8FFFF00B80000)) 
+    \ALUOut[21]_i_16 
+       (.I0(alu_A[6]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[14]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[21]_i_19_n_0 ),
+        .O(\ALUOut[21]_i_16_n_0 ));
+  LUT5 #(
+    .INIT(32'hFF00B8B8)) 
+    \ALUOut[21]_i_17 
+       (.I0(alu_A[30]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[22]),
+        .I3(alu_A[31]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[21]_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000BB8BB888)) 
+    \ALUOut[21]_i_18 
+       (.I0(alu_A[29]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[21]),
+        .I4(\PC_reg[31]_0 [21]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[21]_i_18_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \ALUOut[21]_i_19 
+       (.I0(alu_A[10]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[2]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(alu_A[18]),
+        .O(\ALUOut[21]_i_19_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000077FF5FFF)) 
     \ALUOut[21]_i_4 
-       (.I0(\ALUOut[21]_i_8_n_0 ),
-        .I1(\ALUOut_reg[2] ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[21]_i_8_n_0 ),
         .I2(\ALUOut[21]_i_9_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[22]_i_9_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[21]_i_10_n_0 ),
         .O(\ALUOut[21]_i_4_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[21]_i_5 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[21]_i_10_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[21]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
         .I3(\ALUOut[22]_i_10_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[21]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
+    .INIT(64'h7676686876687668)) 
     \ALUOut[21]_i_6 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [21]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[21]),
+       (.I0(\ALUOut[23]_i_12_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [21]),
+        .I4(Q[21]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[21]_i_6_n_0 ));
   LUT6 #(
     .INIT(64'h2BD4E817D42B17E8)) 
     \ALUOut[21]_i_7 
-       (.I0(\ALUOut[20]_i_7_n_0 ),
+       (.I0(\ALUOut[21]_i_12_n_0 ),
         .I1(alu_A[20]),
-        .I2(\ALUOut[20]_i_6_n_0 ),
-        .I3(\ALUOut[24]_i_16_n_0 ),
-        .I4(\ALUOut[23]_i_7_n_0 ),
+        .I2(\ALUOut[20]_i_4_n_0 ),
+        .I3(\ALUOut[23]_i_12_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
         .I5(alu_A[21]),
         .O(\ALUOut[21]_i_7_n_0 ));
-  LUT5 #(
-    .INIT(32'h00000777)) 
+  LUT6 #(
+    .INIT(64'hFAEAFAEAFFFF0000)) 
     \ALUOut[21]_i_8 
-       (.I0(\ALUOut[22]_i_11_n_0 ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[31]_i_8_n_0 ),
-        .I3(\ALUOut[21]_i_11_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
+       (.I0(\ALUOut[24]_i_11_n_0 ),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[31]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[21]_i_14_n_0 ),
+        .I5(\ALUOut[29]_i_12_n_0 ),
         .O(\ALUOut[21]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair106" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'h74)) 
     \ALUOut[21]_i_9 
-       (.I0(\ALUOut[23]_i_13_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[21]_i_12_n_0 ),
+       (.I0(\ALUOut[23]_i_21_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[21]_i_15_n_0 ),
         .O(\ALUOut[21]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h3077337730440044)) 
     \ALUOut[22]_i_1 
        (.I0(\ALUOut_reg[22]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
         .I5(\ALUOut_reg[22]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [22]));
-  (* SOFT_HLUTNM = "soft_lutpair96" *) 
+        .O(\state_reg[5]_3 [22]));
+  (* SOFT_HLUTNM = "soft_lutpair89" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[22]_i_10 
-       (.I0(\ALUOut[22]_i_13_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[24]_i_19_n_0 ),
+       (.I0(\ALUOut[22]_i_12_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[24]_i_12_n_0 ),
         .O(\ALUOut[22]_i_10_n_0 ));
   LUT6 #(
-    .INIT(64'hFAEAFAEAFFFF0000)) 
-    \ALUOut[22]_i_11 
-       (.I0(\ALUOut[24]_i_17_n_0 ),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[31]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut_reg[22]_i_14_n_0 ),
-        .I5(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[22]_i_11_n_0 ));
-  LUT6 #(
     .INIT(64'hFFFFF0FFF5F5F3F3)) 
-    \ALUOut[22]_i_12 
+    \ALUOut[22]_i_11 
        (.I0(alu_A[30]),
         .I1(alu_A[22]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[31]_i_19_n_0 ),
         .I3(alu_A[26]),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[22]_i_12_n_0 ));
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
+        .O(\ALUOut[22]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'h00B8FFFF00B80000)) 
-    \ALUOut[22]_i_13 
+    \ALUOut[22]_i_12 
        (.I0(alu_A[7]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I1(\ALUOut[31]_i_20_n_0 ),
         .I2(alu_A[15]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[22]_i_15_n_0 ),
-        .O(\ALUOut[22]_i_13_n_0 ));
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[22]_i_13_n_0 ),
+        .O(\ALUOut[22]_i_12_n_0 ));
   LUT5 #(
     .INIT(32'h30BB3088)) 
-    \ALUOut[22]_i_15 
+    \ALUOut[22]_i_13 
        (.I0(alu_A[11]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I1(\ALUOut[31]_i_20_n_0 ),
         .I2(alu_A[3]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[31]_i_19_n_0 ),
         .I4(alu_A[19]),
-        .O(\ALUOut[22]_i_15_n_0 ));
-  LUT5 #(
-    .INIT(32'hFF00B8B8)) 
-    \ALUOut[22]_i_16 
-       (.I0(alu_A[30]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[22]),
-        .I3(alu_A[31]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[22]_i_16_n_0 ));
+        .O(\ALUOut[22]_i_13_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFF0000FFE200E2)) 
-    \ALUOut[22]_i_17 
-       (.I0(Q[26]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [26]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(alu_A[31]),
-        .I5(\ALUOut[31]_i_19_n_0 ),
-        .O(\ALUOut[22]_i_17_n_0 ));
-  LUT6 #(
-    .INIT(64'hBBB888B8BBBBBBBB)) 
+    .INIT(64'h8B8B8BBBBBBB8BBB)) 
     \ALUOut[22]_i_4 
        (.I0(\ALUOut[22]_i_8_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[22]_i_9_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[23]_i_10_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[22]_i_9_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[23]_i_15_n_0 ),
         .O(\ALUOut[22]_i_4_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[22]_i_5 
-       (.I0(\ALUOut_reg[2] ),
+       (.I0(\ALUOut_reg[5]_0 ),
         .I1(\ALUOut[22]_i_10_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[23]_i_11_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[23]_i_18_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[22]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
+    .INIT(64'h7676686876687668)) 
     \ALUOut[22]_i_6 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [22]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[22]),
+       (.I0(\ALUOut[23]_i_14_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [22]),
+        .I4(Q[22]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[22]_i_6_n_0 ));
   LUT6 #(
     .INIT(64'h2BD4E817D42B17E8)) 
     \ALUOut[22]_i_7 
-       (.I0(\ALUOut[24]_i_16_n_0 ),
+       (.I0(\ALUOut[23]_i_12_n_0 ),
         .I1(alu_A[21]),
-        .I2(\ALUOut[24]_i_14_n_0 ),
-        .I3(\ALUOut[25]_i_16_n_0 ),
-        .I4(\ALUOut[23]_i_7_n_0 ),
+        .I2(\ALUOut[23]_i_10_n_0 ),
+        .I3(\ALUOut[23]_i_14_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
         .I5(alu_A[22]),
         .O(\ALUOut[22]_i_7_n_0 ));
   LUT5 #(
-    .INIT(32'h00007707)) 
+    .INIT(32'hD010DF1F)) 
     \ALUOut[22]_i_8 
-       (.I0(\ALUOut[22]_i_11_n_0 ),
-        .I1(\ALUOut[31]_i_8_n_0 ),
-        .I2(\ALUOut[27]_i_5_n_0 ),
-        .I3(\ALUOut[23]_i_12_n_0 ),
-        .I4(\ALUOut[10]_i_14_n_0 ),
+       (.I0(\ALUOut[21]_i_8_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[23]_i_17_n_0 ),
+        .I4(alu_A[31]),
         .O(\ALUOut[22]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair102" *) 
+  (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT3 #(
-    .INIT(8'h74)) 
+    .INIT(8'h8B)) 
     \ALUOut[22]_i_9 
-       (.I0(\ALUOut[24]_i_17_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[22]_i_12_n_0 ),
+       (.I0(\ALUOut[24]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[22]_i_11_n_0 ),
         .O(\ALUOut[22]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'h3077337730440044)) 
-    \ALUOut[23]_i_1 
-       (.I0(\ALUOut_reg[23]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut[23]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [23]));
-  (* SOFT_HLUTNM = "soft_lutpair92" *) 
-  LUT3 #(
-    .INIT(8'h74)) 
+    .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[23]_i_10 
-       (.I0(\ALUOut[25]_i_18_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[23]_i_13_n_0 ),
+       (.I0(\ALUOut[23]_i_19_n_0 ),
+        .I1(alu_A[19]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[20]_i_14_n_0 ),
+        .I4(alu_A[20]),
+        .I5(\ALUOut[21]_i_12_n_0 ),
         .O(\ALUOut[23]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair99" *) 
+  (* SOFT_HLUTNM = "soft_lutpair127" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hCA)) 
     \ALUOut[23]_i_11 
-       (.I0(\ALUOut[23]_i_14_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[25]_i_19_n_0 ),
-        .O(\ALUOut[23]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair110" *) 
+       (.I0(\PC_reg[31]_0 [21]),
+        .I1(Q[21]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[21]));
+  LUT5 #(
+    .INIT(32'h2F232C20)) 
+    \ALUOut[23]_i_12 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [21]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[23]_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair126" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[23]_i_13 
+       (.I0(\PC_reg[31]_0 [22]),
+        .I1(Q[22]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[22]));
+  LUT5 #(
+    .INIT(32'h2F232C20)) 
+    \ALUOut[23]_i_14 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [22]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[23]_i_14_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \ALUOut[23]_i_12 
-       (.I0(\ALUOut[25]_i_25_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[23]_i_15_n_0 ),
-        .O(\ALUOut[23]_i_12_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFCF44CF77)) 
-    \ALUOut[23]_i_13 
-       (.I0(alu_A[27]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[31]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[23]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[23]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h88B8BBBB88B88888)) 
-    \ALUOut[23]_i_14 
-       (.I0(\ALUOut[23]_i_16_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[12]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[27]_i_17_n_0 ),
-        .O(\ALUOut[23]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'h0F0F0F0F0F440F77)) 
     \ALUOut[23]_i_15 
-       (.I0(alu_A[27]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[31]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(alu_A[23]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
+       (.I0(\ALUOut[25]_i_18_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[23]_i_20_n_0 ),
         .O(\ALUOut[23]_i_15_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
-    .INIT(32'h30BB3088)) 
+    .INIT(32'h0F335F77)) 
     \ALUOut[23]_i_16 
-       (.I0(alu_A[8]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[0]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(alu_A[16]),
+       (.I0(\ALUOut[31]_i_20_n_0 ),
+        .I1(\PC_reg[31]_0 [31]),
+        .I2(Q[31]),
+        .I3(\ALUOut[15]_i_8_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .O(\ALUOut[23]_i_16_n_0 ));
   LUT6 #(
-    .INIT(64'h6996FFFF69960000)) 
-    \ALUOut[23]_i_3 
-       (.I0(\ALUOut[24]_i_8_n_0 ),
-        .I1(\ALUOut[23]_i_6_n_0 ),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(alu_A[23]),
-        .I4(\ALUOut[31]_i_15_n_0 ),
-        .I5(\ALUOut[23]_i_8_n_0 ),
-        .O(\ALUOut[23]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hC5C5CFC0CFCFCFCF)) 
-    \ALUOut[23]_i_4 
-       (.I0(\ALUOut[24]_i_11_n_0 ),
-        .I1(\ALUOut[23]_i_9_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut[23]_i_10_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[23]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hBABFFFFF)) 
-    \ALUOut[23]_i_5 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[23]_i_11_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[24]_i_13_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[23]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+    .INIT(64'h0037FFFF00370000)) 
+    \ALUOut[23]_i_17 
+       (.I0(\ALUOut[31]_i_19_n_0 ),
+        .I1(alu_A[31]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[25]_i_18_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .I5(\ALUOut[23]_i_21_n_0 ),
+        .O(\ALUOut[23]_i_17_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair80" *) 
   LUT3 #(
-    .INIT(8'hF8)) 
-    \ALUOut[23]_i_6 
-       (.I0(\CPSR_reg[1]_0 [23]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[23]_i_6_n_0 ));
+    .INIT(8'hB8)) 
+    \ALUOut[23]_i_18 
+       (.I0(\ALUOut[23]_i_22_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[25]_i_20_n_0 ),
+        .O(\ALUOut[23]_i_18_n_0 ));
   LUT6 #(
-    .INIT(64'h1000F0F010000000)) 
+    .INIT(64'hE800FFE8FFE8E800)) 
+    \ALUOut[23]_i_19 
+       (.I0(\ALUOut[23]_i_23_n_0 ),
+        .I1(alu_A[17]),
+        .I2(\ALUOut[17]_i_15_n_0 ),
+        .I3(alu_A[18]),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[20]_i_12_n_0 ),
+        .O(\ALUOut[23]_i_19_n_0 ));
+  LUT6 #(
+    .INIT(64'h8BB8BBBB8BB88888)) 
+    \ALUOut[23]_i_2 
+       (.I0(\ALUOut[29]_i_3_n_0 ),
+        .I1(\ALUOut[31]_i_12_n_0 ),
+        .I2(\ALUOut[23]_i_4_n_0 ),
+        .I3(\ALUOut[23]_i_5_n_0 ),
+        .I4(\ALUOut[31]_i_15_n_0 ),
+        .I5(\ALUOut[23]_i_6_n_0 ),
+        .O(\ALUOut[23]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000030BB3088)) 
+    \ALUOut[23]_i_20 
+       (.I0(alu_A[27]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[31]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(alu_A[23]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[23]_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'h0F0F0F0F0F440F77)) 
+    \ALUOut[23]_i_21 
+       (.I0(alu_A[27]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[31]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(alu_A[23]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[23]_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'h88B8BBBB88B88888)) 
+    \ALUOut[23]_i_22 
+       (.I0(\ALUOut[23]_i_24_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[12]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[27]_i_13_n_0 ),
+        .O(\ALUOut[23]_i_22_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFF110F1100000)) 
+    \ALUOut[23]_i_23 
+       (.I0(\ALUOut[23]_i_25_n_0 ),
+        .I1(\ALUOut[23]_i_26_n_0 ),
+        .I2(alu_A[15]),
+        .I3(\ALUOut[23]_i_27_n_0 ),
+        .I4(alu_A[16]),
+        .I5(\ALUOut[17]_i_12_n_0 ),
+        .O(\ALUOut[23]_i_23_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \ALUOut[23]_i_24 
+       (.I0(alu_A[8]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[0]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(alu_A[16]),
+        .O(\ALUOut[23]_i_24_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h27000027)) 
+    \ALUOut[23]_i_25 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[14]),
+        .I2(\PC_reg[31]_0 [14]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[14]_i_8_n_0 ),
+        .O(\ALUOut[23]_i_25_n_0 ));
+  LUT6 #(
+    .INIT(64'h0202022A022A2A2A)) 
+    \ALUOut[23]_i_26 
+       (.I0(\ALUOut[23]_i_28_n_0 ),
+        .I1(\ALUOut[23]_i_29_n_0 ),
+        .I2(alu_A[13]),
+        .I3(\ALUOut[23]_i_30_n_0 ),
+        .I4(alu_A[12]),
+        .I5(\ALUOut[17]_i_23_n_0 ),
+        .O(\ALUOut[23]_i_26_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair69" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \ALUOut[23]_i_27 
+       (.I0(\ALUOut[16]_i_13_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[23]_i_27_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'hFF2727FF)) 
+    \ALUOut[23]_i_28 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[14]),
+        .I2(\PC_reg[31]_0 [14]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[14]_i_8_n_0 ),
+        .O(\ALUOut[23]_i_28_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair136" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \ALUOut[23]_i_29 
+       (.I0(\ALUOut[13]_i_8_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[23]_i_29_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000015105050151)) 
+    \ALUOut[23]_i_3 
+       (.I0(\ALUOut_reg[5]_1 ),
+        .I1(\ALUOut[23]_i_7_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut[23]_i_8_n_0 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut[23]_i_9_n_0 ),
+        .O(\ALUOut[23]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair146" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \ALUOut[23]_i_30 
+       (.I0(\ALUOut[12]_i_8_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[23]_i_30_n_0 ));
+  LUT6 #(
+    .INIT(64'h8FEF0E08FEF880E0)) 
+    \ALUOut[23]_i_4 
+       (.I0(\ALUOut[23]_i_10_n_0 ),
+        .I1(alu_A[21]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[23]_i_12_n_0 ),
+        .I4(alu_A[22]),
+        .I5(\ALUOut[23]_i_14_n_0 ),
+        .O(\ALUOut[23]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  LUT5 #(
+    .INIT(32'hD82727D8)) 
+    \ALUOut[23]_i_5 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[23]),
+        .I2(\PC_reg[31]_0 [23]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[25]_i_11_n_0 ),
+        .O(\ALUOut[23]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h7676686876687668)) 
+    \ALUOut[23]_i_6 
+       (.I0(\ALUOut[25]_i_11_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [23]),
+        .I4(Q[23]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[23]_i_6_n_0 ));
+  LUT4 #(
+    .INIT(16'h57F7)) 
     \ALUOut[23]_i_7 
-       (.I0(op_to_aluop[2]),
-        .I1(op_to_aluop[0]),
-        .I2(\ALUOut_reg[2] ),
-        .I3(op_to_aluop[1]),
-        .I4(ALUOpcodeSrc),
-        .I5(\state_reg[2]_0 ),
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[23]_i_15_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[24]_i_9_n_0 ),
         .O(\ALUOut[23]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
+    .INIT(64'h2F2000002F20FFFF)) 
     \ALUOut[23]_i_8 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [23]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[23]),
+       (.I0(\ALUOut[23]_i_16_n_0 ),
+        .I1(\ALUOut[24]_i_9_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[23]_i_17_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(alu_A[31]),
         .O(\ALUOut[23]_i_8_n_0 ));
-  LUT5 #(
-    .INIT(32'hB800B8FF)) 
+  LUT4 #(
+    .INIT(16'h57F7)) 
     \ALUOut[23]_i_9 
-       (.I0(\ALUOut[24]_i_18_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[23]_i_12_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(alu_A[31]),
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[24]_i_10_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[23]_i_18_n_0 ),
         .O(\ALUOut[23]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h3077337730440044)) 
     \ALUOut[24]_i_1 
        (.I0(\ALUOut_reg[24]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut[24]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [24]));
-  LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[24]_i_3_n_0 ),
+        .O(\state_reg[5]_3 [24]));
+  (* SOFT_HLUTNM = "soft_lutpair88" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \ALUOut[24]_i_10 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [24]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[24]),
+       (.I0(\ALUOut[24]_i_12_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[26]_i_16_n_0 ),
         .O(\ALUOut[24]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair108" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[24]_i_11 
-       (.I0(\ALUOut[26]_i_13_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[24]_i_17_n_0 ),
-        .O(\ALUOut[24]_i_11_n_0 ));
-  LUT5 #(
-    .INIT(32'hB800B8FF)) 
-    \ALUOut[24]_i_12 
-       (.I0(\ALUOut[25]_i_17_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[24]_i_18_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(alu_A[31]),
-        .O(\ALUOut[24]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair95" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[24]_i_13 
-       (.I0(\ALUOut[24]_i_19_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[26]_i_15_n_0 ),
-        .O(\ALUOut[24]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
-    \ALUOut[24]_i_14 
-       (.I0(\ALUOut[24]_i_20_n_0 ),
-        .I1(alu_A[19]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[20]_i_17_n_0 ),
-        .I4(alu_A[20]),
-        .I5(\ALUOut[20]_i_7_n_0 ),
-        .O(\ALUOut[24]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair141" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[24]_i_15 
-       (.I0(\registers_reg[30][31] [21]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[21]),
-        .O(alu_A[21]));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
-  LUT3 #(
-    .INIT(8'hF8)) 
-    \ALUOut[24]_i_16 
-       (.I0(\CPSR_reg[1]_0 [21]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[24]_i_16_n_0 ));
   LUT5 #(
     .INIT(32'h00005404)) 
-    \ALUOut[24]_i_17 
-       (.I0(\ALUOut[31]_i_20_n_0 ),
+    \ALUOut[24]_i_11 
+       (.I0(\ALUOut[31]_i_19_n_0 ),
         .I1(alu_A[24]),
-        .I2(\ALUOut[2]_i_6_n_0 ),
+        .I2(\ALUOut[2]_i_13_n_0 ),
         .I3(alu_A[28]),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .O(\ALUOut[24]_i_17_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000003F357F7)) 
-    \ALUOut[24]_i_18 
-       (.I0(\ALUOut[31]_i_20_n_0 ),
-        .I1(Q[31]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [31]),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[24]_i_11_n_0 ),
-        .O(\ALUOut[24]_i_18_n_0 ));
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .O(\ALUOut[24]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'h88B8BBBB88B88888)) 
-    \ALUOut[24]_i_19 
-       (.I0(\ALUOut[24]_i_21_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
+    \ALUOut[24]_i_12 
+       (.I0(\ALUOut[24]_i_13_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
         .I2(alu_A[13]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[27]_i_18_n_0 ),
-        .O(\ALUOut[24]_i_19_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFE8E800)) 
-    \ALUOut[24]_i_20 
-       (.I0(\ALUOut[25]_i_29_n_0 ),
-        .I1(alu_A[17]),
-        .I2(\ALUOut[17]_i_16_n_0 ),
-        .I3(alu_A[18]),
-        .I4(\ALUOut[18]_i_12_n_0 ),
-        .O(\ALUOut[24]_i_20_n_0 ));
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[28]_i_21_n_0 ),
+        .O(\ALUOut[24]_i_12_n_0 ));
   LUT5 #(
     .INIT(32'h30BB3088)) 
-    \ALUOut[24]_i_21 
+    \ALUOut[24]_i_13 
        (.I0(alu_A[9]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I1(\ALUOut[31]_i_20_n_0 ),
         .I2(alu_A[1]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[31]_i_19_n_0 ),
         .I4(alu_A[17]),
-        .O(\ALUOut[24]_i_21_n_0 ));
+        .O(\ALUOut[24]_i_13_n_0 ));
   LUT6 #(
-    .INIT(64'h17E8FFFF17E80000)) 
-    \ALUOut[24]_i_3 
-       (.I0(\ALUOut[24]_i_6_n_0 ),
-        .I1(alu_A[23]),
-        .I2(\ALUOut[24]_i_8_n_0 ),
-        .I3(\ALUOut[24]_i_9_n_0 ),
-        .I4(\ALUOut[31]_i_15_n_0 ),
-        .I5(\ALUOut[24]_i_10_n_0 ),
-        .O(\ALUOut[24]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hCFC5C0C5CFCFCFCF)) 
+    .INIT(64'h8B8B8BBBBBBB8BBB)) 
     \ALUOut[24]_i_4 
-       (.I0(\ALUOut[24]_i_11_n_0 ),
-        .I1(\ALUOut[24]_i_12_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[25]_i_12_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut[24]_i_8_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[24]_i_9_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[25]_i_14_n_0 ),
         .O(\ALUOut[24]_i_4_n_0 ));
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
     \ALUOut[24]_i_5 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[24]_i_13_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[25]_i_13_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[24]_i_10_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[25]_i_17_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[24]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
+  LUT6 #(
+    .INIT(64'h7676686876687668)) 
     \ALUOut[24]_i_6 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [23]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
+       (.I0(\ALUOut[25]_i_13_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [24]),
+        .I4(Q[24]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[24]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair143" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT6 #(
+    .INIT(64'h2BD4E817D42B17E8)) 
     \ALUOut[24]_i_7 
-       (.I0(\registers_reg[30][31] [23]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[23]),
-        .O(alu_A[23]));
+       (.I0(\ALUOut[25]_i_11_n_0 ),
+        .I1(alu_A[23]),
+        .I2(\ALUOut[23]_i_4_n_0 ),
+        .I3(\ALUOut[25]_i_13_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(alu_A[24]),
+        .O(\ALUOut[24]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
+    .INIT(64'h88B8000088B8FFFF)) 
     \ALUOut[24]_i_8 
-       (.I0(\ALUOut[24]_i_14_n_0 ),
-        .I1(alu_A[21]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[24]_i_16_n_0 ),
-        .I4(alu_A[22]),
-        .I5(\ALUOut[25]_i_16_n_0 ),
+       (.I0(\ALUOut[25]_i_16_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[23]_i_16_n_0 ),
+        .I3(\ALUOut[24]_i_9_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(alu_A[31]),
         .O(\ALUOut[24]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
-  LUT5 #(
-    .INIT(32'h99999666)) 
+  (* SOFT_HLUTNM = "soft_lutpair94" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \ALUOut[24]_i_9 
-       (.I0(alu_A[24]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [24]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
+       (.I0(\ALUOut[26]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[24]_i_11_n_0 ),
         .O(\ALUOut[24]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'h3077337730440044)) 
-    \ALUOut[25]_i_1 
-       (.I0(\ALUOut_reg[25]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut[25]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [25]));
-  LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
     \ALUOut[25]_i_10 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [25]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[25]),
-        .O(\ALUOut[25]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+       (.I0(\PC_reg[31]_0 [23]),
+        .I1(Q[23]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[23]));
   LUT5 #(
-    .INIT(32'hB800B8FF)) 
+    .INIT(32'h2F232C20)) 
     \ALUOut[25]_i_11 
-       (.I0(\ALUOut[26]_i_12_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[25]_i_17_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(alu_A[31]),
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [23]),
+        .I4(\state_reg[0]_1 [20]),
         .O(\ALUOut[25]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair92" *) 
+  (* SOFT_HLUTNM = "soft_lutpair126" *) 
   LUT3 #(
-    .INIT(8'h8B)) 
+    .INIT(8'hCA)) 
     \ALUOut[25]_i_12 
-       (.I0(\ALUOut[26]_i_14_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[25]_i_18_n_0 ),
-        .O(\ALUOut[25]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair98" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[25]_i_13 
-       (.I0(\ALUOut[25]_i_19_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[27]_i_15_n_0 ),
-        .O(\ALUOut[25]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF220F2200000)) 
-    \ALUOut[25]_i_14 
-       (.I0(\ALUOut[25]_i_20_n_0 ),
-        .I1(\ALUOut[25]_i_21_n_0 ),
-        .I2(alu_A[20]),
-        .I3(\ALUOut[25]_i_22_n_0 ),
-        .I4(alu_A[21]),
-        .I5(\ALUOut[25]_i_23_n_0 ),
-        .O(\ALUOut[25]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair142" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[25]_i_15 
-       (.I0(\registers_reg[30][31] [22]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[22]),
-        .O(alu_A[22]));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
-  LUT3 #(
-    .INIT(8'hF8)) 
-    \ALUOut[25]_i_16 
-       (.I0(\CPSR_reg[1]_0 [22]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[25]_i_16_n_0 ));
+       (.I0(\PC_reg[31]_0 [24]),
+        .I1(Q[24]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[24]));
   LUT5 #(
-    .INIT(32'h74FF7400)) 
-    \ALUOut[25]_i_17 
+    .INIT(32'h2F232C20)) 
+    \ALUOut[25]_i_13 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [24]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[25]_i_13_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
+  LUT3 #(
+    .INIT(8'h74)) 
+    \ALUOut[25]_i_14 
+       (.I0(\ALUOut[26]_i_14_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[25]_i_18_n_0 ),
+        .O(\ALUOut[25]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'h000F2222FF0F2222)) 
+    \ALUOut[25]_i_15 
+       (.I0(\ALUOut[23]_i_16_n_0 ),
+        .I1(\ALUOut[26]_i_15_n_0 ),
+        .I2(alu_A[31]),
+        .I3(\ALUOut[14]_i_12_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .I5(alu_A[28]),
+        .O(\ALUOut[25]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'h4700440047FF4400)) 
+    \ALUOut[25]_i_16 
        (.I0(alu_A[31]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[25]_i_24_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[25]_i_25_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[25]_i_19_n_0 ),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .I4(\ALUOut[23]_i_16_n_0 ),
+        .I5(\ALUOut[25]_i_18_n_0 ),
+        .O(\ALUOut[25]_i_16_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \ALUOut[25]_i_17 
+       (.I0(\ALUOut[25]_i_20_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[27]_i_12_n_0 ),
         .O(\ALUOut[25]_i_17_n_0 ));
   LUT5 #(
     .INIT(32'h00005404)) 
     \ALUOut[25]_i_18 
-       (.I0(\ALUOut[31]_i_20_n_0 ),
+       (.I0(\ALUOut[31]_i_19_n_0 ),
         .I1(alu_A[25]),
-        .I2(\ALUOut[2]_i_6_n_0 ),
+        .I2(\ALUOut[2]_i_13_n_0 ),
         .I3(alu_A[29]),
-        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
         .O(\ALUOut[25]_i_18_n_0 ));
-  LUT6 #(
-    .INIT(64'h2F20FFFF2F200000)) 
-    \ALUOut[25]_i_19 
-       (.I0(alu_A[10]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[25]_i_26_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[25]_i_27_n_0 ),
-        .O(\ALUOut[25]_i_19_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT5 #(
-    .INIT(32'hE2FFFFE2)) 
-    \ALUOut[25]_i_20 
-       (.I0(Q[19]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [19]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .I4(\ALUOut[20]_i_17_n_0 ),
-        .O(\ALUOut[25]_i_20_n_0 ));
-  LUT6 #(
-    .INIT(64'h0202022A022A2A2A)) 
-    \ALUOut[25]_i_21 
-       (.I0(\ALUOut[25]_i_28_n_0 ),
-        .I1(\ALUOut[18]_i_12_n_0 ),
-        .I2(alu_A[18]),
-        .I3(\ALUOut[17]_i_16_n_0 ),
-        .I4(alu_A[17]),
-        .I5(\ALUOut[25]_i_29_n_0 ),
-        .O(\ALUOut[25]_i_21_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
-    \ALUOut[25]_i_22 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [20]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[25]_i_22_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
-    \ALUOut[25]_i_23 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [21]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[25]_i_23_n_0 ));
-  LUT6 #(
-    .INIT(64'h5555555544477747)) 
-    \ALUOut[25]_i_24 
-       (.I0(alu_A[31]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
+    .INIT(32'h00005044)) 
+    \ALUOut[25]_i_19 
+       (.I0(\ALUOut[31]_i_19_n_0 ),
+        .I1(\PC_reg[31]_0 [27]),
         .I2(Q[27]),
         .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [27]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[25]_i_24_n_0 ));
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .O(\ALUOut[25]_i_19_n_0 ));
   LUT6 #(
-    .INIT(64'h5555555547444777)) 
-    \ALUOut[25]_i_25 
-       (.I0(alu_A[31]),
+    .INIT(64'hAAAAAAAAC300C3FF)) 
+    \ALUOut[25]_i_2 
+       (.I0(\ALUOut[29]_i_3_n_0 ),
+        .I1(\ALUOut[25]_i_4_n_0 ),
+        .I2(\ALUOut[25]_i_5_n_0 ),
+        .I3(\ALUOut[31]_i_15_n_0 ),
+        .I4(\ALUOut[25]_i_6_n_0 ),
+        .I5(\ALUOut[31]_i_12_n_0 ),
+        .O(\ALUOut[25]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h2F20FFFF2F200000)) 
+    \ALUOut[25]_i_20 
+       (.I0(alu_A[10]),
         .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[29]),
-        .I3(\ALUOut[2]_i_6_n_0 ),
-        .I4(alu_A[25]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[25]_i_25_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[25]_i_26 
-       (.I0(\registers_reg[30][31] [2]),
-        .I1(Q[2]),
         .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\registers_reg[30][31] [18]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[18]),
-        .O(\ALUOut[25]_i_26_n_0 ));
+        .I3(\ALUOut[25]_i_21_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[25]_i_22_n_0 ),
+        .O(\ALUOut[25]_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFCFC0C0AFA0AFA0)) 
+    \ALUOut[25]_i_21 
+       (.I0(\PC_reg[31]_0 [2]),
+        .I1(Q[2]),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(\PC_reg[31]_0 [18]),
+        .I4(Q[18]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[25]_i_21_n_0 ));
   LUT5 #(
     .INIT(32'h30BB3088)) 
-    \ALUOut[25]_i_27 
+    \ALUOut[25]_i_22 
        (.I0(alu_A[14]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I1(\ALUOut[31]_i_20_n_0 ),
         .I2(alu_A[6]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[31]_i_19_n_0 ),
         .I4(alu_A[22]),
-        .O(\ALUOut[25]_i_27_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
-  LUT5 #(
-    .INIT(32'hFF1D1DFF)) 
-    \ALUOut[25]_i_28 
-       (.I0(Q[19]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [19]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .I4(\ALUOut[20]_i_17_n_0 ),
-        .O(\ALUOut[25]_i_28_n_0 ));
+        .O(\ALUOut[25]_i_22_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF110F1100000)) 
-    \ALUOut[25]_i_29 
-       (.I0(\ALUOut[25]_i_30_n_0 ),
-        .I1(\ALUOut[25]_i_31_n_0 ),
-        .I2(alu_A[15]),
-        .I3(\ALUOut[25]_i_32_n_0 ),
-        .I4(alu_A[16]),
-        .I5(\ALUOut[17]_i_13_n_0 ),
-        .O(\ALUOut[25]_i_29_n_0 ));
-  LUT6 #(
-    .INIT(64'h17E8FFFF17E80000)) 
+    .INIT(64'h0000015105050151)) 
     \ALUOut[25]_i_3 
-       (.I0(\ALUOut[25]_i_6_n_0 ),
-        .I1(alu_A[24]),
-        .I2(\ALUOut[25]_i_8_n_0 ),
-        .I3(\ALUOut[25]_i_9_n_0 ),
-        .I4(\ALUOut[31]_i_15_n_0 ),
-        .I5(\ALUOut[25]_i_10_n_0 ),
+       (.I0(\ALUOut_reg[5]_1 ),
+        .I1(\ALUOut[25]_i_7_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut[25]_i_8_n_0 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut[25]_i_9_n_0 ),
         .O(\ALUOut[25]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'h1D00001D)) 
-    \ALUOut[25]_i_30 
-       (.I0(Q[14]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [14]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .I4(\ALUOut[14]_i_8_n_0 ),
-        .O(\ALUOut[25]_i_30_n_0 ));
-  LUT6 #(
-    .INIT(64'h0202022A022A2A2A)) 
-    \ALUOut[25]_i_31 
-       (.I0(\ALUOut[25]_i_33_n_0 ),
-        .I1(\ALUOut[25]_i_34_n_0 ),
-        .I2(alu_A[13]),
-        .I3(\ALUOut[25]_i_35_n_0 ),
-        .I4(alu_A[12]),
-        .I5(\ALUOut[17]_i_26_n_0 ),
-        .O(\ALUOut[25]_i_31_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair163" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
-    \ALUOut[25]_i_32 
-       (.I0(\ALUOut[16]_i_12_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[25]_i_32_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'hFF1D1DFF)) 
-    \ALUOut[25]_i_33 
-       (.I0(Q[14]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [14]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .I4(\ALUOut[14]_i_8_n_0 ),
-        .O(\ALUOut[25]_i_33_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair163" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
-    \ALUOut[25]_i_34 
-       (.I0(\ALUOut[13]_i_8_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[25]_i_34_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair164" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
-    \ALUOut[25]_i_35 
-       (.I0(\ALUOut[12]_i_8_n_0 ),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[25]_i_35_n_0 ));
-  LUT6 #(
-    .INIT(64'hBBB888B8BBBBBBBB)) 
-    \ALUOut[25]_i_4 
-       (.I0(\ALUOut[25]_i_11_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[25]_i_12_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[26]_i_6_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[25]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hBABFFFFF)) 
-    \ALUOut[25]_i_5 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[25]_i_13_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[26]_i_8_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[25]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
-    \ALUOut[25]_i_6 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [24]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[25]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair144" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[25]_i_7 
-       (.I0(\registers_reg[30][31] [24]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[24]),
-        .O(alu_A[24]));
   LUT6 #(
     .INIT(64'h8FEF0E08FEF880E0)) 
-    \ALUOut[25]_i_8 
-       (.I0(\ALUOut[25]_i_14_n_0 ),
-        .I1(alu_A[22]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[25]_i_16_n_0 ),
-        .I4(alu_A[23]),
-        .I5(\ALUOut[23]_i_6_n_0 ),
-        .O(\ALUOut[25]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+    \ALUOut[25]_i_4 
+       (.I0(\ALUOut[23]_i_4_n_0 ),
+        .I1(alu_A[23]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[25]_i_11_n_0 ),
+        .I4(alu_A[24]),
+        .I5(\ALUOut[25]_i_13_n_0 ),
+        .O(\ALUOut[25]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT5 #(
-    .INIT(32'h99999666)) 
-    \ALUOut[25]_i_9 
-       (.I0(alu_A[25]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [25]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[25]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'h0151FFFF01510000)) 
-    \ALUOut[26]_i_1 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut[26]_i_2_n_0 ),
-        .I2(\ALUOut_reg[5] ),
-        .I3(\ALUOut[26]_i_3_n_0 ),
-        .I4(\ALUOut_reg[1]_0 ),
-        .I5(\ALUOut[26]_i_4_n_0 ),
-        .O(\state_reg[5]_2 [26]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT5 #(
-    .INIT(32'h99999666)) 
-    \ALUOut[26]_i_10 
-       (.I0(alu_A[26]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [26]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[26]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
-    \ALUOut[26]_i_11 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [26]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[26]),
-        .O(\ALUOut[26]_i_11_n_0 ));
-  LUT6 #(
-    .INIT(64'h000F2222FF0F2222)) 
-    \ALUOut[26]_i_12 
-       (.I0(\ALUOut[26]_i_18_n_0 ),
-        .I1(\ALUOut[26]_i_13_n_0 ),
-        .I2(alu_A[31]),
-        .I3(\ALUOut[1]_i_11_n_0 ),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .I5(alu_A[28]),
-        .O(\ALUOut[26]_i_12_n_0 ));
-  LUT5 #(
-    .INIT(32'h00000B08)) 
-    \ALUOut[26]_i_13 
-       (.I0(alu_A[30]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(alu_A[26]),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .O(\ALUOut[26]_i_13_n_0 ));
-  LUT5 #(
-    .INIT(32'hFCFFFDFD)) 
-    \ALUOut[26]_i_14 
-       (.I0(alu_A[27]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(alu_A[31]),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[26]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'h2F20FFFF2F200000)) 
-    \ALUOut[26]_i_15 
-       (.I0(alu_A[11]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[26]_i_19_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[29]_i_12_n_0 ),
-        .O(\ALUOut[26]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair150" *) 
-  LUT3 #(
-    .INIT(8'hF8)) 
-    \ALUOut[26]_i_16 
-       (.I0(\CPSR_reg[1]_0 [24]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[26]_i_16_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair150" *) 
-  LUT3 #(
-    .INIT(8'hF8)) 
-    \ALUOut[26]_i_17 
-       (.I0(\CPSR_reg[1]_0 [25]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[26]_i_17_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT5 #(
-    .INIT(32'h303F757F)) 
-    \ALUOut[26]_i_18 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(\registers_reg[30][31] [31]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(Q[31]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[26]_i_18_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[26]_i_19 
-       (.I0(\registers_reg[30][31] [3]),
-        .I1(Q[3]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\registers_reg[30][31] [19]),
+    .INIT(32'h66996969)) 
+    \ALUOut[25]_i_5 
+       (.I0(\ALUOut[26]_i_12_n_0 ),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .I2(\PC_reg[31]_0 [25]),
+        .I3(Q[25]),
         .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[19]),
-        .O(\ALUOut[26]_i_19_n_0 ));
+        .O(\ALUOut[25]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'hBBB888B8BBBBBBBB)) 
-    \ALUOut[26]_i_2 
-       (.I0(\ALUOut[26]_i_5_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[26]_i_6_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[26]_i_7_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[26]_i_2_n_0 ));
-  LUT5 #(
-    .INIT(32'hBABFFFFF)) 
-    \ALUOut[26]_i_3 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[26]_i_8_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[27]_i_9_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[26]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h8BB8BBBB8BB88888)) 
-    \ALUOut[26]_i_4 
-       (.I0(\ALUOut[30]_i_3_n_0 ),
-        .I1(\ALUOut[31]_i_12_n_0 ),
-        .I2(\ALUOut[26]_i_9_n_0 ),
+    .INIT(64'hFFD80027002727FF)) 
+    \ALUOut[25]_i_6 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[25]),
+        .I2(\PC_reg[31]_0 [25]),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(\ALUOut[26]_i_12_n_0 ),
+        .I5(\ALUOut_reg[9] ),
+        .O(\ALUOut[25]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  LUT4 #(
+    .INIT(16'h57F7)) 
+    \ALUOut[25]_i_7 
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[25]_i_14_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
         .I3(\ALUOut[26]_i_10_n_0 ),
-        .I4(\ALUOut[31]_i_15_n_0 ),
-        .I5(\ALUOut[26]_i_11_n_0 ),
-        .O(\ALUOut[26]_i_4_n_0 ));
+        .O(\ALUOut[25]_i_7_n_0 ));
   LUT5 #(
     .INIT(32'hB800B8FF)) 
-    \ALUOut[26]_i_5 
-       (.I0(\ALUOut[27]_i_7_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[26]_i_12_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
+    \ALUOut[25]_i_8 
+       (.I0(\ALUOut[25]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[25]_i_16_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
         .I4(alu_A[31]),
-        .O(\ALUOut[26]_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h03F3FFFF55555555)) 
-    \ALUOut[26]_i_6 
-       (.I0(\ALUOut[26]_i_13_n_0 ),
-        .I1(Q[28]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [28]),
-        .I4(\ALUOut[1]_i_11_n_0 ),
-        .I5(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[26]_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h1DFFFFFF1DFF0000)) 
-    \ALUOut[26]_i_7 
-       (.I0(Q[29]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [29]),
-        .I3(\ALUOut[1]_i_11_n_0 ),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .I5(\ALUOut[26]_i_14_n_0 ),
-        .O(\ALUOut[26]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair95" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[26]_i_8 
-       (.I0(\ALUOut[26]_i_15_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[27]_i_16_n_0 ),
-        .O(\ALUOut[26]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
-    \ALUOut[26]_i_9 
-       (.I0(\ALUOut[25]_i_8_n_0 ),
-        .I1(alu_A[24]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[26]_i_16_n_0 ),
-        .I4(alu_A[25]),
-        .I5(\ALUOut[26]_i_17_n_0 ),
-        .O(\ALUOut[26]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'h0151FFFF01510000)) 
-    \ALUOut[27]_i_1 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut[27]_i_2_n_0 ),
-        .I2(\ALUOut_reg[5] ),
-        .I3(\ALUOut[27]_i_3_n_0 ),
-        .I4(\ALUOut_reg[1]_0 ),
-        .I5(\ALUOut[27]_i_4_n_0 ),
-        .O(\state_reg[5]_2 [27]));
-  LUT5 #(
-    .INIT(32'hFF00B8B8)) 
-    \ALUOut[27]_i_10 
-       (.I0(\ALUOut[29]_i_12_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[29]_i_13_n_0 ),
-        .I3(\ALUOut[27]_i_16_n_0 ),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[27]_i_10_n_0 ));
-  LUT2 #(
-    .INIT(4'h2)) 
-    \ALUOut[27]_i_11 
-       (.I0(\ALUOut[30]_i_21_n_0 ),
-        .I1(\ALUOut[30]_i_20_n_0 ),
-        .O(\ALUOut[27]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT5 #(
-    .INIT(32'h99999666)) 
-    \ALUOut[27]_i_12 
-       (.I0(alu_A[27]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [27]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[27]_i_12_n_0 ));
-  LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
-    \ALUOut[27]_i_13 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [27]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[27]),
-        .O(\ALUOut[27]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000000000B8)) 
-    \ALUOut[27]_i_14 
-       (.I0(alu_A[30]),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(alu_A[28]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[27]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'h2F20FFFF2F200000)) 
-    \ALUOut[27]_i_15 
-       (.I0(alu_A[12]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[27]_i_17_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[29]_i_14_n_0 ),
-        .O(\ALUOut[27]_i_15_n_0 ));
-  LUT6 #(
-    .INIT(64'h2F20FFFF2F200000)) 
-    \ALUOut[27]_i_16 
-       (.I0(alu_A[13]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[27]_i_18_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[29]_i_10_n_0 ),
-        .O(\ALUOut[27]_i_16_n_0 ));
-  LUT6 #(
-    .INIT(64'hF0FFF000AACCAACC)) 
-    \ALUOut[27]_i_17 
-       (.I0(\registers_reg[30][31] [20]),
-        .I1(Q[20]),
-        .I2(\registers_reg[30][31] [4]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(Q[4]),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[27]_i_17_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[27]_i_18 
-       (.I0(\registers_reg[30][31] [5]),
-        .I1(Q[5]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\registers_reg[30][31] [21]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[21]),
-        .O(\ALUOut[27]_i_18_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000F755F7F7)) 
-    \ALUOut[27]_i_2 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[27]_i_6_n_0 ),
-        .I3(\ALUOut[27]_i_7_n_0 ),
-        .I4(\ALUOut[31]_i_8_n_0 ),
-        .I5(\ALUOut[27]_i_8_n_0 ),
-        .O(\ALUOut[27]_i_2_n_0 ));
-  LUT5 #(
-    .INIT(32'hBABFFFFF)) 
-    \ALUOut[27]_i_3 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[27]_i_9_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[27]_i_10_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[27]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h8BB8BBBB8BB88888)) 
-    \ALUOut[27]_i_4 
-       (.I0(\ALUOut[30]_i_3_n_0 ),
-        .I1(\ALUOut[31]_i_12_n_0 ),
-        .I2(\ALUOut[28]_i_8_n_0 ),
-        .I3(\ALUOut[27]_i_12_n_0 ),
-        .I4(\ALUOut[31]_i_15_n_0 ),
-        .I5(\ALUOut[27]_i_13_n_0 ),
-        .O(\ALUOut[27]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
-    \ALUOut[27]_i_5 
-       (.I0(\ALUOut[27]_i_11_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .O(\ALUOut[27]_i_5_n_0 ));
-  LUT5 #(
-    .INIT(32'h000001FF)) 
-    \ALUOut[27]_i_6 
-       (.I0(\ALUOut[2]_i_6_n_0 ),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[31]),
-        .I4(\ALUOut[27]_i_14_n_0 ),
-        .O(\ALUOut[27]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h40704F7F)) 
-    \ALUOut[27]_i_7 
-       (.I0(alu_A[29]),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[1]_i_11_n_0 ),
-        .I3(alu_A[27]),
-        .I4(alu_A[31]),
-        .O(\ALUOut[27]_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000AAAAC0CF0000)) 
-    \ALUOut[27]_i_8 
-       (.I0(alu_A[31]),
-        .I1(\ALUOut[27]_i_14_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[26]_i_7_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .I5(\ALUOut_reg[2] ),
-        .O(\ALUOut[27]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair98" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[27]_i_9 
-       (.I0(\ALUOut[27]_i_15_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[29]_i_16_n_0 ),
-        .O(\ALUOut[27]_i_9_n_0 ));
+        .O(\ALUOut[25]_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  LUT4 #(
+    .INIT(16'h57F7)) 
+    \ALUOut[25]_i_9 
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[26]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[25]_i_17_n_0 ),
+        .O(\ALUOut[25]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h3077337730440044)) 
-    \ALUOut[28]_i_1 
-       (.I0(\ALUOut_reg[28]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut[28]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [28]));
+    \ALUOut[26]_i_1 
+       (.I0(\ALUOut_reg[26]_i_2_n_0 ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[26]_i_3_n_0 ),
+        .O(\state_reg[5]_3 [26]));
   LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
-    \ALUOut[28]_i_10 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [28]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[28]),
-        .O(\ALUOut[28]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'h5555555503F35555)) 
-    \ALUOut[28]_i_11 
-       (.I0(alu_A[31]),
-        .I1(Q[29]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [29]),
-        .I4(\ALUOut[1]_i_11_n_0 ),
-        .I5(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[28]_i_11_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000AAAA3F300000)) 
-    \ALUOut[28]_i_12 
-       (.I0(alu_A[31]),
-        .I1(\ALUOut[29]_i_20_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[27]_i_14_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .I5(\ALUOut_reg[2] ),
-        .O(\ALUOut[28]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
-  LUT5 #(
-    .INIT(32'hBBBBBEEE)) 
-    \ALUOut[28]_i_13 
-       (.I0(alu_A[24]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [24]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[28]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h0202022A022A2A2A)) 
-    \ALUOut[28]_i_14 
-       (.I0(\ALUOut[28]_i_19_n_0 ),
-        .I1(\ALUOut[24]_i_6_n_0 ),
-        .I2(alu_A[23]),
-        .I3(\ALUOut[28]_i_20_n_0 ),
-        .I4(alu_A[22]),
-        .I5(\ALUOut[25]_i_14_n_0 ),
-        .O(\ALUOut[28]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair145" *) 
+    .INIT(64'hD800FFFFD8000000)) 
+    \ALUOut[26]_i_10 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[28]),
+        .I2(\PC_reg[31]_0 [28]),
+        .I3(\ALUOut[14]_i_12_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .I5(\ALUOut[26]_i_15_n_0 ),
+        .O(\ALUOut[26]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair88" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \ALUOut[28]_i_15 
-       (.I0(\registers_reg[30][31] [25]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[25]),
+    \ALUOut[26]_i_11 
+       (.I0(\ALUOut[26]_i_16_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[28]_i_19_n_0 ),
+        .O(\ALUOut[26]_i_11_n_0 ));
+  LUT5 #(
+    .INIT(32'h2F232C20)) 
+    \ALUOut[26]_i_12 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [25]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[26]_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[26]_i_13 
+       (.I0(\PC_reg[31]_0 [25]),
+        .I1(Q[25]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[25]));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
+  LUT5 #(
+    .INIT(32'hFFFFF1FD)) 
+    \ALUOut[26]_i_14 
+       (.I0(alu_A[27]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(alu_A[31]),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .O(\ALUOut[26]_i_14_n_0 ));
+  LUT5 #(
+    .INIT(32'h00000B08)) 
+    \ALUOut[26]_i_15 
+       (.I0(alu_A[30]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(alu_A[26]),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .O(\ALUOut[26]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'h2F20FFFF2F200000)) 
+    \ALUOut[26]_i_16 
+       (.I0(alu_A[11]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[26]_i_17_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[26]_i_18_n_0 ),
+        .O(\ALUOut[26]_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFCFC0C0AFA0AFA0)) 
+    \ALUOut[26]_i_17 
+       (.I0(\PC_reg[31]_0 [3]),
+        .I1(Q[3]),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(\PC_reg[31]_0 [19]),
+        .I4(Q[19]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[26]_i_17_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \ALUOut[26]_i_18 
+       (.I0(alu_A[15]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[7]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(alu_A[23]),
+        .O(\ALUOut[26]_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hB888BB8BBBBBBBBB)) 
+    \ALUOut[26]_i_4 
+       (.I0(\ALUOut[26]_i_8_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[26]_i_9_n_0 ),
+        .I4(\ALUOut[26]_i_10_n_0 ),
+        .I5(\ALUOut[9]_i_7_n_0 ),
+        .O(\ALUOut[26]_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hBABFFFFF)) 
+    \ALUOut[26]_i_5 
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[26]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[27]_i_11_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .O(\ALUOut[26]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h7676686876687668)) 
+    \ALUOut[26]_i_6 
+       (.I0(\ALUOut[28]_i_12_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [26]),
+        .I4(Q[26]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[26]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h2BD4E817D42B17E8)) 
+    \ALUOut[26]_i_7 
+       (.I0(\ALUOut[26]_i_12_n_0 ),
+        .I1(alu_A[25]),
+        .I2(\ALUOut[25]_i_4_n_0 ),
+        .I3(\ALUOut[28]_i_12_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(alu_A[26]),
+        .O(\ALUOut[26]_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  LUT5 #(
+    .INIT(32'hB800B8FF)) 
+    \ALUOut[26]_i_8 
+       (.I0(\ALUOut[27]_i_9_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[25]_i_15_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(alu_A[31]),
+        .O(\ALUOut[26]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'h27FFFFFF27FF0000)) 
+    \ALUOut[26]_i_9 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[29]),
+        .I2(\PC_reg[31]_0 [29]),
+        .I3(\ALUOut[14]_i_12_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .I5(\ALUOut[26]_i_14_n_0 ),
+        .O(\ALUOut[26]_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'h3077337730440044)) 
+    \ALUOut[27]_i_1 
+       (.I0(\ALUOut_reg[27]_i_2_n_0 ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[27]_i_3_n_0 ),
+        .O(\state_reg[5]_3 [27]));
+  LUT6 #(
+    .INIT(64'h0000AAAAC0CF0000)) 
+    \ALUOut[27]_i_10 
+       (.I0(alu_A[31]),
+        .I1(\ALUOut[28]_i_15_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[26]_i_9_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(\ALUOut_reg[5]_0 ),
+        .O(\ALUOut[27]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \ALUOut[27]_i_11 
+       (.I0(\ALUOut[27]_i_12_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[29]_i_24_n_0 ),
+        .O(\ALUOut[27]_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'h2F20FFFF2F200000)) 
+    \ALUOut[27]_i_12 
+       (.I0(alu_A[12]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[27]_i_13_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[29]_i_22_n_0 ),
+        .O(\ALUOut[27]_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hFF00F0F0CCCCAAAA)) 
+    \ALUOut[27]_i_13 
+       (.I0(\PC_reg[31]_0 [20]),
+        .I1(Q[20]),
+        .I2(\PC_reg[31]_0 [4]),
+        .I3(Q[4]),
+        .I4(\ALUOut[15]_i_8_n_0 ),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[27]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000DDFFF5FF)) 
+    \ALUOut[27]_i_4 
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[27]_i_8_n_0 ),
+        .I2(\ALUOut[27]_i_9_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[27]_i_10_n_0 ),
+        .O(\ALUOut[27]_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hBABFFFFF)) 
+    \ALUOut[27]_i_5 
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[27]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[28]_i_17_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .O(\ALUOut[27]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h7676686876687668)) 
+    \ALUOut[27]_i_6 
+       (.I0(\ALUOut[28]_i_14_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [27]),
+        .I4(Q[27]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[27]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h2BD4E817D42B17E8)) 
+    \ALUOut[27]_i_7 
+       (.I0(\ALUOut[28]_i_12_n_0 ),
+        .I1(alu_A[26]),
+        .I2(\ALUOut[28]_i_10_n_0 ),
+        .I3(\ALUOut[28]_i_14_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(alu_A[27]),
+        .O(\ALUOut[27]_i_7_n_0 ));
+  LUT5 #(
+    .INIT(32'h000001FF)) 
+    \ALUOut[27]_i_8 
+       (.I0(\ALUOut[2]_i_13_n_0 ),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[31]),
+        .I4(\ALUOut[28]_i_15_n_0 ),
+        .O(\ALUOut[27]_i_8_n_0 ));
+  LUT5 #(
+    .INIT(32'h40704F7F)) 
+    \ALUOut[27]_i_9 
+       (.I0(alu_A[29]),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[14]_i_12_n_0 ),
+        .I3(alu_A[27]),
+        .I4(alu_A[31]),
+        .O(\ALUOut[27]_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'h8FEF0E08FEF880E0)) 
+    \ALUOut[28]_i_10 
+       (.I0(\ALUOut[28]_i_18_n_0 ),
+        .I1(alu_A[24]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[25]_i_13_n_0 ),
+        .I4(alu_A[25]),
+        .I5(\ALUOut[26]_i_12_n_0 ),
+        .O(\ALUOut[28]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[28]_i_11 
+       (.I0(\PC_reg[31]_0 [26]),
+        .I1(Q[26]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[26]));
+  LUT5 #(
+    .INIT(32'h2F232C20)) 
+    \ALUOut[28]_i_12 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [26]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[28]_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[28]_i_13 
+       (.I0(\PC_reg[31]_0 [27]),
+        .I1(Q[27]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[27]));
+  LUT5 #(
+    .INIT(32'h2F232C20)) 
+    \ALUOut[28]_i_14 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [27]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[28]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000000000B8)) 
+    \ALUOut[28]_i_15 
+       (.I0(alu_A[30]),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(alu_A[28]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
+        .O(\ALUOut[28]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'h555555550C3F5555)) 
     \ALUOut[28]_i_16 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [25]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
+       (.I0(alu_A[31]),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[29]),
+        .I3(\PC_reg[31]_0 [29]),
+        .I4(\ALUOut[14]_i_12_n_0 ),
+        .I5(\ALUOut[29]_i_12_n_0 ),
         .O(\ALUOut[28]_i_16_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair146" *) 
+  (* SOFT_HLUTNM = "soft_lutpair87" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[28]_i_17 
-       (.I0(\registers_reg[30][31] [26]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[26]),
-        .O(alu_A[26]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
+       (.I0(\ALUOut[28]_i_19_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[29]_i_27_n_0 ),
+        .O(\ALUOut[28]_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[28]_i_18 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [26]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[28]_i_18_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT5 #(
-    .INIT(32'hDDDDD777)) 
-    \ALUOut[28]_i_19 
-       (.I0(alu_A[24]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [24]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[28]_i_19_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
-    \ALUOut[28]_i_20 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [22]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[28]_i_20_n_0 ));
-  LUT6 #(
-    .INIT(64'h17E8FFFF17E80000)) 
-    \ALUOut[28]_i_3 
-       (.I0(\ALUOut[28]_i_6_n_0 ),
-        .I1(alu_A[27]),
-        .I2(\ALUOut[28]_i_8_n_0 ),
-        .I3(\ALUOut[28]_i_9_n_0 ),
-        .I4(\ALUOut[31]_i_15_n_0 ),
-        .I5(\ALUOut[28]_i_10_n_0 ),
-        .O(\ALUOut[28]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000F755F7F7)) 
-    \ALUOut[28]_i_4 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[28]_i_11_n_0 ),
-        .I3(\ALUOut[27]_i_6_n_0 ),
-        .I4(\ALUOut[31]_i_8_n_0 ),
-        .I5(\ALUOut[28]_i_12_n_0 ),
-        .O(\ALUOut[28]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hBABFFFFF)) 
-    \ALUOut[28]_i_5 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[27]_i_10_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[29]_i_7_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[28]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
-    \ALUOut[28]_i_6 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [27]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .O(\ALUOut[28]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair147" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[28]_i_7 
-       (.I0(\registers_reg[30][31] [27]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[27]),
-        .O(alu_A[27]));
-  LUT6 #(
-    .INIT(64'hFFFFF220F2200000)) 
-    \ALUOut[28]_i_8 
-       (.I0(\ALUOut[28]_i_13_n_0 ),
-        .I1(\ALUOut[28]_i_14_n_0 ),
-        .I2(alu_A[25]),
-        .I3(\ALUOut[28]_i_16_n_0 ),
-        .I4(alu_A[26]),
-        .I5(\ALUOut[28]_i_18_n_0 ),
-        .O(\ALUOut[28]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT5 #(
-    .INIT(32'h99999666)) 
-    \ALUOut[28]_i_9 
-       (.I0(alu_A[28]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [28]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[28]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[29]_i_10 
-       (.I0(alu_A[1]),
-        .I1(alu_A[17]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[9]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[25]),
-        .O(\ALUOut[29]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[29]_i_11 
-       (.I0(alu_A[5]),
-        .I1(alu_A[21]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[13]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[29]),
-        .O(\ALUOut[29]_i_11_n_0 ));
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \ALUOut[29]_i_12 
-       (.I0(alu_A[15]),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(alu_A[7]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
+       (.I0(\ALUOut[28]_i_20_n_0 ),
+        .I1(alu_A[22]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[23]_i_14_n_0 ),
         .I4(alu_A[23]),
-        .O(\ALUOut[29]_i_12_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[29]_i_13 
-       (.I0(alu_A[3]),
-        .I1(alu_A[19]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[11]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[27]),
-        .O(\ALUOut[29]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[29]_i_14 
-       (.I0(alu_A[0]),
-        .I1(alu_A[16]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[8]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[24]),
-        .O(\ALUOut[29]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'hCFC0AFAFCFC0A0A0)) 
-    \ALUOut[29]_i_15 
-       (.I0(alu_A[20]),
-        .I1(alu_A[4]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[12]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[28]),
-        .O(\ALUOut[29]_i_15_n_0 ));
+        .I5(\ALUOut[25]_i_11_n_0 ),
+        .O(\ALUOut[28]_i_18_n_0 ));
   LUT6 #(
     .INIT(64'h2F20FFFF2F200000)) 
-    \ALUOut[29]_i_16 
-       (.I0(alu_A[14]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[29]_i_19_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[31]_i_25_n_0 ),
-        .O(\ALUOut[29]_i_16_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFEFFFFFFFEF0000)) 
-    \ALUOut[29]_i_17 
-       (.I0(\ALUOut[30]_i_10_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[30]_i_26_n_0 ),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[29]_i_20_n_0 ),
-        .O(\ALUOut[29]_i_17_n_0 ));
-  LUT6 #(
-    .INIT(64'h0B0B0B0B88BB0B0B)) 
-    \ALUOut[29]_i_18 
-       (.I0(\ALUOut[29]_i_21_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(alu_A[31]),
-        .I3(alu_A[29]),
-        .I4(\ALUOut[1]_i_11_n_0 ),
-        .I5(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[29]_i_18_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[29]_i_19 
-       (.I0(\registers_reg[30][31] [6]),
-        .I1(Q[6]),
+    \ALUOut[28]_i_19 
+       (.I0(alu_A[13]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
         .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\registers_reg[30][31] [22]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[22]),
-        .O(\ALUOut[29]_i_19_n_0 ));
+        .I3(\ALUOut[28]_i_21_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[29]_i_25_n_0 ),
+        .O(\ALUOut[28]_i_19_n_0 ));
   LUT6 #(
     .INIT(64'h8BB8BBBB8BB88888)) 
-    \ALUOut[29]_i_2 
-       (.I0(\ALUOut[30]_i_3_n_0 ),
+    \ALUOut[28]_i_2 
+       (.I0(\ALUOut[29]_i_3_n_0 ),
         .I1(\ALUOut[31]_i_12_n_0 ),
-        .I2(\ALUOut[30]_i_14_n_0 ),
-        .I3(\ALUOut[29]_i_4_n_0 ),
+        .I2(\ALUOut[28]_i_4_n_0 ),
+        .I3(\ALUOut[28]_i_5_n_0 ),
         .I4(\ALUOut[31]_i_15_n_0 ),
-        .I5(\ALUOut[29]_i_5_n_0 ),
-        .O(\ALUOut[29]_i_2_n_0 ));
+        .I5(\ALUOut[28]_i_6_n_0 ),
+        .O(\ALUOut[28]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFF47)) 
-    \ALUOut[29]_i_20 
-       (.I0(alu_A[31]),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(alu_A[29]),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[29]_i_20_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+    .INIT(64'hFFFFF220F2200000)) 
+    \ALUOut[28]_i_20 
+       (.I0(\ALUOut[28]_i_22_n_0 ),
+        .I1(\ALUOut[28]_i_23_n_0 ),
+        .I2(alu_A[20]),
+        .I3(\ALUOut[28]_i_24_n_0 ),
+        .I4(alu_A[21]),
+        .I5(\ALUOut[28]_i_25_n_0 ),
+        .O(\ALUOut[28]_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFCFC0C0AFA0AFA0)) 
+    \ALUOut[28]_i_21 
+       (.I0(\PC_reg[31]_0 [5]),
+        .I1(Q[5]),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(\PC_reg[31]_0 [21]),
+        .I4(Q[21]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[28]_i_21_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT5 #(
-    .INIT(32'hFFFFFEFF)) 
-    \ALUOut[29]_i_21 
+    .INIT(32'hD8FFFFD8)) 
+    \ALUOut[28]_i_22 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[19]),
+        .I2(\PC_reg[31]_0 [19]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[20]_i_14_n_0 ),
+        .O(\ALUOut[28]_i_22_n_0 ));
+  LUT6 #(
+    .INIT(64'h0202022A022A2A2A)) 
+    \ALUOut[28]_i_23 
+       (.I0(\ALUOut[28]_i_26_n_0 ),
+        .I1(\ALUOut[28]_i_27_n_0 ),
+        .I2(alu_A[18]),
+        .I3(\ALUOut[17]_i_15_n_0 ),
+        .I4(alu_A[17]),
+        .I5(\ALUOut[23]_i_23_n_0 ),
+        .O(\ALUOut[28]_i_23_n_0 ));
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
+    \ALUOut[28]_i_24 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(\registers_reg[30][31] [20]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[28]_i_24_n_0 ));
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
+    \ALUOut[28]_i_25 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(\registers_reg[30][31] [21]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[28]_i_25_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  LUT5 #(
+    .INIT(32'hFF2727FF)) 
+    \ALUOut[28]_i_26 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[19]),
+        .I2(\PC_reg[31]_0 [19]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[20]_i_14_n_0 ),
+        .O(\ALUOut[28]_i_26_n_0 ));
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
+    \ALUOut[28]_i_27 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [18]),
+        .I3(\registers_reg[30][31] [18]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[28]_i_27_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000015105050151)) 
+    \ALUOut[28]_i_3 
+       (.I0(\ALUOut_reg[5]_1 ),
+        .I1(\ALUOut[28]_i_7_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut[28]_i_8_n_0 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut[28]_i_9_n_0 ),
+        .O(\ALUOut[28]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h8FEF0E08FEF880E0)) 
+    \ALUOut[28]_i_4 
+       (.I0(\ALUOut[28]_i_10_n_0 ),
+        .I1(alu_A[26]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[28]_i_12_n_0 ),
+        .I4(alu_A[27]),
+        .I5(\ALUOut[28]_i_14_n_0 ),
+        .O(\ALUOut[28]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT5 #(
+    .INIT(32'hD82727D8)) 
+    \ALUOut[28]_i_5 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[28]),
+        .I2(\PC_reg[31]_0 [28]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[30]_i_10_n_0 ),
+        .O(\ALUOut[28]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h7676686876687668)) 
+    \ALUOut[28]_i_6 
        (.I0(\ALUOut[30]_i_10_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(alu_A[30]),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .O(\ALUOut[29]_i_21_n_0 ));
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [28]),
+        .I4(Q[28]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[28]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  LUT4 #(
+    .INIT(16'hD1FF)) 
+    \ALUOut[28]_i_7 
+       (.I0(\ALUOut[28]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[29]_i_18_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .O(\ALUOut[28]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h5044000055555555)) 
-    \ALUOut[29]_i_3 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut[29]_i_6_n_0 ),
-        .I2(\ALUOut[29]_i_7_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[29]_i_8_n_0 ),
-        .I5(\ALUOut[29]_i_9_n_0 ),
-        .O(\ALUOut[29]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT5 #(
-    .INIT(32'h99999666)) 
-    \ALUOut[29]_i_4 
-       (.I0(alu_A[29]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [29]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[29]_i_4_n_0 ));
+    .INIT(64'h88B8000088BBFFFF)) 
+    \ALUOut[28]_i_8 
+       (.I0(\ALUOut[28]_i_16_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[14]_i_12_n_0 ),
+        .I3(\ALUOut[28]_i_15_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(alu_A[31]),
+        .O(\ALUOut[28]_i_8_n_0 ));
+  LUT4 #(
+    .INIT(16'h57F7)) 
+    \ALUOut[28]_i_9 
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[29]_i_9_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[28]_i_17_n_0 ),
+        .O(\ALUOut[28]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
-    \ALUOut[29]_i_5 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [29]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[29]),
-        .O(\ALUOut[29]_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF33CC00B8B8B8B8)) 
-    \ALUOut[29]_i_6 
-       (.I0(\ALUOut[29]_i_10_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[29]_i_11_n_0 ),
-        .I3(\ALUOut[29]_i_12_n_0 ),
-        .I4(\ALUOut[29]_i_13_n_0 ),
-        .I5(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[29]_i_6_n_0 ));
+    .INIT(64'h3077337730440044)) 
+    \ALUOut[29]_i_1 
+       (.I0(\ALUOut[29]_i_2_n_0 ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[29]_i_5_n_0 ),
+        .O(\state_reg[5]_3 [29]));
   LUT5 #(
     .INIT(32'hFF00B8B8)) 
-    \ALUOut[29]_i_7 
-       (.I0(\ALUOut[29]_i_14_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[29]_i_15_n_0 ),
-        .I3(\ALUOut[29]_i_16_n_0 ),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[29]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
+    \ALUOut[29]_i_10 
+       (.I0(\ALUOut[29]_i_25_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[29]_i_26_n_0 ),
+        .I3(\ALUOut[29]_i_27_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .O(\ALUOut[29]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair114" *) 
   LUT3 #(
-    .INIT(8'h40)) 
-    \ALUOut[29]_i_8 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[27]_i_11_n_0 ),
-        .I2(\ALUOut_reg[5] ),
-        .O(\ALUOut[29]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hEEFBFFFBAAFBBBFB)) 
-    \ALUOut[29]_i_9 
-       (.I0(\ALUOut_reg[5] ),
-        .I1(\ALUOut[27]_i_11_n_0 ),
-        .I2(\ALUOut[29]_i_17_n_0 ),
-        .I3(\ALUOut_reg[2] ),
-        .I4(alu_A[31]),
-        .I5(\ALUOut[29]_i_18_n_0 ),
-        .O(\ALUOut[29]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'h00D5FFFF00D500D5)) 
-    \ALUOut[2]_i_1 
-       (.I0(\ALUOut[2]_i_2_n_0 ),
-        .I1(\ALUOut[14]_i_5_n_0 ),
-        .I2(alu_A[2]),
-        .I3(\ALUOut_reg[1]_0 ),
-        .I4(\ALUOut[2]_i_4_n_0 ),
-        .I5(\ALUOut[2]_i_5_n_0 ),
-        .O(\state_reg[5]_2 [2]));
+    .INIT(8'hCA)) 
+    \ALUOut[29]_i_11 
+       (.I0(\PC_reg[31]_0 [15]),
+        .I1(Q[15]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[15]));
   LUT5 #(
-    .INIT(32'h0047FF47)) 
-    \ALUOut[2]_i_10 
-       (.I0(\ALUOut[2]_i_18_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[2]_i_19_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[2]_i_20_n_0 ),
-        .O(\ALUOut[2]_i_10_n_0 ));
+    .INIT(32'h30773000)) 
+    \ALUOut[29]_i_12 
+       (.I0(ExtendImm),
+        .I1(\ALUOut[29]_i_20_n_0 ),
+        .I2(\registers_reg[30][31] [1]),
+        .I3(\ALUOut[29]_i_21_n_0 ),
+        .I4(\state_reg[0]_1 [1]),
+        .O(\ALUOut[29]_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  LUT5 #(
+    .INIT(32'hFFFEFFFF)) 
+    \ALUOut[29]_i_13 
+       (.I0(\ALUOut[14]_i_13_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[14]_i_11_n_0 ),
+        .O(\ALUOut[29]_i_13_n_0 ));
   LUT6 #(
-    .INIT(64'h008D8D8D8D8D8D8D)) 
-    \ALUOut[2]_i_11 
-       (.I0(\ALUOut[27]_i_11_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(alu_A[31]),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[9]_i_12_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[2]_i_11_n_0 ));
+    .INIT(64'h7676686876687668)) 
+    \ALUOut[29]_i_14 
+       (.I0(\ALUOut[31]_i_24_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [29]),
+        .I4(Q[29]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[29]_i_14_n_0 ));
   LUT6 #(
-    .INIT(64'hEDD8EDE024052727)) 
-    \ALUOut[2]_i_12 
-       (.I0(\state_reg[5]_0 [0]),
-        .I1(\state_reg[5]_0 [3]),
-        .I2(\state_reg[5]_0 [2]),
-        .I3(\state_reg[5]_0 [1]),
-        .I4(state),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\ALUOut[2]_i_12_n_0 ));
+    .INIT(64'h2BD4E817D42B17E8)) 
+    \ALUOut[29]_i_15 
+       (.I0(\ALUOut[30]_i_10_n_0 ),
+        .I1(alu_A[28]),
+        .I2(\ALUOut[28]_i_4_n_0 ),
+        .I3(\ALUOut[31]_i_24_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(alu_A[29]),
+        .O(\ALUOut[29]_i_15_n_0 ));
+  LUT5 #(
+    .INIT(32'hB800B8FF)) 
+    \ALUOut[29]_i_16 
+       (.I0(\ALUOut[30]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[28]_i_16_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(alu_A[31]),
+        .O(\ALUOut[29]_i_16_n_0 ));
+  LUT5 #(
+    .INIT(32'h00000010)) 
+    \ALUOut[29]_i_17 
+       (.I0(\ALUOut[2]_i_13_n_0 ),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(alu_A[30]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .O(\ALUOut[29]_i_17_n_0 ));
   LUT6 #(
-    .INIT(64'hFA00F844FF000041)) 
-    \ALUOut[2]_i_13 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(state),
-        .I2(\state_reg[5]_0 [0]),
-        .I3(\state_reg[5]_0 [3]),
-        .I4(\state_reg[5]_0 [2]),
-        .I5(\state_reg[5]_0 [1]),
-        .O(\ALUOut[2]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair55" *) 
+    .INIT(64'hFFFFFFFFFFFFFF47)) 
+    \ALUOut[29]_i_18 
+       (.I0(alu_A[31]),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(alu_A[29]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
+        .O(\ALUOut[29]_i_18_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT4 #(
     .INIT(16'h0001)) 
-    \ALUOut[2]_i_14 
+    \ALUOut[29]_i_19 
        (.I0(\state_reg[5]_0 [4]),
         .I1(\state_reg[5]_0 [1]),
         .I2(\state_reg[5]_0 [0]),
         .I3(\state_reg[5]_0 [3]),
         .O(ExtendImm));
   LUT6 #(
-    .INIT(64'hFF3F3220FEECCC0C)) 
-    \ALUOut[2]_i_15 
-       (.I0(carry0),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(alu_A[0]),
-        .I4(alu_A[1]),
-        .I5(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[2]_i_15_n_0 ));
+    .INIT(64'h0E0EEE0E0EEEEEEE)) 
+    \ALUOut[29]_i_2 
+       (.I0(\ALUOut[29]_i_6_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut[29]_i_7_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[29]_i_9_n_0 ),
+        .I5(\ALUOut[29]_i_10_n_0 ),
+        .O(\ALUOut[29]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hCFC0AFAFCFC0A0A0)) 
-    \ALUOut[2]_i_16 
-       (.I0(alu_A[15]),
-        .I1(alu_A[31]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[23]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[7]),
-        .O(\ALUOut[2]_i_16_n_0 ));
+    .INIT(64'hEDD8EDE024052727)) 
+    \ALUOut[29]_i_20 
+       (.I0(\state_reg[5]_0 [0]),
+        .I1(\state_reg[5]_0 [3]),
+        .I2(\state_reg[5]_0 [2]),
+        .I3(\state_reg[5]_0 [1]),
+        .I4(state),
+        .I5(\state_reg[5]_0 [4]),
+        .O(\ALUOut[29]_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hFA00F844FF000041)) 
+    \ALUOut[29]_i_21 
+       (.I0(\state_reg[5]_0 [4]),
+        .I1(state),
+        .I2(\state_reg[5]_0 [0]),
+        .I3(\state_reg[5]_0 [3]),
+        .I4(\state_reg[5]_0 [2]),
+        .I5(\state_reg[5]_0 [1]),
+        .O(\ALUOut[29]_i_21_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[2]_i_17 
-       (.I0(alu_A[27]),
-        .I1(alu_A[11]),
+    \ALUOut[29]_i_22 
+       (.I0(alu_A[0]),
+        .I1(alu_A[16]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[8]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[24]),
+        .O(\ALUOut[29]_i_22_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFC0AFAFCFC0A0A0)) 
+    \ALUOut[29]_i_23 
+       (.I0(alu_A[20]),
+        .I1(alu_A[4]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[12]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[28]),
+        .O(\ALUOut[29]_i_23_n_0 ));
+  LUT6 #(
+    .INIT(64'h2F20FFFF2F200000)) 
+    \ALUOut[29]_i_24 
+       (.I0(alu_A[14]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[29]_i_29_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[31]_i_30_n_0 ),
+        .O(\ALUOut[29]_i_24_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \ALUOut[29]_i_25 
+       (.I0(alu_A[1]),
+        .I1(alu_A[17]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[9]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[25]),
+        .O(\ALUOut[29]_i_25_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \ALUOut[29]_i_26 
+       (.I0(alu_A[5]),
+        .I1(alu_A[21]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[13]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[29]),
+        .O(\ALUOut[29]_i_26_n_0 ));
+  LUT6 #(
+    .INIT(64'h2F20FFFF2F200000)) 
+    \ALUOut[29]_i_27 
+       (.I0(alu_A[15]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[29]_i_30_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[31]_i_28_n_0 ),
+        .O(\ALUOut[29]_i_27_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair106" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[29]_i_28 
+       (.I0(\PC_reg[31]_0 [4]),
+        .I1(Q[4]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[4]));
+  LUT6 #(
+    .INIT(64'hCFCFC0C0AFA0AFA0)) 
+    \ALUOut[29]_i_29 
+       (.I0(\PC_reg[31]_0 [6]),
+        .I1(Q[6]),
         .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[19]),
+        .I3(\PC_reg[31]_0 [22]),
+        .I4(Q[22]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[29]_i_29_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000008080A000)) 
+    \ALUOut[29]_i_3 
+       (.I0(\ALUOut[31]_i_15_n_0 ),
+        .I1(alu_A[15]),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(alu_A[7]),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .I5(\ALUOut[29]_i_13_n_0 ),
+        .O(\ALUOut[29]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFCFC0C0AFA0AFA0)) 
+    \ALUOut[29]_i_30 
+       (.I0(\PC_reg[31]_0 [7]),
+        .I1(Q[7]),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(\PC_reg[31]_0 [23]),
+        .I4(Q[23]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[29]_i_30_n_0 ));
+  LUT6 #(
+    .INIT(64'h8BBB88B8BBBBBBBB)) 
+    \ALUOut[29]_i_6 
+       (.I0(\ALUOut[29]_i_16_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[29]_i_17_n_0 ),
+        .I4(\ALUOut[29]_i_18_n_0 ),
+        .I5(\ALUOut[9]_i_7_n_0 ),
+        .O(\ALUOut[29]_i_6_n_0 ));
+  LUT3 #(
+    .INIT(8'h20)) 
+    \ALUOut[29]_i_7 
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut_reg[9] ),
+        .O(\ALUOut[29]_i_7_n_0 ));
+  LUT5 #(
+    .INIT(32'h30773000)) 
+    \ALUOut[29]_i_8 
+       (.I0(ExtendImm),
+        .I1(\ALUOut[29]_i_20_n_0 ),
+        .I2(\registers_reg[30][31] [0]),
+        .I3(\ALUOut[29]_i_21_n_0 ),
+        .I4(\state_reg[0]_1 [0]),
+        .O(\ALUOut[29]_i_8_n_0 ));
+  LUT5 #(
+    .INIT(32'hFF00B8B8)) 
+    \ALUOut[29]_i_9 
+       (.I0(\ALUOut[29]_i_22_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[29]_i_23_n_0 ),
+        .I3(\ALUOut[29]_i_24_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .O(\ALUOut[29]_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'hABAAABABABABABAB)) 
+    \ALUOut[2]_i_1 
+       (.I0(\ALUOut[2]_i_2_n_0 ),
+        .I1(\ALUOut[2]_i_3_n_0 ),
+        .I2(\ALUOut[2]_i_4_n_0 ),
+        .I3(\ALUOut[2]_i_5_n_0 ),
+        .I4(\ALUOut[2]_i_6_n_0 ),
+        .I5(\ALUOut[2]_i_7_n_0 ),
+        .O(\state_reg[5]_3 [2]));
+  LUT6 #(
+    .INIT(64'hD8FFD80000000000)) 
+    \ALUOut[2]_i_10 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[0]),
+        .I2(\PC_reg[31]_0 [0]),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .I4(alu_A[2]),
+        .I5(\ALUOut[14]_i_12_n_0 ),
+        .O(\ALUOut[2]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'h2F20FFFF2F200000)) 
+    \ALUOut[2]_i_11 
+       (.I0(alu_A[16]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[2]_i_17_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[2]_i_18_n_0 ),
+        .O(\ALUOut[2]_i_11_n_0 ));
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \ALUOut[2]_i_12 
+       (.I0(\ALUOut[2]_i_19_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[2]_i_20_n_0 ),
+        .O(\ALUOut[2]_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFB8CCB8FCB8FCB8)) 
+    \ALUOut[2]_i_13 
+       (.I0(\registers_reg[30][31] [2]),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [2]),
+        .I3(\ALUOut[29]_i_20_n_0 ),
+        .I4(\state_reg[0]_1 [0]),
+        .I5(ExtendImm),
+        .O(\ALUOut[2]_i_13_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT5 #(
+    .INIT(32'hCA000000)) 
+    \ALUOut[2]_i_14 
+       (.I0(\PC_reg[31]_0 [31]),
+        .I1(Q[31]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(\ALUOut[31]_i_19_n_0 ),
         .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[3]),
+        .O(\ALUOut[2]_i_14_n_0 ));
+  LUT5 #(
+    .INIT(32'hFF00B8B8)) 
+    \ALUOut[2]_i_15 
+       (.I0(\ALUOut[2]_i_21_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[2]_i_22_n_0 ),
+        .I3(\ALUOut[4]_i_12_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .O(\ALUOut[2]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hA695596A596AA695)) 
+    \ALUOut[2]_i_16 
+       (.I0(\ALUOut[2]_i_23_n_0 ),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[2]),
+        .I3(\PC_reg[31]_0 [2]),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
+        .O(\ALUOut[2]_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFCFC0C0AFA0AFA0)) 
+    \ALUOut[2]_i_17 
+       (.I0(\PC_reg[31]_0 [24]),
+        .I1(Q[24]),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(\PC_reg[31]_0 [8]),
+        .I4(Q[8]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[2]_i_17_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \ALUOut[2]_i_18 
-       (.I0(alu_A[30]),
-        .I1(alu_A[14]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[22]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[6]),
+       (.I0(alu_A[28]),
+        .I1(alu_A[12]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[20]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[4]),
         .O(\ALUOut[2]_i_18_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \ALUOut[2]_i_19 
-       (.I0(alu_A[26]),
-        .I1(alu_A[10]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(alu_A[18]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
-        .I5(alu_A[2]),
+       (.I0(alu_A[30]),
+        .I1(alu_A[14]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[22]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[6]),
         .O(\ALUOut[2]_i_19_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFA917FF00A917)) 
+    .INIT(64'h5140000055555555)) 
     \ALUOut[2]_i_2 
-       (.I0(\ALUOut[2]_i_6_n_0 ),
-        .I1(alu_A[2]),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[1] ),
-        .I5(\ALUOut[2]_i_7_n_0 ),
+       (.I0(\ALUOut_reg[5] ),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[2]),
+        .I3(\PC_reg[31]_0 [2]),
+        .I4(\ALUOut[14]_i_5_n_0 ),
+        .I5(\ALUOut[2]_i_8_n_0 ),
         .O(\ALUOut[2]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h2F20FFFF2F200000)) 
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \ALUOut[2]_i_20 
-       (.I0(alu_A[16]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[8]_i_14_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[0]_i_10_n_0 ),
+       (.I0(alu_A[26]),
+        .I1(alu_A[10]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[18]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[2]),
         .O(\ALUOut[2]_i_20_n_0 ));
   LUT6 #(
-    .INIT(64'h0000100000000000)) 
+    .INIT(64'hCFC0AFAFCFC0A0A0)) 
     \ALUOut[2]_i_21 
+       (.I0(alu_A[15]),
+        .I1(alu_A[31]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[23]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[7]),
+        .O(\ALUOut[2]_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \ALUOut[2]_i_22 
+       (.I0(alu_A[27]),
+        .I1(alu_A[11]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[19]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[3]),
+        .O(\ALUOut[2]_i_22_n_0 ));
+  LUT6 #(
+    .INIT(64'hFF3F3220FEECCC0C)) 
+    \ALUOut[2]_i_23 
+       (.I0(carry0),
+        .I1(\ALUOut[31]_i_23_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(alu_A[0]),
+        .I4(alu_A[1]),
+        .I5(\ALUOut[29]_i_12_n_0 ),
+        .O(\ALUOut[2]_i_23_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    \ALUOut[2]_i_24 
        (.I0(\state_reg[5]_0 [2]),
         .I1(\state_reg[5]_0 [3]),
         .I2(\state_reg[5]_0 [0]),
@@ -10597,370 +10456,214 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [4]),
         .I5(Carry),
         .O(carry0));
-  (* SOFT_HLUTNM = "soft_lutpair122" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'hFF15FFFF)) 
     \ALUOut[2]_i_3 
-       (.I0(\registers_reg[30][31] [2]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[2]),
-        .O(alu_A[2]));
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(alu_A[31]),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[5] ),
+        .O(\ALUOut[2]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h4F4F4F4F4FFFFFFF)) 
+    .INIT(64'hAA8A8888AA8AAAAA)) 
     \ALUOut[2]_i_4 
-       (.I0(\ALUOut[2]_i_8_n_0 ),
-        .I1(\ALUOut_reg[5] ),
-        .I2(\ALUOut[0]_i_5_n_0 ),
-        .I3(\ALUOut_reg[2] ),
-        .I4(alu_A[31]),
-        .I5(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut_reg[9] ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[2]_i_9_n_0 ),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[2]_i_10_n_0 ),
         .O(\ALUOut[2]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h8BFF8BFF8BFF8B8B)) 
+    .INIT(64'h00FF0000B8FFB8B8)) 
     \ALUOut[2]_i_5 
-       (.I0(\ALUOut[2]_i_9_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[2]_i_10_n_0 ),
-        .I3(\ALUOut[2]_i_11_n_0 ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(\ALUOut_reg[5] ),
+       (.I0(\ALUOut[2]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[2]_i_12_n_0 ),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut[29]_i_8_n_0 ),
         .O(\ALUOut[2]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'hEFECEFE0E3E0EFE0)) 
+    .INIT(64'h7F7F007FFFFFFFFF)) 
     \ALUOut[2]_i_6 
-       (.I0(\CPSR_reg[1]_0 [2]),
-        .I1(\ALUOut[2]_i_12_n_0 ),
-        .I2(\ALUOut[2]_i_13_n_0 ),
-        .I3(\state_reg[0]_1 [2]),
-        .I4(ExtendImm),
-        .I5(\state_reg[0]_1 [0]),
+       (.I0(\ALUOut[2]_i_13_n_0 ),
+        .I1(\ALUOut[2]_i_14_n_0 ),
+        .I2(\ALUOut[29]_i_12_n_0 ),
+        .I3(alu_A[31]),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(\ALUOut_reg[5]_0 ),
         .O(\ALUOut[2]_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'hA95956A656A6A959)) 
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  LUT2 #(
+    .INIT(4'h7)) 
     \ALUOut[2]_i_7 
-       (.I0(\ALUOut[2]_i_15_n_0 ),
-        .I1(Q[2]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [2]),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
+       (.I0(\ALUOut[29]_i_8_n_0 ),
+        .I1(\ALUOut[2]_i_15_n_0 ),
         .O(\ALUOut[2]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h000000001111D111)) 
+    .INIT(64'hFFFFA917FF00A917)) 
     \ALUOut[2]_i_8 
-       (.I0(\ALUOut[3]_i_9_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(alu_A[1]),
-        .I3(\ALUOut[1]_i_11_n_0 ),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .I5(\ALUOut_reg[2] ),
+       (.I0(\ALUOut[2]_i_13_n_0 ),
+        .I1(alu_A[2]),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut_reg[9] ),
+        .I4(\ALUOut_reg[5]_1 ),
+        .I5(\ALUOut[2]_i_16_n_0 ),
         .O(\ALUOut[2]_i_8_n_0 ));
-  LUT5 #(
-    .INIT(32'hFF00B8B8)) 
+  LUT6 #(
+    .INIT(64'h00000000000000D8)) 
     \ALUOut[2]_i_9 
-       (.I0(\ALUOut[2]_i_16_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[2]_i_17_n_0 ),
-        .I3(\ALUOut[5]_i_13_n_0 ),
-        .I4(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[1]),
+        .I2(\PC_reg[31]_0 [1]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
         .O(\ALUOut[2]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'h3077337730440044)) 
-    \ALUOut[30]_i_1 
-       (.I0(\ALUOut_reg[30]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\ALUOut[30]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut[30]_i_5_n_0 ),
-        .O(\state_reg[5]_2 [30]));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  LUT5 #(
+    .INIT(32'h2F232C20)) 
     \ALUOut[30]_i_10 
-       (.I0(\state_reg[0]_1 [1]),
-        .I1(\ALUOut[30]_i_19_n_0 ),
-        .I2(\CPSR_reg[1]_0 [1]),
-        .I3(\CPSR[1]_i_5_n_0 ),
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [28]),
+        .I4(\state_reg[0]_1 [20]),
         .O(\ALUOut[30]_i_10_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFEFFFF)) 
+  LUT6 #(
+    .INIT(64'h5555555555555457)) 
     \ALUOut[30]_i_11 
-       (.I0(\ALUOut[30]_i_20_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
+       (.I0(alu_A[31]),
+        .I1(\ALUOut[29]_i_12_n_0 ),
         .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\ALUOut[31]_i_19_n_0 ),
-        .I4(\ALUOut[30]_i_21_n_0 ),
+        .I3(alu_A[30]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
         .O(\ALUOut[30]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
+  LUT6 #(
+    .INIT(64'h0000000000000B08)) 
     \ALUOut[30]_i_12 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [29]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
+       (.I0(\ALUOut[30]_i_13_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[2]_i_13_n_0 ),
+        .I3(\ALUOut[30]_i_14_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[29]_i_12_n_0 ),
         .O(\ALUOut[30]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair149" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  LUT4 #(
+    .INIT(16'h00D8)) 
     \ALUOut[30]_i_13 
-       (.I0(\registers_reg[30][31] [29]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[29]),
-        .O(alu_A[29]));
-  LUT6 #(
-    .INIT(64'h8FEF0E08FEF880E0)) 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[31]),
+        .I2(\PC_reg[31]_0 [31]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[30]_i_13_n_0 ));
+  LUT4 #(
+    .INIT(16'h00D8)) 
     \ALUOut[30]_i_14 
-       (.I0(\ALUOut[28]_i_8_n_0 ),
-        .I1(alu_A[27]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[30]_i_22_n_0 ),
-        .I4(alu_A[28]),
-        .I5(\ALUOut[30]_i_24_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[30]),
+        .I2(\PC_reg[31]_0 [30]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
         .O(\ALUOut[30]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT5 #(
-    .INIT(32'h99999666)) 
-    \ALUOut[30]_i_15 
-       (.I0(alu_A[30]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [30]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[30]_i_15_n_0 ));
   LUT6 #(
-    .INIT(64'h15FF15EA15EAEA00)) 
-    \ALUOut[30]_i_16 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [30]),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[30]),
-        .O(\ALUOut[30]_i_16_n_0 ));
-  LUT6 #(
-    .INIT(64'h3333333333333335)) 
-    \ALUOut[30]_i_17 
-       (.I0(alu_A[30]),
-        .I1(alu_A[31]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[30]_i_10_n_0 ),
-        .O(\ALUOut[30]_i_17_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFF4FFF7)) 
-    \ALUOut[30]_i_18 
-       (.I0(\ALUOut[30]_i_25_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[30]_i_10_n_0 ),
-        .I3(\ALUOut[2]_i_6_n_0 ),
-        .I4(\ALUOut[30]_i_26_n_0 ),
-        .I5(\ALUOut[31]_i_19_n_0 ),
-        .O(\ALUOut[30]_i_18_n_0 ));
-  LUT6 #(
-    .INIT(64'h1F1F1F3F1CBC1FBE)) 
-    \ALUOut[30]_i_19 
-       (.I0(\state_reg[5]_0 [1]),
-        .I1(\state_reg[5]_0 [2]),
-        .I2(\state_reg[5]_0 [3]),
-        .I3(\state_reg[5]_0 [0]),
-        .I4(state),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\ALUOut[30]_i_19_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \ALUOut[30]_i_20 
-       (.I0(\ALUOut[30]_i_27_n_0 ),
-        .I1(\ALUOut[26]_i_16_n_0 ),
-        .I2(\ALUOut[7]_i_7_n_0 ),
-        .I3(\ALUOut[31]_i_21_n_0 ),
-        .I4(\ALUOut[8]_i_9_n_0 ),
-        .I5(\ALUOut[30]_i_28_n_0 ),
-        .O(\ALUOut[30]_i_20_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000000111)) 
-    \ALUOut[30]_i_21 
-       (.I0(\ALUOut[14]_i_8_n_0 ),
-        .I1(\ALUOut[30]_i_29_n_0 ),
-        .I2(\CPSR_reg[1]_0 [22]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .I5(\ALUOut[13]_i_8_n_0 ),
-        .O(\ALUOut[30]_i_21_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair151" *) 
-  LUT3 #(
-    .INIT(8'hF8)) 
-    \ALUOut[30]_i_22 
-       (.I0(\CPSR_reg[1]_0 [27]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[30]_i_22_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair148" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[30]_i_23 
-       (.I0(\registers_reg[30][31] [28]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[28]),
-        .O(alu_A[28]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT3 #(
-    .INIT(8'hF8)) 
-    \ALUOut[30]_i_24 
-       (.I0(\CPSR_reg[1]_0 [28]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
-        .O(\ALUOut[30]_i_24_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair69" *) 
+    .INIT(64'h8BB8BBBB8BB88888)) 
+    \ALUOut[30]_i_2 
+       (.I0(\ALUOut[29]_i_3_n_0 ),
+        .I1(\ALUOut[31]_i_12_n_0 ),
+        .I2(\ALUOut[30]_i_4_n_0 ),
+        .I3(\ALUOut[30]_i_5_n_0 ),
+        .I4(\ALUOut[31]_i_15_n_0 ),
+        .I5(\ALUOut[30]_i_6_n_0 ),
+        .O(\ALUOut[30]_i_2_n_0 ));
   LUT4 #(
-    .INIT(16'h00E2)) 
-    \ALUOut[30]_i_25 
-       (.I0(Q[31]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [31]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[30]_i_25_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
-  LUT4 #(
-    .INIT(16'h00E2)) 
-    \ALUOut[30]_i_26 
-       (.I0(Q[30]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [30]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[30]_i_26_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFF00FFFFFE00)) 
-    \ALUOut[30]_i_27 
-       (.I0(\CPSR_reg[1]_0 [26]),
-        .I1(\CPSR_reg[1]_0 [25]),
-        .I2(\CPSR_reg[1]_0 [31]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [30]),
-        .O(\ALUOut[30]_i_27_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \ALUOut[30]_i_28 
-       (.I0(\ALUOut[30]_i_30_n_0 ),
-        .I1(\ALUOut[30]_i_31_n_0 ),
-        .I2(\ALUOut[30]_i_32_n_0 ),
-        .I3(\ALUOut[16]_i_12_n_0 ),
-        .I4(\ALUOut[16]_i_11_n_0 ),
-        .I5(\ALUOut[12]_i_8_n_0 ),
-        .O(\ALUOut[30]_i_28_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
-    \ALUOut[30]_i_29 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [5]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [3]),
-        .I4(\CPSR_reg[1]_0 [5]),
-        .I5(\CPSR[1]_i_5_n_0 ),
-        .O(\ALUOut[30]_i_29_n_0 ));
-  LUT6 #(
-    .INIT(64'h000000008080A000)) 
+    .INIT(16'h0151)) 
     \ALUOut[30]_i_3 
-       (.I0(\ALUOut[31]_i_15_n_0 ),
-        .I1(alu_A[15]),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(alu_A[7]),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .I5(\ALUOut[30]_i_11_n_0 ),
+       (.I0(\ALUOut_reg[5]_1 ),
+        .I1(\ALUOut[30]_i_7_n_0 ),
+        .I2(\ALUOut_reg[9] ),
+        .I3(\ALUOut[30]_i_8_n_0 ),
         .O(\ALUOut[30]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFCF8)) 
-    \ALUOut[30]_i_30 
-       (.I0(\CPSR_reg[1]_0 [27]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
-        .I3(\CPSR_reg[1]_0 [23]),
-        .I4(\ALUOut[17]_i_12_n_0 ),
-        .I5(\ALUOut[9]_i_9_n_0 ),
-        .O(\ALUOut[30]_i_30_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFECC)) 
-    \ALUOut[30]_i_31 
-       (.I0(\CPSR_reg[1]_0 [28]),
-        .I1(\ALUOut[11]_i_13_n_0 ),
-        .I2(\CPSR_reg[1]_0 [21]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
-        .I5(\ALUOut[6]_i_7_n_0 ),
-        .O(\ALUOut[30]_i_31_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFF8)) 
-    \ALUOut[30]_i_32 
-       (.I0(\CPSR_reg[1]_0 [20]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
-        .I3(\ALUOut[20]_i_15_n_0 ),
-        .I4(\ALUOut[20]_i_17_n_0 ),
-        .I5(\ALUOut[11]_i_7_n_0 ),
-        .O(\ALUOut[30]_i_32_n_0 ));
-  LUT6 #(
-    .INIT(64'h17E8FFFF17E80000)) 
+    .INIT(64'h8FEF0E08FEF880E0)) 
+    \ALUOut[30]_i_4 
+       (.I0(\ALUOut[28]_i_4_n_0 ),
+        .I1(alu_A[28]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[30]_i_10_n_0 ),
+        .I4(alu_A[29]),
+        .I5(\ALUOut[31]_i_24_n_0 ),
+        .O(\ALUOut[30]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  LUT5 #(
+    .INIT(32'hD82727D8)) 
     \ALUOut[30]_i_5 
-       (.I0(\ALUOut[30]_i_12_n_0 ),
-        .I1(alu_A[29]),
-        .I2(\ALUOut[30]_i_14_n_0 ),
-        .I3(\ALUOut[30]_i_15_n_0 ),
-        .I4(\ALUOut[31]_i_15_n_0 ),
-        .I5(\ALUOut[30]_i_16_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[30]),
+        .I2(\PC_reg[31]_0 [30]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[31]_i_26_n_0 ),
         .O(\ALUOut[30]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h4EFF4E000FFF0FFF)) 
+    .INIT(64'h7676686876687668)) 
     \ALUOut[30]_i_6 
-       (.I0(\ALUOut[30]_i_9_n_0 ),
-        .I1(\ALUOut[30]_i_17_n_0 ),
-        .I2(alu_A[31]),
-        .I3(\ALUOut_reg[2] ),
-        .I4(\ALUOut[30]_i_18_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut[31]_i_26_n_0 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\PC_reg[31]_0 [30]),
+        .I4(Q[30]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[30]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h4E000FFF4EFF0FFF)) 
+    \ALUOut[30]_i_7 
+       (.I0(\ALUOut[29]_i_8_n_0 ),
+        .I1(\ALUOut[30]_i_11_n_0 ),
+        .I2(alu_A[31]),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(\ALUOut[30]_i_12_n_0 ),
+        .O(\ALUOut[30]_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT5 #(
     .INIT(32'hBABFFFFF)) 
-    \ALUOut[30]_i_7 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[29]_i_6_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[31]_i_18_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[30]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair134" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
     \ALUOut[30]_i_8 
-       (.I0(\registers_reg[30][31] [15]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[15]),
-        .O(alu_A[15]));
-  LUT4 #(
-    .INIT(16'hF888)) 
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[29]_i_10_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[31]_i_18_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .O(\ALUOut[30]_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
     \ALUOut[30]_i_9 
-       (.I0(\state_reg[0]_1 [0]),
-        .I1(\ALUOut[30]_i_19_n_0 ),
-        .I2(\CPSR_reg[1]_0 [0]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .O(\ALUOut[30]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+       (.I0(\PC_reg[31]_0 [28]),
+        .I1(Q[28]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[28]));
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT4 #(
     .INIT(16'h110F)) 
     \ALUOut[31]_i_1 
        (.I0(\ALUOut[31]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1] ),
+        .I1(\ALUOut_reg[5]_1 ),
         .I2(\ALUOut[31]_i_4_n_0 ),
-        .I3(\ALUOut_reg[1]_0 ),
-        .O(\state_reg[5]_2 [31]));
-  LUT3 #(
-    .INIT(8'hB8)) 
+        .I3(\ALUOut_reg[5] ),
+        .O(\state_reg[5]_3 [31]));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT5 #(
+    .INIT(32'h00000010)) 
     \ALUOut[31]_i_10 
-       (.I0(\registers_reg[30][31] [31]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[31]),
-        .O(alu_A[31]));
+       (.I0(\ALUOut[29]_i_12_n_0 ),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(alu_A[31]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .O(\ALUOut[31]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'h0FFF5FFF0FFF7FFF)) 
     \ALUOut[31]_i_11 
@@ -10971,158 +10674,286 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [2]),
         .I5(state),
         .O(\state_reg[2]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair167" *) 
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \ALUOut[31]_i_12 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut_reg[5] ),
+       (.I0(\ALUOut_reg[5]_1 ),
+        .I1(\ALUOut_reg[9] ),
         .O(\ALUOut[31]_i_12_n_0 ));
   LUT6 #(
     .INIT(64'h7010F1F701077F1F)) 
     \ALUOut[31]_i_13 
-       (.I0(\ALUOut[30]_i_14_n_0 ),
+       (.I0(\ALUOut[31]_i_21_n_0 ),
         .I1(alu_A[29]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[31]_i_21_n_0 ),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[31]_i_24_n_0 ),
         .I4(alu_A[30]),
-        .I5(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[31]_i_26_n_0 ),
         .O(\ALUOut[31]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT5 #(
-    .INIT(32'h99999666)) 
+    .INIT(32'hD82727D8)) 
     \ALUOut[31]_i_14 
-       (.I0(alu_A[31]),
-        .I1(\ALUOut[23]_i_7_n_0 ),
-        .I2(\CPSR_reg[1]_0 [31]),
-        .I3(\CPSR[1]_i_5_n_0 ),
-        .I4(\CPSR[1]_i_4_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[31]),
+        .I2(\PC_reg[31]_0 [31]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[31]_i_27_n_0 ),
         .O(\ALUOut[31]_i_14_n_0 ));
   LUT3 #(
     .INIT(8'h2A)) 
     \ALUOut[31]_i_15 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut_reg[5] ),
-        .I2(\ALUOut_reg[2] ),
+       (.I0(\ALUOut_reg[5]_1 ),
+        .I1(\ALUOut_reg[9] ),
+        .I2(\ALUOut_reg[5]_0 ),
         .O(\ALUOut[31]_i_15_n_0 ));
   LUT6 #(
-    .INIT(64'hE1E1E1E1E1171717)) 
+    .INIT(64'hFAEE051105115F77)) 
     \ALUOut[31]_i_16 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(alu_A[31]),
-        .I2(\ALUOut_reg[5] ),
-        .I3(\CPSR_reg[1]_0 [31]),
-        .I4(\CPSR[1]_i_5_n_0 ),
-        .I5(\CPSR[1]_i_4_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\PC_reg[31]_0 [31]),
+        .I2(Q[31]),
+        .I3(\ALUOut[15]_i_8_n_0 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut[31]_i_27_n_0 ),
         .O(\ALUOut[31]_i_16_n_0 ));
   LUT6 #(
     .INIT(64'hB8FFB833B8CCB800)) 
     \ALUOut[31]_i_17 
-       (.I0(\ALUOut[29]_i_10_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[29]_i_11_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[29]_i_13_n_0 ),
-        .I5(\ALUOut[31]_i_24_n_0 ),
+       (.I0(\ALUOut[29]_i_25_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[29]_i_26_n_0 ),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .I4(\ALUOut[31]_i_28_n_0 ),
+        .I5(\ALUOut[31]_i_29_n_0 ),
         .O(\ALUOut[31]_i_17_n_0 ));
   LUT6 #(
     .INIT(64'hB8FFB833B8CCB800)) 
     \ALUOut[31]_i_18 
-       (.I0(\ALUOut[29]_i_14_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[29]_i_15_n_0 ),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(\ALUOut[31]_i_25_n_0 ),
-        .I5(\ALUOut[31]_i_26_n_0 ),
+       (.I0(\ALUOut[29]_i_22_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[29]_i_23_n_0 ),
+        .I3(\ALUOut[29]_i_12_n_0 ),
+        .I4(\ALUOut[31]_i_30_n_0 ),
+        .I5(\ALUOut[31]_i_31_n_0 ),
         .O(\ALUOut[31]_i_18_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[31]_i_19 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [3]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [1]),
-        .I4(\CPSR_reg[1]_0 [3]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [2]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [4]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [4]),
         .O(\ALUOut[31]_i_19_n_0 ));
   LUT6 #(
-    .INIT(64'hCCCC8BBBFFFF8BBB)) 
+    .INIT(64'hCF88CFBBCFBBCFBB)) 
     \ALUOut[31]_i_2 
        (.I0(\ALUOut[31]_i_6_n_0 ),
-        .I1(\ALUOut_reg[5] ),
-        .I2(\ALUOut[31]_i_7_n_0 ),
-        .I3(\ALUOut[31]_i_8_n_0 ),
-        .I4(\ALUOut_reg[2] ),
-        .I5(alu_A[31]),
+        .I1(\ALUOut_reg[9] ),
+        .I2(alu_A[31]),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(\ALUOut[31]_i_9_n_0 ),
+        .I5(\ALUOut[31]_i_10_n_0 ),
         .O(\ALUOut[31]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[31]_i_20 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [4]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [2]),
-        .I4(\CPSR_reg[1]_0 [4]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [1]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [3]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [3]),
         .O(\ALUOut[31]_i_20_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair151" *) 
-  LUT3 #(
-    .INIT(8'hF8)) 
+  LUT6 #(
+    .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[31]_i_21 
-       (.I0(\CPSR_reg[1]_0 [29]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
+       (.I0(\ALUOut[31]_i_32_n_0 ),
+        .I1(alu_A[27]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[28]_i_14_n_0 ),
+        .I4(alu_A[28]),
+        .I5(\ALUOut[30]_i_10_n_0 ),
         .O(\ALUOut[31]_i_21_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hCA)) 
     \ALUOut[31]_i_22 
-       (.I0(\registers_reg[30][31] [30]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[30]),
-        .O(alu_A[30]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT3 #(
-    .INIT(8'hF8)) 
+       (.I0(\PC_reg[31]_0 [29]),
+        .I1(Q[29]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[29]));
+  LUT6 #(
+    .INIT(64'h1000F0F010000000)) 
     \ALUOut[31]_i_23 
-       (.I0(\CPSR_reg[1]_0 [30]),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR[1]_i_4_n_0 ),
+       (.I0(op_to_aluop[2]),
+        .I1(op_to_aluop[0]),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(op_to_aluop[1]),
+        .I4(ALUOpcodeSrc),
+        .I5(\state_reg[2]_0 ),
         .O(\ALUOut[31]_i_23_n_0 ));
+  LUT5 #(
+    .INIT(32'h2F232C20)) 
+    \ALUOut[31]_i_24 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [29]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[31]_i_24_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[31]_i_25 
+       (.I0(\PC_reg[31]_0 [30]),
+        .I1(Q[30]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[30]));
+  LUT5 #(
+    .INIT(32'h2F232C20)) 
+    \ALUOut[31]_i_26 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [30]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[31]_i_26_n_0 ));
+  LUT5 #(
+    .INIT(32'h2F232C20)) 
+    \ALUOut[31]_i_27 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [31]),
+        .I4(\state_reg[0]_1 [20]),
+        .O(\ALUOut[31]_i_27_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[31]_i_24 
+    \ALUOut[31]_i_28 
+       (.I0(alu_A[3]),
+        .I1(alu_A[19]),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(alu_A[11]),
+        .I4(\ALUOut[31]_i_19_n_0 ),
+        .I5(alu_A[27]),
+        .O(\ALUOut[31]_i_28_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \ALUOut[31]_i_29 
        (.I0(alu_A[7]),
         .I1(alu_A[23]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
         .I3(alu_A[15]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .I5(alu_A[31]),
-        .O(\ALUOut[31]_i_24_n_0 ));
+        .O(\ALUOut[31]_i_29_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[31]_i_25 
+    \ALUOut[31]_i_30 
        (.I0(alu_A[2]),
         .I1(alu_A[18]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
         .I3(alu_A[10]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .I5(alu_A[26]),
-        .O(\ALUOut[31]_i_25_n_0 ));
+        .O(\ALUOut[31]_i_30_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[31]_i_26 
+    \ALUOut[31]_i_31 
        (.I0(alu_A[6]),
         .I1(alu_A[22]),
-        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
         .I3(alu_A[14]),
-        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[31]_i_19_n_0 ),
         .I5(alu_A[30]),
-        .O(\ALUOut[31]_i_26_n_0 ));
+        .O(\ALUOut[31]_i_31_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFF110F1100000)) 
+    \ALUOut[31]_i_32 
+       (.I0(\ALUOut[31]_i_33_n_0 ),
+        .I1(\ALUOut[31]_i_34_n_0 ),
+        .I2(alu_A[25]),
+        .I3(\ALUOut[31]_i_35_n_0 ),
+        .I4(alu_A[26]),
+        .I5(\ALUOut[31]_i_36_n_0 ),
+        .O(\ALUOut[31]_i_32_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT5 #(
+    .INIT(32'h27000027)) 
+    \ALUOut[31]_i_33 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[24]),
+        .I2(\PC_reg[31]_0 [24]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[25]_i_13_n_0 ),
+        .O(\ALUOut[31]_i_33_n_0 ));
+  LUT6 #(
+    .INIT(64'h0202022A022A2A2A)) 
+    \ALUOut[31]_i_34 
+       (.I0(\ALUOut[31]_i_37_n_0 ),
+        .I1(\ALUOut[31]_i_38_n_0 ),
+        .I2(alu_A[23]),
+        .I3(\ALUOut[31]_i_39_n_0 ),
+        .I4(alu_A[22]),
+        .I5(\ALUOut[28]_i_20_n_0 ),
+        .O(\ALUOut[31]_i_34_n_0 ));
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
+    \ALUOut[31]_i_35 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(\registers_reg[30][31] [25]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[31]_i_35_n_0 ));
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
+    \ALUOut[31]_i_36 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(\registers_reg[30][31] [26]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[31]_i_36_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT5 #(
+    .INIT(32'hFF2727FF)) 
+    \ALUOut[31]_i_37 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[24]),
+        .I2(\PC_reg[31]_0 [24]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[25]_i_13_n_0 ),
+        .O(\ALUOut[31]_i_37_n_0 ));
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
+    \ALUOut[31]_i_38 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(\registers_reg[30][31] [23]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[31]_i_38_n_0 ));
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
+    \ALUOut[31]_i_39 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(\registers_reg[30][31] [22]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
+        .O(\ALUOut[31]_i_39_n_0 ));
   LUT6 #(
     .INIT(64'h4774777747744444)) 
     \ALUOut[31]_i_4 
-       (.I0(\ALUOut[30]_i_3_n_0 ),
+       (.I0(\ALUOut[29]_i_3_n_0 ),
         .I1(\ALUOut[31]_i_12_n_0 ),
         .I2(\ALUOut[31]_i_13_n_0 ),
         .I3(\ALUOut[31]_i_14_n_0 ),
@@ -11132,521 +10963,481 @@ module design_1_Motherboard_0_0_ControlUnit
   LUT4 #(
     .INIT(16'h57F7)) 
     \ALUOut[31]_i_6 
-       (.I0(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut[9]_i_7_n_0 ),
         .I1(\ALUOut[31]_i_17_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
         .I3(\ALUOut[31]_i_18_n_0 ),
         .O(\ALUOut[31]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT5 #(
-    .INIT(32'h00000100)) 
+  LUT3 #(
+    .INIT(8'hCA)) 
     \ALUOut[31]_i_7 
-       (.I0(\ALUOut[30]_i_10_n_0 ),
-        .I1(\ALUOut[31]_i_19_n_0 ),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(alu_A[31]),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[31]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+       (.I0(\PC_reg[31]_0 [31]),
+        .I1(Q[31]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[31]));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h2)) 
-    \ALUOut[31]_i_8 
-       (.I0(\ALUOut[27]_i_11_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .O(\ALUOut[31]_i_8_n_0 ));
+    \ALUOut[31]_i_9 
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .O(\ALUOut[31]_i_9_n_0 ));
   LUT1 #(
     .INIT(2'h1)) 
     \ALUOut[3]_i_1 
        (.I0(\ALUOut[3]_i_2_n_0 ),
-        .O(\state_reg[5]_2 [3]));
-  LUT3 #(
-    .INIT(8'hB8)) 
+        .O(\state_reg[5]_3 [3]));
+  LUT6 #(
+    .INIT(64'hA280FBEAFBEAA280)) 
     \ALUOut[3]_i_10 
-       (.I0(\ALUOut[5]_i_14_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[2]_i_20_n_0 ),
+       (.I0(\ALUOut[2]_i_23_n_0 ),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[2]),
+        .I3(\PC_reg[31]_0 [2]),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
         .O(\ALUOut[3]_i_10_n_0 ));
   LUT6 #(
-    .INIT(64'hA8FFA80000000000)) 
-    \ALUOut[3]_i_11 
-       (.I0(\ALUOut[1]_i_8_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[30]_i_10_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(alu_A[31]),
-        .I5(\ALUOut_reg[2] ),
-        .O(\ALUOut[3]_i_11_n_0 ));
-  LUT6 #(
-    .INIT(64'hA808FEAEFEAEA808)) 
-    \ALUOut[3]_i_12 
-       (.I0(\ALUOut[2]_i_15_n_0 ),
-        .I1(Q[2]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [2]),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(\ALUOut[2]_i_6_n_0 ),
-        .O(\ALUOut[3]_i_12_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF150000FF15FF15)) 
+    .INIT(64'h5554555455545555)) 
     \ALUOut[3]_i_2 
        (.I0(\ALUOut[3]_i_3_n_0 ),
-        .I1(\ALUOut[14]_i_5_n_0 ),
-        .I2(alu_A[3]),
-        .I3(\ALUOut_reg[1]_0 ),
-        .I4(\ALUOut[3]_i_5_n_0 ),
+        .I1(\ALUOut[3]_i_4_n_0 ),
+        .I2(\ALUOut[3]_i_5_n_0 ),
+        .I3(\ALUOut[2]_i_3_n_0 ),
+        .I4(\ALUOut[4]_i_7_n_0 ),
         .I5(\ALUOut[3]_i_6_n_0 ),
         .O(\ALUOut[3]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h000056E800FF56E8)) 
+    .INIT(64'h5555555551400000)) 
     \ALUOut[3]_i_3 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(alu_A[3]),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[1] ),
-        .I5(\ALUOut[3]_i_7_n_0 ),
-        .O(\ALUOut[3]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair123" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[3]_i_4 
-       (.I0(\registers_reg[30][31] [3]),
+       (.I0(\ALUOut_reg[5] ),
         .I1(\ALUOut[15]_i_8_n_0 ),
         .I2(Q[3]),
-        .O(alu_A[3]));
+        .I3(\PC_reg[31]_0 [3]),
+        .I4(\ALUOut[14]_i_5_n_0 ),
+        .I5(\ALUOut[3]_i_7_n_0 ),
+        .O(\ALUOut[3]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFD5555DDFD5555)) 
+    .INIT(64'h0000000011000101)) 
+    \ALUOut[3]_i_4 
+       (.I0(\ALUOut[2]_i_15_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(alu_A[31]),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(\ALUOut[29]_i_12_n_0 ),
+        .O(\ALUOut[3]_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'h88CCC8C8)) 
     \ALUOut[3]_i_5 
-       (.I0(\ALUOut[0]_i_5_n_0 ),
-        .I1(\ALUOut_reg[2] ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut_reg[9] ),
         .I2(\ALUOut[3]_i_8_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut[3]_i_9_n_0 ),
+        .I3(\ALUOut[2]_i_10_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
         .O(\ALUOut[3]_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFF8FFF8FFF8)) 
+  (* SOFT_HLUTNM = "soft_lutpair86" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \ALUOut[3]_i_6 
-       (.I0(\ALUOut[3]_i_10_n_0 ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[29]_i_8_n_0 ),
-        .I3(\ALUOut[3]_i_11_n_0 ),
-        .I4(\ALUOut[31]_i_8_n_0 ),
-        .I5(\ALUOut[2]_i_9_n_0 ),
+       (.I0(\ALUOut[4]_i_5_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[2]_i_15_n_0 ),
         .O(\ALUOut[3]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hA95956A656A6A959)) 
+    .INIT(64'h000056E800FF56E8)) 
     \ALUOut[3]_i_7 
-       (.I0(\ALUOut[3]_i_12_n_0 ),
-        .I1(Q[3]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [3]),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(\ALUOut[31]_i_19_n_0 ),
+       (.I0(\ALUOut[31]_i_20_n_0 ),
+        .I1(alu_A[3]),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut_reg[9] ),
+        .I4(\ALUOut_reg[5]_1 ),
+        .I5(\ALUOut[3]_i_9_n_0 ),
         .O(\ALUOut[3]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h1D001DFFFFFFFFFF)) 
+    .INIT(64'h270027FFFFFFFFFF)) 
     \ALUOut[3]_i_8 
-       (.I0(Q[1]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [1]),
-        .I3(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[1]),
+        .I2(\PC_reg[31]_0 [1]),
+        .I3(\ALUOut[29]_i_12_n_0 ),
         .I4(alu_A[3]),
-        .I5(\ALUOut[1]_i_11_n_0 ),
+        .I5(\ALUOut[14]_i_12_n_0 ),
         .O(\ALUOut[3]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'h1D001DFFFFFFFFFF)) 
+    .INIT(64'hA695596A596AA695)) 
     \ALUOut[3]_i_9 
-       (.I0(Q[0]),
+       (.I0(\ALUOut[3]_i_10_n_0 ),
         .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [0]),
-        .I3(\ALUOut[30]_i_10_n_0 ),
-        .I4(alu_A[2]),
-        .I5(\ALUOut[1]_i_11_n_0 ),
+        .I2(Q[3]),
+        .I3(\PC_reg[31]_0 [3]),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[31]_i_20_n_0 ),
         .O(\ALUOut[3]_i_9_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \ALUOut[4]_i_1 
        (.I0(\ALUOut[4]_i_2_n_0 ),
-        .O(\state_reg[5]_2 [4]));
+        .O(\state_reg[5]_3 [4]));
   LUT6 #(
-    .INIT(64'hFFFF1515FF001515)) 
+    .INIT(64'h2F20FFFF2F200000)) 
+    \ALUOut[4]_i_10 
+       (.I0(alu_A[18]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[9]_i_29_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[2]_i_19_n_0 ),
+        .O(\ALUOut[4]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'h2F20FFFF2F200000)) 
+    \ALUOut[4]_i_11 
+       (.I0(alu_A[19]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[9]_i_24_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[2]_i_21_n_0 ),
+        .O(\ALUOut[4]_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'h2F20FFFF2F200000)) 
+    \ALUOut[4]_i_12 
+       (.I0(alu_A[17]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[31]_i_20_n_0 ),
+        .I3(\ALUOut[9]_i_26_n_0 ),
+        .I4(\ALUOut[2]_i_13_n_0 ),
+        .I5(\ALUOut[1]_i_12_n_0 ),
+        .O(\ALUOut[4]_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'h9696696996699669)) 
+    \ALUOut[4]_i_13 
+       (.I0(\ALUOut[31]_i_23_n_0 ),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[7]_i_16_n_0 ),
+        .I3(\PC_reg[31]_0 [4]),
+        .I4(Q[4]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[4]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'h4444444444455545)) 
     \ALUOut[4]_i_2 
        (.I0(\ALUOut[4]_i_3_n_0 ),
-        .I1(alu_A[4]),
-        .I2(\ALUOut[14]_i_5_n_0 ),
-        .I3(\ALUOut[4]_i_5_n_0 ),
-        .I4(\ALUOut_reg[1]_0 ),
-        .I5(\ALUOut_reg[1] ),
+        .I1(\ALUOut[4]_i_4_n_0 ),
+        .I2(\ALUOut[4]_i_5_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[4]_i_6_n_0 ),
+        .I5(\ALUOut[4]_i_7_n_0 ),
         .O(\ALUOut[4]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h000036E800FF36E8)) 
+    .INIT(64'h5555555544044000)) 
     \ALUOut[4]_i_3 
-       (.I0(alu_A[4]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut_reg[1] ),
-        .I5(\ALUOut[4]_i_6_n_0 ),
+       (.I0(\ALUOut_reg[5] ),
+        .I1(\ALUOut[14]_i_5_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[4]),
+        .I4(\PC_reg[31]_0 [4]),
+        .I5(\ALUOut[4]_i_8_n_0 ),
         .O(\ALUOut[4]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair124" *) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFFDDDDDFFF)) 
+    \ALUOut[4]_i_4 
+       (.I0(\ALUOut_reg[5] ),
+        .I1(\ALUOut_reg[5]_1 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(alu_A[31]),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(\ALUOut[4]_i_9_n_0 ),
+        .O(\ALUOut[4]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \ALUOut[4]_i_4 
-       (.I0(\registers_reg[30][31] [4]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[4]),
-        .O(alu_A[4]));
-  LUT6 #(
-    .INIT(64'hFF070000FF07FF07)) 
     \ALUOut[4]_i_5 
-       (.I0(\ALUOut[5]_i_6_n_0 ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[4]_i_7_n_0 ),
-        .I3(\ALUOut_reg[5] ),
-        .I4(\ALUOut[4]_i_8_n_0 ),
-        .I5(\ALUOut[29]_i_8_n_0 ),
+       (.I0(\ALUOut[4]_i_10_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[2]_i_11_n_0 ),
         .O(\ALUOut[4]_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h9669969696696969)) 
+  (* SOFT_HLUTNM = "soft_lutpair92" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \ALUOut[4]_i_6 
-       (.I0(\ALUOut[23]_i_7_n_0 ),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[7]_i_16_n_0 ),
-        .I3(\registers_reg[30][31] [4]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[4]),
+       (.I0(\ALUOut[4]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[4]_i_12_n_0 ),
         .O(\ALUOut[4]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hF2F022F0F2002200)) 
+    .INIT(64'hC0C0AAAAFFC0AA80)) 
     \ALUOut[4]_i_7 
-       (.I0(\ALUOut[3]_i_10_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(\ALUOut[1]_i_8_n_0 ),
-        .I5(alu_A[31]),
+       (.I0(\ALUOut_reg[9] ),
+        .I1(\ALUOut[2]_i_14_n_0 ),
+        .I2(\ALUOut[2]_i_13_n_0 ),
+        .I3(alu_A[31]),
+        .I4(\ALUOut_reg[5]_0 ),
+        .I5(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[4]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h47FFFFFF47FF0000)) 
+    .INIT(64'h000036E800FF36E8)) 
     \ALUOut[4]_i_8 
-       (.I0(alu_A[1]),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(alu_A[3]),
-        .I3(\ALUOut[1]_i_11_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
-        .I5(\ALUOut[5]_i_8_n_0 ),
+       (.I0(alu_A[4]),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut_reg[9] ),
+        .I4(\ALUOut_reg[5]_1 ),
+        .I5(\ALUOut[4]_i_13_n_0 ),
         .O(\ALUOut[4]_i_8_n_0 ));
+  LUT5 #(
+    .INIT(32'hAA8AA888)) 
+    \ALUOut[4]_i_9 
+       (.I0(\ALUOut_reg[9] ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[3]_i_8_n_0 ),
+        .I4(\ALUOut[5]_i_11_n_0 ),
+        .O(\ALUOut[4]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'h00E2FFFF00E20000)) 
+    .INIT(64'h2F2F2F202F202F20)) 
     \ALUOut[5]_i_1 
-       (.I0(\ALUOut[5]_i_2_n_0 ),
-        .I1(\ALUOut_reg[5] ),
-        .I2(\ALUOut[5]_i_3_n_0 ),
-        .I3(\ALUOut_reg[1] ),
-        .I4(\ALUOut_reg[1]_0 ),
-        .I5(\ALUOut[5]_i_4_n_0 ),
-        .O(\state_reg[5]_2 [5]));
+       (.I0(\ALUOut_reg[5]_i_2_n_0 ),
+        .I1(\ALUOut_reg[5]_1 ),
+        .I2(\ALUOut_reg[5] ),
+        .I3(\ALUOut[5]_i_3_n_0 ),
+        .I4(\ALUOut[14]_i_5_n_0 ),
+        .I5(alu_A[5]),
+        .O(\state_reg[5]_3 [5]));
+  (* SOFT_HLUTNM = "soft_lutpair86" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \ALUOut[5]_i_10 
+       (.I0(\ALUOut[6]_i_10_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[4]_i_6_n_0 ),
+        .O(\ALUOut[5]_i_10_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBBBB8888888)) 
+    .INIT(64'hFFFFF5F5FFFF303F)) 
     \ALUOut[5]_i_11 
-       (.I0(\ALUOut[7]_i_13_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[2]_i_6_n_0 ),
-        .I3(\ALUOut[18]_i_16_n_0 ),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[5]_i_14_n_0 ),
+       (.I0(alu_A[2]),
+        .I1(alu_A[0]),
+        .I2(\ALUOut[2]_i_13_n_0 ),
+        .I3(alu_A[4]),
+        .I4(\ALUOut[9]_i_14_n_0 ),
+        .I5(\ALUOut[29]_i_12_n_0 ),
         .O(\ALUOut[5]_i_11_n_0 ));
   LUT6 #(
-    .INIT(64'h2F20FFFF2F200000)) 
+    .INIT(64'hA280FBEAFBEAA280)) 
     \ALUOut[5]_i_12 
-       (.I0(alu_A[19]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[5]_i_19_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[2]_i_16_n_0 ),
+       (.I0(\ALUOut[7]_i_16_n_0 ),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[4]),
+        .I3(\PC_reg[31]_0 [4]),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[31]_i_19_n_0 ),
         .O(\ALUOut[5]_i_12_n_0 ));
   LUT6 #(
-    .INIT(64'h2F20FFFF2F200000)) 
-    \ALUOut[5]_i_13 
-       (.I0(alu_A[17]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[5]_i_20_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[1]_i_15_n_0 ),
-        .O(\ALUOut[5]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h2F20FFFF2F200000)) 
-    \ALUOut[5]_i_14 
-       (.I0(alu_A[18]),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[5]_i_21_n_0 ),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(\ALUOut[2]_i_18_n_0 ),
-        .O(\ALUOut[5]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
-    \ALUOut[5]_i_15 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[5]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair125" *) 
+    .INIT(64'h000056E800FF56E8)) 
+    \ALUOut[5]_i_3 
+       (.I0(\ALUOut[5]_i_7_n_0 ),
+        .I1(alu_A[5]),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut_reg[9] ),
+        .I4(\ALUOut_reg[5]_1 ),
+        .I5(\ALUOut[5]_i_8_n_0 ),
+        .O(\ALUOut[5]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair105" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
-    \ALUOut[5]_i_16 
-       (.I0(\registers_reg[30][31] [5]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[5]),
-        .O(alu_A[5]));
-  LUT6 #(
-    .INIT(64'hFFE2001D001D1DFF)) 
-    \ALUOut[5]_i_17 
-       (.I0(Q[5]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [5]),
-        .I3(\ALUOut_reg[2] ),
-        .I4(\ALUOut[30]_i_29_n_0 ),
-        .I5(\ALUOut_reg[5] ),
-        .O(\ALUOut[5]_i_17_n_0 ));
-  LUT6 #(
-    .INIT(64'hA95956A656A6A959)) 
-    \ALUOut[5]_i_18 
-       (.I0(\ALUOut[5]_i_22_n_0 ),
+    .INIT(8'hCA)) 
+    \ALUOut[5]_i_4 
+       (.I0(\PC_reg[31]_0 [5]),
         .I1(Q[5]),
         .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [5]),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(\ALUOut[30]_i_29_n_0 ),
-        .O(\ALUOut[5]_i_18_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[5]_i_19 
-       (.I0(\registers_reg[30][31] [27]),
-        .I1(Q[27]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\registers_reg[30][31] [11]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[11]),
-        .O(\ALUOut[5]_i_19_n_0 ));
-  LUT6 #(
-    .INIT(64'hBBB888B888888888)) 
-    \ALUOut[5]_i_2 
-       (.I0(\ALUOut[5]_i_5_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[5]_i_6_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[5]_i_7_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
-        .O(\ALUOut[5]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[5]_i_20 
-       (.I0(\registers_reg[30][31] [25]),
-        .I1(Q[25]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\registers_reg[30][31] [9]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[9]),
-        .O(\ALUOut[5]_i_20_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \ALUOut[5]_i_21 
-       (.I0(\registers_reg[30][31] [26]),
-        .I1(Q[26]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\registers_reg[30][31] [10]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[10]),
-        .O(\ALUOut[5]_i_21_n_0 ));
-  LUT6 #(
-    .INIT(64'hA808FEAEFEAEA808)) 
-    \ALUOut[5]_i_22 
-       (.I0(\ALUOut[7]_i_16_n_0 ),
-        .I1(Q[4]),
-        .I2(\ALUOut[15]_i_8_n_0 ),
-        .I3(\registers_reg[30][31] [4]),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(\ALUOut[31]_i_20_n_0 ),
-        .O(\ALUOut[5]_i_22_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+        .O(alu_A[5]));
+  LUT5 #(
+    .INIT(32'hAFA0C0C0)) 
+    \ALUOut[5]_i_5 
+       (.I0(\ALUOut[5]_i_9_n_0 ),
+        .I1(alu_A[31]),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut[5]_i_10_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .O(\ALUOut[5]_i_5_n_0 ));
   LUT5 #(
     .INIT(32'h04000444)) 
-    \ALUOut[5]_i_3 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[27]_i_11_n_0 ),
-        .I2(\ALUOut[5]_i_8_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[5]_i_9_n_0 ),
-        .O(\ALUOut[5]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hF111F1F1F1111111)) 
-    \ALUOut[5]_i_4 
-       (.I0(\ALUOut_reg[5]_i_10_n_0 ),
-        .I1(\ALUOut[31]_i_12_n_0 ),
-        .I2(\ALUOut[14]_i_5_n_0 ),
-        .I3(\registers_reg[30][31] [5]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[5]),
-        .O(\ALUOut[5]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hBBB8FFFFBBB80000)) 
-    \ALUOut[5]_i_5 
-       (.I0(\ALUOut[5]_i_11_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[1]_i_8_n_0 ),
-        .I3(\ALUOut[5]_i_6_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .I5(alu_A[31]),
-        .O(\ALUOut[5]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair106" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
     \ALUOut[5]_i_6 
-       (.I0(\ALUOut[5]_i_12_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[5]_i_13_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[9]_i_7_n_0 ),
+        .I2(\ALUOut[5]_i_11_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[6]_i_12_n_0 ),
         .O(\ALUOut[5]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair103" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT6 #(
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[5]_i_7 
-       (.I0(\ALUOut[8]_i_12_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[5]_i_14_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [3]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [5]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [5]),
         .O(\ALUOut[5]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'hFCFCF4F7FFFFF4F7)) 
+    .INIT(64'hA695596A596AA695)) 
     \ALUOut[5]_i_8 
-       (.I0(alu_A[2]),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[5]_i_15_n_0 ),
-        .I3(alu_A[4]),
-        .I4(\ALUOut[2]_i_6_n_0 ),
-        .I5(alu_A[0]),
+       (.I0(\ALUOut[5]_i_12_n_0 ),
+        .I1(\ALUOut[15]_i_8_n_0 ),
+        .I2(Q[5]),
+        .I3(\PC_reg[31]_0 [5]),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(\ALUOut[5]_i_7_n_0 ),
         .O(\ALUOut[5]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFCF44CF77)) 
+    .INIT(64'hBBBBBBBBB8888888)) 
     \ALUOut[5]_i_9 
-       (.I0(alu_A[3]),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(alu_A[1]),
-        .I3(\ALUOut[2]_i_6_n_0 ),
-        .I4(alu_A[5]),
-        .I5(\ALUOut[5]_i_15_n_0 ),
+       (.I0(\ALUOut[6]_i_13_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[2]_i_13_n_0 ),
+        .I3(\ALUOut[16]_i_16_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[4]_i_6_n_0 ),
         .O(\ALUOut[5]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h2F2F2F202F202F20)) 
     \ALUOut[6]_i_1 
        (.I0(\ALUOut_reg[6]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1] ),
-        .I2(\ALUOut_reg[1]_0 ),
+        .I1(\ALUOut_reg[5]_1 ),
+        .I2(\ALUOut_reg[5] ),
         .I3(\ALUOut[6]_i_3_n_0 ),
         .I4(\ALUOut[14]_i_5_n_0 ),
         .I5(alu_A[6]),
-        .O(\state_reg[5]_2 [6]));
-  (* SOFT_HLUTNM = "soft_lutpair107" *) 
+        .O(\state_reg[5]_3 [6]));
+  (* SOFT_HLUTNM = "soft_lutpair87" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \ALUOut[6]_i_10 
-       (.I0(\ALUOut[9]_i_14_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[5]_i_12_n_0 ),
+       (.I0(\ALUOut[8]_i_13_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[4]_i_10_n_0 ),
         .O(\ALUOut[6]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000FF003636E8E8)) 
-    \ALUOut[6]_i_3 
-       (.I0(alu_A[6]),
-        .I1(\ALUOut[6]_i_7_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut[6]_i_8_n_0 ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut_reg[1] ),
-        .O(\ALUOut[6]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair126" *) 
+  (* SOFT_HLUTNM = "soft_lutpair93" *) 
   LUT3 #(
     .INIT(8'hB8)) 
+    \ALUOut[6]_i_11 
+       (.I0(\ALUOut[9]_i_19_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[4]_i_11_n_0 ),
+        .O(\ALUOut[6]_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFCF44CF77)) 
+    \ALUOut[6]_i_12 
+       (.I0(alu_A[3]),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(alu_A[1]),
+        .I3(\ALUOut[2]_i_13_n_0 ),
+        .I4(alu_A[5]),
+        .I5(\ALUOut[9]_i_14_n_0 ),
+        .O(\ALUOut[6]_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hBBBBBBBBB8888888)) 
+    \ALUOut[6]_i_13 
+       (.I0(\ALUOut[7]_i_13_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[2]_i_13_n_0 ),
+        .I3(\ALUOut[16]_i_16_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[4]_i_10_n_0 ),
+        .O(\ALUOut[6]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'h000056E800FF56E8)) 
+    \ALUOut[6]_i_3 
+       (.I0(\ALUOut[6]_i_7_n_0 ),
+        .I1(alu_A[6]),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut_reg[9] ),
+        .I4(\ALUOut_reg[5]_1 ),
+        .I5(\ALUOut[6]_i_8_n_0 ),
+        .O(\ALUOut[6]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair127" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
     \ALUOut[6]_i_4 
-       (.I0(\registers_reg[30][31] [6]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[6]),
+       (.I0(\PC_reg[31]_0 [6]),
+        .I1(Q[6]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[6]));
   LUT6 #(
     .INIT(64'hBBB888B888888888)) 
     \ALUOut[6]_i_5 
        (.I0(\ALUOut[6]_i_9_n_0 ),
-        .I1(\ALUOut_reg[2] ),
-        .I2(\ALUOut[5]_i_7_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
-        .I4(\ALUOut[6]_i_10_n_0 ),
-        .I5(\ALUOut[27]_i_11_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[6]_i_10_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[6]_i_11_n_0 ),
+        .I5(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[6]_i_5_n_0 ));
   LUT5 #(
     .INIT(32'h04000444)) 
     \ALUOut[6]_i_6 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[27]_i_11_n_0 ),
-        .I2(\ALUOut[5]_i_9_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[9]_i_7_n_0 ),
+        .I2(\ALUOut[6]_i_12_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
         .I4(\ALUOut[7]_i_11_n_0 ),
         .O(\ALUOut[6]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[6]_i_7 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [6]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [4]),
-        .I4(\CPSR_reg[1]_0 [6]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [4]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [6]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [6]),
         .O(\ALUOut[6]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h6996696969969696)) 
+    .INIT(64'h9696696996699669)) 
     \ALUOut[6]_i_8 
-       (.I0(\ALUOut[7]_i_12_n_0 ),
+       (.I0(\ALUOut[31]_i_23_n_0 ),
         .I1(\ALUOut[6]_i_7_n_0 ),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\registers_reg[30][31] [6]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[6]),
+        .I2(\ALUOut[7]_i_12_n_0 ),
+        .I3(\PC_reg[31]_0 [6]),
+        .I4(Q[6]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[6]_i_8_n_0 ));
   LUT5 #(
     .INIT(32'hB8FFB800)) 
     \ALUOut[6]_i_9 
        (.I0(\ALUOut[7]_i_14_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[5]_i_11_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[6]_i_13_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
         .I4(alu_A[31]),
         .O(\ALUOut[6]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h2F2F2F202F202F20)) 
     \ALUOut[7]_i_1 
        (.I0(\ALUOut_reg[7]_i_2_n_0 ),
-        .I1(\ALUOut_reg[1] ),
-        .I2(\ALUOut_reg[1]_0 ),
+        .I1(\ALUOut_reg[5]_1 ),
+        .I2(\ALUOut_reg[5] ),
         .I3(\ALUOut[7]_i_3_n_0 ),
         .I4(\ALUOut[14]_i_5_n_0 ),
         .I5(alu_A[7]),
-        .O(\state_reg[5]_2 [7]));
-  LUT3 #(
-    .INIT(8'hB8)) 
+        .O(\state_reg[5]_3 [7]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
     \ALUOut[7]_i_10 
-       (.I0(\ALUOut[8]_i_8_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[6]_i_10_n_0 ),
+       (.I0(\ALUOut[9]_i_21_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[8]_i_13_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[6]_i_11_n_0 ),
         .O(\ALUOut[7]_i_10_n_0 ));
   LUT6 #(
-    .INIT(64'hABFBFFFFABFB0000)) 
+    .INIT(64'hFF47FFFFFF470000)) 
     \ALUOut[7]_i_11 
-       (.I0(\ALUOut[5]_i_15_n_0 ),
-        .I1(alu_A[4]),
-        .I2(\ALUOut[2]_i_6_n_0 ),
-        .I3(alu_A[0]),
-        .I4(\ALUOut[30]_i_10_n_0 ),
+       (.I0(alu_A[0]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[4]),
+        .I3(\ALUOut[9]_i_14_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
         .I5(\ALUOut[7]_i_15_n_0 ),
         .O(\ALUOut[7]_i_11_n_0 ));
   LUT6 #(
@@ -11654,104 +11445,105 @@ module design_1_Motherboard_0_0_ControlUnit
     \ALUOut[7]_i_12 
        (.I0(\ALUOut[7]_i_16_n_0 ),
         .I1(alu_A[4]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[31]_i_19_n_0 ),
         .I4(alu_A[5]),
-        .I5(\ALUOut[30]_i_29_n_0 ),
+        .I5(\ALUOut[5]_i_7_n_0 ),
         .O(\ALUOut[7]_i_12_n_0 ));
   LUT6 #(
     .INIT(64'hFFB8BBBBFFB88888)) 
     \ALUOut[7]_i_13 
-       (.I0(\ALUOut[10]_i_16_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
+       (.I0(\ALUOut[9]_i_27_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
         .I2(\ALUOut[7]_i_17_n_0 ),
-        .I3(\ALUOut[18]_i_16_n_0 ),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[8]_i_14_n_0 ),
+        .I3(\ALUOut[16]_i_16_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[2]_i_17_n_0 ),
         .O(\ALUOut[7]_i_13_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF88800080)) 
+    .INIT(64'hFFFFFFFF88088000)) 
     \ALUOut[7]_i_14 
-       (.I0(\ALUOut[31]_i_19_n_0 ),
-        .I1(\ALUOut[31]_i_20_n_0 ),
-        .I2(Q[31]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [31]),
-        .I5(\ALUOut[6]_i_10_n_0 ),
+       (.I0(\ALUOut[31]_i_20_n_0 ),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[31]),
+        .I4(\PC_reg[31]_0 [31]),
+        .I5(\ALUOut[6]_i_11_n_0 ),
         .O(\ALUOut[7]_i_14_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFF4FFF7)) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFF270027FF)) 
     \ALUOut[7]_i_15 
-       (.I0(alu_A[2]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[31]_i_19_n_0 ),
-        .I3(\ALUOut[31]_i_20_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[2]),
+        .I2(\PC_reg[31]_0 [2]),
+        .I3(\ALUOut[2]_i_13_n_0 ),
         .I4(alu_A[6]),
+        .I5(\ALUOut[9]_i_14_n_0 ),
         .O(\ALUOut[7]_i_15_n_0 ));
   LUT6 #(
     .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[7]_i_16 
-       (.I0(\ALUOut[2]_i_15_n_0 ),
+       (.I0(\ALUOut[2]_i_23_n_0 ),
         .I1(alu_A[2]),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\ALUOut[2]_i_6_n_0 ),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[2]_i_13_n_0 ),
         .I4(alu_A[3]),
-        .I5(\ALUOut[31]_i_19_n_0 ),
+        .I5(\ALUOut[31]_i_20_n_0 ),
         .O(\ALUOut[7]_i_16_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'h00D8)) 
     \ALUOut[7]_i_17 
-       (.I0(Q[16]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(\registers_reg[30][31] [16]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[16]),
+        .I2(\PC_reg[31]_0 [16]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
         .O(\ALUOut[7]_i_17_n_0 ));
   LUT6 #(
     .INIT(64'h0000FF003636E8E8)) 
     \ALUOut[7]_i_3 
        (.I0(alu_A[7]),
         .I1(\ALUOut[7]_i_7_n_0 ),
-        .I2(\ALUOut_reg[2] ),
+        .I2(\ALUOut_reg[5]_0 ),
         .I3(\ALUOut[7]_i_8_n_0 ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut_reg[1] ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[5]_1 ),
         .O(\ALUOut[7]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hCA)) 
     \ALUOut[7]_i_4 
-       (.I0(\registers_reg[30][31] [7]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[7]),
+       (.I0(\PC_reg[31]_0 [7]),
+        .I1(Q[7]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[7]));
   LUT5 #(
     .INIT(32'hAFA0C0C0)) 
     \ALUOut[7]_i_5 
        (.I0(\ALUOut[7]_i_9_n_0 ),
         .I1(alu_A[31]),
-        .I2(\ALUOut_reg[2] ),
+        .I2(\ALUOut_reg[5]_0 ),
         .I3(\ALUOut[7]_i_10_n_0 ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
         .O(\ALUOut[7]_i_5_n_0 ));
   LUT5 #(
     .INIT(32'h04000444)) 
     \ALUOut[7]_i_6 
-       (.I0(\ALUOut_reg[2] ),
-        .I1(\ALUOut[27]_i_11_n_0 ),
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[9]_i_7_n_0 ),
         .I2(\ALUOut[7]_i_11_n_0 ),
-        .I3(\ALUOut[30]_i_9_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
         .I4(\ALUOut[8]_i_11_n_0 ),
         .O(\ALUOut[7]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[7]_i_7 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [7]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [5]),
-        .I4(\CPSR_reg[1]_0 [7]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [5]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [7]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [7]),
         .O(\ALUOut[7]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'h2BD4E817D42B17E8)) 
@@ -11760,300 +11552,450 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(alu_A[6]),
         .I2(\ALUOut[7]_i_12_n_0 ),
         .I3(\ALUOut[7]_i_7_n_0 ),
-        .I4(\ALUOut[23]_i_7_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
         .I5(alu_A[7]),
         .O(\ALUOut[7]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hEFE0FFFFEFE00000)) 
     \ALUOut[7]_i_9 
-       (.I0(\ALUOut[9]_i_12_n_0 ),
-        .I1(\ALUOut[10]_i_11_n_0 ),
-        .I2(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[2]_i_14_n_0 ),
+        .I1(\ALUOut[9]_i_21_n_0 ),
+        .I2(\ALUOut[29]_i_12_n_0 ),
         .I3(\ALUOut[7]_i_13_n_0 ),
-        .I4(\ALUOut[30]_i_9_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
         .I5(\ALUOut[7]_i_14_n_0 ),
         .O(\ALUOut[7]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'h6996696969969696)) 
+    .INIT(64'h2F202F2F2F202F20)) 
+    \ALUOut[8]_i_1 
+       (.I0(\ALUOut_reg[8]_i_2_n_0 ),
+        .I1(\ALUOut_reg[5]_1 ),
+        .I2(\ALUOut_reg[5] ),
+        .I3(\ALUOut[8]_i_3_n_0 ),
+        .I4(\ALUOut[8]_i_4_n_0 ),
+        .I5(\ALUOut[14]_i_5_n_0 ),
+        .O(\state_reg[5]_3 [8]));
+  LUT5 #(
+    .INIT(32'hFF00B8B8)) 
     \ALUOut[8]_i_10 
-       (.I0(\ALUOut[11]_i_17_n_0 ),
-        .I1(\ALUOut[8]_i_9_n_0 ),
-        .I2(\ALUOut[23]_i_7_n_0 ),
-        .I3(\registers_reg[30][31] [8]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[8]),
+       (.I0(\ALUOut[9]_i_21_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[8]_i_13_n_0 ),
+        .I3(\ALUOut[9]_i_9_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
         .O(\ALUOut[8]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'hBBBBBBBB8B888BBB)) 
     \ALUOut[8]_i_11 
-       (.I0(\ALUOut[8]_i_13_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
+       (.I0(\ALUOut[8]_i_14_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
         .I2(alu_A[3]),
-        .I3(\ALUOut[2]_i_6_n_0 ),
+        .I3(\ALUOut[2]_i_13_n_0 ),
         .I4(alu_A[7]),
-        .I5(\ALUOut[5]_i_15_n_0 ),
+        .I5(\ALUOut[9]_i_14_n_0 ),
         .O(\ALUOut[8]_i_11_n_0 ));
   LUT6 #(
-    .INIT(64'h88B8BBBB88B88888)) 
+    .INIT(64'h8FEF0E08FEF880E0)) 
     \ALUOut[8]_i_12 
-       (.I0(\ALUOut[10]_i_16_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[16]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[8]_i_14_n_0 ),
+       (.I0(\ALUOut[7]_i_12_n_0 ),
+        .I1(alu_A[6]),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\ALUOut[6]_i_7_n_0 ),
+        .I4(alu_A[7]),
+        .I5(\ALUOut[7]_i_7_n_0 ),
         .O(\ALUOut[8]_i_12_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF44477747)) 
+    .INIT(64'h88B8BBBB88B88888)) 
     \ALUOut[8]_i_13 
-       (.I0(alu_A[1]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(Q[5]),
-        .I3(\ALUOut[15]_i_8_n_0 ),
-        .I4(\registers_reg[30][31] [5]),
-        .I5(\ALUOut[5]_i_15_n_0 ),
+       (.I0(\ALUOut[9]_i_27_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[16]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[2]_i_17_n_0 ),
         .O(\ALUOut[8]_i_13_n_0 ));
   LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    .INIT(64'hFFFFFFFF44744777)) 
     \ALUOut[8]_i_14 
-       (.I0(\registers_reg[30][31] [24]),
-        .I1(Q[24]),
-        .I2(\ALUOut[31]_i_20_n_0 ),
-        .I3(\registers_reg[30][31] [8]),
-        .I4(\ALUOut[15]_i_8_n_0 ),
-        .I5(Q[8]),
+       (.I0(alu_A[1]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(Q[5]),
+        .I4(\PC_reg[31]_0 [5]),
+        .I5(\ALUOut[9]_i_14_n_0 ),
         .O(\ALUOut[8]_i_14_n_0 ));
   LUT6 #(
-    .INIT(64'hEEEEFAAAAAAAAAAA)) 
-    \ALUOut[8]_i_2 
-       (.I0(\ALUOut[8]_i_4_n_0 ),
-        .I1(alu_A[8]),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(alu_A[7]),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .I5(\ALUOut[14]_i_5_n_0 ),
-        .O(\ALUOut[8]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h4545454445444544)) 
+    .INIT(64'h0000FF003636E8E8)) 
     \ALUOut[8]_i_3 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut[8]_i_6_n_0 ),
-        .I2(\ALUOut_reg[5] ),
-        .I3(\ALUOut[8]_i_7_n_0 ),
-        .I4(\ALUOut[31]_i_8_n_0 ),
-        .I5(\ALUOut[8]_i_8_n_0 ),
+       (.I0(alu_A[8]),
+        .I1(\ALUOut[8]_i_8_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut[8]_i_9_n_0 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[5]_1 ),
         .O(\ALUOut[8]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h0000FF003636E8E8)) 
+    .INIT(64'h3535353500FFFFFF)) 
     \ALUOut[8]_i_4 
-       (.I0(alu_A[8]),
-        .I1(\ALUOut[8]_i_9_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut[8]_i_10_n_0 ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut_reg[1] ),
+       (.I0(\PC_reg[31]_0 [8]),
+        .I1(Q[8]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(alu_A[7]),
+        .I5(\ALUOut[29]_i_12_n_0 ),
         .O(\ALUOut[8]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair140" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT6 #(
+    .INIT(64'hFFFF8000F000F000)) 
     \ALUOut[8]_i_5 
-       (.I0(\registers_reg[30][31] [8]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[8]),
+       (.I0(\ALUOut[31]_i_20_n_0 ),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .I2(alu_A[31]),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(\ALUOut[8]_i_10_n_0 ),
+        .I5(\ALUOut[9]_i_7_n_0 ),
+        .O(\ALUOut[8]_i_5_n_0 ));
+  LUT5 #(
+    .INIT(32'h04000444)) 
+    \ALUOut[8]_i_6 
+       (.I0(\ALUOut_reg[5]_0 ),
+        .I1(\ALUOut[9]_i_7_n_0 ),
+        .I2(\ALUOut[8]_i_11_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[9]_i_5_n_0 ),
+        .O(\ALUOut[8]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair121" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[8]_i_7 
+       (.I0(\PC_reg[31]_0 [8]),
+        .I1(Q[8]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
         .O(alu_A[8]));
   LUT6 #(
-    .INIT(64'h002E000000000000)) 
-    \ALUOut[8]_i_6 
-       (.I0(\ALUOut[9]_i_13_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut[8]_i_11_n_0 ),
-        .I3(\ALUOut_reg[2] ),
-        .I4(\ALUOut[27]_i_11_n_0 ),
-        .I5(\ALUOut_reg[5] ),
-        .O(\ALUOut[8]_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'hF8F088F0F8008800)) 
-    \ALUOut[8]_i_7 
-       (.I0(\ALUOut[9]_i_11_n_0 ),
-        .I1(\ALUOut[30]_i_9_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(\ALUOut[9]_i_12_n_0 ),
-        .I5(alu_A[31]),
-        .O(\ALUOut[8]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair103" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(64'h0F00DFDF0F008080)) 
     \ALUOut[8]_i_8 
-       (.I0(\ALUOut[10]_i_11_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[8]_i_12_n_0 ),
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [6]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [8]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [8]),
         .O(\ALUOut[8]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'h6969969669966996)) 
     \ALUOut[8]_i_9 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [8]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [6]),
-        .I4(\CPSR_reg[1]_0 [8]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(\ALUOut[8]_i_12_n_0 ),
+        .I1(\ALUOut[8]_i_8_n_0 ),
+        .I2(\ALUOut[31]_i_23_n_0 ),
+        .I3(\PC_reg[31]_0 [8]),
+        .I4(Q[8]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
         .O(\ALUOut[8]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'h2BD4E817D42B17E8)) 
-    \ALUOut[9]_i_10 
-       (.I0(\ALUOut[8]_i_9_n_0 ),
-        .I1(alu_A[8]),
-        .I2(\ALUOut[11]_i_17_n_0 ),
-        .I3(\ALUOut[9]_i_9_n_0 ),
-        .I4(\ALUOut[23]_i_7_n_0 ),
-        .I5(alu_A[9]),
-        .O(\ALUOut[9]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair107" *) 
+    .INIT(64'h4445FFFF44450000)) 
+    \ALUOut[9]_i_1 
+       (.I0(\ALUOut_reg[5]_1 ),
+        .I1(\ALUOut[9]_i_2_n_0 ),
+        .I2(\ALUOut_reg[9] ),
+        .I3(\ALUOut[9]_i_3_n_0 ),
+        .I4(\ALUOut_reg[5] ),
+        .I5(\ALUOut[9]_i_4_n_0 ),
+        .O(\state_reg[5]_3 [9]));
+  (* SOFT_HLUTNM = "soft_lutpair84" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \ALUOut[9]_i_11 
-       (.I0(\ALUOut[11]_i_15_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[9]_i_14_n_0 ),
-        .O(\ALUOut[9]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT5 #(
-    .INIT(32'hB8000000)) 
-    \ALUOut[9]_i_12 
-       (.I0(\registers_reg[30][31] [31]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[31]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .O(\ALUOut[9]_i_12_n_0 ));
-  LUT6 #(
-    .INIT(64'h0B08FFFF0B080000)) 
-    \ALUOut[9]_i_13 
-       (.I0(alu_A[2]),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(\ALUOut[5]_i_15_n_0 ),
-        .I3(alu_A[6]),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .I5(\ALUOut[11]_i_16_n_0 ),
-        .O(\ALUOut[9]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'h88B8BBBB88B88888)) 
-    \ALUOut[9]_i_14 
-       (.I0(\ALUOut[13]_i_16_n_0 ),
-        .I1(\ALUOut[2]_i_6_n_0 ),
-        .I2(alu_A[17]),
-        .I3(\ALUOut[31]_i_20_n_0 ),
-        .I4(\ALUOut[31]_i_19_n_0 ),
-        .I5(\ALUOut[5]_i_20_n_0 ),
-        .O(\ALUOut[9]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'hEEEEFAAAAAAAAAAA)) 
-    \ALUOut[9]_i_2 
-       (.I0(\ALUOut[9]_i_4_n_0 ),
-        .I1(alu_A[9]),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(alu_A[7]),
-        .I4(\ALUOut[30]_i_10_n_0 ),
-        .I5(\ALUOut[14]_i_5_n_0 ),
-        .O(\ALUOut[9]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000015105050151)) 
-    \ALUOut[9]_i_3 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut[9]_i_6_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut[9]_i_7_n_0 ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut[9]_i_8_n_0 ),
-        .O(\ALUOut[9]_i_3_n_0 ));
+    \ALUOut[9]_i_10 
+       (.I0(\ALUOut[9]_i_20_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[9]_i_21_n_0 ),
+        .O(\ALUOut[9]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'h0000FF003636E8E8)) 
-    \ALUOut[9]_i_4 
+    \ALUOut[9]_i_11 
        (.I0(alu_A[9]),
-        .I1(\ALUOut[9]_i_9_n_0 ),
-        .I2(\ALUOut_reg[2] ),
-        .I3(\ALUOut[9]_i_10_n_0 ),
-        .I4(\ALUOut_reg[5] ),
-        .I5(\ALUOut_reg[1] ),
+        .I1(\ALUOut[9]_i_22_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut[9]_i_23_n_0 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\ALUOut_reg[5]_1 ),
+        .O(\ALUOut[9]_i_11_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair120" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[9]_i_12 
+       (.I0(\PC_reg[31]_0 [9]),
+        .I1(Q[9]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[9]));
+  (* SOFT_HLUTNM = "soft_lutpair108" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[9]_i_13 
+       (.I0(\PC_reg[31]_0 [2]),
+        .I1(Q[2]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[2]));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    \ALUOut[9]_i_14 
+       (.I0(\ALUOut[31]_i_20_n_0 ),
+        .I1(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[9]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000030BB3088)) 
+    \ALUOut[9]_i_15 
+       (.I0(alu_A[4]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[0]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(alu_A[8]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[9]_i_15_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair107" *) 
+  LUT3 #(
+    .INIT(8'hCA)) 
+    \ALUOut[9]_i_16 
+       (.I0(\PC_reg[31]_0 [3]),
+        .I1(Q[3]),
+        .I2(\ALUOut[15]_i_8_n_0 ),
+        .O(alu_A[3]));
+  LUT6 #(
+    .INIT(64'h0000000030BB3088)) 
+    \ALUOut[9]_i_17 
+       (.I0(alu_A[5]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[1]),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(alu_A[9]),
+        .I5(\ALUOut[31]_i_19_n_0 ),
+        .O(\ALUOut[9]_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'h88B8BBBB88B88888)) 
+    \ALUOut[9]_i_18 
+       (.I0(\ALUOut[15]_i_17_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[19]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[9]_i_24_n_0 ),
+        .O(\ALUOut[9]_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'h88B8BBBB88B88888)) 
+    \ALUOut[9]_i_19 
+       (.I0(\ALUOut[9]_i_25_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[17]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[9]_i_26_n_0 ),
+        .O(\ALUOut[9]_i_19_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000740000000000)) 
+    \ALUOut[9]_i_2 
+       (.I0(\ALUOut[9]_i_5_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(\ALUOut[9]_i_6_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .I4(\ALUOut_reg[5]_0 ),
+        .I5(\ALUOut_reg[9] ),
+        .O(\ALUOut[9]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h00B800B8FFFF0000)) 
+    \ALUOut[9]_i_20 
+       (.I0(alu_A[24]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[16]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[9]_i_27_n_0 ),
+        .I5(\ALUOut[2]_i_13_n_0 ),
+        .O(\ALUOut[9]_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'h88B8BBBB88B88888)) 
+    \ALUOut[9]_i_21 
+       (.I0(\ALUOut[9]_i_28_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[18]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(\ALUOut[31]_i_20_n_0 ),
+        .I5(\ALUOut[9]_i_29_n_0 ),
+        .O(\ALUOut[9]_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'h0F00DFDF0F008080)) 
+    \ALUOut[9]_i_22 
+       (.I0(ExtendImm),
+        .I1(\state_reg[0]_1 [7]),
+        .I2(\ALUOut[29]_i_20_n_0 ),
+        .I3(\registers_reg[30][31] [9]),
+        .I4(\ALUOut[29]_i_21_n_0 ),
+        .I5(\state_reg[0]_1 [9]),
+        .O(\ALUOut[9]_i_22_n_0 ));
+  LUT6 #(
+    .INIT(64'h2BD4E817D42B17E8)) 
+    \ALUOut[9]_i_23 
+       (.I0(\ALUOut[8]_i_8_n_0 ),
+        .I1(alu_A[8]),
+        .I2(\ALUOut[8]_i_12_n_0 ),
+        .I3(\ALUOut[9]_i_22_n_0 ),
+        .I4(\ALUOut[31]_i_23_n_0 ),
+        .I5(alu_A[9]),
+        .O(\ALUOut[9]_i_23_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFCFC0C0AFA0AFA0)) 
+    \ALUOut[9]_i_24 
+       (.I0(\PC_reg[31]_0 [27]),
+        .I1(Q[27]),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(\PC_reg[31]_0 [11]),
+        .I4(Q[11]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[9]_i_24_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \ALUOut[9]_i_25 
+       (.I0(alu_A[21]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[29]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(alu_A[13]),
+        .O(\ALUOut[9]_i_25_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFCFC0C0AFA0AFA0)) 
+    \ALUOut[9]_i_26 
+       (.I0(\PC_reg[31]_0 [25]),
+        .I1(Q[25]),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(\PC_reg[31]_0 [9]),
+        .I4(Q[9]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[9]_i_26_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \ALUOut[9]_i_27 
+       (.I0(alu_A[20]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[28]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(alu_A[12]),
+        .O(\ALUOut[9]_i_27_n_0 ));
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \ALUOut[9]_i_28 
+       (.I0(alu_A[22]),
+        .I1(\ALUOut[31]_i_20_n_0 ),
+        .I2(alu_A[30]),
+        .I3(\ALUOut[31]_i_19_n_0 ),
+        .I4(alu_A[14]),
+        .O(\ALUOut[9]_i_28_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFCFC0C0AFA0AFA0)) 
+    \ALUOut[9]_i_29 
+       (.I0(\PC_reg[31]_0 [26]),
+        .I1(Q[26]),
+        .I2(\ALUOut[31]_i_19_n_0 ),
+        .I3(\PC_reg[31]_0 [10]),
+        .I4(Q[10]),
+        .I5(\ALUOut[15]_i_8_n_0 ),
+        .O(\ALUOut[9]_i_29_n_0 ));
+  LUT6 #(
+    .INIT(64'h8B8B8BBBBBBB8BBB)) 
+    \ALUOut[9]_i_3 
+       (.I0(\ALUOut[9]_i_8_n_0 ),
+        .I1(\ALUOut_reg[5]_0 ),
+        .I2(\ALUOut[9]_i_7_n_0 ),
+        .I3(\ALUOut[9]_i_9_n_0 ),
+        .I4(\ALUOut[29]_i_8_n_0 ),
+        .I5(\ALUOut[9]_i_10_n_0 ),
+        .O(\ALUOut[9]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hEEEEFAAAAAAAAAAA)) 
+    \ALUOut[9]_i_4 
+       (.I0(\ALUOut[9]_i_11_n_0 ),
+        .I1(alu_A[9]),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(alu_A[7]),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .I5(\ALUOut[14]_i_5_n_0 ),
         .O(\ALUOut[9]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair128" *) 
+  LUT6 #(
+    .INIT(64'hFF470000FF47FFFF)) 
+    \ALUOut[9]_i_5 
+       (.I0(alu_A[2]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[6]),
+        .I3(\ALUOut[9]_i_14_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .I5(\ALUOut[9]_i_15_n_0 ),
+        .O(\ALUOut[9]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h00B8FFFF00B80000)) 
+    \ALUOut[9]_i_6 
+       (.I0(alu_A[3]),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(alu_A[7]),
+        .I3(\ALUOut[9]_i_14_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .I5(\ALUOut[9]_i_17_n_0 ),
+        .O(\ALUOut[9]_i_6_n_0 ));
+  LUT2 #(
+    .INIT(4'h2)) 
+    \ALUOut[9]_i_7 
+       (.I0(\ALUOut[14]_i_11_n_0 ),
+        .I1(\ALUOut[14]_i_13_n_0 ),
+        .O(\ALUOut[9]_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'h0F1100000F11FFFF)) 
+    \ALUOut[9]_i_8 
+       (.I0(\ALUOut[2]_i_14_n_0 ),
+        .I1(\ALUOut[9]_i_9_n_0 ),
+        .I2(\ALUOut[10]_i_10_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[9]_i_7_n_0 ),
+        .I5(alu_A[31]),
+        .O(\ALUOut[9]_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair93" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \ALUOut[9]_i_5 
-       (.I0(\registers_reg[30][31] [9]),
-        .I1(\ALUOut[15]_i_8_n_0 ),
-        .I2(Q[9]),
-        .O(alu_A[9]));
-  LUT6 #(
-    .INIT(64'h47FF47FF00FFFFFF)) 
-    \ALUOut[9]_i_6 
-       (.I0(\ALUOut[10]_i_10_n_0 ),
-        .I1(\ALUOut[30]_i_10_n_0 ),
-        .I2(\ALUOut[10]_i_11_n_0 ),
-        .I3(\ALUOut[27]_i_11_n_0 ),
-        .I4(\ALUOut[9]_i_11_n_0 ),
-        .I5(\ALUOut[30]_i_9_n_0 ),
-        .O(\ALUOut[9]_i_6_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000007070777)) 
-    \ALUOut[9]_i_7 
-       (.I0(\ALUOut[10]_i_12_n_0 ),
-        .I1(\ALUOut[27]_i_5_n_0 ),
-        .I2(\ALUOut[31]_i_8_n_0 ),
-        .I3(\ALUOut[9]_i_11_n_0 ),
-        .I4(\ALUOut[9]_i_12_n_0 ),
-        .I5(\ALUOut[10]_i_14_n_0 ),
-        .O(\ALUOut[9]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
-  LUT4 #(
-    .INIT(16'h57F7)) 
-    \ALUOut[9]_i_8 
-       (.I0(\ALUOut[27]_i_11_n_0 ),
-        .I1(\ALUOut[10]_i_15_n_0 ),
-        .I2(\ALUOut[30]_i_9_n_0 ),
-        .I3(\ALUOut[9]_i_13_n_0 ),
-        .O(\ALUOut[9]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
     \ALUOut[9]_i_9 
-       (.I0(\ALUOut[30]_i_19_n_0 ),
-        .I1(\state_reg[0]_1 [9]),
-        .I2(\ALUOut[14]_i_14_n_0 ),
-        .I3(\state_reg[0]_1 [7]),
-        .I4(\CPSR_reg[1]_0 [9]),
-        .I5(\CPSR[1]_i_5_n_0 ),
+       (.I0(\ALUOut[9]_i_18_n_0 ),
+        .I1(\ALUOut[29]_i_12_n_0 ),
+        .I2(\ALUOut[9]_i_19_n_0 ),
         .O(\ALUOut[9]_i_9_n_0 ));
   MUXF7 \ALUOut_reg[10]_i_1 
        (.I0(\ALUOut[10]_i_2_n_0 ),
         .I1(\ALUOut[10]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [10]),
-        .S(\ALUOut_reg[1]_0 ));
+        .O(\state_reg[5]_3 [10]),
+        .S(\ALUOut_reg[5] ));
   MUXF7 \ALUOut_reg[11]_i_2 
        (.I0(\ALUOut[11]_i_5_n_0 ),
         .I1(\ALUOut[11]_i_6_n_0 ),
         .O(\ALUOut_reg[11]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
+  MUXF7 \ALUOut_reg[11]_i_3 
+       (.I0(\ALUOut[11]_i_7_n_0 ),
+        .I1(\ALUOut[11]_i_8_n_0 ),
+        .O(\ALUOut_reg[11]_i_3_n_0 ),
+        .S(\ALUOut[31]_i_15_n_0 ));
   MUXF7 \ALUOut_reg[12]_i_2 
        (.I0(\ALUOut[12]_i_5_n_0 ),
         .I1(\ALUOut[12]_i_6_n_0 ),
         .O(\ALUOut_reg[12]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[13]_i_2 
        (.I0(\ALUOut[13]_i_5_n_0 ),
         .I1(\ALUOut[13]_i_6_n_0 ),
         .O(\ALUOut_reg[13]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[14]_i_2 
        (.I0(\ALUOut[14]_i_6_n_0 ),
         .I1(\ALUOut[14]_i_7_n_0 ),
         .O(\ALUOut_reg[14]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[15]_i_2 
        (.I0(\ALUOut[15]_i_5_n_0 ),
         .I1(\ALUOut[15]_i_6_n_0 ),
         .O(\ALUOut_reg[15]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[15]_i_4 
        (.I0(\ALUOut[15]_i_9_n_0 ),
         .I1(\ALUOut[15]_i_10_n_0 ),
@@ -12063,7 +12005,7 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(\ALUOut[16]_i_4_n_0 ),
         .I1(\ALUOut[16]_i_5_n_0 ),
         .O(\ALUOut_reg[16]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[16]_i_3 
        (.I0(\ALUOut[16]_i_6_n_0 ),
         .I1(\ALUOut[16]_i_7_n_0 ),
@@ -12073,7 +12015,7 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(\ALUOut[17]_i_4_n_0 ),
         .I1(\ALUOut[17]_i_5_n_0 ),
         .O(\ALUOut_reg[17]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[17]_i_3 
        (.I0(\ALUOut[17]_i_6_n_0 ),
         .I1(\ALUOut[17]_i_7_n_0 ),
@@ -12083,7 +12025,7 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(\ALUOut[18]_i_4_n_0 ),
         .I1(\ALUOut[18]_i_5_n_0 ),
         .O(\ALUOut_reg[18]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[18]_i_3 
        (.I0(\ALUOut[18]_i_6_n_0 ),
         .I1(\ALUOut[18]_i_7_n_0 ),
@@ -12093,102 +12035,112 @@ module design_1_Motherboard_0_0_ControlUnit
        (.I0(\ALUOut[19]_i_4_n_0 ),
         .I1(\ALUOut[19]_i_5_n_0 ),
         .O(\ALUOut_reg[19]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[19]_i_3 
        (.I0(\ALUOut[19]_i_6_n_0 ),
         .I1(\ALUOut[19]_i_7_n_0 ),
         .O(\ALUOut_reg[19]_i_3_n_0 ),
         .S(\ALUOut[31]_i_15_n_0 ));
-  MUXF7 \ALUOut_reg[1]_i_6 
-       (.I0(\ALUOut[1]_i_13_n_0 ),
-        .I1(\ALUOut[1]_i_14_n_0 ),
-        .O(\ALUOut_reg[1]_i_6_n_0 ),
-        .S(\ALUOut[31]_i_15_n_0 ));
-  MUXF7 \ALUOut_reg[20]_i_2 
-       (.I0(\ALUOut[20]_i_4_n_0 ),
-        .I1(\ALUOut[20]_i_5_n_0 ),
-        .O(\ALUOut_reg[20]_i_2_n_0 ),
+  MUXF7 \ALUOut_reg[20]_i_1 
+       (.I0(\ALUOut[20]_i_2_n_0 ),
+        .I1(\ALUOut[20]_i_3_n_0 ),
+        .O(\state_reg[5]_3 [20]),
         .S(\ALUOut_reg[5] ));
   MUXF7 \ALUOut_reg[21]_i_2 
        (.I0(\ALUOut[21]_i_4_n_0 ),
         .I1(\ALUOut[21]_i_5_n_0 ),
         .O(\ALUOut_reg[21]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[21]_i_3 
        (.I0(\ALUOut[21]_i_6_n_0 ),
         .I1(\ALUOut[21]_i_7_n_0 ),
         .O(\ALUOut_reg[21]_i_3_n_0 ),
         .S(\ALUOut[31]_i_15_n_0 ));
-  MUXF7 \ALUOut_reg[22]_i_14 
-       (.I0(\ALUOut[22]_i_16_n_0 ),
-        .I1(\ALUOut[22]_i_17_n_0 ),
-        .O(\ALUOut_reg[22]_i_14_n_0 ),
-        .S(\ALUOut[2]_i_6_n_0 ));
   MUXF7 \ALUOut_reg[22]_i_2 
        (.I0(\ALUOut[22]_i_4_n_0 ),
         .I1(\ALUOut[22]_i_5_n_0 ),
         .O(\ALUOut_reg[22]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[22]_i_3 
        (.I0(\ALUOut[22]_i_6_n_0 ),
         .I1(\ALUOut[22]_i_7_n_0 ),
         .O(\ALUOut_reg[22]_i_3_n_0 ),
         .S(\ALUOut[31]_i_15_n_0 ));
-  MUXF7 \ALUOut_reg[23]_i_2 
-       (.I0(\ALUOut[23]_i_4_n_0 ),
-        .I1(\ALUOut[23]_i_5_n_0 ),
-        .O(\ALUOut_reg[23]_i_2_n_0 ),
+  MUXF7 \ALUOut_reg[23]_i_1 
+       (.I0(\ALUOut[23]_i_2_n_0 ),
+        .I1(\ALUOut[23]_i_3_n_0 ),
+        .O(\state_reg[5]_3 [23]),
         .S(\ALUOut_reg[5] ));
   MUXF7 \ALUOut_reg[24]_i_2 
        (.I0(\ALUOut[24]_i_4_n_0 ),
         .I1(\ALUOut[24]_i_5_n_0 ),
         .O(\ALUOut_reg[24]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
-  MUXF7 \ALUOut_reg[25]_i_2 
-       (.I0(\ALUOut[25]_i_4_n_0 ),
-        .I1(\ALUOut[25]_i_5_n_0 ),
-        .O(\ALUOut_reg[25]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
-  MUXF7 \ALUOut_reg[28]_i_2 
-       (.I0(\ALUOut[28]_i_4_n_0 ),
-        .I1(\ALUOut[28]_i_5_n_0 ),
-        .O(\ALUOut_reg[28]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
-  MUXF7 \ALUOut_reg[29]_i_1 
-       (.I0(\ALUOut[29]_i_2_n_0 ),
-        .I1(\ALUOut[29]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [29]),
-        .S(\ALUOut_reg[1]_0 ));
-  MUXF7 \ALUOut_reg[30]_i_2 
-       (.I0(\ALUOut[30]_i_6_n_0 ),
-        .I1(\ALUOut[30]_i_7_n_0 ),
-        .O(\ALUOut_reg[30]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
-  MUXF7 \ALUOut_reg[5]_i_10 
-       (.I0(\ALUOut[5]_i_17_n_0 ),
-        .I1(\ALUOut[5]_i_18_n_0 ),
-        .O(\ALUOut_reg[5]_i_10_n_0 ),
+        .S(\ALUOut_reg[9] ));
+  MUXF7 \ALUOut_reg[24]_i_3 
+       (.I0(\ALUOut[24]_i_6_n_0 ),
+        .I1(\ALUOut[24]_i_7_n_0 ),
+        .O(\ALUOut_reg[24]_i_3_n_0 ),
         .S(\ALUOut[31]_i_15_n_0 ));
+  MUXF7 \ALUOut_reg[25]_i_1 
+       (.I0(\ALUOut[25]_i_2_n_0 ),
+        .I1(\ALUOut[25]_i_3_n_0 ),
+        .O(\state_reg[5]_3 [25]),
+        .S(\ALUOut_reg[5] ));
+  MUXF7 \ALUOut_reg[26]_i_2 
+       (.I0(\ALUOut[26]_i_4_n_0 ),
+        .I1(\ALUOut[26]_i_5_n_0 ),
+        .O(\ALUOut_reg[26]_i_2_n_0 ),
+        .S(\ALUOut_reg[9] ));
+  MUXF7 \ALUOut_reg[26]_i_3 
+       (.I0(\ALUOut[26]_i_6_n_0 ),
+        .I1(\ALUOut[26]_i_7_n_0 ),
+        .O(\ALUOut_reg[26]_i_3_n_0 ),
+        .S(\ALUOut[31]_i_15_n_0 ));
+  MUXF7 \ALUOut_reg[27]_i_2 
+       (.I0(\ALUOut[27]_i_4_n_0 ),
+        .I1(\ALUOut[27]_i_5_n_0 ),
+        .O(\ALUOut_reg[27]_i_2_n_0 ),
+        .S(\ALUOut_reg[9] ));
+  MUXF7 \ALUOut_reg[27]_i_3 
+       (.I0(\ALUOut[27]_i_6_n_0 ),
+        .I1(\ALUOut[27]_i_7_n_0 ),
+        .O(\ALUOut_reg[27]_i_3_n_0 ),
+        .S(\ALUOut[31]_i_15_n_0 ));
+  MUXF7 \ALUOut_reg[28]_i_1 
+       (.I0(\ALUOut[28]_i_2_n_0 ),
+        .I1(\ALUOut[28]_i_3_n_0 ),
+        .O(\state_reg[5]_3 [28]),
+        .S(\ALUOut_reg[5] ));
+  MUXF7 \ALUOut_reg[29]_i_5 
+       (.I0(\ALUOut[29]_i_14_n_0 ),
+        .I1(\ALUOut[29]_i_15_n_0 ),
+        .O(\ALUOut_reg[29]_i_5_n_0 ),
+        .S(\ALUOut[31]_i_15_n_0 ));
+  MUXF7 \ALUOut_reg[30]_i_1 
+       (.I0(\ALUOut[30]_i_2_n_0 ),
+        .I1(\ALUOut[30]_i_3_n_0 ),
+        .O(\state_reg[5]_3 [30]),
+        .S(\ALUOut_reg[5] ));
+  MUXF7 \ALUOut_reg[5]_i_2 
+       (.I0(\ALUOut[5]_i_5_n_0 ),
+        .I1(\ALUOut[5]_i_6_n_0 ),
+        .O(\ALUOut_reg[5]_i_2_n_0 ),
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[6]_i_2 
        (.I0(\ALUOut[6]_i_5_n_0 ),
         .I1(\ALUOut[6]_i_6_n_0 ),
         .O(\ALUOut_reg[6]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
+        .S(\ALUOut_reg[9] ));
   MUXF7 \ALUOut_reg[7]_i_2 
        (.I0(\ALUOut[7]_i_5_n_0 ),
         .I1(\ALUOut[7]_i_6_n_0 ),
         .O(\ALUOut_reg[7]_i_2_n_0 ),
-        .S(\ALUOut_reg[5] ));
-  MUXF7 \ALUOut_reg[8]_i_1 
-       (.I0(\ALUOut[8]_i_2_n_0 ),
-        .I1(\ALUOut[8]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [8]),
-        .S(\ALUOut_reg[1]_0 ));
-  MUXF7 \ALUOut_reg[9]_i_1 
-       (.I0(\ALUOut[9]_i_2_n_0 ),
-        .I1(\ALUOut[9]_i_3_n_0 ),
-        .O(\state_reg[5]_2 [9]),
-        .S(\ALUOut_reg[1]_0 ));
+        .S(\ALUOut_reg[9] ));
+  MUXF7 \ALUOut_reg[8]_i_2 
+       (.I0(\ALUOut[8]_i_5_n_0 ),
+        .I1(\ALUOut[8]_i_6_n_0 ),
+        .O(\ALUOut_reg[8]_i_2_n_0 ),
+        .S(\ALUOut_reg[9] ));
   LUT3 #(
     .INIT(8'hB8)) 
     \CPSR[1]_i_1 
@@ -12197,16 +12149,16 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(Carry),
         .O(\CPSR_reg[1] ));
   LUT6 #(
-    .INIT(64'hFFFF15EA00000000)) 
+    .INIT(64'h000000000000D400)) 
     \CPSR[1]_i_2 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [31]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .I4(alu_A[31]),
-        .I5(\CPSR[1]_i_6_n_0 ),
+       (.I0(\ALUOut[31]_i_13_n_0 ),
+        .I1(alu_A[31]),
+        .I2(\CPSR[1]_i_4_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[5] ),
+        .I5(\ALUOut_reg[9] ),
         .O(FlagInCarry));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT5 #(
     .INIT(32'h0000000E)) 
     \CPSR[1]_i_3 
@@ -12216,63 +12168,33 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state_reg[5]_0 [2]),
         .I4(\state_reg[5]_0 [4]),
         .O(ALUOpcodeSrc));
-  LUT4 #(
-    .INIT(16'hFF04)) 
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
     \CPSR[1]_i_4 
-       (.I0(\ALUOut[2]_i_12_n_0 ),
-        .I1(\state_reg[0]_1 [20]),
-        .I2(\ALUOut[2]_i_13_n_0 ),
-        .I3(\CPSR[1]_i_7_n_0 ),
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(\registers_reg[30][31] [31]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
         .O(\CPSR[1]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h5550004405000040)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     \CPSR[1]_i_5 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(state),
-        .I2(\state_reg[5]_0 [1]),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [3]),
-        .I5(\state_reg[5]_0 [0]),
-        .O(\CPSR[1]_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h0202000200020002)) 
-    \CPSR[1]_i_6 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut_reg[5] ),
-        .I2(\ALUOut_reg[1]_0 ),
-        .I3(\ALUOut[31]_i_13_n_0 ),
-        .I4(alu_A[31]),
-        .I5(\CPSR[1]_i_8_n_0 ),
-        .O(\CPSR[1]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
-  LUT4 #(
-    .INIT(16'h4000)) 
-    \CPSR[1]_i_7 
-       (.I0(\ALUOut[2]_i_13_n_0 ),
-        .I1(\CPSR[1]_i_9_n_0 ),
-        .I2(\state_reg[0]_1 [15]),
-        .I3(\ALUOut[2]_i_12_n_0 ),
-        .O(\CPSR[1]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT4 #(
-    .INIT(16'h15EA)) 
-    \CPSR[1]_i_8 
-       (.I0(\CPSR[1]_i_4_n_0 ),
-        .I1(\CPSR[1]_i_5_n_0 ),
-        .I2(\CPSR_reg[1]_0 [31]),
-        .I3(\ALUOut[23]_i_7_n_0 ),
-        .O(\CPSR[1]_i_8_n_0 ));
+       (.I0(\CPSR[1]_i_6_n_0 ),
+        .I1(\state_reg[0]_1 [15]),
+        .O(extend16));
   LUT6 #(
     .INIT(64'h0000FFFF575FFDFD)) 
-    \CPSR[1]_i_9 
+    \CPSR[1]_i_6 
        (.I0(\state_reg[5]_0 [1]),
         .I1(\state_reg[5]_0 [4]),
         .I2(\state_reg[5]_0 [0]),
         .I3(state),
         .I4(\state_reg[5]_0 [3]),
         .I5(\state_reg[5]_0 [2]),
-        .O(\CPSR[1]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair111" *) 
+        .O(\CPSR[1]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair100" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[0]_i_1 
@@ -12280,34 +12202,74 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[0]_i_3_n_0 ),
         .O(D[0]));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT5 #(
+    .INIT(32'hFFFFEC20)) 
     \Din_OUT_reg[0]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[0]),
-        .I2(\Din_OUT_reg[0]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din1),
+        .I2(douta[0]),
+        .I3(spo[0]),
+        .I4(\Din_OUT_reg[0]_i_4_n_0 ),
         .O(Din[0]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[0]_i_3 
        (.I0(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I1(Din[24]),
-        .I2(\Din_OUT_reg[7]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[7]_i_6_n_0 ),
         .I3(Din[16]),
         .I4(Din[8]),
-        .I5(\Din_OUT_reg[7]_i_5_n_0 ),
+        .I5(\Din_OUT_reg[7]_i_7_n_0 ),
         .O(\Din_OUT_reg[0]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFF454045404540)) 
+    .INIT(64'h0000232000002020)) 
     \Din_OUT_reg[0]_i_4 
-       (.I0(\Din_OUT_reg[23]_i_7_n_0 ),
-        .I1(douta[0]),
-        .I2(\PC_reg[8] ),
-        .I3(\Din_OUT_reg[7]_i_6_0 [0]),
-        .I4(MemAccessClock_reg_0),
-        .I5(\Din_OUT_reg[15]_i_3_0 [0]),
+       (.I0(\Din_OUT_reg[23]_i_5_0 [0]),
+        .I1(Din1),
+        .I2(Din3),
+        .I3(Din4),
+        .I4(graphics_write_enable1),
+        .I5(Dout),
         .O(\Din_OUT_reg[0]_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'h08088808)) 
+    \Din_OUT_reg[0]_i_5 
+       (.I0(video_ram_i_30_n_0),
+        .I1(Din51_in),
+        .I2(video_ram_i_31_n_0),
+        .I3(\Din_OUT_reg[0]_i_7_n_0 ),
+        .I4(video_ram_i_33_n_0),
+        .O(Din4));
+  LUT6 #(
+    .INIT(64'hFFFAFBFAFAFAFAFA)) 
+    \Din_OUT_reg[0]_i_6 
+       (.I0(ram_0_i_43_n_0),
+        .I1(\Din_OUT_reg[0]_i_8_n_0 ),
+        .I2(video_ram_i_29_n_0),
+        .I3(video_ram_i_31_n_0),
+        .I4(a[6]),
+        .I5(a[7]),
+        .O(Din51_in));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF00000001)) 
+    \Din_OUT_reg[0]_i_7 
+       (.I0(a[1]),
+        .I1(a[2]),
+        .I2(a[6]),
+        .I3(a[3]),
+        .I4(a[0]),
+        .I5(video_ram_i_32_n_0),
+        .O(\Din_OUT_reg[0]_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'h001BFF1BFFFFFFFF)) 
+    \Din_OUT_reg[0]_i_8 
+       (.I0(MemAddrSrc),
+        .I1(Q[6]),
+        .I2(\PC_reg[31]_1 [6]),
+        .I3(MemAccessClock),
+        .I4(\memory_handler/Aout_OUT0 [4]),
+        .I5(a[5]),
+        .O(\Din_OUT_reg[0]_i_8_n_0 ));
   LUT4 #(
     .INIT(16'hFF20)) 
     \Din_OUT_reg[10]_i_1 
@@ -12317,33 +12279,25 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[10]_i_3_n_0 ),
         .O(D[10]));
   LUT6 #(
-    .INIT(64'hFF444F4FFF444444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[10]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[26]),
-        .I2(\Din_OUT_reg[23]_i_7_n_0 ),
-        .I3(\Din_OUT_reg[15]_i_3_0 [26]),
-        .I4(MemAccessClock_reg_0),
-        .I5(\Din_OUT_reg[10]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [26]),
+        .I4(douta[26]),
+        .I5(spo[26]),
         .O(Din[26]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[10]_i_3 
        (.I0(\WR_OUT_reg[1]_i_4_n_0 ),
         .I1(Din[10]),
-        .I2(\Din_OUT_reg[15]_i_6_n_0 ),
+        .I2(\Din_OUT_reg[15]_i_5_n_0 ),
         .I3(Din[2]),
         .I4(Din[18]),
-        .I5(\Din_OUT_reg[15]_i_7_n_0 ),
+        .I5(\Din_OUT_reg[15]_i_6_n_0 ),
         .O(\Din_OUT_reg[10]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair90" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[10]_i_4 
-       (.I0(douta[26]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [26]),
-        .O(\Din_OUT_reg[10]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF20)) 
     \Din_OUT_reg[11]_i_1 
@@ -12353,33 +12307,25 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[11]_i_3_n_0 ),
         .O(D[11]));
   LUT6 #(
-    .INIT(64'hF444F444FFFFF444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[11]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[27]),
-        .I2(\Din_OUT_reg[15]_i_3_0 [27]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[11]_i_4_n_0 ),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [27]),
+        .I4(douta[27]),
+        .I5(spo[27]),
         .O(Din[27]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[11]_i_3 
        (.I0(\WR_OUT_reg[1]_i_4_n_0 ),
         .I1(Din[11]),
-        .I2(\Din_OUT_reg[15]_i_6_n_0 ),
+        .I2(\Din_OUT_reg[15]_i_5_n_0 ),
         .I3(Din[3]),
         .I4(Din[19]),
-        .I5(\Din_OUT_reg[15]_i_7_n_0 ),
+        .I5(\Din_OUT_reg[15]_i_6_n_0 ),
         .O(\Din_OUT_reg[11]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair90" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[11]_i_4 
-       (.I0(douta[27]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [27]),
-        .O(\Din_OUT_reg[11]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF20)) 
     \Din_OUT_reg[12]_i_1 
@@ -12389,34 +12335,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[12]_i_3_n_0 ),
         .O(D[12]));
   LUT6 #(
-    .INIT(64'hF444F444FFFFF444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[12]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[28]),
-        .I2(\Din_OUT_reg[15]_i_3_0 [28]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[12]_i_4_n_0 ),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [28]),
+        .I4(douta[28]),
+        .I5(spo[28]),
         .O(Din[28]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[12]_i_3 
        (.I0(\WR_OUT_reg[1]_i_4_n_0 ),
         .I1(Din[12]),
-        .I2(\Din_OUT_reg[15]_i_6_n_0 ),
+        .I2(\Din_OUT_reg[15]_i_5_n_0 ),
         .I3(Din[4]),
         .I4(Din[20]),
-        .I5(\Din_OUT_reg[15]_i_7_n_0 ),
+        .I5(\Din_OUT_reg[15]_i_6_n_0 ),
         .O(\Din_OUT_reg[12]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair91" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[12]_i_4 
-       (.I0(douta[28]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [28]),
-        .O(\Din_OUT_reg[12]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT4 #(
     .INIT(16'hFF20)) 
     \Din_OUT_reg[13]_i_1 
@@ -12426,34 +12364,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[13]_i_3_n_0 ),
         .O(D[13]));
   LUT6 #(
-    .INIT(64'hF444F444FFFFF444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[13]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[29]),
-        .I2(\Din_OUT_reg[15]_i_3_0 [29]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[13]_i_4_n_0 ),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [29]),
+        .I4(douta[29]),
+        .I5(spo[29]),
         .O(Din[29]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[13]_i_3 
        (.I0(\WR_OUT_reg[1]_i_4_n_0 ),
         .I1(Din[13]),
-        .I2(\Din_OUT_reg[15]_i_6_n_0 ),
+        .I2(\Din_OUT_reg[15]_i_5_n_0 ),
         .I3(Din[5]),
         .I4(Din[21]),
-        .I5(\Din_OUT_reg[15]_i_7_n_0 ),
+        .I5(\Din_OUT_reg[15]_i_6_n_0 ),
         .O(\Din_OUT_reg[13]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair91" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[13]_i_4 
-       (.I0(douta[29]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [29]),
-        .O(\Din_OUT_reg[13]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT4 #(
     .INIT(16'hFF20)) 
     \Din_OUT_reg[14]_i_1 
@@ -12463,33 +12393,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[14]_i_3_n_0 ),
         .O(D[14]));
   LUT6 #(
-    .INIT(64'hF444F444FFFFF444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[14]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[30]),
-        .I2(\Din_OUT_reg[15]_i_3_0 [30]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[14]_i_4_n_0 ),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [30]),
+        .I4(douta[30]),
+        .I5(spo[30]),
         .O(Din[30]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[14]_i_3 
        (.I0(\WR_OUT_reg[1]_i_4_n_0 ),
         .I1(Din[14]),
-        .I2(\Din_OUT_reg[15]_i_6_n_0 ),
+        .I2(\Din_OUT_reg[15]_i_5_n_0 ),
         .I3(Din[6]),
         .I4(Din[22]),
-        .I5(\Din_OUT_reg[15]_i_7_n_0 ),
+        .I5(\Din_OUT_reg[15]_i_6_n_0 ),
         .O(\Din_OUT_reg[14]_i_3_n_0 ));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[14]_i_4 
-       (.I0(douta[30]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [30]),
-        .O(\Din_OUT_reg[14]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT4 #(
     .INIT(16'hFF20)) 
     \Din_OUT_reg[15]_i_1 
@@ -12499,65 +12422,56 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[15]_i_4_n_0 ),
         .O(D[15]));
   LUT6 #(
-    .INIT(64'hFDDF5FFF00000000)) 
+    .INIT(64'hFDDF00005FFF0000)) 
     \Din_OUT_reg[15]_i_2 
        (.I0(MemAccess),
         .I1(\state[5]_i_6_n_0 ),
         .I2(\state[5]_i_4_n_0 ),
         .I3(\state[5]_i_3_n_0 ),
-        .I4(MemAccessClock),
-        .I5(\Din_OUT_reg[31]_i_5_n_0 ),
-        .O(MemAccessClock_reg_4[1]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT5 #(
-    .INIT(32'hFFFF4540)) 
+        .I4(\Din_OUT_reg[31]_i_5_n_0 ),
+        .I5(MemAccessClock),
+        .O(MemAccessClock_reg_1[1]));
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[15]_i_3 
-       (.I0(\Din_OUT_reg[23]_i_7_n_0 ),
-        .I1(douta[31]),
-        .I2(\PC_reg[8] ),
-        .I3(\Din_OUT_reg[7]_i_6_0 [31]),
-        .I4(\Din_OUT_reg[15]_i_5_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [31]),
+        .I4(douta[31]),
+        .I5(spo[31]),
         .O(Din[31]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[15]_i_4 
        (.I0(\WR_OUT_reg[1]_i_4_n_0 ),
         .I1(Din[15]),
-        .I2(\Din_OUT_reg[15]_i_6_n_0 ),
+        .I2(\Din_OUT_reg[15]_i_5_n_0 ),
         .I3(Din[7]),
         .I4(Din[23]),
-        .I5(\Din_OUT_reg[15]_i_7_n_0 ),
+        .I5(\Din_OUT_reg[15]_i_6_n_0 ),
         .O(\Din_OUT_reg[15]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
-  LUT4 #(
-    .INIT(16'hF444)) 
-    \Din_OUT_reg[15]_i_5 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[31]),
-        .I2(MemAccessClock_reg_0),
-        .I3(\Din_OUT_reg[15]_i_3_0 [31]),
-        .O(\Din_OUT_reg[15]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h4700000000000000)) 
-    \Din_OUT_reg[15]_i_6 
-       (.I0(\PC_reg[31]_0 [0]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [0]),
-        .I3(\state[5]_i_4_n_0 ),
+    .INIT(64'h5300000000000000)) 
+    \Din_OUT_reg[15]_i_5 
+       (.I0(\PC_reg[31]_1 [0]),
+        .I1(Q[0]),
+        .I2(MemAddrSrc),
+        .I3(\state[5]_i_3_n_0 ),
         .I4(MemAccess),
         .I5(\WR_OUT_reg[1]_i_6_n_0 ),
-        .O(\Din_OUT_reg[15]_i_6_n_0 ));
+        .O(\Din_OUT_reg[15]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h0005330500000000)) 
-    \Din_OUT_reg[15]_i_7 
-       (.I0(\registers_reg[30][31] [0]),
-        .I1(\PC_reg[31]_0 [0]),
-        .I2(\registers_reg[30][31] [1]),
-        .I3(MemAddrSrc),
-        .I4(\PC_reg[31]_0 [1]),
+    .INIT(64'h0050035300000000)) 
+    \Din_OUT_reg[15]_i_6 
+       (.I0(\PC_reg[31]_1 [1]),
+        .I1(Q[1]),
+        .I2(MemAddrSrc),
+        .I3(\PC_reg[31]_1 [0]),
+        .I4(Q[0]),
         .I5(MemAccess),
-        .O(\Din_OUT_reg[15]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair113" *) 
+        .O(\Din_OUT_reg[15]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair96" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[16]_i_1 
@@ -12565,35 +12479,27 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[16]_i_3_n_0 ),
         .O(D[16]));
-  (* SOFT_HLUTNM = "soft_lutpair85" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[16]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[16]),
-        .I2(\Din_OUT_reg[16]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [16]),
+        .I4(douta[16]),
+        .I5(spo[16]),
         .O(Din[16]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[16]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[8]),
-        .I2(\Din_OUT_reg[23]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[23]_i_6_n_0 ),
         .I3(Din[0]),
         .I4(Din[24]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[16]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[16]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [16]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[16]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [16]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[16]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair113" *) 
+  (* SOFT_HLUTNM = "soft_lutpair96" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[17]_i_1 
@@ -12601,35 +12507,27 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[17]_i_3_n_0 ),
         .O(D[17]));
-  (* SOFT_HLUTNM = "soft_lutpair85" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[17]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[17]),
-        .I2(\Din_OUT_reg[17]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [17]),
+        .I4(douta[17]),
+        .I5(spo[17]),
         .O(Din[17]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[17]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[9]),
-        .I2(\Din_OUT_reg[23]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[23]_i_6_n_0 ),
         .I3(Din[1]),
         .I4(Din[25]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[17]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[17]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [17]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[17]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [17]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[17]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair114" *) 
+  (* SOFT_HLUTNM = "soft_lutpair97" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[18]_i_1 
@@ -12637,35 +12535,27 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[18]_i_3_n_0 ),
         .O(D[18]));
-  (* SOFT_HLUTNM = "soft_lutpair86" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[18]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[18]),
-        .I2(\Din_OUT_reg[18]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [18]),
+        .I4(douta[18]),
+        .I5(spo[18]),
         .O(Din[18]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[18]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[10]),
-        .I2(\Din_OUT_reg[23]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[23]_i_6_n_0 ),
         .I3(Din[2]),
         .I4(Din[26]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[18]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFF454045404540)) 
-    \Din_OUT_reg[18]_i_4 
-       (.I0(\Din_OUT_reg[23]_i_7_n_0 ),
-        .I1(douta[18]),
-        .I2(\PC_reg[8] ),
-        .I3(\Din_OUT_reg[7]_i_6_0 [18]),
-        .I4(MemAccessClock_reg_0),
-        .I5(\Din_OUT_reg[15]_i_3_0 [18]),
-        .O(\Din_OUT_reg[18]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair114" *) 
+  (* SOFT_HLUTNM = "soft_lutpair97" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[19]_i_1 
@@ -12673,35 +12563,27 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Din_OUT_reg[23]_i_4_n_0 ),
         .I2(\Din_OUT_reg[19]_i_3_n_0 ),
         .O(D[19]));
-  (* SOFT_HLUTNM = "soft_lutpair86" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[19]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[19]),
-        .I2(\Din_OUT_reg[19]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [19]),
+        .I4(douta[19]),
+        .I5(spo[19]),
         .O(Din[19]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[19]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[11]),
-        .I2(\Din_OUT_reg[23]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[23]_i_6_n_0 ),
         .I3(Din[3]),
         .I4(Din[27]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[19]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[19]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [19]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[19]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [19]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[19]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair111" *) 
+  (* SOFT_HLUTNM = "soft_lutpair100" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[1]_i_1 
@@ -12709,35 +12591,27 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[1]_i_3_n_0 ),
         .O(D[1]));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[1]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[1]),
-        .I2(\Din_OUT_reg[1]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [1]),
+        .I4(douta[1]),
+        .I5(spo[1]),
         .O(Din[1]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[1]_i_3 
        (.I0(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I1(Din[25]),
-        .I2(\Din_OUT_reg[7]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[7]_i_6_n_0 ),
         .I3(Din[17]),
         .I4(Din[9]),
-        .I5(\Din_OUT_reg[7]_i_5_n_0 ),
+        .I5(\Din_OUT_reg[7]_i_7_n_0 ),
         .O(\Din_OUT_reg[1]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[1]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [1]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[1]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [1]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[1]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair115" *) 
+  (* SOFT_HLUTNM = "soft_lutpair98" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[20]_i_1 
@@ -12746,34 +12620,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(\Din_OUT_reg[20]_i_3_n_0 ),
         .O(D[20]));
   LUT6 #(
-    .INIT(64'hFF444F4FFF444444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[20]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[20]),
-        .I2(\Din_OUT_reg[23]_i_7_n_0 ),
-        .I3(\Din_OUT_reg[15]_i_3_0 [20]),
-        .I4(MemAccessClock_reg_0),
-        .I5(\Din_OUT_reg[20]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [20]),
+        .I4(douta[20]),
+        .I5(spo[20]),
         .O(Din[20]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[20]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[12]),
-        .I2(\Din_OUT_reg[23]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[23]_i_6_n_0 ),
         .I3(Din[4]),
         .I4(Din[28]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[20]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair87" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[20]_i_4 
-       (.I0(douta[20]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [20]),
-        .O(\Din_OUT_reg[20]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair115" *) 
+  (* SOFT_HLUTNM = "soft_lutpair98" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[21]_i_1 
@@ -12782,34 +12648,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(\Din_OUT_reg[21]_i_3_n_0 ),
         .O(D[21]));
   LUT6 #(
-    .INIT(64'hF444F444FFFFF444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[21]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[21]),
-        .I2(\Din_OUT_reg[15]_i_3_0 [21]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[21]_i_4_n_0 ),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [21]),
+        .I4(douta[21]),
+        .I5(spo[21]),
         .O(Din[21]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[21]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[13]),
-        .I2(\Din_OUT_reg[23]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[23]_i_6_n_0 ),
         .I3(Din[5]),
         .I4(Din[29]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[21]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair87" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[21]_i_4 
-       (.I0(douta[21]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [21]),
-        .O(\Din_OUT_reg[21]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair116" *) 
+  (* SOFT_HLUTNM = "soft_lutpair99" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[22]_i_1 
@@ -12818,34 +12676,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(\Din_OUT_reg[22]_i_3_n_0 ),
         .O(D[22]));
   LUT6 #(
-    .INIT(64'hF444F444FFFFF444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[22]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[22]),
-        .I2(\Din_OUT_reg[15]_i_3_0 [22]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[22]_i_4_n_0 ),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [22]),
+        .I4(douta[22]),
+        .I5(spo[22]),
         .O(Din[22]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[22]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[14]),
-        .I2(\Din_OUT_reg[23]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[23]_i_6_n_0 ),
         .I3(Din[6]),
         .I4(Din[30]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[22]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair88" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[22]_i_4 
-       (.I0(douta[22]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [22]),
-        .O(\Din_OUT_reg[22]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair116" *) 
+  (* SOFT_HLUTNM = "soft_lutpair99" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[23]_i_1 
@@ -12858,22 +12708,22 @@ module design_1_Motherboard_0_0_ControlUnit
     \Din_OUT_reg[23]_i_2 
        (.I0(MemAccess),
         .I1(MemAccessClock),
-        .I2(\state[5]_i_4_n_0 ),
+        .I2(\state[5]_i_3_n_0 ),
         .I3(\Din_OUT_reg[31]_i_5_n_0 ),
-        .I4(\state[5]_i_3_n_0 ),
+        .I4(\state[5]_i_4_n_0 ),
         .I5(\state[5]_i_6_n_0 ),
-        .O(MemAccessClock_reg_4[2]));
+        .O(MemAccessClock_reg_1[2]));
   LUT6 #(
-    .INIT(64'hF444F444FFFFF444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[23]_i_3 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[23]),
-        .I2(\Din_OUT_reg[15]_i_3_0 [23]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[23]_i_6_n_0 ),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [23]),
+        .I4(douta[23]),
+        .I5(spo[23]),
         .O(Din[23]));
-  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \Din_OUT_reg[23]_i_4 
@@ -12886,35 +12736,18 @@ module design_1_Motherboard_0_0_ControlUnit
     \Din_OUT_reg[23]_i_5 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[15]),
-        .I2(\Din_OUT_reg[23]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[23]_i_6_n_0 ),
         .I3(Din[7]),
         .I4(Din[31]),
         .I5(\Dout_OUT_reg[15]_i_3_n_0 ),
         .O(\Din_OUT_reg[23]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair88" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[23]_i_6 
-       (.I0(douta[23]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [23]),
-        .O(\Din_OUT_reg[23]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFDB0000)) 
-    \Din_OUT_reg[23]_i_7 
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(\PC_reg[8] ),
-        .O(\Din_OUT_reg[23]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT2 #(
     .INIT(4'h2)) 
-    \Din_OUT_reg[23]_i_8 
-       (.I0(\Din_OUT_reg[31]_i_8_n_0 ),
+    \Din_OUT_reg[23]_i_6 
+       (.I0(\Din_OUT_reg[31]_i_7_n_0 ),
         .I1(MemAccessClock),
-        .O(\Din_OUT_reg[23]_i_8_n_0 ));
+        .O(\Din_OUT_reg[23]_i_6_n_0 ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \Din_OUT_reg[24]_i_1 
@@ -12923,34 +12756,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(Din[8]),
         .I3(\Din_OUT_reg[24]_i_3_n_0 ),
         .O(D[24]));
-  (* SOFT_HLUTNM = "soft_lutpair81" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[24]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[8]),
-        .I2(\Din_OUT_reg[24]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [8]),
+        .I4(douta[8]),
+        .I5(spo[8]),
         .O(Din[8]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[24]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[0]),
-        .I2(\Din_OUT_reg[31]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[31]_i_7_n_0 ),
         .I3(Din[24]),
         .I4(Din[16]),
-        .I5(\Din_OUT_reg[31]_i_9_n_0 ),
+        .I5(\Din_OUT_reg[31]_i_8_n_0 ),
         .O(\Din_OUT_reg[24]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[24]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [8]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[8]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [8]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[24]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \Din_OUT_reg[25]_i_1 
@@ -12959,34 +12784,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(Din[9]),
         .I3(\Din_OUT_reg[25]_i_3_n_0 ),
         .O(D[25]));
-  (* SOFT_HLUTNM = "soft_lutpair81" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[25]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[9]),
-        .I2(\Din_OUT_reg[25]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [9]),
+        .I4(douta[9]),
+        .I5(spo[9]),
         .O(Din[9]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[25]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[1]),
-        .I2(\Din_OUT_reg[31]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[31]_i_7_n_0 ),
         .I3(Din[25]),
         .I4(Din[17]),
-        .I5(\Din_OUT_reg[31]_i_9_n_0 ),
+        .I5(\Din_OUT_reg[31]_i_8_n_0 ),
         .O(\Din_OUT_reg[25]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFF454045404540)) 
-    \Din_OUT_reg[25]_i_4 
-       (.I0(\Din_OUT_reg[23]_i_7_n_0 ),
-        .I1(douta[9]),
-        .I2(\PC_reg[8] ),
-        .I3(\Din_OUT_reg[7]_i_6_0 [9]),
-        .I4(MemAccessClock_reg_0),
-        .I5(\Din_OUT_reg[15]_i_3_0 [9]),
-        .O(\Din_OUT_reg[25]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \Din_OUT_reg[26]_i_1 
@@ -12995,34 +12812,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(Din[10]),
         .I3(\Din_OUT_reg[26]_i_3_n_0 ),
         .O(D[26]));
-  (* SOFT_HLUTNM = "soft_lutpair82" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[26]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[10]),
-        .I2(\Din_OUT_reg[26]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [10]),
+        .I4(douta[10]),
+        .I5(spo[10]),
         .O(Din[10]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[26]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[2]),
-        .I2(\Din_OUT_reg[31]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[31]_i_7_n_0 ),
         .I3(Din[26]),
         .I4(Din[18]),
-        .I5(\Din_OUT_reg[31]_i_9_n_0 ),
+        .I5(\Din_OUT_reg[31]_i_8_n_0 ),
         .O(\Din_OUT_reg[26]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[26]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [10]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[10]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [10]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[26]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \Din_OUT_reg[27]_i_1 
@@ -13031,34 +12840,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(Din[11]),
         .I3(\Din_OUT_reg[27]_i_3_n_0 ),
         .O(D[27]));
-  (* SOFT_HLUTNM = "soft_lutpair82" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[27]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[11]),
-        .I2(\Din_OUT_reg[27]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [11]),
+        .I4(douta[11]),
+        .I5(spo[11]),
         .O(Din[11]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[27]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[3]),
-        .I2(\Din_OUT_reg[31]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[31]_i_7_n_0 ),
         .I3(Din[27]),
         .I4(Din[19]),
-        .I5(\Din_OUT_reg[31]_i_9_n_0 ),
+        .I5(\Din_OUT_reg[31]_i_8_n_0 ),
         .O(\Din_OUT_reg[27]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[27]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [11]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[11]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [11]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[27]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \Din_OUT_reg[28]_i_1 
@@ -13067,34 +12868,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(Din[12]),
         .I3(\Din_OUT_reg[28]_i_3_n_0 ),
         .O(D[28]));
-  (* SOFT_HLUTNM = "soft_lutpair83" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[28]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[12]),
-        .I2(\Din_OUT_reg[28]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [12]),
+        .I4(douta[12]),
+        .I5(spo[12]),
         .O(Din[12]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[28]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[4]),
-        .I2(\Din_OUT_reg[31]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[31]_i_7_n_0 ),
         .I3(Din[28]),
         .I4(Din[20]),
-        .I5(\Din_OUT_reg[31]_i_9_n_0 ),
+        .I5(\Din_OUT_reg[31]_i_8_n_0 ),
         .O(\Din_OUT_reg[28]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[28]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [12]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[12]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [12]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[28]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \Din_OUT_reg[29]_i_1 
@@ -13103,35 +12896,27 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(Din[13]),
         .I3(\Din_OUT_reg[29]_i_3_n_0 ),
         .O(D[29]));
-  (* SOFT_HLUTNM = "soft_lutpair83" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[29]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[13]),
-        .I2(\Din_OUT_reg[29]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [13]),
+        .I4(douta[13]),
+        .I5(spo[13]),
         .O(Din[13]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[29]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[5]),
-        .I2(\Din_OUT_reg[31]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[31]_i_7_n_0 ),
         .I3(Din[29]),
         .I4(Din[21]),
-        .I5(\Din_OUT_reg[31]_i_9_n_0 ),
+        .I5(\Din_OUT_reg[31]_i_8_n_0 ),
         .O(\Din_OUT_reg[29]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[29]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [13]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[13]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [13]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[29]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair112" *) 
+  (* SOFT_HLUTNM = "soft_lutpair101" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[2]_i_1 
@@ -13139,34 +12924,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[2]_i_3_n_0 ),
         .O(D[2]));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[2]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[2]),
-        .I2(\Din_OUT_reg[2]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [2]),
+        .I4(douta[2]),
+        .I5(spo[2]),
         .O(Din[2]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[2]_i_3 
        (.I0(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I1(Din[26]),
-        .I2(\Din_OUT_reg[7]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[7]_i_6_n_0 ),
         .I3(Din[18]),
         .I4(Din[10]),
-        .I5(\Din_OUT_reg[7]_i_5_n_0 ),
+        .I5(\Din_OUT_reg[7]_i_7_n_0 ),
         .O(\Din_OUT_reg[2]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFF454045404540)) 
-    \Din_OUT_reg[2]_i_4 
-       (.I0(\Din_OUT_reg[23]_i_7_n_0 ),
-        .I1(douta[2]),
-        .I2(\PC_reg[8] ),
-        .I3(\Din_OUT_reg[7]_i_6_0 [2]),
-        .I4(MemAccessClock_reg_0),
-        .I5(\Din_OUT_reg[15]_i_3_0 [2]),
-        .O(\Din_OUT_reg[2]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \Din_OUT_reg[30]_i_1 
@@ -13175,34 +12952,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(Din[14]),
         .I3(\Din_OUT_reg[30]_i_3_n_0 ),
         .O(D[30]));
-  (* SOFT_HLUTNM = "soft_lutpair84" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[30]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[14]),
-        .I2(\Din_OUT_reg[30]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [14]),
+        .I4(douta[14]),
+        .I5(spo[14]),
         .O(Din[14]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[30]_i_3 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[6]),
-        .I2(\Din_OUT_reg[31]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[31]_i_7_n_0 ),
         .I3(Din[30]),
         .I4(Din[22]),
-        .I5(\Din_OUT_reg[31]_i_9_n_0 ),
+        .I5(\Din_OUT_reg[31]_i_8_n_0 ),
         .O(\Din_OUT_reg[30]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[30]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [14]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[14]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [14]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[30]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \Din_OUT_reg[31]_i_1 
@@ -13220,24 +12989,26 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(MemAccess),
         .I4(\state[5]_i_4_n_0 ),
         .I5(\state[5]_i_3_n_0 ),
-        .O(MemAccessClock_reg_4[3]));
-  (* SOFT_HLUTNM = "soft_lutpair84" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+        .O(MemAccessClock_reg_1[3]));
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[31]_i_3 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[15]),
-        .I2(\Din_OUT_reg[31]_i_7_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [15]),
+        .I4(douta[15]),
+        .I5(spo[15]),
         .O(Din[15]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[31]_i_4 
        (.I0(\WR_OUT_reg[1]_i_2_n_0 ),
         .I1(Din[7]),
-        .I2(\Din_OUT_reg[31]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[31]_i_7_n_0 ),
         .I3(Din[31]),
         .I4(Din[23]),
-        .I5(\Din_OUT_reg[31]_i_9_n_0 ),
+        .I5(\Din_OUT_reg[31]_i_8_n_0 ),
         .O(\Din_OUT_reg[31]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'hFFFBFF9FFFFB9FFF)) 
@@ -13250,43 +13021,33 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\state_reg[5]_0 [0]),
         .O(\Din_OUT_reg[31]_i_5_n_0 ));
   LUT3 #(
-    .INIT(8'hFE)) 
+    .INIT(8'h10)) 
     \Din_OUT_reg[31]_i_6 
-       (.I0(video_ram_i_30_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(video_ram_i_29_n_0),
-        .O(\Din_OUT_reg[31]_i_6_n_0 ));
+       (.I0(video_ram_i_31_n_0),
+        .I1(video_ram_i_57_n_0),
+        .I2(video_ram_i_30_n_0),
+        .O(Din1));
   LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
+    .INIT(64'h220A000A22000000)) 
     \Din_OUT_reg[31]_i_7 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [15]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[15]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [15]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
+       (.I0(\WR_OUT_reg[1]_i_5_n_0 ),
+        .I1(\PC_reg[31]_1 [1]),
+        .I2(Q[1]),
+        .I3(MemAddrSrc),
+        .I4(\PC_reg[31]_1 [0]),
+        .I5(Q[0]),
         .O(\Din_OUT_reg[31]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h202A000A20200000)) 
+    .INIT(64'h0000000053000000)) 
     \Din_OUT_reg[31]_i_8 
-       (.I0(\WR_OUT_reg[1]_i_5_n_0 ),
-        .I1(\PC_reg[31]_0 [1]),
+       (.I0(\PC_reg[31]_1 [0]),
+        .I1(Q[0]),
         .I2(MemAddrSrc),
-        .I3(\registers_reg[30][31] [1]),
-        .I4(\PC_reg[31]_0 [0]),
-        .I5(\registers_reg[30][31] [0]),
-        .O(\Din_OUT_reg[31]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000047000000)) 
-    \Din_OUT_reg[31]_i_9 
-       (.I0(\PC_reg[31]_0 [0]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [0]),
-        .I3(\state[5]_i_4_n_0 ),
+        .I3(\state[5]_i_3_n_0 ),
         .I4(MemAccess),
         .I5(\state[5]_i_6_n_0 ),
-        .O(\Din_OUT_reg[31]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair112" *) 
+        .O(\Din_OUT_reg[31]_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair101" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Din_OUT_reg[3]_i_1 
@@ -13294,147 +13055,117 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[3]_i_3_n_0 ),
         .O(D[3]));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[3]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[3]),
-        .I2(\Din_OUT_reg[3]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [3]),
+        .I4(douta[3]),
+        .I5(spo[3]),
         .O(Din[3]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[3]_i_3 
        (.I0(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I1(Din[27]),
-        .I2(\Din_OUT_reg[7]_i_8_n_0 ),
+        .I2(\Din_OUT_reg[7]_i_6_n_0 ),
         .I3(Din[19]),
         .I4(Din[11]),
-        .I5(\Din_OUT_reg[7]_i_5_n_0 ),
+        .I5(\Din_OUT_reg[7]_i_7_n_0 ),
         .O(\Din_OUT_reg[3]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[3]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [3]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[3]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [3]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[3]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFF888)) 
+  (* SOFT_HLUTNM = "soft_lutpair102" *) 
+  LUT3 #(
+    .INIT(8'hF8)) 
     \Din_OUT_reg[4]_i_1 
        (.I0(Din[4]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
-        .I2(\Din_OUT_reg[7]_i_5_n_0 ),
-        .I3(Din[12]),
-        .I4(\Din_OUT_reg[4]_i_3_n_0 ),
+        .I2(\Din_OUT_reg[4]_i_3_n_0 ),
         .O(D[4]));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
-    \Din_OUT_reg[4]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[4]),
-        .I2(\Din_OUT_reg[4]_i_4_n_0 ),
-        .O(Din[4]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \Din_OUT_reg[4]_i_3 
-       (.I0(Din[20]),
-        .I1(\Din_OUT_reg[7]_i_8_n_0 ),
-        .I2(Din[28]),
-        .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
-        .O(\Din_OUT_reg[4]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[4]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [4]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[4]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [4]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[4]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFF888)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
+    \Din_OUT_reg[4]_i_2 
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [4]),
+        .I4(douta[4]),
+        .I5(spo[4]),
+        .O(Din[4]));
+  LUT6 #(
+    .INIT(64'hFFFFF888F888F888)) 
+    \Din_OUT_reg[4]_i_3 
+       (.I0(\Dout_OUT_reg[31]_i_5_n_0 ),
+        .I1(Din[28]),
+        .I2(\Din_OUT_reg[7]_i_6_n_0 ),
+        .I3(Din[20]),
+        .I4(Din[12]),
+        .I5(\Din_OUT_reg[7]_i_7_n_0 ),
+        .O(\Din_OUT_reg[4]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair102" *) 
+  LUT3 #(
+    .INIT(8'hF8)) 
     \Din_OUT_reg[5]_i_1 
        (.I0(Din[5]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
-        .I2(\Din_OUT_reg[7]_i_5_n_0 ),
-        .I3(Din[13]),
-        .I4(\Din_OUT_reg[5]_i_3_n_0 ),
+        .I2(\Din_OUT_reg[5]_i_3_n_0 ),
         .O(D[5]));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
-    \Din_OUT_reg[5]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[5]),
-        .I2(\Din_OUT_reg[5]_i_4_n_0 ),
-        .O(Din[5]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \Din_OUT_reg[5]_i_3 
-       (.I0(Din[21]),
-        .I1(\Din_OUT_reg[7]_i_8_n_0 ),
-        .I2(Din[29]),
-        .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
-        .O(\Din_OUT_reg[5]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[5]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [5]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[5]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [5]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[5]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFF888)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
+    \Din_OUT_reg[5]_i_2 
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [5]),
+        .I4(douta[5]),
+        .I5(spo[5]),
+        .O(Din[5]));
+  LUT6 #(
+    .INIT(64'hFFFFF888F888F888)) 
+    \Din_OUT_reg[5]_i_3 
+       (.I0(\Dout_OUT_reg[31]_i_5_n_0 ),
+        .I1(Din[29]),
+        .I2(\Din_OUT_reg[7]_i_6_n_0 ),
+        .I3(Din[21]),
+        .I4(Din[13]),
+        .I5(\Din_OUT_reg[7]_i_7_n_0 ),
+        .O(\Din_OUT_reg[5]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair103" *) 
+  LUT3 #(
+    .INIT(8'hF8)) 
     \Din_OUT_reg[6]_i_1 
        (.I0(Din[6]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
-        .I2(\Din_OUT_reg[7]_i_5_n_0 ),
-        .I3(Din[14]),
-        .I4(\Din_OUT_reg[6]_i_3_n_0 ),
+        .I2(\Din_OUT_reg[6]_i_3_n_0 ),
         .O(D[6]));
-  (* SOFT_HLUTNM = "soft_lutpair80" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
-    \Din_OUT_reg[6]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[6]),
-        .I2(\Din_OUT_reg[6]_i_4_n_0 ),
-        .O(Din[6]));
-  LUT4 #(
-    .INIT(16'hF888)) 
-    \Din_OUT_reg[6]_i_3 
-       (.I0(Din[22]),
-        .I1(\Din_OUT_reg[7]_i_8_n_0 ),
-        .I2(Din[30]),
-        .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
-        .O(\Din_OUT_reg[6]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
-    \Din_OUT_reg[6]_i_4 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [6]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[6]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [6]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[6]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFF888)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
+    \Din_OUT_reg[6]_i_2 
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [6]),
+        .I4(douta[6]),
+        .I5(spo[6]),
+        .O(Din[6]));
+  LUT6 #(
+    .INIT(64'hFFFFF888F888F888)) 
+    \Din_OUT_reg[6]_i_3 
+       (.I0(\Dout_OUT_reg[31]_i_5_n_0 ),
+        .I1(Din[30]),
+        .I2(\Din_OUT_reg[7]_i_6_n_0 ),
+        .I3(Din[22]),
+        .I4(Din[14]),
+        .I5(\Din_OUT_reg[7]_i_7_n_0 ),
+        .O(\Din_OUT_reg[6]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair103" *) 
+  LUT3 #(
+    .INIT(8'hF8)) 
     \Din_OUT_reg[7]_i_1 
        (.I0(Din[7]),
         .I1(\Din_OUT_reg[7]_i_4_n_0 ),
         .I2(\Din_OUT_reg[7]_i_5_n_0 ),
-        .I3(Din[15]),
-        .I4(\Din_OUT_reg[7]_i_6_n_0 ),
         .O(D[7]));
   LUT6 #(
     .INIT(64'h44CCC4CCC4CCCCCC)) 
@@ -13445,63 +13176,57 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(MemAccess),
         .I4(\state[5]_i_4_n_0 ),
         .I5(\state[5]_i_3_n_0 ),
-        .O(MemAccessClock_reg_4[0]));
-  (* SOFT_HLUTNM = "soft_lutpair80" *) 
-  LUT3 #(
-    .INIT(8'hF4)) 
+        .O(MemAccessClock_reg_1[0]));
+  LUT6 #(
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[7]_i_3 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[7]),
-        .I2(\Din_OUT_reg[7]_i_7_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [7]),
+        .I4(douta[7]),
+        .I5(spo[7]),
         .O(Din[7]));
   LUT6 #(
-    .INIT(64'hA0A0880000008800)) 
+    .INIT(64'h88A000A088000000)) 
     \Din_OUT_reg[7]_i_4 
        (.I0(\Dout_OUT_reg[31]_i_7_n_0 ),
-        .I1(\registers_reg[30][31] [0]),
-        .I2(\PC_reg[31]_0 [0]),
-        .I3(\registers_reg[30][31] [1]),
-        .I4(MemAddrSrc),
-        .I5(\PC_reg[31]_0 [1]),
+        .I1(\PC_reg[31]_1 [1]),
+        .I2(Q[1]),
+        .I3(MemAddrSrc),
+        .I4(\PC_reg[31]_1 [0]),
+        .I5(Q[0]),
         .O(\Din_OUT_reg[7]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h4703440000000000)) 
+    .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[7]_i_5 
-       (.I0(\PC_reg[31]_0 [0]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [0]),
-        .I3(\PC_reg[31]_0 [1]),
-        .I4(\registers_reg[30][31] [1]),
-        .I5(\Dout_OUT_reg[31]_i_7_n_0 ),
+       (.I0(\Dout_OUT_reg[31]_i_5_n_0 ),
+        .I1(Din[31]),
+        .I2(\Din_OUT_reg[7]_i_6_n_0 ),
+        .I3(Din[23]),
+        .I4(Din[15]),
+        .I5(\Din_OUT_reg[7]_i_7_n_0 ),
         .O(\Din_OUT_reg[7]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  LUT6 #(
+    .INIT(64'h5303500000000000)) 
     \Din_OUT_reg[7]_i_6 
-       (.I0(Din[23]),
-        .I1(\Din_OUT_reg[7]_i_8_n_0 ),
-        .I2(Din[31]),
-        .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
+       (.I0(\PC_reg[31]_1 [1]),
+        .I1(Q[1]),
+        .I2(MemAddrSrc),
+        .I3(\PC_reg[31]_1 [0]),
+        .I4(Q[0]),
+        .I5(\Dout_OUT_reg[31]_i_7_n_0 ),
         .O(\Din_OUT_reg[7]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hFF000000FFE200E2)) 
+    .INIT(64'h5303500000000000)) 
     \Din_OUT_reg[7]_i_7 
-       (.I0(\Din_OUT_reg[7]_i_6_0 [7]),
-        .I1(\PC_reg[8] ),
-        .I2(douta[7]),
-        .I3(MemAccessClock_reg_0),
-        .I4(\Din_OUT_reg[15]_i_3_0 [7]),
-        .I5(\Din_OUT_reg[23]_i_7_n_0 ),
-        .O(\Din_OUT_reg[7]_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h4703440000000000)) 
-    \Din_OUT_reg[7]_i_8 
-       (.I0(\PC_reg[31]_0 [1]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [1]),
-        .I3(\PC_reg[31]_0 [0]),
-        .I4(\registers_reg[30][31] [0]),
+       (.I0(\PC_reg[31]_1 [0]),
+        .I1(Q[0]),
+        .I2(MemAddrSrc),
+        .I3(\PC_reg[31]_1 [1]),
+        .I4(Q[1]),
         .I5(\Dout_OUT_reg[31]_i_7_n_0 ),
-        .O(\Din_OUT_reg[7]_i_8_n_0 ));
+        .O(\Din_OUT_reg[7]_i_7_n_0 ));
   LUT4 #(
     .INIT(16'hFF20)) 
     \Din_OUT_reg[8]_i_1 
@@ -13511,33 +13236,25 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[8]_i_3_n_0 ),
         .O(D[8]));
   LUT6 #(
-    .INIT(64'hFF444F4FFF444444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[8]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[24]),
-        .I2(\Din_OUT_reg[23]_i_7_n_0 ),
-        .I3(\Din_OUT_reg[15]_i_3_0 [24]),
-        .I4(MemAccessClock_reg_0),
-        .I5(\Din_OUT_reg[8]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [24]),
+        .I4(douta[24]),
+        .I5(spo[24]),
         .O(Din[24]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[8]_i_3 
        (.I0(\WR_OUT_reg[1]_i_4_n_0 ),
         .I1(Din[8]),
-        .I2(\Din_OUT_reg[15]_i_6_n_0 ),
+        .I2(\Din_OUT_reg[15]_i_5_n_0 ),
         .I3(Din[0]),
         .I4(Din[16]),
-        .I5(\Din_OUT_reg[15]_i_7_n_0 ),
+        .I5(\Din_OUT_reg[15]_i_6_n_0 ),
         .O(\Din_OUT_reg[8]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair89" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[8]_i_4 
-       (.I0(douta[24]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [24]),
-        .O(\Din_OUT_reg[8]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'hFF20)) 
     \Din_OUT_reg[9]_i_1 
@@ -13547,41 +13264,33 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\Din_OUT_reg[9]_i_3_n_0 ),
         .O(D[9]));
   LUT6 #(
-    .INIT(64'hFF444F4FFF444444)) 
+    .INIT(64'hFEFAF4F00E0A0400)) 
     \Din_OUT_reg[9]_i_2 
-       (.I0(\Din_OUT_reg[31]_i_6_n_0 ),
-        .I1(spo[25]),
-        .I2(\Din_OUT_reg[23]_i_7_n_0 ),
-        .I3(\Din_OUT_reg[15]_i_3_0 [25]),
-        .I4(MemAccessClock_reg_0),
-        .I5(\Din_OUT_reg[9]_i_4_n_0 ),
+       (.I0(graphics_write_enable1),
+        .I1(Din3),
+        .I2(Din1),
+        .I3(\Din_OUT_reg[23]_i_5_0 [25]),
+        .I4(douta[25]),
+        .I5(spo[25]),
         .O(Din[25]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \Din_OUT_reg[9]_i_3 
        (.I0(\WR_OUT_reg[1]_i_4_n_0 ),
         .I1(Din[9]),
-        .I2(\Din_OUT_reg[15]_i_6_n_0 ),
+        .I2(\Din_OUT_reg[15]_i_5_n_0 ),
         .I3(Din[1]),
         .I4(Din[17]),
-        .I5(\Din_OUT_reg[15]_i_7_n_0 ),
+        .I5(\Din_OUT_reg[15]_i_6_n_0 ),
         .O(\Din_OUT_reg[9]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair89" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \Din_OUT_reg[9]_i_4 
-       (.I0(douta[25]),
-        .I1(\PC_reg[8] ),
-        .I2(\Din_OUT_reg[7]_i_6_0 [25]),
-        .O(\Din_OUT_reg[9]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF20222000)) 
+    .INIT(64'hFFFFFFFF20202200)) 
     \Dout_OUT_reg[0]_i_1 
        (.I0(MemAccessClock),
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .I2(\CPSR_reg[1]_0 [8]),
-        .I3(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I4(Q[8]),
+        .I2(\registers_reg[30][31] [8]),
+        .I3(\PC_reg[31]_0 [8]),
+        .I4(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I5(\Dout_OUT_reg[0]_i_2_n_0 ),
         .O(\Rn_reg[31] [0]));
   LUT6 #(
@@ -13594,13 +13303,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[24]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_5_n_0 ),
         .O(\Dout_OUT_reg[0]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[10]_i_1 
-       (.I0(\CPSR_reg[1]_0 [10]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[10]),
+       (.I0(\registers_reg[30][31] [10]),
+        .I1(\PC_reg[31]_0 [10]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[10]_i_2_n_0 ),
         .O(\Rn_reg[31] [10]));
@@ -13614,13 +13323,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[26]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[10]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[11]_i_1 
-       (.I0(\CPSR_reg[1]_0 [11]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[11]),
+       (.I0(\registers_reg[30][31] [11]),
+        .I1(\PC_reg[31]_0 [11]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[11]_i_2_n_0 ),
         .O(\Rn_reg[31] [11]));
@@ -13634,13 +13343,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[27]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[11]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[12]_i_1 
-       (.I0(\CPSR_reg[1]_0 [12]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[12]),
+       (.I0(\registers_reg[30][31] [12]),
+        .I1(\PC_reg[31]_0 [12]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[12]_i_2_n_0 ),
         .O(\Rn_reg[31] [12]));
@@ -13654,13 +13363,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[28]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[12]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[13]_i_1 
-       (.I0(\CPSR_reg[1]_0 [13]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[13]),
+       (.I0(\registers_reg[30][31] [13]),
+        .I1(\PC_reg[31]_0 [13]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[13]_i_2_n_0 ),
         .O(\Rn_reg[31] [13]));
@@ -13676,11 +13385,11 @@ module design_1_Motherboard_0_0_ControlUnit
         .O(\Dout_OUT_reg[13]_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[14]_i_1 
-       (.I0(\CPSR_reg[1]_0 [14]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[14]),
+       (.I0(\registers_reg[30][31] [14]),
+        .I1(\PC_reg[31]_0 [14]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[14]_i_2_n_0 ),
         .O(\Rn_reg[31] [14]));
@@ -13694,13 +13403,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[30]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[14]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[15]_i_1 
-       (.I0(\CPSR_reg[1]_0 [15]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[15]),
+       (.I0(\registers_reg[30][31] [15]),
+        .I1(\PC_reg[31]_0 [15]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[15]_i_2_n_0 ),
         .O(\Rn_reg[31] [15]));
@@ -13715,22 +13424,22 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[15]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000047000000)) 
+    .INIT(64'h0000000053000000)) 
     \Dout_OUT_reg[15]_i_3 
-       (.I0(\PC_reg[31]_0 [0]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [0]),
-        .I3(\state[5]_i_4_n_0 ),
+       (.I0(\PC_reg[31]_1 [0]),
+        .I1(Q[0]),
+        .I2(MemAddrSrc),
+        .I3(\state[5]_i_3_n_0 ),
         .I4(MemAccess),
         .I5(\WR_OUT_reg[1]_i_6_n_0 ),
         .O(\Dout_OUT_reg[15]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[16]_i_1 
-       (.I0(\CPSR_reg[1]_0 [16]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[16]),
+       (.I0(\registers_reg[30][31] [16]),
+        .I1(\PC_reg[31]_0 [16]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[16]_i_2_n_0 ),
         .O(\Rn_reg[31] [16]));
@@ -13744,21 +13453,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[16]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[16]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[16]_i_3 
-       (.I0(\CPSR_reg[1]_0 [24]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[24]),
+       (.I0(\registers_reg[30][31] [24]),
+        .I1(\PC_reg[31]_0 [24]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[16]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[17]_i_1 
-       (.I0(\CPSR_reg[1]_0 [17]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[17]),
+       (.I0(\registers_reg[30][31] [17]),
+        .I1(\PC_reg[31]_0 [17]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[17]_i_2_n_0 ),
         .O(\Rn_reg[31] [17]));
@@ -13772,21 +13481,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[17]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[17]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[17]_i_3 
-       (.I0(\CPSR_reg[1]_0 [25]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[25]),
+       (.I0(\registers_reg[30][31] [25]),
+        .I1(\PC_reg[31]_0 [25]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[17]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[18]_i_1 
-       (.I0(\CPSR_reg[1]_0 [18]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[18]),
+       (.I0(\registers_reg[30][31] [18]),
+        .I1(\PC_reg[31]_0 [18]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[18]_i_2_n_0 ),
         .O(\Rn_reg[31] [18]));
@@ -13800,21 +13509,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[18]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[18]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[18]_i_3 
-       (.I0(\CPSR_reg[1]_0 [26]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[26]),
+       (.I0(\registers_reg[30][31] [26]),
+        .I1(\PC_reg[31]_0 [26]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[18]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[19]_i_1 
-       (.I0(\CPSR_reg[1]_0 [19]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[19]),
+       (.I0(\registers_reg[30][31] [19]),
+        .I1(\PC_reg[31]_0 [19]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[19]_i_2_n_0 ),
         .O(\Rn_reg[31] [19]));
@@ -13828,22 +13537,22 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[19]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[19]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[19]_i_3 
-       (.I0(\CPSR_reg[1]_0 [27]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[27]),
+       (.I0(\registers_reg[30][31] [27]),
+        .I1(\PC_reg[31]_0 [27]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[19]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF20222000)) 
+    .INIT(64'hFFFFFFFF20202200)) 
     \Dout_OUT_reg[1]_i_1 
        (.I0(MemAccessClock),
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .I2(\CPSR_reg[1]_0 [9]),
-        .I3(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I4(Q[9]),
+        .I2(\registers_reg[30][31] [9]),
+        .I3(\PC_reg[31]_0 [9]),
+        .I4(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I5(\Dout_OUT_reg[1]_i_2_n_0 ),
         .O(\Rn_reg[31] [1]));
   LUT6 #(
@@ -13856,13 +13565,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[25]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_5_n_0 ),
         .O(\Dout_OUT_reg[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[20]_i_1 
-       (.I0(\CPSR_reg[1]_0 [20]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[20]),
+       (.I0(\registers_reg[30][31] [20]),
+        .I1(\PC_reg[31]_0 [20]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[20]_i_2_n_0 ),
         .O(\Rn_reg[31] [20]));
@@ -13876,21 +13585,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[20]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[20]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[20]_i_3 
-       (.I0(\CPSR_reg[1]_0 [28]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[28]),
+       (.I0(\registers_reg[30][31] [28]),
+        .I1(\PC_reg[31]_0 [28]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[20]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[21]_i_1 
-       (.I0(\CPSR_reg[1]_0 [21]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[21]),
+       (.I0(\registers_reg[30][31] [21]),
+        .I1(\PC_reg[31]_0 [21]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[21]_i_2_n_0 ),
         .O(\Rn_reg[31] [21]));
@@ -13904,21 +13613,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[21]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[21]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[21]_i_3 
-       (.I0(\CPSR_reg[1]_0 [29]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[29]),
+       (.I0(\registers_reg[30][31] [29]),
+        .I1(\PC_reg[31]_0 [29]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[21]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[22]_i_1 
-       (.I0(\CPSR_reg[1]_0 [22]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[22]),
+       (.I0(\registers_reg[30][31] [22]),
+        .I1(\PC_reg[31]_0 [22]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[22]_i_2_n_0 ),
         .O(\Rn_reg[31] [22]));
@@ -13932,21 +13641,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[22]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[22]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[22]_i_3 
-       (.I0(\CPSR_reg[1]_0 [30]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[30]),
+       (.I0(\registers_reg[30][31] [30]),
+        .I1(\PC_reg[31]_0 [30]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[22]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[23]_i_1 
-       (.I0(\CPSR_reg[1]_0 [23]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[23]),
+       (.I0(\registers_reg[30][31] [23]),
+        .I1(\PC_reg[31]_0 [23]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[23]_i_2_n_0 ),
         .O(\Rn_reg[31] [23]));
@@ -13960,21 +13669,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[23]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[23]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[23]_i_3 
-       (.I0(\CPSR_reg[1]_0 [31]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[31]),
+       (.I0(\registers_reg[30][31] [31]),
+        .I1(\PC_reg[31]_0 [31]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[23]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[24]_i_1 
-       (.I0(\CPSR_reg[1]_0 [24]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[24]),
+       (.I0(\registers_reg[30][31] [24]),
+        .I1(\PC_reg[31]_0 [24]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[24]_i_2_n_0 ),
         .O(\Rn_reg[31] [24]));
@@ -13988,37 +13697,37 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[24]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_12_n_0 ),
         .O(\Dout_OUT_reg[24]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[24]_i_3 
-       (.I0(\CPSR_reg[1]_0 [16]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[16]),
+       (.I0(\registers_reg[30][31] [16]),
+        .I1(\PC_reg[31]_0 [16]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[24]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[24]_i_4 
-       (.I0(\CPSR_reg[1]_0 [8]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[8]),
+       (.I0(\registers_reg[30][31] [8]),
+        .I1(\PC_reg[31]_0 [8]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[24]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair117" *) 
+  (* SOFT_HLUTNM = "soft_lutpair109" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[24]_i_5 
-       (.I0(\CPSR_reg[1]_0 [0]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[0]),
+       (.I0(\registers_reg[30][31] [0]),
+        .I1(\PC_reg[31]_0 [0]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[24]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[25]_i_1 
-       (.I0(\CPSR_reg[1]_0 [25]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[25]),
+       (.I0(\registers_reg[30][31] [25]),
+        .I1(\PC_reg[31]_0 [25]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[25]_i_2_n_0 ),
         .O(\Rn_reg[31] [25]));
@@ -14032,37 +13741,37 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[25]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_12_n_0 ),
         .O(\Dout_OUT_reg[25]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[25]_i_3 
-       (.I0(\CPSR_reg[1]_0 [17]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[17]),
+       (.I0(\registers_reg[30][31] [17]),
+        .I1(\PC_reg[31]_0 [17]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[25]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[25]_i_4 
-       (.I0(\CPSR_reg[1]_0 [9]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[9]),
+       (.I0(\registers_reg[30][31] [9]),
+        .I1(\PC_reg[31]_0 [9]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[25]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair117" *) 
+  (* SOFT_HLUTNM = "soft_lutpair109" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[25]_i_5 
-       (.I0(\CPSR_reg[1]_0 [1]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[1]),
+       (.I0(\registers_reg[30][31] [1]),
+        .I1(\PC_reg[31]_0 [1]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[25]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[26]_i_1 
-       (.I0(\CPSR_reg[1]_0 [26]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[26]),
+       (.I0(\registers_reg[30][31] [26]),
+        .I1(\PC_reg[31]_0 [26]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[26]_i_2_n_0 ),
         .O(\Rn_reg[31] [26]));
@@ -14076,37 +13785,37 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[26]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_12_n_0 ),
         .O(\Dout_OUT_reg[26]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[26]_i_3 
-       (.I0(\CPSR_reg[1]_0 [18]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[18]),
+       (.I0(\registers_reg[30][31] [18]),
+        .I1(\PC_reg[31]_0 [18]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[26]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[26]_i_4 
-       (.I0(\CPSR_reg[1]_0 [10]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[10]),
+       (.I0(\registers_reg[30][31] [10]),
+        .I1(\PC_reg[31]_0 [10]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[26]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair118" *) 
+  (* SOFT_HLUTNM = "soft_lutpair108" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[26]_i_5 
-       (.I0(\CPSR_reg[1]_0 [2]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[2]),
+       (.I0(\registers_reg[30][31] [2]),
+        .I1(\PC_reg[31]_0 [2]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[26]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[27]_i_1 
-       (.I0(\CPSR_reg[1]_0 [27]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[27]),
+       (.I0(\registers_reg[30][31] [27]),
+        .I1(\PC_reg[31]_0 [27]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[27]_i_2_n_0 ),
         .O(\Rn_reg[31] [27]));
@@ -14120,37 +13829,37 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[27]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_12_n_0 ),
         .O(\Dout_OUT_reg[27]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[27]_i_3 
-       (.I0(\CPSR_reg[1]_0 [19]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[19]),
+       (.I0(\registers_reg[30][31] [19]),
+        .I1(\PC_reg[31]_0 [19]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[27]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[27]_i_4 
-       (.I0(\CPSR_reg[1]_0 [11]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[11]),
+       (.I0(\registers_reg[30][31] [11]),
+        .I1(\PC_reg[31]_0 [11]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[27]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair118" *) 
+  (* SOFT_HLUTNM = "soft_lutpair107" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[27]_i_5 
-       (.I0(\CPSR_reg[1]_0 [3]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[3]),
+       (.I0(\registers_reg[30][31] [3]),
+        .I1(\PC_reg[31]_0 [3]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[27]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[28]_i_1 
-       (.I0(\CPSR_reg[1]_0 [28]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[28]),
+       (.I0(\registers_reg[30][31] [28]),
+        .I1(\PC_reg[31]_0 [28]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[28]_i_2_n_0 ),
         .O(\Rn_reg[31] [28]));
@@ -14164,37 +13873,37 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[28]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_12_n_0 ),
         .O(\Dout_OUT_reg[28]_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \Dout_OUT_reg[28]_i_3 
+       (.I0(\registers_reg[30][31] [20]),
+        .I1(\PC_reg[31]_0 [20]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
+        .O(\Dout_OUT_reg[28]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
-    \Dout_OUT_reg[28]_i_3 
-       (.I0(\CPSR_reg[1]_0 [20]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[20]),
-        .O(\Dout_OUT_reg[28]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[28]_i_4 
-       (.I0(\CPSR_reg[1]_0 [12]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[12]),
+       (.I0(\registers_reg[30][31] [12]),
+        .I1(\PC_reg[31]_0 [12]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[28]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair119" *) 
+  (* SOFT_HLUTNM = "soft_lutpair106" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[28]_i_5 
-       (.I0(\CPSR_reg[1]_0 [4]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[4]),
+       (.I0(\registers_reg[30][31] [4]),
+        .I1(\PC_reg[31]_0 [4]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[28]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[29]_i_1 
-       (.I0(\CPSR_reg[1]_0 [29]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[29]),
+       (.I0(\registers_reg[30][31] [29]),
+        .I1(\PC_reg[31]_0 [29]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[29]_i_2_n_0 ),
         .O(\Rn_reg[31] [29]));
@@ -14208,38 +13917,38 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[29]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_12_n_0 ),
         .O(\Dout_OUT_reg[29]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[29]_i_3 
-       (.I0(\CPSR_reg[1]_0 [21]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[21]),
+       (.I0(\registers_reg[30][31] [21]),
+        .I1(\PC_reg[31]_0 [21]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[29]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[29]_i_4 
-       (.I0(\CPSR_reg[1]_0 [13]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[13]),
+       (.I0(\registers_reg[30][31] [13]),
+        .I1(\PC_reg[31]_0 [13]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[29]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair119" *) 
+  (* SOFT_HLUTNM = "soft_lutpair105" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[29]_i_5 
-       (.I0(\CPSR_reg[1]_0 [5]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[5]),
+       (.I0(\registers_reg[30][31] [5]),
+        .I1(\PC_reg[31]_0 [5]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[29]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF20222000)) 
+    .INIT(64'hFFFFFFFF20202200)) 
     \Dout_OUT_reg[2]_i_1 
        (.I0(MemAccessClock),
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .I2(\CPSR_reg[1]_0 [10]),
-        .I3(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I4(Q[10]),
+        .I2(\registers_reg[30][31] [10]),
+        .I3(\PC_reg[31]_0 [10]),
+        .I4(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I5(\Dout_OUT_reg[2]_i_2_n_0 ),
         .O(\Rn_reg[31] [2]));
   LUT6 #(
@@ -14252,13 +13961,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[26]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_5_n_0 ),
         .O(\Dout_OUT_reg[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[30]_i_1 
-       (.I0(\CPSR_reg[1]_0 [30]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[30]),
+       (.I0(\registers_reg[30][31] [30]),
+        .I1(\PC_reg[31]_0 [30]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[30]_i_2_n_0 ),
         .O(\Rn_reg[31] [30]));
@@ -14272,75 +13981,75 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[30]_i_5_n_0 ),
         .I5(\Dout_OUT_reg[31]_i_12_n_0 ),
         .O(\Dout_OUT_reg[30]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[30]_i_3 
-       (.I0(\CPSR_reg[1]_0 [22]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[22]),
+       (.I0(\registers_reg[30][31] [22]),
+        .I1(\PC_reg[31]_0 [22]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[30]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[30]_i_4 
-       (.I0(\CPSR_reg[1]_0 [14]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[14]),
+       (.I0(\registers_reg[30][31] [14]),
+        .I1(\PC_reg[31]_0 [14]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[30]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair120" *) 
+  (* SOFT_HLUTNM = "soft_lutpair104" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[30]_i_5 
-       (.I0(\CPSR_reg[1]_0 [6]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[6]),
+       (.I0(\registers_reg[30][31] [6]),
+        .I1(\PC_reg[31]_0 [6]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[30]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[31]_i_1 
-       (.I0(\CPSR_reg[1]_0 [31]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[31]),
+       (.I0(\registers_reg[30][31] [31]),
+        .I1(\PC_reg[31]_0 [31]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[31]_i_6_n_0 ),
         .O(\Rn_reg[31] [31]));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[31]_i_10 
-       (.I0(\CPSR_reg[1]_0 [15]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[15]),
+       (.I0(\registers_reg[30][31] [15]),
+        .I1(\PC_reg[31]_0 [15]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[31]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair120" *) 
+  (* SOFT_HLUTNM = "soft_lutpair104" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[31]_i_11 
-       (.I0(\CPSR_reg[1]_0 [7]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[7]),
+       (.I0(\registers_reg[30][31] [7]),
+        .I1(\PC_reg[31]_0 [7]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[31]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT5 #(
     .INIT(32'h35000000)) 
     \Dout_OUT_reg[31]_i_12 
        (.I0(\state[5]_i_6_n_0 ),
         .I1(MemAccessClock),
         .I2(MemAccess),
-        .I3(\state[5]_i_4_n_0 ),
-        .I4(\state[5]_i_3_n_0 ),
+        .I3(\state[5]_i_3_n_0 ),
+        .I4(\state[5]_i_4_n_0 ),
         .O(\Dout_OUT_reg[31]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT5 #(
-    .INIT(32'h000ACC0A)) 
+    .INIT(32'h000AC0CA)) 
     \Dout_OUT_reg[31]_i_13 
-       (.I0(\registers_reg[30][31] [0]),
-        .I1(\PC_reg[31]_0 [0]),
-        .I2(\registers_reg[30][31] [1]),
-        .I3(MemAddrSrc),
-        .I4(\PC_reg[31]_0 [1]),
+       (.I0(Q[0]),
+        .I1(\PC_reg[31]_1 [0]),
+        .I2(MemAddrSrc),
+        .I3(Q[1]),
+        .I4(\PC_reg[31]_1 [1]),
         .O(\Dout_OUT_reg[31]_i_13_n_0 ));
   LUT6 #(
     .INIT(64'h00001200120C0000)) 
@@ -14372,13 +14081,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [4]),
         .O(\Dout_OUT_reg[31]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h0005330500000000)) 
+    .INIT(64'h0050035300000000)) 
     \Dout_OUT_reg[31]_i_5 
-       (.I0(\registers_reg[30][31] [0]),
-        .I1(\PC_reg[31]_0 [0]),
-        .I2(\registers_reg[30][31] [1]),
-        .I3(MemAddrSrc),
-        .I4(\PC_reg[31]_0 [1]),
+       (.I0(\PC_reg[31]_1 [1]),
+        .I1(Q[1]),
+        .I2(MemAddrSrc),
+        .I3(\PC_reg[31]_1 [0]),
+        .I4(Q[0]),
         .I5(\Dout_OUT_reg[31]_i_7_n_0 ),
         .O(\Dout_OUT_reg[31]_i_5_n_0 ));
   LUT6 #(
@@ -14409,22 +14118,22 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(MemAccess),
         .I3(MemAccessClock),
         .O(\Dout_OUT_reg[31]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \Dout_OUT_reg[31]_i_9 
-       (.I0(\CPSR_reg[1]_0 [23]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[23]),
+       (.I0(\registers_reg[30][31] [23]),
+        .I1(\PC_reg[31]_0 [23]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .O(\Dout_OUT_reg[31]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF20222000)) 
+    .INIT(64'hFFFFFFFF20202200)) 
     \Dout_OUT_reg[3]_i_1 
        (.I0(MemAccessClock),
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .I2(\CPSR_reg[1]_0 [11]),
-        .I3(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I4(Q[11]),
+        .I2(\registers_reg[30][31] [11]),
+        .I3(\PC_reg[31]_0 [11]),
+        .I4(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I5(\Dout_OUT_reg[3]_i_2_n_0 ),
         .O(\Rn_reg[31] [3]));
   LUT6 #(
@@ -14438,13 +14147,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Dout_OUT_reg[31]_i_5_n_0 ),
         .O(\Dout_OUT_reg[3]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF20222000)) 
+    .INIT(64'hFFFFFFFF20202200)) 
     \Dout_OUT_reg[4]_i_1 
        (.I0(MemAccessClock),
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .I2(\CPSR_reg[1]_0 [12]),
-        .I3(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I4(Q[12]),
+        .I2(\registers_reg[30][31] [12]),
+        .I3(\PC_reg[31]_0 [12]),
+        .I4(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I5(\Dout_OUT_reg[4]_i_2_n_0 ),
         .O(\Rn_reg[31] [4]));
   LUT6 #(
@@ -14458,13 +14167,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Dout_OUT_reg[31]_i_5_n_0 ),
         .O(\Dout_OUT_reg[4]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF20222000)) 
+    .INIT(64'hFFFFFFFF20202200)) 
     \Dout_OUT_reg[5]_i_1 
        (.I0(MemAccessClock),
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .I2(\CPSR_reg[1]_0 [13]),
-        .I3(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I4(Q[13]),
+        .I2(\registers_reg[30][31] [13]),
+        .I3(\PC_reg[31]_0 [13]),
+        .I4(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I5(\Dout_OUT_reg[5]_i_2_n_0 ),
         .O(\Rn_reg[31] [5]));
   LUT6 #(
@@ -14478,13 +14187,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Dout_OUT_reg[31]_i_5_n_0 ),
         .O(\Dout_OUT_reg[5]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF20222000)) 
+    .INIT(64'hFFFFFFFF20202200)) 
     \Dout_OUT_reg[6]_i_1 
        (.I0(MemAccessClock),
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .I2(\CPSR_reg[1]_0 [14]),
-        .I3(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I4(Q[14]),
+        .I2(\registers_reg[30][31] [14]),
+        .I3(\PC_reg[31]_0 [14]),
+        .I4(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I5(\Dout_OUT_reg[6]_i_2_n_0 ),
         .O(\Rn_reg[31] [6]));
   LUT6 #(
@@ -14498,24 +14207,24 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Dout_OUT_reg[31]_i_5_n_0 ),
         .O(\Dout_OUT_reg[6]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF20222000)) 
+    .INIT(64'hFFFFFFFF20202200)) 
     \Dout_OUT_reg[7]_i_1 
        (.I0(MemAccessClock),
         .I1(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .I2(\CPSR_reg[1]_0 [15]),
-        .I3(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I4(Q[15]),
+        .I2(\registers_reg[30][31] [15]),
+        .I3(\PC_reg[31]_0 [15]),
+        .I4(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I5(\Dout_OUT_reg[7]_i_3_n_0 ),
         .O(\Rn_reg[31] [7]));
   LUT6 #(
-    .INIT(64'h77775FFFFFFF5FFF)) 
+    .INIT(64'h775F77FFFF5FFFFF)) 
     \Dout_OUT_reg[7]_i_2 
        (.I0(MemAccess),
-        .I1(\PC_reg[31]_0 [1]),
-        .I2(\registers_reg[30][31] [1]),
-        .I3(\registers_reg[30][31] [0]),
-        .I4(MemAddrSrc),
-        .I5(\PC_reg[31]_0 [0]),
+        .I1(\PC_reg[31]_1 [1]),
+        .I2(Q[1]),
+        .I3(MemAddrSrc),
+        .I4(Q[0]),
+        .I5(\PC_reg[31]_1 [0]),
         .O(\Dout_OUT_reg[7]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
@@ -14528,22 +14237,22 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\Dout_OUT_reg[31]_i_5_n_0 ),
         .O(\Dout_OUT_reg[7]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h000000000000A808)) 
+    .INIT(64'h000000000000A820)) 
     \Dout_OUT_reg[7]_i_4 
        (.I0(MemAccess),
-        .I1(\registers_reg[30][31] [0]),
-        .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [0]),
-        .I4(\state[5]_i_4_n_0 ),
+        .I1(MemAddrSrc),
+        .I2(Q[0]),
+        .I3(\PC_reg[31]_1 [0]),
+        .I4(\state[5]_i_3_n_0 ),
         .I5(\WR_OUT_reg[1]_i_6_n_0 ),
         .O(\Dout_OUT_reg[7]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[8]_i_1 
-       (.I0(\CPSR_reg[1]_0 [8]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[8]),
+       (.I0(\registers_reg[30][31] [8]),
+        .I1(\PC_reg[31]_0 [8]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[8]_i_2_n_0 ),
         .O(\Rn_reg[31] [8]));
@@ -14557,13 +14266,13 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\Dout_OUT_reg[24]_i_3_n_0 ),
         .I5(\Din_OUT_reg[23]_i_4_n_0 ),
         .O(\Dout_OUT_reg[8]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT5 #(
-    .INIT(32'hFFFFB800)) 
+    .INIT(32'hFFFFAC00)) 
     \Dout_OUT_reg[9]_i_1 
-       (.I0(\CPSR_reg[1]_0 [9]),
-        .I1(\Dout_OUT_reg[31]_i_4_n_0 ),
-        .I2(Q[9]),
+       (.I0(\registers_reg[30][31] [9]),
+        .I1(\PC_reg[31]_0 [9]),
+        .I2(\Dout_OUT_reg[31]_i_4_n_0 ),
         .I3(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I4(\Dout_OUT_reg[9]_i_2_n_0 ),
         .O(\Rn_reg[31] [9]));
@@ -14604,604 +14313,623 @@ module design_1_Motherboard_0_0_ControlUnit
         .D(MemAccessClock_i_1_n_0),
         .Q(MemAccessClock));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'hC0E000E0C0200020)) 
     \PC[0]_i_1 
-       (.I0(\PC[31]_i_7_n_0 ),
-        .I1(\PC_reg[31]_0 [0]),
-        .I2(\PC[31]_i_8_n_0 ),
-        .I3(Q[0]),
-        .I4(\PC[31]_i_9_n_0 ),
-        .I5(\state_reg[5]_2 [0]),
-        .O(\ALUOut_reg[31] [0]));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
+       (.I0(\state_reg[5]_3 [0]),
+        .I1(\PC[31]_i_9_n_0 ),
+        .I2(\PC[31]_i_10_n_0 ),
+        .I3(PCSource),
+        .I4(\PC_reg[31]_0 [0]),
+        .I5(\PC_reg[31]_1 [0]),
+        .O(\Rs_reg[31] [0]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
     \PC[10]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [10]),
-        .I2(\PC[10]_i_2_n_0 ),
-        .I3(Q[10]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [10]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[10]_i_2 
-       (.I0(\state_reg[0]_1 [8]),
-        .I1(\PC_reg[31]_0 [10]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[10]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[11]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [11]),
-        .I2(\PC[11]_i_2_n_0 ),
-        .I3(Q[11]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [11]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[11]_i_2 
-       (.I0(\state_reg[0]_1 [9]),
-        .I1(\PC_reg[31]_0 [11]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[11]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[12]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [12]),
-        .I2(\PC[12]_i_2_n_0 ),
-        .I3(Q[12]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [12]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[12]_i_2 
-       (.I0(\state_reg[0]_1 [10]),
-        .I1(\PC_reg[31]_0 [12]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[12]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[13]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [13]),
-        .I2(\PC[13]_i_2_n_0 ),
-        .I3(Q[13]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [13]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[13]_i_2 
-       (.I0(\state_reg[0]_1 [11]),
-        .I1(\PC_reg[31]_0 [13]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[13]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[14]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [14]),
-        .I2(\PC[14]_i_2_n_0 ),
-        .I3(Q[14]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [14]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[14]_i_2 
-       (.I0(\state_reg[0]_1 [12]),
-        .I1(\PC_reg[31]_0 [14]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[14]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[15]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [15]),
-        .I2(\PC[15]_i_2_n_0 ),
-        .I3(Q[15]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [15]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[15]_i_2 
-       (.I0(\state_reg[0]_1 [13]),
-        .I1(\PC_reg[31]_0 [15]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[15]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[16]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [16]),
-        .I2(\PC[16]_i_2_n_0 ),
-        .I3(Q[16]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [16]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[16]_i_2 
-       (.I0(\state_reg[0]_1 [14]),
-        .I1(\PC_reg[31]_0 [16]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[16]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[17]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [17]),
-        .I2(\PC[17]_i_2_n_0 ),
-        .I3(Q[17]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [17]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[17]_i_2 
-       (.I0(\state_reg[0]_1 [15]),
-        .I1(\PC_reg[31]_0 [17]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[17]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[18]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [18]),
-        .I2(\PC[18]_i_2_n_0 ),
-        .I3(Q[18]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [18]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[18]_i_2 
-       (.I0(\state_reg[0]_1 [16]),
-        .I1(\PC_reg[31]_0 [18]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[18]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[19]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [19]),
-        .I2(\PC[19]_i_2_n_0 ),
-        .I3(Q[19]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [19]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[19]_i_2 
-       (.I0(\state_reg[0]_1 [17]),
-        .I1(\PC_reg[31]_0 [19]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[19]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
-    \PC[1]_i_1 
-       (.I0(\PC[31]_i_7_n_0 ),
-        .I1(\PC_reg[31]_0 [1]),
-        .I2(\PC[31]_i_8_n_0 ),
-        .I3(Q[1]),
-        .I4(\PC[31]_i_9_n_0 ),
-        .I5(\state_reg[5]_2 [1]),
-        .O(\ALUOut_reg[31] [1]));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[20]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [20]),
-        .I2(\PC[20]_i_2_n_0 ),
-        .I3(Q[20]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [20]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[20]_i_2 
-       (.I0(\state_reg[0]_1 [18]),
-        .I1(\PC_reg[31]_0 [20]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[20]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[21]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [21]),
-        .I2(\PC[21]_i_2_n_0 ),
-        .I3(Q[21]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [21]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[21]_i_2 
-       (.I0(\state_reg[0]_1 [19]),
-        .I1(\PC_reg[31]_0 [21]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[21]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[22]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [22]),
-        .I2(\PC[22]_i_2_n_0 ),
-        .I3(Q[22]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [22]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[22]_i_2 
-       (.I0(\state_reg[0]_1 [20]),
-        .I1(\PC_reg[31]_0 [22]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[22]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[23]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [23]),
-        .I2(\PC[23]_i_2_n_0 ),
-        .I3(Q[23]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [23]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[23]_i_2 
-       (.I0(\state_reg[0]_1 [21]),
-        .I1(\PC_reg[31]_0 [23]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[23]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[24]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [24]),
-        .I2(\PC[24]_i_2_n_0 ),
-        .I3(Q[24]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [24]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[24]_i_2 
-       (.I0(\state_reg[0]_1 [22]),
-        .I1(\PC_reg[31]_0 [24]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[24]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[25]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [25]),
-        .I2(\PC[25]_i_2_n_0 ),
-        .I3(Q[25]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [25]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[25]_i_2 
-       (.I0(\state_reg[0]_1 [23]),
-        .I1(\PC_reg[31]_0 [25]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[25]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[26]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [26]),
-        .I2(\PC[26]_i_2_n_0 ),
-        .I3(Q[26]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [26]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[26]_i_2 
-       (.I0(\state_reg[0]_1 [24]),
-        .I1(\PC_reg[31]_0 [26]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[26]_i_2_n_0 ));
-  LUT3 #(
-    .INIT(8'hF8)) 
-    \PC[27]_i_1 
-       (.I0(PCWriteCond),
-        .I1(is_true),
-        .I2(PCWrite),
-        .O(\state_reg[4]_0 [0]));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
-    \PC[27]_i_2 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [27]),
-        .I2(\PC[27]_i_3_n_0 ),
-        .I3(Q[27]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [27]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
-    \PC[27]_i_3 
-       (.I0(\state_reg[0]_1 [25]),
-        .I1(\PC_reg[31]_0 [27]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[27]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
-  LUT4 #(
-    .INIT(16'h4000)) 
-    \PC[27]_i_4 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(state),
-        .I2(\state_reg[5]_0 [2]),
-        .I3(\state_reg[5]_0 [1]),
-        .O(\PC[27]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
-  LUT4 #(
-    .INIT(16'h00FE)) 
-    \PC[27]_i_5 
-       (.I0(\state_reg[5]_0 [1]),
-        .I1(\state_reg[5]_0 [2]),
-        .I2(state),
+       (.I0(\state_reg[5]_3 [10]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[10]),
         .I3(\state_reg[5]_0 [4]),
-        .O(\PC[27]_i_5_n_0 ));
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [10]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[10]_i_2 
+       (.I0(\PC_reg[31]_0 [10]),
+        .I1(\PC_reg[31]_1 [10]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [8]),
+        .O(p_1_in__0[10]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[11]_i_1 
+       (.I0(\state_reg[5]_3 [11]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[11]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [11]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[11]_i_2 
+       (.I0(\PC_reg[31]_0 [11]),
+        .I1(\PC_reg[31]_1 [11]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [9]),
+        .O(p_1_in__0[11]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[12]_i_1 
+       (.I0(\state_reg[5]_3 [12]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[12]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [12]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[12]_i_2 
+       (.I0(\PC_reg[31]_0 [12]),
+        .I1(\PC_reg[31]_1 [12]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [10]),
+        .O(p_1_in__0[12]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[13]_i_1 
+       (.I0(\state_reg[5]_3 [13]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[13]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [13]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[13]_i_2 
+       (.I0(\PC_reg[31]_0 [13]),
+        .I1(\PC_reg[31]_1 [13]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [11]),
+        .O(p_1_in__0[13]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[14]_i_1 
+       (.I0(\state_reg[5]_3 [14]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[14]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [14]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[14]_i_2 
+       (.I0(\PC_reg[31]_0 [14]),
+        .I1(\PC_reg[31]_1 [14]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [12]),
+        .O(p_1_in__0[14]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[15]_i_1 
+       (.I0(\state_reg[5]_3 [15]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[15]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [15]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[15]_i_2 
+       (.I0(\PC_reg[31]_0 [15]),
+        .I1(\PC_reg[31]_1 [15]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [13]),
+        .O(p_1_in__0[15]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[16]_i_1 
+       (.I0(\state_reg[5]_3 [16]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[16]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [16]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[16]_i_2 
+       (.I0(\PC_reg[31]_0 [16]),
+        .I1(\PC_reg[31]_1 [16]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [14]),
+        .O(p_1_in__0[16]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[17]_i_1 
+       (.I0(\state_reg[5]_3 [17]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[17]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [17]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[17]_i_2 
+       (.I0(\PC_reg[31]_0 [17]),
+        .I1(\PC_reg[31]_1 [17]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [15]),
+        .O(p_1_in__0[17]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[18]_i_1 
+       (.I0(\state_reg[5]_3 [18]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[18]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [18]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[18]_i_2 
+       (.I0(\PC_reg[31]_0 [18]),
+        .I1(\PC_reg[31]_1 [18]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [16]),
+        .O(p_1_in__0[18]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[19]_i_1 
+       (.I0(\state_reg[5]_3 [19]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[19]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [19]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[19]_i_2 
+       (.I0(\PC_reg[31]_0 [19]),
+        .I1(\PC_reg[31]_1 [19]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [17]),
+        .O(p_1_in__0[19]));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'hC0E000E0C0200020)) 
+    \PC[1]_i_1 
+       (.I0(\state_reg[5]_3 [1]),
+        .I1(\PC[31]_i_9_n_0 ),
+        .I2(\PC[31]_i_10_n_0 ),
+        .I3(PCSource),
+        .I4(\PC_reg[31]_0 [1]),
+        .I5(\PC_reg[31]_1 [1]),
+        .O(\Rs_reg[31] [1]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[20]_i_1 
+       (.I0(\state_reg[5]_3 [20]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[20]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [20]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[20]_i_2 
+       (.I0(\PC_reg[31]_0 [20]),
+        .I1(\PC_reg[31]_1 [20]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [18]),
+        .O(p_1_in__0[20]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[21]_i_1 
+       (.I0(\state_reg[5]_3 [21]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[21]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [21]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[21]_i_2 
+       (.I0(\PC_reg[31]_0 [21]),
+        .I1(\PC_reg[31]_1 [21]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [19]),
+        .O(p_1_in__0[21]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[22]_i_1 
+       (.I0(\state_reg[5]_3 [22]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[22]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [22]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[22]_i_2 
+       (.I0(\PC_reg[31]_0 [22]),
+        .I1(\PC_reg[31]_1 [22]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [20]),
+        .O(p_1_in__0[22]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[23]_i_1 
+       (.I0(\state_reg[5]_3 [23]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[23]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [23]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[23]_i_2 
+       (.I0(\PC_reg[31]_0 [23]),
+        .I1(\PC_reg[31]_1 [23]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [21]),
+        .O(p_1_in__0[23]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[24]_i_1 
+       (.I0(\state_reg[5]_3 [24]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[24]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [24]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[24]_i_2 
+       (.I0(\PC_reg[31]_0 [24]),
+        .I1(\PC_reg[31]_1 [24]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [22]),
+        .O(p_1_in__0[24]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[25]_i_1 
+       (.I0(\state_reg[5]_3 [25]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[25]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [25]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[25]_i_2 
+       (.I0(\PC_reg[31]_0 [25]),
+        .I1(\PC_reg[31]_1 [25]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [23]),
+        .O(p_1_in__0[25]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[26]_i_1 
+       (.I0(\state_reg[5]_3 [26]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[26]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [26]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[26]_i_2 
+       (.I0(\PC_reg[31]_0 [26]),
+        .I1(\PC_reg[31]_1 [26]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [24]),
+        .O(p_1_in__0[26]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFE000F010)) 
+    \PC[27]_i_1 
+       (.I0(\state_reg[5]_0 [4]),
+        .I1(\state_reg[5]_0 [0]),
+        .I2(PCWriteCond),
+        .I3(\PC[31]_i_6_n_0 ),
+        .I4(PCWriteCondSrc),
+        .I5(PCWrite),
+        .O(\state_reg[5]_2 [0]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
+    \PC[27]_i_2 
+       (.I0(\state_reg[5]_3 [27]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[27]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [27]));
+  (* SOFT_HLUTNM = "soft_lutpair135" *) 
+  LUT3 #(
+    .INIT(8'h40)) 
+    \PC[27]_i_3 
+       (.I0(\state_reg[5]_0 [4]),
+        .I1(\state_reg[5]_0 [0]),
+        .I2(\state_reg[5]_0 [2]),
+        .O(PCWriteCondSrc));
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  LUT5 #(
+    .INIT(32'hC0C0C0C5)) 
+    \PC[27]_i_4 
+       (.I0(state),
+        .I1(\state_reg[5]_0 [3]),
+        .I2(\state_reg[5]_0 [4]),
+        .I3(\state_reg[5]_0 [1]),
+        .I4(\state_reg[5]_0 [2]),
+        .O(\PC[27]_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
+    \PC[27]_i_5 
+       (.I0(\PC_reg[31]_0 [27]),
+        .I1(\PC_reg[31]_1 [27]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [25]),
+        .O(p_1_in__0[27]));
+  LUT6 #(
+    .INIT(64'hC0E000E0C0200020)) 
     \PC[28]_i_1 
-       (.I0(\PC[31]_i_7_n_0 ),
-        .I1(\PC_reg[31]_0 [28]),
-        .I2(\PC[31]_i_8_n_0 ),
-        .I3(Q[28]),
-        .I4(\PC[31]_i_9_n_0 ),
-        .I5(\state_reg[5]_2 [28]),
-        .O(\ALUOut_reg[31] [28]));
+       (.I0(\state_reg[5]_3 [28]),
+        .I1(\PC[31]_i_9_n_0 ),
+        .I2(\PC[31]_i_10_n_0 ),
+        .I3(PCSource),
+        .I4(\PC_reg[31]_0 [28]),
+        .I5(\PC_reg[31]_1 [28]),
+        .O(\Rs_reg[31] [28]));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'hC0E000E0C0200020)) 
     \PC[29]_i_1 
-       (.I0(\PC[31]_i_7_n_0 ),
-        .I1(\PC_reg[31]_0 [29]),
-        .I2(\PC[31]_i_8_n_0 ),
-        .I3(Q[29]),
-        .I4(\PC[31]_i_9_n_0 ),
-        .I5(\state_reg[5]_2 [29]),
-        .O(\ALUOut_reg[31] [29]));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
+       (.I0(\state_reg[5]_3 [29]),
+        .I1(\PC[31]_i_9_n_0 ),
+        .I2(\PC[31]_i_10_n_0 ),
+        .I3(PCSource),
+        .I4(\PC_reg[31]_0 [29]),
+        .I5(\PC_reg[31]_1 [29]),
+        .O(\Rs_reg[31] [29]));
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
     \PC[2]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [2]),
-        .I2(\PC[2]_i_2_n_0 ),
-        .I3(Q[2]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [2]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
+       (.I0(\state_reg[5]_3 [2]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[2]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [2]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
     \PC[2]_i_2 
-       (.I0(\state_reg[0]_1 [0]),
-        .I1(\PC_reg[31]_0 [2]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[2]_i_2_n_0 ));
+       (.I0(\PC_reg[31]_0 [2]),
+        .I1(\PC_reg[31]_1 [2]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [0]),
+        .O(p_1_in__0[2]));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'hC0E000E0C0200020)) 
     \PC[30]_i_1 
-       (.I0(\PC[31]_i_7_n_0 ),
-        .I1(\PC_reg[31]_0 [30]),
-        .I2(\PC[31]_i_8_n_0 ),
-        .I3(Q[30]),
-        .I4(\PC[31]_i_9_n_0 ),
-        .I5(\state_reg[5]_2 [30]),
-        .O(\ALUOut_reg[31] [30]));
+       (.I0(\state_reg[5]_3 [30]),
+        .I1(\PC[31]_i_9_n_0 ),
+        .I2(\PC[31]_i_10_n_0 ),
+        .I3(PCSource),
+        .I4(\PC_reg[31]_0 [30]),
+        .I5(\PC_reg[31]_1 [30]),
+        .O(\Rs_reg[31] [30]));
   LUT6 #(
-    .INIT(64'h00EA0000EAEAEAEA)) 
+    .INIT(64'h00000000FBBBAAAA)) 
     \PC[31]_i_1 
        (.I0(PCWrite),
-        .I1(is_true),
-        .I2(PCWriteCond),
-        .I3(\state_reg[5]_0 [3]),
-        .I4(\state_reg[5]_0 [4]),
-        .I5(\PC[31]_i_6_n_0 ),
-        .O(\state_reg[4]_0 [1]));
-  LUT6 #(
-    .INIT(64'h4441444144411411)) 
+        .I1(\PC[31]_i_4_n_0 ),
+        .I2(\PC[31]_i_5_n_0 ),
+        .I3(\PC[31]_i_6_n_0 ),
+        .I4(PCWriteCond),
+        .I5(\PC[31]_i_8_n_0 ),
+        .O(\state_reg[5]_2 [1]));
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  LUT2 #(
+    .INIT(4'hB)) 
     \PC[31]_i_10 
-       (.I0(\PC[31]_i_15_n_0 ),
-        .I1(FlagInOverflow),
-        .I2(\ALUOut_reg[1]_0 ),
-        .I3(\ALUOut[31]_i_4_n_0 ),
-        .I4(\ALUOut_reg[1] ),
-        .I5(\ALUOut[31]_i_2_n_0 ),
+       (.I0(\state_reg[5]_0 [3]),
+        .I1(\state_reg[5]_0 [4]),
         .O(\PC[31]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000000000E2)) 
+  LUT3 #(
+    .INIT(8'h40)) 
     \PC[31]_i_11 
-       (.I0(\ALUOut[31]_i_4_n_0 ),
-        .I1(\ALUOut_reg[1]_0 ),
-        .I2(\PC[31]_i_17_n_0 ),
-        .I3(\state_reg[5]_2 [29]),
-        .I4(\PC[31]_i_18_n_0 ),
-        .I5(\state_reg[5]_2 [30]),
-        .O(FlagInZero));
-  (* SOFT_HLUTNM = "soft_lutpair161" *) 
+       (.I0(\state_reg[5]_0 [4]),
+        .I1(\state_reg[5]_0 [1]),
+        .I2(\state_reg[5]_0 [2]),
+        .O(PCSource));
+  (* SOFT_HLUTNM = "soft_lutpair131" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \PC[31]_i_12 
        (.I0(state),
         .I1(\state_reg[5]_0 [4]),
         .O(\PC[31]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair158" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFE2)) 
     \PC[31]_i_13 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(\state_reg[5]_0 [0]),
-        .I2(\state_reg[5]_0 [2]),
-        .O(PCWriteCondSrc[1]));
-  (* SOFT_HLUTNM = "soft_lutpair161" *) 
-  LUT2 #(
-    .INIT(4'h1)) 
+       (.I0(\PC[31]_i_15_n_0 ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\PC[31]_i_16_n_0 ),
+        .I3(\state_reg[5]_3 [27]),
+        .I4(\PC[31]_i_17_n_0 ),
+        .I5(\state_reg[5]_3 [28]),
+        .O(\PC[31]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hCFBBFFBBCF88CC88)) 
     \PC[31]_i_14 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(\state_reg[5]_0 [0]),
-        .O(PCWriteCondSrc[2]));
-  (* SOFT_HLUTNM = "soft_lutpair158" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
+       (.I0(\ALUOut[31]_i_2_n_0 ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\ALUOut[29]_i_3_n_0 ),
+        .I3(\ALUOut_reg[5]_1 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\PC_reg[31]_i_18_n_0 ),
+        .O(\PC[31]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'h8BB8BBBB8BB88888)) 
     \PC[31]_i_15 
-       (.I0(\state_reg[5]_0 [0]),
-        .I1(\state_reg[5]_0 [4]),
+       (.I0(\ALUOut[29]_i_3_n_0 ),
+        .I1(\ALUOut[31]_i_12_n_0 ),
+        .I2(\ALUOut[31]_i_21_n_0 ),
+        .I3(\PC[31]_i_19_n_0 ),
+        .I4(\ALUOut[31]_i_15_n_0 ),
+        .I5(\ALUOut[29]_i_14_n_0 ),
         .O(\PC[31]_i_15_n_0 ));
   LUT6 #(
-    .INIT(64'h1000000000000010)) 
+    .INIT(64'h5044000055555555)) 
     \PC[31]_i_16 
-       (.I0(\ALUOut_reg[1]_0 ),
-        .I1(\ALUOut_reg[5] ),
-        .I2(\ALUOut_reg[1] ),
-        .I3(\ALUOut[31]_i_13_n_0 ),
-        .I4(alu_A[31]),
-        .I5(\CPSR[1]_i_8_n_0 ),
-        .O(FlagInOverflow));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
-    \PC[31]_i_17 
-       (.I0(\ALUOut_reg[1] ),
-        .I1(\ALUOut[31]_i_2_n_0 ),
-        .O(\PC[31]_i_17_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \PC[31]_i_18 
-       (.I0(\state_reg[5]_2 [28]),
-        .I1(\state_reg[5]_2 [26]),
-        .I2(\PC[31]_i_19_n_0 ),
-        .I3(\state_reg[5]_2 [27]),
-        .O(\PC[31]_i_18_n_0 ));
+       (.I0(\ALUOut_reg[5]_1 ),
+        .I1(\ALUOut[29]_i_10_n_0 ),
+        .I2(\ALUOut[29]_i_9_n_0 ),
+        .I3(\ALUOut[29]_i_8_n_0 ),
+        .I4(\ALUOut[29]_i_7_n_0 ),
+        .I5(\PC[31]_i_20_n_0 ),
+        .O(\PC[31]_i_16_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    .INIT(64'hFFFFFFFFFFFFFFE2)) 
+    \PC[31]_i_17 
+       (.I0(\PC[31]_i_21_n_0 ),
+        .I1(\ALUOut_reg[5] ),
+        .I2(\PC[31]_i_22_n_0 ),
+        .I3(\state_reg[5]_3 [24]),
+        .I4(\PC[31]_i_23_n_0 ),
+        .I5(\state_reg[5]_3 [25]),
+        .O(\PC[31]_i_17_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT5 #(
+    .INIT(32'hD82727D8)) 
     \PC[31]_i_19 
-       (.I0(\state_reg[5]_2 [25]),
-        .I1(\state_reg[5]_2 [23]),
-        .I2(\state_reg[5]_2 [21]),
-        .I3(\PC[31]_i_20_n_0 ),
-        .I4(\state_reg[5]_2 [22]),
-        .I5(\state_reg[5]_2 [24]),
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[29]),
+        .I2(\PC_reg[31]_0 [29]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[31]_i_24_n_0 ),
         .O(\PC[31]_i_19_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+    .INIT(64'hC0E000E0C0200020)) 
     \PC[31]_i_2 
-       (.I0(\PC[31]_i_7_n_0 ),
-        .I1(\PC_reg[31]_0 [31]),
-        .I2(\PC[31]_i_8_n_0 ),
-        .I3(Q[31]),
-        .I4(\state_reg[5]_2 [31]),
-        .I5(\PC[31]_i_9_n_0 ),
-        .O(\ALUOut_reg[31] [31]));
+       (.I0(\state_reg[5]_3 [31]),
+        .I1(\PC[31]_i_9_n_0 ),
+        .I2(\PC[31]_i_10_n_0 ),
+        .I3(PCSource),
+        .I4(\PC_reg[31]_0 [31]),
+        .I5(\PC_reg[31]_1 [31]),
+        .O(\Rs_reg[31] [31]));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    .INIT(64'hEEFBFFFBAAFBBBFB)) 
     \PC[31]_i_20 
-       (.I0(\state_reg[5]_2 [20]),
-        .I1(\state_reg[5]_2 [18]),
-        .I2(\state_reg[5]_2 [16]),
-        .I3(\PC[31]_i_21_n_0 ),
-        .I4(\state_reg[5]_2 [17]),
-        .I5(\state_reg[5]_2 [19]),
+       (.I0(\ALUOut_reg[9] ),
+        .I1(\ALUOut[9]_i_7_n_0 ),
+        .I2(\PC[31]_i_25_n_0 ),
+        .I3(\ALUOut_reg[5]_0 ),
+        .I4(alu_A[31]),
+        .I5(\PC[31]_i_26_n_0 ),
         .O(\PC[31]_i_20_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    .INIT(64'h8BB8BBBB8BB88888)) 
     \PC[31]_i_21 
-       (.I0(\state_reg[5]_2 [15]),
-        .I1(\state_reg[5]_2 [13]),
-        .I2(\state_reg[5]_2 [11]),
-        .I3(\PC[31]_i_22_n_0 ),
-        .I4(\state_reg[5]_2 [12]),
-        .I5(\state_reg[5]_2 [14]),
+       (.I0(\ALUOut[29]_i_3_n_0 ),
+        .I1(\ALUOut[31]_i_12_n_0 ),
+        .I2(\ALUOut[28]_i_10_n_0 ),
+        .I3(\PC[31]_i_27_n_0 ),
+        .I4(\ALUOut[31]_i_15_n_0 ),
+        .I5(\ALUOut[26]_i_6_n_0 ),
         .O(\PC[31]_i_21_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    .INIT(64'h0000015105050151)) 
     \PC[31]_i_22 
-       (.I0(\state_reg[5]_2 [10]),
-        .I1(\state_reg[5]_2 [8]),
-        .I2(\state_reg[5]_2 [6]),
-        .I3(\PC[31]_i_23_n_0 ),
-        .I4(\state_reg[5]_2 [7]),
-        .I5(\state_reg[5]_2 [9]),
+       (.I0(\ALUOut_reg[5]_1 ),
+        .I1(\PC[31]_i_28_n_0 ),
+        .I2(\ALUOut_reg[5]_0 ),
+        .I3(\ALUOut[26]_i_8_n_0 ),
+        .I4(\ALUOut_reg[9] ),
+        .I5(\PC[31]_i_29_n_0 ),
         .O(\PC[31]_i_22_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFBFFFFFFFF)) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
     \PC[31]_i_23 
-       (.I0(\state_reg[5]_2 [5]),
-        .I1(\ALUOut[3]_i_2_n_0 ),
-        .I2(\state_reg[5]_2 [1]),
-        .I3(\state_reg[5]_2 [0]),
-        .I4(\state_reg[5]_2 [2]),
-        .I5(\ALUOut[4]_i_2_n_0 ),
+       (.I0(\state_reg[5]_3 [23]),
+        .I1(\state_reg[5]_3 [21]),
+        .I2(\PC[31]_i_30_n_0 ),
+        .I3(\state_reg[5]_3 [22]),
         .O(\PC[31]_i_23_n_0 ));
+  LUT6 #(
+    .INIT(64'hEEE8E88811171777)) 
+    \PC[31]_i_24 
+       (.I0(\PC[31]_i_31_n_0 ),
+        .I1(alu_A[30]),
+        .I2(\PC[31]_i_32_n_0 ),
+        .I3(alu_A[29]),
+        .I4(\ALUOut[31]_i_21_n_0 ),
+        .I5(\ALUOut[31]_i_14_n_0 ),
+        .O(\PC[31]_i_24_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFCFAAAAAAAA)) 
+    \PC[31]_i_25 
+       (.I0(\ALUOut[29]_i_18_n_0 ),
+        .I1(\ALUOut[2]_i_13_n_0 ),
+        .I2(\ALUOut[30]_i_14_n_0 ),
+        .I3(\ALUOut[31]_i_20_n_0 ),
+        .I4(\ALUOut[29]_i_12_n_0 ),
+        .I5(\ALUOut[29]_i_8_n_0 ),
+        .O(\PC[31]_i_25_n_0 ));
+  LUT6 #(
+    .INIT(64'h0707070744770707)) 
+    \PC[31]_i_26 
+       (.I0(\ALUOut[29]_i_17_n_0 ),
+        .I1(\ALUOut[29]_i_8_n_0 ),
+        .I2(alu_A[31]),
+        .I3(alu_A[29]),
+        .I4(\ALUOut[14]_i_12_n_0 ),
+        .I5(\ALUOut[29]_i_12_n_0 ),
+        .O(\PC[31]_i_26_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT5 #(
+    .INIT(32'hD82727D8)) 
+    \PC[31]_i_27 
+       (.I0(\ALUOut[15]_i_8_n_0 ),
+        .I1(Q[26]),
+        .I2(\PC_reg[31]_0 [26]),
+        .I3(\ALUOut[31]_i_23_n_0 ),
+        .I4(\ALUOut[28]_i_12_n_0 ),
+        .O(\PC[31]_i_27_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  LUT4 #(
+    .INIT(16'h8DFF)) 
+    \PC[31]_i_28 
+       (.I0(\ALUOut[29]_i_8_n_0 ),
+        .I1(\ALUOut[26]_i_9_n_0 ),
+        .I2(\ALUOut[26]_i_10_n_0 ),
+        .I3(\ALUOut[9]_i_7_n_0 ),
+        .O(\PC[31]_i_28_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  LUT4 #(
+    .INIT(16'h57F7)) 
+    \PC[31]_i_29 
+       (.I0(\ALUOut[9]_i_7_n_0 ),
+        .I1(\ALUOut[27]_i_11_n_0 ),
+        .I2(\ALUOut[29]_i_8_n_0 ),
+        .I3(\ALUOut[26]_i_11_n_0 ),
+        .O(\PC[31]_i_29_n_0 ));
   LUT6 #(
     .INIT(64'h4400440000000003)) 
     \PC[31]_i_3 
@@ -15213,235 +14941,260 @@ module design_1_Motherboard_0_0_ControlUnit
         .I5(\state_reg[5]_0 [3]),
         .O(PCWrite));
   LUT6 #(
-    .INIT(64'hAAAAFAAAFBBBAFFA)) 
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \PC[31]_i_30 
+       (.I0(\state_reg[5]_3 [20]),
+        .I1(\state_reg[5]_3 [18]),
+        .I2(\state_reg[5]_3 [16]),
+        .I3(\PC[31]_i_33_n_0 ),
+        .I4(\state_reg[5]_3 [17]),
+        .I5(\state_reg[5]_3 [19]),
+        .O(\PC[31]_i_30_n_0 ));
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
+    \PC[31]_i_31 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(\registers_reg[30][31] [30]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
+        .O(\PC[31]_i_31_n_0 ));
+  LUT6 #(
+    .INIT(64'hDDDD03CF2222FC30)) 
+    \PC[31]_i_32 
+       (.I0(extend16),
+        .I1(\ALUOut[29]_i_21_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(\registers_reg[30][31] [29]),
+        .I4(\ALUOut[29]_i_20_n_0 ),
+        .I5(\ALUOut[31]_i_23_n_0 ),
+        .O(\PC[31]_i_32_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \PC[31]_i_33 
+       (.I0(\state_reg[5]_3 [15]),
+        .I1(\state_reg[5]_3 [13]),
+        .I2(\state_reg[5]_3 [11]),
+        .I3(\PC[31]_i_34_n_0 ),
+        .I4(\state_reg[5]_3 [12]),
+        .I5(\state_reg[5]_3 [14]),
+        .O(\PC[31]_i_33_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \PC[31]_i_34 
+       (.I0(\state_reg[5]_3 [10]),
+        .I1(\state_reg[5]_3 [8]),
+        .I2(\state_reg[5]_3 [6]),
+        .I3(\PC[31]_i_35_n_0 ),
+        .I4(\state_reg[5]_3 [7]),
+        .I5(\state_reg[5]_3 [9]),
+        .O(\PC[31]_i_34_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFBFFFFFFFF)) 
+    \PC[31]_i_35 
+       (.I0(\state_reg[5]_3 [5]),
+        .I1(\ALUOut[3]_i_2_n_0 ),
+        .I2(\state_reg[5]_3 [1]),
+        .I3(\state_reg[5]_3 [0]),
+        .I4(\state_reg[5]_3 [2]),
+        .I5(\ALUOut[4]_i_2_n_0 ),
+        .O(\PC[31]_i_35_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair135" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
     \PC[31]_i_4 
-       (.I0(\PC[31]_i_10_n_0 ),
-        .I1(FlagInCarry),
-        .I2(FlagInZero),
-        .I3(\PC[31]_i_12_n_0 ),
-        .I4(PCWriteCondSrc[1]),
-        .I5(PCWriteCondSrc[2]),
-        .O(is_true));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+       (.I0(\state_reg[5]_0 [0]),
+        .I1(\state_reg[5]_0 [4]),
+        .O(\PC[31]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair131" *) 
+  LUT3 #(
+    .INIT(8'hFE)) 
+    \PC[31]_i_5 
+       (.I0(state),
+        .I1(\state_reg[5]_0 [4]),
+        .I2(\state_reg[5]_0 [0]),
+        .O(\PC[31]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h747474C774747474)) 
+    \PC[31]_i_6 
+       (.I0(FlagInCarry),
+        .I1(PCWriteCondSrc),
+        .I2(\PC[31]_i_12_n_0 ),
+        .I3(\state_reg[5]_3 [30]),
+        .I4(\PC[31]_i_13_n_0 ),
+        .I5(\PC[31]_i_14_n_0 ),
+        .O(\PC[31]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT5 #(
     .INIT(32'h04400040)) 
-    \PC[31]_i_5 
+    \PC[31]_i_7 
        (.I0(\state_reg[5]_0 [4]),
         .I1(\state_reg[5]_0 [3]),
         .I2(\state_reg[5]_0 [2]),
         .I3(\state_reg[5]_0 [1]),
         .I4(\state_reg[5]_0 [0]),
         .O(PCWriteCond));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT4 #(
-    .INIT(16'h1000)) 
-    \PC[31]_i_6 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(state),
-        .I2(\state_reg[5]_0 [2]),
-        .I3(\state_reg[5]_0 [1]),
-        .O(\PC[31]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
-  LUT4 #(
-    .INIT(16'h0554)) 
-    \PC[31]_i_7 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(state),
-        .I2(\state_reg[5]_0 [2]),
-        .I3(\state_reg[5]_0 [1]),
-        .O(\PC[31]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
-  LUT4 #(
-    .INIT(16'h4000)) 
+    .INIT(16'h0008)) 
     \PC[31]_i_8 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(state),
-        .I2(\state_reg[5]_0 [2]),
-        .I3(\state_reg[5]_0 [1]),
-        .O(\PC[31]_i_8_n_0 ));
-  LUT5 #(
-    .INIT(32'h8888888B)) 
-    \PC[31]_i_9 
-       (.I0(\state_reg[5]_0 [3]),
-        .I1(\state_reg[5]_0 [4]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .O(\PC[31]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hCCEE0000CC0F00FF)) 
-    \PC[3]_i_1 
-       (.I0(\PC_reg[31]_0 [3]),
-        .I1(\PC[3]_i_2_n_0 ),
-        .I2(\ALUOut[3]_i_2_n_0 ),
-        .I3(PCSource),
-        .I4(\PC[3]_i_4_n_0 ),
-        .I5(\PC[3]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [3]));
-  LUT6 #(
-    .INIT(64'h0A0C000000000000)) 
-    \PC[3]_i_2 
-       (.I0(Q[3]),
-        .I1(\state_reg[0]_1 [1]),
-        .I2(\state_reg[5]_0 [4]),
-        .I3(state),
-        .I4(\state_reg[5]_0 [2]),
-        .I5(\state_reg[5]_0 [1]),
-        .O(\PC[3]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair159" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \PC[3]_i_3 
-       (.I0(\state_reg[5]_0 [4]),
-        .I1(\state_reg[5]_0 [1]),
-        .I2(\state_reg[5]_0 [2]),
-        .O(PCSource));
-  (* SOFT_HLUTNM = "soft_lutpair159" *) 
-  LUT2 #(
-    .INIT(4'hB)) 
-    \PC[3]_i_4 
-       (.I0(\state_reg[5]_0 [3]),
-        .I1(\state_reg[5]_0 [4]),
-        .O(\PC[3]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
-  LUT4 #(
-    .INIT(16'h00F6)) 
-    \PC[3]_i_5 
        (.I0(\state_reg[5]_0 [1]),
         .I1(\state_reg[5]_0 [2]),
         .I2(state),
         .I3(\state_reg[5]_0 [4]),
-        .O(\PC[3]_i_5_n_0 ));
+        .O(\PC[31]_i_8_n_0 ));
+  LUT4 #(
+    .INIT(16'h00F6)) 
+    \PC[31]_i_9 
+       (.I0(\state_reg[5]_0 [1]),
+        .I1(\state_reg[5]_0 [2]),
+        .I2(state),
+        .I3(\state_reg[5]_0 [4]),
+        .O(\PC[31]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'hFFF4F4F444444444)) 
+    .INIT(64'hF0D33013C0D30013)) 
+    \PC[3]_i_1 
+       (.I0(\ALUOut[3]_i_2_n_0 ),
+        .I1(\PC[31]_i_9_n_0 ),
+        .I2(\PC[31]_i_10_n_0 ),
+        .I3(PCSource),
+        .I4(\PC[3]_i_2_n_0 ),
+        .I5(\state_reg[0]_1 [1]),
+        .O(\Rs_reg[31] [3]));
+  LUT5 #(
+    .INIT(32'hEFFF2000)) 
+    \PC[3]_i_2 
+       (.I0(\PC_reg[31]_0 [3]),
+        .I1(\state_reg[5]_0 [4]),
+        .I2(\state_reg[5]_0 [1]),
+        .I3(\state_reg[5]_0 [2]),
+        .I4(\PC_reg[31]_1 [3]),
+        .O(\PC[3]_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  LUT5 #(
+    .INIT(32'h74744474)) 
     \PC[4]_i_1 
        (.I0(\ALUOut[4]_i_2_n_0 ),
-        .I1(\PC[31]_i_9_n_0 ),
-        .I2(\PC[4]_i_2_n_0 ),
-        .I3(Q[4]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [4]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[4]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [4]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
     \PC[4]_i_2 
-       (.I0(\state_reg[0]_1 [2]),
-        .I1(\PC_reg[31]_0 [4]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[4]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
+       (.I0(\PC_reg[31]_0 [4]),
+        .I1(\PC_reg[31]_1 [4]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [2]),
+        .O(p_1_in__0[4]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
     \PC[5]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [5]),
-        .I2(\PC[5]_i_2_n_0 ),
-        .I3(Q[5]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [5]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
+       (.I0(\state_reg[5]_3 [5]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[5]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [5]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
     \PC[5]_i_2 
-       (.I0(\state_reg[0]_1 [3]),
-        .I1(\PC_reg[31]_0 [5]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[5]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
+       (.I0(\PC_reg[31]_0 [5]),
+        .I1(\PC_reg[31]_1 [5]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [3]),
+        .O(p_1_in__0[5]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
     \PC[6]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [6]),
-        .I2(\PC[6]_i_2_n_0 ),
-        .I3(Q[6]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [6]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
+       (.I0(\state_reg[5]_3 [6]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[6]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [6]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
     \PC[6]_i_2 
-       (.I0(\state_reg[0]_1 [4]),
-        .I1(\PC_reg[31]_0 [6]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[6]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
+       (.I0(\PC_reg[31]_0 [6]),
+        .I1(\PC_reg[31]_1 [6]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [4]),
+        .O(p_1_in__0[6]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
     \PC[7]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [7]),
-        .I2(\PC[7]_i_2_n_0 ),
-        .I3(Q[7]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [7]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
+       (.I0(\state_reg[5]_3 [7]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[7]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [7]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
     \PC[7]_i_2 
-       (.I0(\state_reg[0]_1 [5]),
-        .I1(\PC_reg[31]_0 [7]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[7]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
+       (.I0(\PC_reg[31]_0 [7]),
+        .I1(\PC_reg[31]_1 [7]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [5]),
+        .O(p_1_in__0[7]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
     \PC[8]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [8]),
-        .I2(\PC[8]_i_2_n_0 ),
-        .I3(Q[8]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [8]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
+       (.I0(\state_reg[5]_3 [8]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[8]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [8]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
     \PC[8]_i_2 
-       (.I0(\state_reg[0]_1 [6]),
-        .I1(\PC_reg[31]_0 [8]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[8]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFF8F8F888888888)) 
+       (.I0(\PC_reg[31]_0 [8]),
+        .I1(\PC_reg[31]_1 [8]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [6]),
+        .O(p_1_in__0[8]));
+  LUT5 #(
+    .INIT(32'hB8B888B8)) 
     \PC[9]_i_1 
-       (.I0(\PC[31]_i_9_n_0 ),
-        .I1(\state_reg[5]_2 [9]),
-        .I2(\PC[9]_i_2_n_0 ),
-        .I3(Q[9]),
-        .I4(\PC[27]_i_4_n_0 ),
-        .I5(\PC[27]_i_5_n_0 ),
-        .O(\ALUOut_reg[31] [9]));
-  LUT6 #(
-    .INIT(64'h000000000ACCCCC0)) 
+       (.I0(\state_reg[5]_3 [9]),
+        .I1(\PC[27]_i_4_n_0 ),
+        .I2(p_1_in__0[9]),
+        .I3(\state_reg[5]_0 [4]),
+        .I4(\state_reg[5]_0 [3]),
+        .O(\Rs_reg[31] [9]));
+  LUT5 #(
+    .INIT(32'hAFC0A0C0)) 
     \PC[9]_i_2 
-       (.I0(\state_reg[0]_1 [7]),
-        .I1(\PC_reg[31]_0 [9]),
-        .I2(state),
-        .I3(\state_reg[5]_0 [2]),
-        .I4(\state_reg[5]_0 [1]),
-        .I5(\state_reg[5]_0 [4]),
-        .O(\PC[9]_i_2_n_0 ));
+       (.I0(\PC_reg[31]_0 [9]),
+        .I1(\PC_reg[31]_1 [9]),
+        .I2(\PC[31]_i_9_n_0 ),
+        .I3(PCSource),
+        .I4(\state_reg[0]_1 [7]),
+        .O(p_1_in__0[9]));
+  MUXF7 \PC_reg[31]_i_18 
+       (.I0(\ALUOut[31]_i_16_n_0 ),
+        .I1(\PC[31]_i_24_n_0 ),
+        .O(\PC_reg[31]_i_18_n_0 ),
+        .S(\ALUOut[31]_i_15_n_0 ));
   LUT6 #(
     .INIT(64'h002F001500440000)) 
     \WR_OUT_reg[0]_i_1 
        (.I0(\state[5]_i_6_n_0 ),
-        .I1(\state[5]_i_3_n_0 ),
+        .I1(\state[5]_i_4_n_0 ),
         .I2(MemAccessClock),
         .I3(\Din_OUT_reg[31]_i_5_n_0 ),
-        .I4(\state[5]_i_4_n_0 ),
+        .I4(\state[5]_i_3_n_0 ),
         .I5(MemAccess),
-        .O(MemAccessClock_reg_1[0]));
+        .O(MemAccessClock_reg_0[0]));
   LUT5 #(
     .INIT(32'h00FF00FE)) 
     \WR_OUT_reg[1]_i_1 
@@ -15450,35 +15203,35 @@ module design_1_Motherboard_0_0_ControlUnit
         .I2(\WR_OUT_reg[1]_i_3_n_0 ),
         .I3(\Din_OUT_reg[31]_i_5_n_0 ),
         .I4(\WR_OUT_reg[1]_i_4_n_0 ),
-        .O(MemAccessClock_reg_1[1]));
+        .O(MemAccessClock_reg_0[1]));
   LUT6 #(
-    .INIT(64'h000000220A0A0022)) 
+    .INIT(64'h00002200000A220A)) 
     \WR_OUT_reg[1]_i_2 
        (.I0(\WR_OUT_reg[1]_i_5_n_0 ),
-        .I1(\registers_reg[30][31] [0]),
-        .I2(\PC_reg[31]_0 [0]),
-        .I3(\registers_reg[30][31] [1]),
-        .I4(MemAddrSrc),
-        .I5(\PC_reg[31]_0 [1]),
+        .I1(\PC_reg[31]_1 [1]),
+        .I2(Q[1]),
+        .I3(MemAddrSrc),
+        .I4(\PC_reg[31]_1 [0]),
+        .I5(Q[0]),
         .O(\WR_OUT_reg[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT5 #(
     .INIT(32'h40044404)) 
     \WR_OUT_reg[1]_i_3 
-       (.I0(\state[5]_i_3_n_0 ),
-        .I1(\state[5]_i_4_n_0 ),
+       (.I0(\state[5]_i_4_n_0 ),
+        .I1(\state[5]_i_3_n_0 ),
         .I2(\state[5]_i_6_n_0 ),
         .I3(MemAccess),
         .I4(MemAccessClock),
         .O(\WR_OUT_reg[1]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h0000A80800000000)) 
+    .INIT(64'h0000A82000000000)) 
     \WR_OUT_reg[1]_i_4 
        (.I0(MemAccess),
-        .I1(\registers_reg[30][31] [0]),
-        .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [0]),
-        .I4(\state[5]_i_4_n_0 ),
+        .I1(MemAddrSrc),
+        .I2(Q[0]),
+        .I3(\PC_reg[31]_1 [0]),
+        .I4(\state[5]_i_3_n_0 ),
         .I5(\WR_OUT_reg[1]_i_6_n_0 ),
         .O(\WR_OUT_reg[1]_i_4_n_0 ));
   LUT6 #(
@@ -15491,7 +15244,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [1]),
         .I5(state),
         .O(\WR_OUT_reg[1]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \WR_OUT_reg[1]_i_6 
@@ -15499,7 +15252,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(MemAccessClock),
         .O(\WR_OUT_reg[1]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h02020D0F00000300)) 
+    .INIT(64'h020D020F00030000)) 
     \WR_OUT_reg[2]_i_1 
        (.I0(MemAccessClock),
         .I1(\state[5]_i_6_n_0 ),
@@ -15507,8 +15260,8 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state[5]_i_3_n_0 ),
         .I4(\state[5]_i_4_n_0 ),
         .I5(MemAccess),
-        .O(MemAccessClock_reg_1[2]));
-  (* SOFT_HLUTNM = "soft_lutpair56" *) 
+        .O(MemAccessClock_reg_0[2]));
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT4 #(
     .INIT(16'hFFFD)) 
     \WR_OUT_reg[2]_i_2 
@@ -15516,15 +15269,15 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(MemAccessClock),
         .I2(\Din_OUT_reg[31]_i_5_n_0 ),
         .I3(\Dout_OUT_reg[7]_i_2_n_0 ),
-        .O(MemAccessClock_reg_5[0]));
-  (* SOFT_HLUTNM = "soft_lutpair56" *) 
+        .O(MemAccessClock_reg_2[0]));
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT4 #(
-    .INIT(16'h0002)) 
+    .INIT(16'h0100)) 
     \WR_OUT_reg[2]_i_3 
-       (.I0(\state[5]_i_6_n_0 ),
-        .I1(MemAccessClock),
-        .I2(\Din_OUT_reg[31]_i_5_n_0 ),
-        .I3(\Dout_OUT_reg[7]_i_2_n_0 ),
+       (.I0(\Dout_OUT_reg[7]_i_2_n_0 ),
+        .I1(\Din_OUT_reg[31]_i_5_n_0 ),
+        .I2(MemAccessClock),
+        .I3(\state[5]_i_6_n_0 ),
         .O(AR[0]));
   LUT6 #(
     .INIT(64'h00000000FFFF22A2)) 
@@ -15535,7 +15288,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state[5]_i_6_n_0 ),
         .I4(\Dout_OUT_reg[31]_i_5_n_0 ),
         .I5(\Din_OUT_reg[31]_i_5_n_0 ),
-        .O(MemAccessClock_reg_1[3]));
+        .O(MemAccessClock_reg_0[3]));
   LUT6 #(
     .INIT(64'hEFFFFFFFFEEFFFFF)) 
     \WR_OUT_reg[3]_i_2 
@@ -15545,43 +15298,17 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state[5]_i_4_n_0 ),
         .I4(MemAccess),
         .I5(\state[5]_i_6_n_0 ),
-        .O(MemAccessClock_reg_5[1]));
+        .O(MemAccessClock_reg_2[1]));
   LUT6 #(
     .INIT(64'h1000000001100000)) 
     \WR_OUT_reg[3]_i_3 
        (.I0(MemAccessClock),
         .I1(\Din_OUT_reg[31]_i_5_n_0 ),
-        .I2(\state[5]_i_3_n_0 ),
-        .I3(\state[5]_i_4_n_0 ),
+        .I2(\state[5]_i_4_n_0 ),
+        .I3(\state[5]_i_3_n_0 ),
         .I4(MemAccess),
         .I5(\state[5]_i_6_n_0 ),
         .O(AR[1]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT1 #(
-    .INIT(2'h1)) 
-    \data[31]_i_1 
-       (.I0(\PC_reg[8] ),
-        .O(\data[31]_i_3_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFEFFFFFFFFFF)) 
-    \data[31]_i_3 
-       (.I0(\data[31]_i_4_n_0 ),
-        .I1(a[0]),
-        .I2(a[3]),
-        .I3(ram_0_i_25_n_0),
-        .I4(video_ram_i_30_n_0),
-        .I5(video_ram_i_28_n_0),
-        .O(\PC_reg[8] ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFE200E2)) 
-    \data[31]_i_4 
-       (.I0(\registers_reg[30][31] [8]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [8]),
-        .I3(MemAccessClock),
-        .I4(\memory_handler/Aout_OUT0 [6]),
-        .I5(ram_0_i_24_n_0),
-        .O(\data[31]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00003752A8AAAAAA)) 
     g0_b0
@@ -15642,381 +15369,359 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[0]_1 [30]),
         .I5(\state_reg[0]_1 [31]),
         .O(g0_b5_n_0));
-  LUT5 #(
-    .INIT(32'h00240000)) 
+  (* SOFT_HLUTNM = "soft_lutpair144" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     ram_0_i_1
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_0[3]),
-        .O(MemAccessClock_reg_2[3]));
-  LUT5 #(
-    .INIT(32'h00240000)) 
+       (.I0(Din3),
+        .I1(video_ram[3]),
+        .O(wea[3]));
+  (* SOFT_HLUTNM = "soft_lutpair139" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     ram_0_i_10
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[7]),
-        .O(MemAccessClock_reg_3[5]));
-  LUT5 #(
-    .INIT(32'h00240000)) 
+       (.I0(Din3),
+        .I1(ram_address0[7]),
+        .O(ram_0_i_17_0[5]));
+  (* SOFT_HLUTNM = "soft_lutpair139" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     ram_0_i_11
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[6]),
-        .O(MemAccessClock_reg_3[4]));
-  LUT5 #(
-    .INIT(32'h00240000)) 
+       (.I0(Din3),
+        .I1(ram_address0[6]),
+        .O(ram_0_i_17_0[4]));
+  (* SOFT_HLUTNM = "soft_lutpair138" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     ram_0_i_12
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[5]),
-        .O(MemAccessClock_reg_3[3]));
-  LUT5 #(
-    .INIT(32'h00240000)) 
+       (.I0(Din3),
+        .I1(ram_address0[5]),
+        .O(ram_0_i_17_0[3]));
+  (* SOFT_HLUTNM = "soft_lutpair138" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     ram_0_i_13
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[4]),
-        .O(MemAccessClock_reg_3[2]));
-  LUT5 #(
-    .INIT(32'h00240000)) 
+       (.I0(Din3),
+        .I1(ram_address0[4]),
+        .O(ram_0_i_17_0[2]));
+  (* SOFT_HLUTNM = "soft_lutpair137" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     ram_0_i_14
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[3]),
-        .O(MemAccessClock_reg_3[1]));
-  LUT5 #(
-    .INIT(32'h00240000)) 
+       (.I0(Din3),
+        .I1(ram_address0[3]),
+        .O(ram_0_i_17_0[1]));
+  (* SOFT_HLUTNM = "soft_lutpair137" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     ram_0_i_15
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[2]),
-        .O(MemAccessClock_reg_3[0]));
-  LUT6 #(
-    .INIT(64'hAAAAAAAAAAAABABB)) 
+       (.I0(Din3),
+        .I1(ram_address0[2]),
+        .O(ram_0_i_17_0[0]));
+  LUT4 #(
+    .INIT(16'h008C)) 
     ram_0_i_16
-       (.I0(ram_0_i_23_n_0),
-        .I1(ram_0_i_24_n_0),
-        .I2(ram_0_i_25_n_0),
-        .I3(a[3]),
-        .I4(a[4]),
-        .I5(a[5]),
-        .O(ram_0_i_16_n_0));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_17
-       (.I0(\memory_handler/Aout_OUT0 [11]),
-        .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [13]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [13]),
-        .O(ram_0_i_17_n_0));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_18
-       (.I0(\memory_handler/Aout_OUT0 [12]),
-        .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [14]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [14]),
-        .O(ram_0_i_18_n_0));
+       (.I0(ram_0_i_20_n_0),
+        .I1(Din43_in),
+        .I2(ram_0_i_22_n_0),
+        .I3(ram_0_i_23_n_0),
+        .O(Din3));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 ram_0_i_17
+       (.CI(ram_0_i_18_n_0),
+        .CO({NLW_ram_0_i_17_CO_UNCONNECTED[3:2],ram_0_i_17_n_2,ram_0_i_17_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,ram_0_i_24_n_0,ram_0_i_25_n_0}),
+        .O({NLW_ram_0_i_17_O_UNCONNECTED[3],ram_address0[12:10]}),
+        .S({1'b0,graphics_address0,ram_0_i_27_n_0,ram_0_i_28_n_0}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 ram_0_i_18
+       (.CI(ram_0_i_19_n_0),
+        .CO({ram_0_i_18_n_0,ram_0_i_18_n_1,ram_0_i_18_n_2,ram_0_i_18_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,ram_0_i_29_n_0,ram_0_i_30_n_0}),
+        .O(ram_address0[9:6]),
+        .S({ram_0_i_31_n_0,ram_0_i_32_n_0,ram_0_i_33_n_0,ram_0_i_34_n_0}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 ram_0_i_19
+       (.CI(1'b0),
+        .CO({ram_0_i_19_n_0,ram_0_i_19_n_1,ram_0_i_19_n_2,ram_0_i_19_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,ram_0_i_35_n_0,ram_0_i_36_n_0,1'b0}),
+        .O(ram_address0[5:2]),
+        .S({ram_0_i_37_n_0,ram_0_i_38_n_0,ram_0_i_39_n_0,ram_0_i_40_n_0}));
+  (* SOFT_HLUTNM = "soft_lutpair143" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    ram_0_i_2
+       (.I0(Din3),
+        .I1(video_ram[2]),
+        .O(wea[2]));
+  LUT6 #(
+    .INIT(64'h0001010101010101)) 
+    ram_0_i_20
+       (.I0(video_ram_i_33_n_0),
+        .I1(video_ram_i_31_n_0),
+        .I2(ram_0_i_41_n_0),
+        .I3(a[7]),
+        .I4(a[6]),
+        .I5(ram_0_i_42_n_0),
+        .O(ram_0_i_20_n_0));
+  LUT6 #(
+    .INIT(64'hFEEEEEEEEEEEEEEE)) 
+    ram_0_i_21
+       (.I0(video_ram_i_29_n_0),
+        .I1(ram_0_i_43_n_0),
+        .I2(ram_0_i_42_n_0),
+        .I3(video_ram_i_31_n_0),
+        .I4(a[6]),
+        .I5(a[7]),
+        .O(Din43_in));
+  LUT6 #(
+    .INIT(64'hFFFFFEBAAAAAFEBA)) 
+    ram_0_i_22
+       (.I0(ram_0_i_41_n_0),
+        .I1(MemAddrSrc),
+        .I2(Q[14]),
+        .I3(\PC_reg[31]_1 [14]),
+        .I4(MemAccessClock),
+        .I5(\memory_handler/Aout_OUT0 [12]),
+        .O(ram_0_i_22_n_0));
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
-    ram_0_i_19
-       (.I0(ram_0_i_26_n_0),
-        .I1(ram_0_i_27_n_0),
-        .I2(ram_0_i_28_n_0),
-        .I3(ram_0_i_29_n_0),
-        .I4(ram_0_i_30_n_0),
-        .O(ram_0_i_19_n_0));
-  LUT5 #(
-    .INIT(32'h00240000)) 
-    ram_0_i_2
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_0[2]),
-        .O(MemAccessClock_reg_2[2]));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 ram_0_i_20
-       (.CI(ram_0_i_21_n_0),
-        .CO({NLW_ram_0_i_20_CO_UNCONNECTED[3:2],ram_0_i_20_n_2,ram_0_i_20_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,ram_0_i_31_n_0,ram_0_i_32_n_0}),
-        .O({NLW_ram_0_i_20_O_UNCONNECTED[3],ram_address0[12:10]}),
-        .S({1'b0,graphics_address0,ram_0_i_34_n_0,ram_0_i_35_n_0}));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 ram_0_i_21
-       (.CI(ram_0_i_22_n_0),
-        .CO({ram_0_i_21_n_0,ram_0_i_21_n_1,ram_0_i_21_n_2,ram_0_i_21_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,ram_0_i_36_n_0,ram_0_i_37_n_0}),
-        .O(ram_address0[9:6]),
-        .S({ram_0_i_38_n_0,ram_0_i_39_n_0,ram_0_i_40_n_0,ram_0_i_41_n_0}));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 ram_0_i_22
-       (.CI(1'b0),
-        .CO({ram_0_i_22_n_0,ram_0_i_22_n_1,ram_0_i_22_n_2,ram_0_i_22_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,ram_0_i_42_n_0,ram_0_i_43_n_0,1'b0}),
-        .O(ram_address0[5:2]),
-        .S({ram_0_i_44_n_0,ram_0_i_45_n_0,ram_0_i_46_n_0,ram_0_i_47_n_0}));
-  LUT3 #(
-    .INIT(8'h13)) 
     ram_0_i_23
-       (.I0(a[7]),
-        .I1(ram_0_i_24_n_0),
-        .I2(a[6]),
-        .O(ram_0_i_23_n_0));
-  LUT3 #(
-    .INIT(8'hFE)) 
-    ram_0_i_24
-       (.I0(a[8]),
-        .I1(a[9]),
+       (.I0(ram_0_i_44_n_0),
+        .I1(ram_0_i_45_n_0),
         .I2(video_ram_i_29_n_0),
-        .O(ram_0_i_24_n_0));
-  LUT6 #(
-    .INIT(64'h00000000001DFF1D)) 
-    ram_0_i_25
-       (.I0(\registers_reg[30][31] [4]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [4]),
-        .I3(MemAccessClock),
-        .I4(\memory_handler/Aout_OUT0 [2]),
-        .I5(a[1]),
-        .O(ram_0_i_25_n_0));
+        .I3(ram_0_i_46_n_0),
+        .I4(ram_0_i_47_n_0),
+        .O(ram_0_i_23_n_0));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_26
-       (.I0(\memory_handler/Aout_OUT0 [13]),
-        .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [15]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [15]),
-        .O(ram_0_i_26_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFBBFCB8)) 
-    ram_0_i_27
-       (.I0(\memory_handler/Aout_OUT0 [20]),
-        .I1(MemAccessClock),
-        .I2(ram_0_i_50_n_0),
-        .I3(\memory_handler/Aout_OUT0 [21]),
-        .I4(ram_0_i_52_n_0),
-        .I5(ram_0_i_53_n_0),
-        .O(ram_0_i_27_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFBBFCB8)) 
-    ram_0_i_28
-       (.I0(\memory_handler/Aout_OUT0 [16]),
-        .I1(MemAccessClock),
-        .I2(ram_0_i_54_n_0),
-        .I3(\memory_handler/Aout_OUT0 [17]),
-        .I4(ram_0_i_55_n_0),
-        .I5(ram_0_i_56_n_0),
-        .O(ram_0_i_28_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFBBFCB8)) 
-    ram_0_i_29
-       (.I0(\memory_handler/Aout_OUT0 [28]),
-        .I1(MemAccessClock),
-        .I2(ram_0_i_58_n_0),
-        .I3(\memory_handler/Aout_OUT0 [29]),
-        .I4(ram_0_i_60_n_0),
-        .I5(ram_0_i_61_n_0),
-        .O(ram_0_i_29_n_0));
-  LUT5 #(
-    .INIT(32'h00240000)) 
-    ram_0_i_3
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_0[1]),
-        .O(MemAccessClock_reg_2[1]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFBBFCB8)) 
-    ram_0_i_30
-       (.I0(\memory_handler/Aout_OUT0 [24]),
-        .I1(MemAccessClock),
-        .I2(ram_0_i_62_n_0),
-        .I3(\memory_handler/Aout_OUT0 [25]),
-        .I4(ram_0_i_63_n_0),
-        .I5(ram_0_i_64_n_0),
-        .O(ram_0_i_30_n_0));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_31
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_24
        (.I0(\memory_handler/Aout_OUT0 [9]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [11]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [11]),
-        .O(ram_0_i_31_n_0));
+        .I2(\PC_reg[31]_1 [11]),
+        .I3(Q[11]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_24_n_0));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_32
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_25
        (.I0(\memory_handler/Aout_OUT0 [8]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [10]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [10]),
-        .O(ram_0_i_32_n_0));
+        .I2(\PC_reg[31]_1 [10]),
+        .I3(Q[10]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_25_n_0));
   LUT5 #(
-    .INIT(32'h001DFF1D)) 
-    ram_0_i_33
-       (.I0(\registers_reg[30][31] [12]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [12]),
+    .INIT(32'h001BFF1B)) 
+    ram_0_i_26
+       (.I0(MemAddrSrc),
+        .I1(Q[12]),
+        .I2(\PC_reg[31]_1 [12]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [10]),
         .O(graphics_address0));
   LUT5 #(
-    .INIT(32'h001DFF1D)) 
-    ram_0_i_34
-       (.I0(\registers_reg[30][31] [11]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [11]),
+    .INIT(32'h001BFF1B)) 
+    ram_0_i_27
+       (.I0(MemAddrSrc),
+        .I1(Q[11]),
+        .I2(\PC_reg[31]_1 [11]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [9]),
-        .O(ram_0_i_34_n_0));
+        .O(ram_0_i_27_n_0));
   LUT5 #(
-    .INIT(32'h001DFF1D)) 
-    ram_0_i_35
-       (.I0(\registers_reg[30][31] [10]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [10]),
+    .INIT(32'h001BFF1B)) 
+    ram_0_i_28
+       (.I0(MemAddrSrc),
+        .I1(Q[10]),
+        .I2(\PC_reg[31]_1 [10]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [8]),
-        .O(ram_0_i_35_n_0));
+        .O(ram_0_i_28_n_0));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_36
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_29
        (.I0(\memory_handler/Aout_OUT0 [5]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [7]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [7]),
-        .O(ram_0_i_36_n_0));
+        .I2(\PC_reg[31]_1 [7]),
+        .I3(Q[7]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_29_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair143" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    ram_0_i_3
+       (.I0(Din3),
+        .I1(video_ram[1]),
+        .O(wea[1]));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_37
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_30
        (.I0(\memory_handler/Aout_OUT0 [4]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [6]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [6]),
-        .O(ram_0_i_37_n_0));
+        .I2(\PC_reg[31]_1 [6]),
+        .I3(Q[6]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_30_n_0));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_38
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_31
        (.I0(\memory_handler/Aout_OUT0 [7]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [9]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [9]),
-        .O(ram_0_i_38_n_0));
+        .I2(\PC_reg[31]_1 [9]),
+        .I3(Q[9]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_31_n_0));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_39
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_32
        (.I0(\memory_handler/Aout_OUT0 [6]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [8]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [8]),
-        .O(ram_0_i_39_n_0));
+        .I2(\PC_reg[31]_1 [8]),
+        .I3(Q[8]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_32_n_0));
   LUT5 #(
-    .INIT(32'h00240000)) 
-    ram_0_i_4
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_0[0]),
-        .O(MemAccessClock_reg_2[0]));
-  LUT5 #(
-    .INIT(32'h001DFF1D)) 
-    ram_0_i_40
-       (.I0(\registers_reg[30][31] [7]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [7]),
+    .INIT(32'h001BFF1B)) 
+    ram_0_i_33
+       (.I0(MemAddrSrc),
+        .I1(Q[7]),
+        .I2(\PC_reg[31]_1 [7]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [5]),
-        .O(ram_0_i_40_n_0));
+        .O(ram_0_i_33_n_0));
   LUT5 #(
-    .INIT(32'h001DFF1D)) 
-    ram_0_i_41
-       (.I0(\registers_reg[30][31] [6]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [6]),
+    .INIT(32'h001BFF1B)) 
+    ram_0_i_34
+       (.I0(MemAddrSrc),
+        .I1(Q[6]),
+        .I2(\PC_reg[31]_1 [6]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [4]),
-        .O(ram_0_i_41_n_0));
+        .O(ram_0_i_34_n_0));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_42
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_35
        (.I0(\memory_handler/Aout_OUT0 [2]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [4]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [4]),
-        .O(ram_0_i_42_n_0));
+        .I2(\PC_reg[31]_1 [4]),
+        .I3(Q[4]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_35_n_0));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_43
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_36
        (.I0(\memory_handler/Aout_OUT0 [1]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [3]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [3]),
-        .O(ram_0_i_43_n_0));
+        .I2(\PC_reg[31]_1 [3]),
+        .I3(Q[3]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_36_n_0));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    ram_0_i_44
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_37
        (.I0(\memory_handler/Aout_OUT0 [3]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [5]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [5]),
-        .O(ram_0_i_44_n_0));
+        .I2(\PC_reg[31]_1 [5]),
+        .I3(Q[5]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_37_n_0));
   LUT5 #(
-    .INIT(32'h001DFF1D)) 
-    ram_0_i_45
-       (.I0(\registers_reg[30][31] [4]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [4]),
+    .INIT(32'h001BFF1B)) 
+    ram_0_i_38
+       (.I0(MemAddrSrc),
+        .I1(Q[4]),
+        .I2(\PC_reg[31]_1 [4]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [2]),
-        .O(ram_0_i_45_n_0));
+        .O(ram_0_i_38_n_0));
   LUT5 #(
-    .INIT(32'h001DFF1D)) 
-    ram_0_i_46
-       (.I0(\registers_reg[30][31] [3]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [3]),
+    .INIT(32'h001BFF1B)) 
+    ram_0_i_39
+       (.I0(MemAddrSrc),
+        .I1(Q[3]),
+        .I2(\PC_reg[31]_1 [3]),
         .I3(MemAccessClock),
         .I4(\memory_handler/Aout_OUT0 [1]),
-        .O(ram_0_i_46_n_0));
+        .O(ram_0_i_39_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair142" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    ram_0_i_4
+       (.I0(Din3),
+        .I1(video_ram[0]),
+        .O(wea[0]));
   LUT4 #(
-    .INIT(16'h56A6)) 
-    ram_0_i_47
+    .INIT(16'h569A)) 
+    ram_0_i_40
        (.I0(MemAccessClock),
-        .I1(\registers_reg[30][31] [2]),
-        .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [2]),
+        .I1(MemAddrSrc),
+        .I2(Q[2]),
+        .I3(\PC_reg[31]_1 [2]),
+        .O(ram_0_i_40_n_0));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_41
+       (.I0(\memory_handler/Aout_OUT0 [13]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [15]),
+        .I3(Q[15]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_41_n_0));
+  LUT5 #(
+    .INIT(32'hFEFEFEEE)) 
+    ram_0_i_42
+       (.I0(a[5]),
+        .I1(a[4]),
+        .I2(a[3]),
+        .I3(a[1]),
+        .I4(a[2]),
+        .O(ram_0_i_42_n_0));
+  LUT3 #(
+    .INIT(8'hF8)) 
+    ram_0_i_43
+       (.I0(video_ram_i_31_n_0),
+        .I1(video_ram_i_33_n_0),
+        .I2(video_ram_i_51_n_0),
+        .O(ram_0_i_43_n_0));
+  LUT5 #(
+    .INIT(32'hFFFFFFFE)) 
+    ram_0_i_44
+       (.I0(video_ram_i_59_n_0),
+        .I1(ram_0_i_49_n_0),
+        .I2(ram_0_i_50_n_0),
+        .I3(video_ram_i_60_n_0),
+        .I4(video_ram_i_61_n_0),
+        .O(ram_0_i_44_n_0));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_45
+       (.I0(\memory_handler/Aout_OUT0 [16]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [18]),
+        .I3(Q[18]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_45_n_0));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_46
+       (.I0(\memory_handler/Aout_OUT0 [18]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [20]),
+        .I3(Q[20]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_46_n_0));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_47
+       (.I0(\memory_handler/Aout_OUT0 [19]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [21]),
+        .I3(Q[21]),
+        .I4(MemAddrSrc),
         .O(ram_0_i_47_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 ram_0_i_48
@@ -16025,568 +15730,324 @@ module design_1_Motherboard_0_0_ControlUnit
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(\memory_handler/Aout_OUT0 [16:13]),
-        .S({ram_0_i_65_n_0,ram_0_i_66_n_0,ram_0_i_67_n_0,ram_0_i_68_n_0}));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 ram_0_i_49
-       (.CI(ram_0_i_48_n_0),
-        .CO({ram_0_i_49_n_0,ram_0_i_49_n_1,ram_0_i_49_n_2,ram_0_i_49_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(\memory_handler/Aout_OUT0 [20:17]),
-        .S({ram_0_i_69_n_0,ram_0_i_70_n_0,ram_0_i_71_n_0,ram_0_i_72_n_0}));
+        .S({ram_0_i_52_n_0,ram_0_i_53_n_0,ram_0_i_54_n_0,ram_0_i_55_n_0}));
   LUT5 #(
-    .INIT(32'h00240000)) 
-    ram_0_i_5
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[12]),
-        .O(MemAccessClock_reg_3[10]));
+    .INIT(32'hB8B8BB88)) 
+    ram_0_i_49
+       (.I0(\memory_handler/Aout_OUT0 [17]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [19]),
+        .I3(Q[19]),
+        .I4(MemAddrSrc),
+        .O(ram_0_i_49_n_0));
   (* SOFT_HLUTNM = "soft_lutpair142" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    ram_0_i_5
+       (.I0(Din3),
+        .I1(ram_address0[12]),
+        .O(ram_0_i_17_0[10]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
     ram_0_i_50
-       (.I0(\PC_reg[31]_0 [22]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [22]),
+       (.I0(\memory_handler/Aout_OUT0 [15]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [17]),
+        .I3(Q[17]),
+        .I4(MemAddrSrc),
         .O(ram_0_i_50_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 ram_0_i_51
-       (.CI(ram_0_i_49_n_0),
+       (.CI(ram_0_i_48_n_0),
         .CO({ram_0_i_51_n_0,ram_0_i_51_n_1,ram_0_i_51_n_2,ram_0_i_51_n_3}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(\memory_handler/Aout_OUT0 [24:21]),
-        .S({ram_0_i_73_n_0,ram_0_i_74_n_0,ram_0_i_75_n_0,ram_0_i_76_n_0}));
-  (* SOFT_HLUTNM = "soft_lutpair143" *) 
+        .O(\memory_handler/Aout_OUT0 [20:17]),
+        .S({ram_0_i_56_n_0,ram_0_i_57_n_0,ram_0_i_58_n_0,ram_0_i_59_n_0}));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     ram_0_i_52
-       (.I0(\PC_reg[31]_0 [23]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [23]),
+       (.I0(\PC_reg[31]_1 [18]),
+        .I1(Q[18]),
+        .I2(MemAddrSrc),
         .O(ram_0_i_52_n_0));
-  LUT5 #(
-    .INIT(32'hFFFACCFA)) 
+  LUT3 #(
+    .INIT(8'hAC)) 
     ram_0_i_53
-       (.I0(ram_0_i_77_n_0),
-        .I1(\memory_handler/Aout_OUT0 [19]),
-        .I2(ram_0_i_78_n_0),
-        .I3(MemAccessClock),
-        .I4(\memory_handler/Aout_OUT0 [18]),
+       (.I0(\PC_reg[31]_1 [17]),
+        .I1(Q[17]),
+        .I2(MemAddrSrc),
         .O(ram_0_i_53_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair154" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     ram_0_i_54
-       (.I0(\PC_reg[31]_0 [18]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [18]),
+       (.I0(\PC_reg[31]_1 [16]),
+        .I1(Q[16]),
+        .I2(MemAddrSrc),
         .O(ram_0_i_54_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair153" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     ram_0_i_55
-       (.I0(\PC_reg[31]_0 [19]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [19]),
+       (.I0(\PC_reg[31]_1 [15]),
+        .I1(Q[15]),
+        .I2(MemAddrSrc),
         .O(ram_0_i_55_n_0));
-  LUT5 #(
-    .INIT(32'hFFFACCFA)) 
+  LUT3 #(
+    .INIT(8'hAC)) 
     ram_0_i_56
-       (.I0(ram_0_i_79_n_0),
-        .I1(\memory_handler/Aout_OUT0 [15]),
-        .I2(ram_0_i_80_n_0),
-        .I3(MemAccessClock),
-        .I4(\memory_handler/Aout_OUT0 [14]),
+       (.I0(\PC_reg[31]_1 [22]),
+        .I1(Q[22]),
+        .I2(MemAddrSrc),
         .O(ram_0_i_56_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 ram_0_i_57
-       (.CI(ram_0_i_51_n_0),
-        .CO({ram_0_i_57_n_0,ram_0_i_57_n_1,ram_0_i_57_n_2,ram_0_i_57_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(\memory_handler/Aout_OUT0 [28:25]),
-        .S({ram_0_i_81_n_0,ram_0_i_82_n_0,ram_0_i_83_n_0,ram_0_i_84_n_0}));
-  (* SOFT_HLUTNM = "soft_lutpair152" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
+    ram_0_i_57
+       (.I0(\PC_reg[31]_1 [21]),
+        .I1(Q[21]),
+        .I2(MemAddrSrc),
+        .O(ram_0_i_57_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
     ram_0_i_58
-       (.I0(\PC_reg[31]_0 [30]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [30]),
+       (.I0(\PC_reg[31]_1 [20]),
+        .I1(Q[20]),
+        .I2(MemAddrSrc),
         .O(ram_0_i_58_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 ram_0_i_59
-       (.CI(ram_0_i_57_n_0),
-        .CO(NLW_ram_0_i_59_CO_UNCONNECTED[3:0]),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({NLW_ram_0_i_59_O_UNCONNECTED[3:1],\memory_handler/Aout_OUT0 [29]}),
-        .S({1'b0,1'b0,1'b0,ram_0_i_85_n_0}));
-  LUT5 #(
-    .INIT(32'h00240000)) 
-    ram_0_i_6
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[11]),
-        .O(MemAccessClock_reg_3[9]));
-  (* SOFT_HLUTNM = "soft_lutpair152" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_60
-       (.I0(\PC_reg[31]_0 [31]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [31]),
-        .O(ram_0_i_60_n_0));
-  LUT5 #(
-    .INIT(32'hFFFACCFA)) 
-    ram_0_i_61
-       (.I0(ram_0_i_86_n_0),
-        .I1(\memory_handler/Aout_OUT0 [27]),
-        .I2(ram_0_i_87_n_0),
-        .I3(MemAccessClock),
-        .I4(\memory_handler/Aout_OUT0 [26]),
-        .O(ram_0_i_61_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair146" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_62
-       (.I0(\PC_reg[31]_0 [26]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [26]),
-        .O(ram_0_i_62_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair147" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_63
-       (.I0(\PC_reg[31]_0 [27]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [27]),
-        .O(ram_0_i_63_n_0));
-  LUT5 #(
-    .INIT(32'hFFFACCFA)) 
-    ram_0_i_64
-       (.I0(ram_0_i_88_n_0),
-        .I1(\memory_handler/Aout_OUT0 [23]),
-        .I2(ram_0_i_89_n_0),
-        .I3(MemAccessClock),
-        .I4(\memory_handler/Aout_OUT0 [22]),
-        .O(ram_0_i_64_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_65
-       (.I0(\PC_reg[31]_0 [18]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [18]),
-        .O(ram_0_i_65_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_66
-       (.I0(\PC_reg[31]_0 [17]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [17]),
-        .O(ram_0_i_66_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_67
-       (.I0(\PC_reg[31]_0 [16]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [16]),
-        .O(ram_0_i_67_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_68
-       (.I0(\PC_reg[31]_0 [15]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [15]),
-        .O(ram_0_i_68_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_69
-       (.I0(\PC_reg[31]_0 [22]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [22]),
-        .O(ram_0_i_69_n_0));
-  LUT5 #(
-    .INIT(32'h00240000)) 
-    ram_0_i_7
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[10]),
-        .O(MemAccessClock_reg_3[8]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_70
-       (.I0(\PC_reg[31]_0 [21]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [21]),
-        .O(ram_0_i_70_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_71
-       (.I0(\PC_reg[31]_0 [20]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [20]),
-        .O(ram_0_i_71_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_72
-       (.I0(\PC_reg[31]_0 [19]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [19]),
-        .O(ram_0_i_72_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_73
-       (.I0(\PC_reg[31]_0 [26]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [26]),
-        .O(ram_0_i_73_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_74
-       (.I0(\PC_reg[31]_0 [25]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [25]),
-        .O(ram_0_i_74_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_75
-       (.I0(\PC_reg[31]_0 [24]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [24]),
-        .O(ram_0_i_75_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_76
-       (.I0(\PC_reg[31]_0 [23]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [23]),
-        .O(ram_0_i_76_n_0));
+    .INIT(8'hAC)) 
+    ram_0_i_59
+       (.I0(\PC_reg[31]_1 [19]),
+        .I1(Q[19]),
+        .I2(MemAddrSrc),
+        .O(ram_0_i_59_n_0));
   (* SOFT_HLUTNM = "soft_lutpair141" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_77
-       (.I0(\PC_reg[31]_0 [21]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [21]),
-        .O(ram_0_i_77_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair153" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_78
-       (.I0(\PC_reg[31]_0 [20]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [20]),
-        .O(ram_0_i_78_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair154" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_79
-       (.I0(\PC_reg[31]_0 [17]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [17]),
-        .O(ram_0_i_79_n_0));
-  LUT5 #(
-    .INIT(32'h00240000)) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    ram_0_i_6
+       (.I0(Din3),
+        .I1(ram_address0[11]),
+        .O(ram_0_i_17_0[9]));
+  (* SOFT_HLUTNM = "soft_lutpair141" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    ram_0_i_7
+       (.I0(Din3),
+        .I1(ram_address0[10]),
+        .O(ram_0_i_17_0[8]));
+  (* SOFT_HLUTNM = "soft_lutpair140" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     ram_0_i_8
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[9]),
-        .O(MemAccessClock_reg_3[7]));
-  (* SOFT_HLUTNM = "soft_lutpair135" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_80
-       (.I0(\PC_reg[31]_0 [16]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [16]),
-        .O(ram_0_i_80_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_81
-       (.I0(\PC_reg[31]_0 [30]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [30]),
-        .O(ram_0_i_81_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_82
-       (.I0(\PC_reg[31]_0 [29]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [29]),
-        .O(ram_0_i_82_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_83
-       (.I0(\PC_reg[31]_0 [28]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [28]),
-        .O(ram_0_i_83_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_84
-       (.I0(\PC_reg[31]_0 [27]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [27]),
-        .O(ram_0_i_84_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_85
-       (.I0(\PC_reg[31]_0 [31]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [31]),
-        .O(ram_0_i_85_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair149" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_86
-       (.I0(\PC_reg[31]_0 [29]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [29]),
-        .O(ram_0_i_86_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair148" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_87
-       (.I0(\PC_reg[31]_0 [28]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [28]),
-        .O(ram_0_i_87_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair145" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_88
-       (.I0(\PC_reg[31]_0 [25]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [25]),
-        .O(ram_0_i_88_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair144" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    ram_0_i_89
-       (.I0(\PC_reg[31]_0 [24]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [24]),
-        .O(ram_0_i_89_n_0));
-  LUT5 #(
-    .INIT(32'h00240000)) 
+       (.I0(Din3),
+        .I1(ram_address0[9]),
+        .O(ram_0_i_17_0[7]));
+  (* SOFT_HLUTNM = "soft_lutpair140" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     ram_0_i_9
-       (.I0(ram_0_i_16_n_0),
-        .I1(ram_0_i_17_n_0),
-        .I2(ram_0_i_18_n_0),
-        .I3(ram_0_i_19_n_0),
-        .I4(ram_address0[8]),
-        .O(MemAccessClock_reg_3[6]));
-  (* SOFT_HLUTNM = "soft_lutpair121" *) 
+       (.I0(Din3),
+        .I1(ram_address0[8]),
+        .O(ram_0_i_17_0[6]));
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][0]_i_1 
-       (.I0(\registers_reg[30][31] [0]),
+       (.I0(Q[0]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[0]),
         .O(\PC_reg[31] [0]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][0]_i_2 
-       (.I0(\state_reg[0]_1 [0]),
-        .I1(\registers_reg[30][31]_0 [0]),
-        .I2(\PC_reg[31]_0 [0]),
+       (.I0(\registers_reg[30][31] [0]),
+        .I1(\PC_reg[31]_1 [0]),
+        .I2(\registers_reg[30][31]_0 [0]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [0]),
+        .I5(\state_reg[0]_1 [0]),
         .O(p_0_in__0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair129" *) 
+  (* SOFT_HLUTNM = "soft_lutpair119" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][10]_i_1 
-       (.I0(\registers_reg[30][31] [10]),
+       (.I0(Q[10]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[10]),
         .O(\PC_reg[31] [10]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][10]_i_2 
-       (.I0(\state_reg[0]_1 [10]),
-        .I1(\registers_reg[30][31]_0 [10]),
-        .I2(\PC_reg[31]_0 [10]),
+       (.I0(\registers_reg[30][31] [10]),
+        .I1(\PC_reg[31]_1 [10]),
+        .I2(\registers_reg[30][31]_0 [10]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [10]),
+        .I5(\state_reg[0]_1 [10]),
         .O(p_0_in__0[10]));
-  (* SOFT_HLUTNM = "soft_lutpair130" *) 
+  (* SOFT_HLUTNM = "soft_lutpair118" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][11]_i_1 
-       (.I0(\registers_reg[30][31] [11]),
+       (.I0(Q[11]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[11]),
         .O(\PC_reg[31] [11]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][11]_i_2 
-       (.I0(\state_reg[0]_1 [11]),
-        .I1(\registers_reg[30][31]_0 [11]),
-        .I2(\PC_reg[31]_0 [11]),
+       (.I0(\registers_reg[30][31] [11]),
+        .I1(\PC_reg[31]_1 [11]),
+        .I2(\registers_reg[30][31]_0 [11]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [11]),
+        .I5(\state_reg[0]_1 [11]),
         .O(p_0_in__0[11]));
-  (* SOFT_HLUTNM = "soft_lutpair131" *) 
+  (* SOFT_HLUTNM = "soft_lutpair117" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][12]_i_1 
-       (.I0(\registers_reg[30][31] [12]),
+       (.I0(Q[12]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[12]),
         .O(\PC_reg[31] [12]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][12]_i_2 
-       (.I0(\state_reg[0]_1 [12]),
-        .I1(\registers_reg[30][31]_0 [12]),
-        .I2(\PC_reg[31]_0 [12]),
+       (.I0(\registers_reg[30][31] [12]),
+        .I1(\PC_reg[31]_1 [12]),
+        .I2(\registers_reg[30][31]_0 [12]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [12]),
+        .I5(\state_reg[0]_1 [12]),
         .O(p_0_in__0[12]));
-  (* SOFT_HLUTNM = "soft_lutpair132" *) 
+  (* SOFT_HLUTNM = "soft_lutpair116" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][13]_i_1 
-       (.I0(\registers_reg[30][31] [13]),
+       (.I0(Q[13]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[13]),
         .O(\PC_reg[31] [13]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][13]_i_2 
-       (.I0(\state_reg[0]_1 [13]),
-        .I1(\registers_reg[30][31]_0 [13]),
-        .I2(\PC_reg[31]_0 [13]),
+       (.I0(\registers_reg[30][31] [13]),
+        .I1(\PC_reg[31]_1 [13]),
+        .I2(\registers_reg[30][31]_0 [13]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [13]),
+        .I5(\state_reg[0]_1 [13]),
         .O(p_0_in__0[13]));
-  (* SOFT_HLUTNM = "soft_lutpair133" *) 
+  (* SOFT_HLUTNM = "soft_lutpair115" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][14]_i_1 
-       (.I0(\registers_reg[30][31] [14]),
+       (.I0(Q[14]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[14]),
         .O(\PC_reg[31] [14]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][14]_i_2 
-       (.I0(\state_reg[0]_1 [14]),
-        .I1(\registers_reg[30][31]_0 [14]),
-        .I2(\PC_reg[31]_0 [14]),
+       (.I0(\registers_reg[30][31] [14]),
+        .I1(\PC_reg[31]_1 [14]),
+        .I2(\registers_reg[30][31]_0 [14]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [14]),
+        .I5(\state_reg[0]_1 [14]),
         .O(p_0_in__0[14]));
-  (* SOFT_HLUTNM = "soft_lutpair134" *) 
+  (* SOFT_HLUTNM = "soft_lutpair114" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][15]_i_1 
-       (.I0(\registers_reg[30][31] [15]),
+       (.I0(Q[15]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[15]),
         .O(\PC_reg[31] [15]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][15]_i_2 
-       (.I0(\state_reg[0]_1 [15]),
-        .I1(\registers_reg[30][31]_0 [15]),
-        .I2(\PC_reg[31]_0 [15]),
+       (.I0(\registers_reg[30][31] [15]),
+        .I1(\PC_reg[31]_1 [15]),
+        .I2(\registers_reg[30][31]_0 [15]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [15]),
+        .I5(\state_reg[0]_1 [15]),
         .O(p_0_in__0[15]));
-  (* SOFT_HLUTNM = "soft_lutpair135" *) 
+  (* SOFT_HLUTNM = "soft_lutpair113" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][16]_i_1 
-       (.I0(\registers_reg[30][31] [16]),
+       (.I0(Q[16]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[16]),
         .O(\PC_reg[31] [16]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][16]_i_2 
-       (.I0(\state_reg[0]_1 [16]),
-        .I1(\registers_reg[30][31]_0 [16]),
-        .I2(\PC_reg[31]_0 [16]),
+       (.I0(\registers_reg[30][31] [16]),
+        .I1(\PC_reg[31]_1 [16]),
+        .I2(\registers_reg[30][31]_0 [16]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [16]),
+        .I5(\state_reg[0]_1 [16]),
         .O(p_0_in__0[16]));
-  (* SOFT_HLUTNM = "soft_lutpair136" *) 
+  (* SOFT_HLUTNM = "soft_lutpair112" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][17]_i_1 
-       (.I0(\registers_reg[30][31] [17]),
+       (.I0(Q[17]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[17]),
         .O(\PC_reg[31] [17]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][17]_i_2 
-       (.I0(\state_reg[0]_1 [17]),
-        .I1(\registers_reg[30][31]_0 [17]),
-        .I2(\PC_reg[31]_0 [17]),
+       (.I0(\registers_reg[30][31] [17]),
+        .I1(\PC_reg[31]_1 [17]),
+        .I2(\registers_reg[30][31]_0 [17]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [17]),
+        .I5(\state_reg[0]_1 [17]),
         .O(p_0_in__0[17]));
-  (* SOFT_HLUTNM = "soft_lutpair137" *) 
+  (* SOFT_HLUTNM = "soft_lutpair111" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][18]_i_1 
-       (.I0(\registers_reg[30][31] [18]),
+       (.I0(Q[18]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[18]),
         .O(\PC_reg[31] [18]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][18]_i_2 
-       (.I0(\state_reg[0]_1 [18]),
-        .I1(\registers_reg[30][31]_0 [18]),
-        .I2(\PC_reg[31]_0 [18]),
+       (.I0(\registers_reg[30][31] [18]),
+        .I1(\PC_reg[31]_1 [18]),
+        .I2(\registers_reg[30][31]_0 [18]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [18]),
+        .I5(\state_reg[0]_1 [18]),
         .O(p_0_in__0[18]));
-  (* SOFT_HLUTNM = "soft_lutpair138" *) 
+  (* SOFT_HLUTNM = "soft_lutpair110" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][19]_i_1 
-       (.I0(\registers_reg[30][31] [19]),
+       (.I0(Q[19]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[19]),
         .O(\PC_reg[31] [19]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][19]_i_2 
-       (.I0(\state_reg[0]_1 [19]),
-        .I1(\registers_reg[30][31]_0 [19]),
-        .I2(\PC_reg[31]_0 [19]),
+       (.I0(\registers_reg[30][31] [19]),
+        .I1(\PC_reg[31]_1 [19]),
+        .I2(\registers_reg[30][31]_0 [19]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [19]),
+        .I5(\state_reg[0]_1 [19]),
         .O(p_0_in__0[19]));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT5 #(
-    .INIT(32'hFFA3CC00)) 
+    .INIT(32'hFF13DC10)) 
     \registers[0][19]_i_3 
        (.I0(state),
         .I1(\state_reg[5]_0 [1]),
@@ -16594,9 +16055,9 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state_reg[5]_0 [3]),
         .I4(\state_reg[5]_0 [2]),
         .O(\registers[0][19]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT5 #(
-    .INIT(32'hFF13DC10)) 
+    .INIT(32'hFFA3CC00)) 
     \registers[0][19]_i_4 
        (.I0(state),
         .I1(\state_reg[5]_0 [1]),
@@ -16604,239 +16065,239 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state_reg[5]_0 [3]),
         .I4(\state_reg[5]_0 [2]),
         .O(\registers[0][19]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair121" *) 
+  (* SOFT_HLUTNM = "soft_lutpair125" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][1]_i_1 
-       (.I0(\registers_reg[30][31] [1]),
+       (.I0(Q[1]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[1]),
         .O(\PC_reg[31] [1]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][1]_i_2 
-       (.I0(\state_reg[0]_1 [1]),
-        .I1(\registers_reg[30][31]_0 [1]),
-        .I2(\PC_reg[31]_0 [1]),
+       (.I0(\registers_reg[30][31] [1]),
+        .I1(\PC_reg[31]_1 [1]),
+        .I2(\registers_reg[30][31]_0 [1]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [1]),
+        .I5(\state_reg[0]_1 [1]),
         .O(p_0_in__0[1]));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][20]_i_1 
-       (.I0(\registers_reg[30][31] [20]),
+       (.I0(Q[20]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][20]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [20]),
+        .I3(\registers_reg[30][31]_0 [20]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [20]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][20]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [20]),
+        .I1(\PC_reg[31]_1 [20]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [20]),
+        .I3(\registers_reg[30][31] [20]),
         .O(\registers[0][20]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][21]_i_1 
-       (.I0(\registers_reg[30][31] [21]),
+       (.I0(Q[21]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][21]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [21]),
+        .I3(\registers_reg[30][31]_0 [21]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [21]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][21]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [21]),
+        .I1(\PC_reg[31]_1 [21]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [21]),
+        .I3(\registers_reg[30][31] [21]),
         .O(\registers[0][21]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][22]_i_1 
-       (.I0(\registers_reg[30][31] [22]),
+       (.I0(Q[22]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][22]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [22]),
+        .I3(\registers_reg[30][31]_0 [22]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [22]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][22]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [22]),
+        .I1(\PC_reg[31]_1 [22]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [22]),
+        .I3(\registers_reg[30][31] [22]),
         .O(\registers[0][22]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][23]_i_1 
-       (.I0(\registers_reg[30][31] [23]),
+       (.I0(Q[23]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][23]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [23]),
+        .I3(\registers_reg[30][31]_0 [23]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [23]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][23]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [23]),
+        .I1(\PC_reg[31]_1 [23]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [23]),
+        .I3(\registers_reg[30][31] [23]),
         .O(\registers[0][23]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][24]_i_1 
-       (.I0(\registers_reg[30][31] [24]),
+       (.I0(Q[24]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][24]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [24]),
+        .I3(\registers_reg[30][31]_0 [24]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [24]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][24]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [24]),
+        .I1(\PC_reg[31]_1 [24]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [24]),
+        .I3(\registers_reg[30][31] [24]),
         .O(\registers[0][24]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][25]_i_1 
-       (.I0(\registers_reg[30][31] [25]),
+       (.I0(Q[25]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][25]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [25]),
+        .I3(\registers_reg[30][31]_0 [25]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [25]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][25]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [25]),
+        .I1(\PC_reg[31]_1 [25]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [25]),
+        .I3(\registers_reg[30][31] [25]),
         .O(\registers[0][25]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][26]_i_1 
-       (.I0(\registers_reg[30][31] [26]),
+       (.I0(Q[26]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][26]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [26]),
+        .I3(\registers_reg[30][31]_0 [26]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [26]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][26]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [26]),
+        .I1(\PC_reg[31]_1 [26]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [26]),
+        .I3(\registers_reg[30][31] [26]),
         .O(\registers[0][26]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][27]_i_1 
-       (.I0(\registers_reg[30][31] [27]),
+       (.I0(Q[27]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][27]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [27]),
+        .I3(\registers_reg[30][31]_0 [27]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [27]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][27]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [27]),
+        .I1(\PC_reg[31]_1 [27]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [27]),
+        .I3(\registers_reg[30][31] [27]),
         .O(\registers[0][27]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][28]_i_1 
-       (.I0(\registers_reg[30][31] [28]),
+       (.I0(Q[28]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][28]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [28]),
+        .I3(\registers_reg[30][31]_0 [28]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [28]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][28]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [28]),
+        .I1(\PC_reg[31]_1 [28]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [28]),
+        .I3(\registers_reg[30][31] [28]),
         .O(\registers[0][28]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][29]_i_1 
-       (.I0(\registers_reg[30][31] [29]),
+       (.I0(Q[29]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][29]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [29]),
+        .I3(\registers_reg[30][31]_0 [29]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [29]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][29]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [29]),
+        .I1(\PC_reg[31]_1 [29]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [29]),
+        .I3(\registers_reg[30][31] [29]),
         .O(\registers[0][29]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair122" *) 
+  (* SOFT_HLUTNM = "soft_lutpair124" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][2]_i_1 
-       (.I0(\registers_reg[30][31] [2]),
+       (.I0(Q[2]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[2]),
         .O(\PC_reg[31] [2]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][2]_i_2 
-       (.I0(\state_reg[0]_1 [2]),
-        .I1(\registers_reg[30][31]_0 [2]),
-        .I2(\PC_reg[31]_0 [2]),
+       (.I0(\registers_reg[30][31] [2]),
+        .I1(\PC_reg[31]_1 [2]),
+        .I2(\registers_reg[30][31]_0 [2]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [2]),
+        .I5(\state_reg[0]_1 [2]),
         .O(p_0_in__0[2]));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][30]_i_1 
-       (.I0(\registers_reg[30][31] [30]),
+       (.I0(Q[30]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][30]_i_2_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [30]),
+        .I3(\registers_reg[30][31]_0 [30]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [30]));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][30]_i_2 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [30]),
+        .I1(\PC_reg[31]_1 [30]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [30]),
+        .I3(\registers_reg[30][31] [30]),
         .O(\registers[0][30]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h0000000000000001)) 
@@ -16847,65 +16308,65 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_7_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[18] ));
+        .O(\IR_reg[13] ));
   LUT4 #(
-    .INIT(16'hF444)) 
+    .INIT(16'hF888)) 
     \registers[0][31]_i_10 
        (.I0(\registers[0][31]_i_15_n_0 ),
-        .I1(\registers_reg[30][31]_0 [31]),
+        .I1(\PC_reg[31]_1 [31]),
         .I2(\registers[0][31]_i_16_n_0 ),
-        .I3(\CPSR_reg[1]_0 [31]),
+        .I3(\registers_reg[30][31] [31]),
         .O(\registers[0][31]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT5 #(
+    .INIT(32'hFFB3DC10)) 
+    \registers[0][31]_i_11 
+       (.I0(state),
+        .I1(\state_reg[5]_0 [1]),
+        .I2(\state_reg[5]_0 [0]),
+        .I3(\state_reg[5]_0 [3]),
+        .I4(\state_reg[5]_0 [2]),
+        .O(\registers[0][31]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'h0000020002000200)) 
-    \registers[0][31]_i_11 
+    \registers[0][31]_i_12 
        (.I0(\state_reg[0]_1 [20]),
         .I1(state),
         .I2(\state_reg[5]_0 [1]),
         .I3(\state_reg[5]_0 [0]),
         .I4(\state_reg[5]_0 [3]),
         .I5(\state_reg[5]_0 [2]),
-        .O(\registers[0][31]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair55" *) 
-  LUT4 #(
-    .INIT(16'hCC8A)) 
-    \registers[0][31]_i_12 
-       (.I0(\state_reg[5]_0 [2]),
-        .I1(\state_reg[5]_0 [3]),
-        .I2(\state_reg[5]_0 [0]),
-        .I3(\state_reg[5]_0 [1]),
         .O(\registers[0][31]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT5 #(
+    .INIT(32'h54557272)) 
+    \registers[0][31]_i_13 
+       (.I0(\state_reg[5]_0 [3]),
+        .I1(\state_reg[5]_0 [1]),
+        .I2(\state_reg[5]_0 [0]),
+        .I3(state),
+        .I4(\state_reg[5]_0 [2]),
+        .O(\registers[0][31]_i_13_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT5 #(
     .INIT(32'h54005454)) 
-    \registers[0][31]_i_13 
+    \registers[0][31]_i_14 
        (.I0(\state_reg[5]_0 [3]),
         .I1(state),
         .I2(\state_reg[5]_0 [0]),
         .I3(\state_reg[5]_0 [2]),
         .I4(\state_reg[5]_0 [1]),
         .O(RegWriteSrc));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT5 #(
-    .INIT(32'h54557272)) 
-    \registers[0][31]_i_14 
-       (.I0(\state_reg[5]_0 [3]),
-        .I1(\state_reg[5]_0 [1]),
-        .I2(\state_reg[5]_0 [0]),
-        .I3(state),
-        .I4(\state_reg[5]_0 [2]),
-        .O(\registers[0][31]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT5 #(
-    .INIT(32'hFFB3DC10)) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  LUT4 #(
+    .INIT(16'hCC8A)) 
     \registers[0][31]_i_15 
-       (.I0(state),
-        .I1(\state_reg[5]_0 [1]),
+       (.I0(\state_reg[5]_0 [2]),
+        .I1(\state_reg[5]_0 [3]),
         .I2(\state_reg[5]_0 [0]),
-        .I3(\state_reg[5]_0 [3]),
-        .I4(\state_reg[5]_0 [2]),
+        .I3(\state_reg[5]_0 [1]),
         .O(\registers[0][31]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT4 #(
     .INIT(16'h2000)) 
     \registers[0][31]_i_16 
@@ -16915,59 +16376,59 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(state),
         .O(\registers[0][31]_i_16_n_0 ));
   LUT6 #(
-    .INIT(64'hBBBBBBB8BBB8BBB8)) 
+    .INIT(64'hBBBBBBBBB8B8BBB8)) 
     \registers[0][31]_i_2 
-       (.I0(\registers_reg[30][31] [31]),
+       (.I0(Q[31]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(\registers[0][31]_i_10_n_0 ),
-        .I3(\registers[0][31]_i_11_n_0 ),
-        .I4(\PC_reg[31]_0 [31]),
+        .I3(\registers_reg[30][31]_0 [31]),
+        .I4(\registers[0][31]_i_11_n_0 ),
         .I5(\registers[0][31]_i_12_n_0 ),
         .O(\PC_reg[31] [31]));
   LUT5 #(
-    .INIT(32'hCAFFCA0F)) 
+    .INIT(32'hEEF322F3)) 
     \registers[0][31]_i_3 
-       (.I0(\state_reg[0]_1 [18]),
-        .I1(\state_reg[0]_1 [23]),
-        .I2(RegWriteSrc),
-        .I3(\registers[0][31]_i_14_n_0 ),
-        .I4(\state_reg[0]_1 [13]),
+       (.I0(\state_reg[0]_1 [13]),
+        .I1(\registers[0][31]_i_13_n_0 ),
+        .I2(\state_reg[0]_1 [18]),
+        .I3(RegWriteSrc),
+        .I4(\state_reg[0]_1 [23]),
         .O(\registers[0][31]_i_3_n_0 ));
   LUT5 #(
-    .INIT(32'hCAFFCA0F)) 
+    .INIT(32'hEEF322F3)) 
     \registers[0][31]_i_4 
-       (.I0(\state_reg[0]_1 [20]),
-        .I1(\state_reg[0]_1 [25]),
-        .I2(RegWriteSrc),
-        .I3(\registers[0][31]_i_14_n_0 ),
-        .I4(\state_reg[0]_1 [15]),
+       (.I0(\state_reg[0]_1 [15]),
+        .I1(\registers[0][31]_i_13_n_0 ),
+        .I2(\state_reg[0]_1 [20]),
+        .I3(RegWriteSrc),
+        .I4(\state_reg[0]_1 [25]),
         .O(\registers[0][31]_i_4_n_0 ));
   LUT5 #(
-    .INIT(32'hCAFFCA0F)) 
+    .INIT(32'hEEF322F3)) 
     \registers[0][31]_i_5 
-       (.I0(\state_reg[0]_1 [16]),
-        .I1(\state_reg[0]_1 [21]),
-        .I2(RegWriteSrc),
-        .I3(\registers[0][31]_i_14_n_0 ),
-        .I4(\state_reg[0]_1 [11]),
+       (.I0(\state_reg[0]_1 [11]),
+        .I1(\registers[0][31]_i_13_n_0 ),
+        .I2(\state_reg[0]_1 [16]),
+        .I3(RegWriteSrc),
+        .I4(\state_reg[0]_1 [21]),
         .O(\registers[0][31]_i_5_n_0 ));
   LUT5 #(
-    .INIT(32'hCAFFCA0F)) 
+    .INIT(32'hEEF322F3)) 
     \registers[0][31]_i_6 
-       (.I0(\state_reg[0]_1 [17]),
-        .I1(\state_reg[0]_1 [22]),
-        .I2(RegWriteSrc),
-        .I3(\registers[0][31]_i_14_n_0 ),
-        .I4(\state_reg[0]_1 [12]),
+       (.I0(\state_reg[0]_1 [12]),
+        .I1(\registers[0][31]_i_13_n_0 ),
+        .I2(\state_reg[0]_1 [17]),
+        .I3(RegWriteSrc),
+        .I4(\state_reg[0]_1 [22]),
         .O(\registers[0][31]_i_6_n_0 ));
   LUT5 #(
-    .INIT(32'hCAFFCA0F)) 
+    .INIT(32'hEEF322F3)) 
     \registers[0][31]_i_7 
-       (.I0(\state_reg[0]_1 [19]),
-        .I1(\state_reg[0]_1 [24]),
-        .I2(RegWriteSrc),
-        .I3(\registers[0][31]_i_14_n_0 ),
-        .I4(\state_reg[0]_1 [14]),
+       (.I0(\state_reg[0]_1 [14]),
+        .I1(\registers[0][31]_i_13_n_0 ),
+        .I2(\state_reg[0]_1 [19]),
+        .I3(RegWriteSrc),
+        .I4(\state_reg[0]_1 [24]),
         .O(\registers[0][31]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hFEBFEFFC73FFBB9B)) 
@@ -16988,131 +16449,131 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\state_reg[5]_0 [1]),
         .I4(\state_reg[5]_0 [3]),
         .O(\registers[0][31]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair123" *) 
+  (* SOFT_HLUTNM = "soft_lutpair124" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][3]_i_1 
-       (.I0(\registers_reg[30][31] [3]),
+       (.I0(Q[3]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[3]),
         .O(\PC_reg[31] [3]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][3]_i_2 
-       (.I0(\state_reg[0]_1 [3]),
-        .I1(\registers_reg[30][31]_0 [3]),
-        .I2(\PC_reg[31]_0 [3]),
+       (.I0(\registers_reg[30][31] [3]),
+        .I1(\PC_reg[31]_1 [3]),
+        .I2(\registers_reg[30][31]_0 [3]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [3]),
+        .I5(\state_reg[0]_1 [3]),
         .O(p_0_in__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair124" *) 
+  (* SOFT_HLUTNM = "soft_lutpair123" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][4]_i_1 
-       (.I0(\registers_reg[30][31] [4]),
+       (.I0(Q[4]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[4]),
         .O(\PC_reg[31] [4]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][4]_i_2 
-       (.I0(\state_reg[0]_1 [4]),
-        .I1(\registers_reg[30][31]_0 [4]),
-        .I2(\PC_reg[31]_0 [4]),
+       (.I0(\registers_reg[30][31] [4]),
+        .I1(\PC_reg[31]_1 [4]),
+        .I2(\registers_reg[30][31]_0 [4]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [4]),
+        .I5(\state_reg[0]_1 [4]),
         .O(p_0_in__0[4]));
-  (* SOFT_HLUTNM = "soft_lutpair125" *) 
+  (* SOFT_HLUTNM = "soft_lutpair123" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][5]_i_1 
-       (.I0(\registers_reg[30][31] [5]),
+       (.I0(Q[5]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[5]),
         .O(\PC_reg[31] [5]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][5]_i_2 
-       (.I0(\state_reg[0]_1 [5]),
-        .I1(\registers_reg[30][31]_0 [5]),
-        .I2(\PC_reg[31]_0 [5]),
+       (.I0(\registers_reg[30][31] [5]),
+        .I1(\PC_reg[31]_1 [5]),
+        .I2(\registers_reg[30][31]_0 [5]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [5]),
+        .I5(\state_reg[0]_1 [5]),
         .O(p_0_in__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair126" *) 
+  (* SOFT_HLUTNM = "soft_lutpair122" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][6]_i_1 
-       (.I0(\registers_reg[30][31] [6]),
+       (.I0(Q[6]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[6]),
         .O(\PC_reg[31] [6]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][6]_i_2 
-       (.I0(\state_reg[0]_1 [6]),
-        .I1(\registers_reg[30][31]_0 [6]),
-        .I2(\PC_reg[31]_0 [6]),
+       (.I0(\registers_reg[30][31] [6]),
+        .I1(\PC_reg[31]_1 [6]),
+        .I2(\registers_reg[30][31]_0 [6]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [6]),
+        .I5(\state_reg[0]_1 [6]),
         .O(p_0_in__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair127" *) 
+  (* SOFT_HLUTNM = "soft_lutpair122" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][7]_i_1 
-       (.I0(\registers_reg[30][31] [7]),
+       (.I0(Q[7]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[7]),
         .O(\PC_reg[31] [7]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][7]_i_2 
-       (.I0(\state_reg[0]_1 [7]),
-        .I1(\registers_reg[30][31]_0 [7]),
-        .I2(\PC_reg[31]_0 [7]),
+       (.I0(\registers_reg[30][31] [7]),
+        .I1(\PC_reg[31]_1 [7]),
+        .I2(\registers_reg[30][31]_0 [7]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [7]),
+        .I5(\state_reg[0]_1 [7]),
         .O(p_0_in__0[7]));
-  (* SOFT_HLUTNM = "soft_lutpair127" *) 
+  (* SOFT_HLUTNM = "soft_lutpair121" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][8]_i_1 
-       (.I0(\registers_reg[30][31] [8]),
+       (.I0(Q[8]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[8]),
         .O(\PC_reg[31] [8]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][8]_i_2 
-       (.I0(\state_reg[0]_1 [8]),
-        .I1(\registers_reg[30][31]_0 [8]),
-        .I2(\PC_reg[31]_0 [8]),
+       (.I0(\registers_reg[30][31] [8]),
+        .I1(\PC_reg[31]_1 [8]),
+        .I2(\registers_reg[30][31]_0 [8]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [8]),
+        .I5(\state_reg[0]_1 [8]),
         .O(p_0_in__0[8]));
-  (* SOFT_HLUTNM = "soft_lutpair128" *) 
+  (* SOFT_HLUTNM = "soft_lutpair120" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \registers[0][9]_i_1 
-       (.I0(\registers_reg[30][31] [9]),
+       (.I0(Q[9]),
         .I1(\registers[0][31]_i_9_n_0 ),
         .I2(p_0_in__0[9]),
         .O(\PC_reg[31] [9]));
   LUT6 #(
-    .INIT(64'hF0AAFFCCF0AA00CC)) 
+    .INIT(64'hCCAAFFF0CCAA00F0)) 
     \registers[0][9]_i_2 
-       (.I0(\state_reg[0]_1 [9]),
-        .I1(\registers_reg[30][31]_0 [9]),
-        .I2(\PC_reg[31]_0 [9]),
+       (.I0(\registers_reg[30][31] [9]),
+        .I1(\PC_reg[31]_1 [9]),
+        .I2(\registers_reg[30][31]_0 [9]),
         .I3(\registers[0][19]_i_3_n_0 ),
         .I4(\registers[0][19]_i_4_n_0 ),
-        .I5(\CPSR_reg[1]_0 [9]),
+        .I5(\state_reg[0]_1 [9]),
         .O(p_0_in__0[9]));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
@@ -17123,7 +16584,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_6_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_8 ));
+        .O(\IR_reg[15]_8 ));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
     \registers[11][31]_i_1 
@@ -17133,7 +16594,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_3_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[19] ));
+        .O(\IR_reg[14] ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \registers[12][31]_i_1 
@@ -17143,7 +16604,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_5_n_0 ),
         .I4(\registers[0][31]_i_3_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_9 ));
+        .O(\IR_reg[15]_9 ));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
     \registers[13][31]_i_1 
@@ -17153,7 +16614,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_6_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[19]_0 ));
+        .O(\IR_reg[14]_0 ));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
     \registers[14][31]_i_1 
@@ -17163,7 +16624,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_5_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[19]_1 ));
+        .O(\IR_reg[14]_1 ));
   LUT6 #(
     .INIT(64'h0000000000008000)) 
     \registers[15][31]_i_1 
@@ -17173,7 +16634,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_4_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[18]_2 ));
+        .O(\IR_reg[13]_2 ));
   LUT6 #(
     .INIT(64'h0000000000010000)) 
     \registers[16][31]_i_1 
@@ -17183,7 +16644,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_4_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[16] ));
+        .O(\IR_reg[11] ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \registers[17][31]_i_1 
@@ -17193,7 +16654,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_5_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[17]_0 ));
+        .O(\IR_reg[12]_0 ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \registers[18][31]_i_1 
@@ -17203,7 +16664,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_6_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[16]_0 ));
+        .O(\IR_reg[11]_0 ));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
     \registers[19][31]_i_1 
@@ -17213,7 +16674,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_7_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_7 ));
+        .O(\IR_reg[15]_7 ));
   LUT6 #(
     .INIT(64'h0000000000010000)) 
     \registers[1][31]_i_1 
@@ -17223,7 +16684,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_5_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_0 ));
+        .O(\IR_reg[15]_0 ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \registers[20][31]_i_1 
@@ -17233,7 +16694,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_5_n_0 ),
         .I4(\registers[0][31]_i_3_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[17] ));
+        .O(\IR_reg[12] ));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
     \registers[21][31]_i_1 
@@ -17243,7 +16704,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_7_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_11 ));
+        .O(\IR_reg[15]_11 ));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
     \registers[22][31]_i_1 
@@ -17253,7 +16714,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_7_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_12 ));
+        .O(\IR_reg[15]_12 ));
   LUT6 #(
     .INIT(64'h0000000000008000)) 
     \registers[23][31]_i_1 
@@ -17263,7 +16724,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_7_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[18]_1 ));
+        .O(\IR_reg[13]_1 ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \registers[24][31]_i_1 
@@ -17283,7 +16744,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_4_n_0 ),
         .I4(\registers[0][31]_i_3_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[19]_2 ));
+        .O(\IR_reg[14]_2 ));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
     \registers[26][31]_i_1 
@@ -17293,7 +16754,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_3_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[19]_3 ));
+        .O(\IR_reg[14]_3 ));
   LUT6 #(
     .INIT(64'h0000000000008000)) 
     \registers[27][31]_i_1 
@@ -17303,7 +16764,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_3_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_6 ));
+        .O(\IR_reg[15]_6 ));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
     \registers[28][31]_i_1 
@@ -17313,7 +16774,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_6_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[19]_4 ));
+        .O(\IR_reg[14]_4 ));
   LUT6 #(
     .INIT(64'h0000000000008000)) 
     \registers[29][31]_i_1 
@@ -17323,7 +16784,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_4_n_0 ),
         .I4(\registers[0][31]_i_6_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[18]_4 ));
+        .O(\IR_reg[13]_4 ));
   LUT6 #(
     .INIT(64'h0000000000010000)) 
     \registers[2][31]_i_1 
@@ -17333,7 +16794,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_6_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_3 ));
+        .O(\IR_reg[15]_3 ));
   LUT6 #(
     .INIT(64'h0000000000008000)) 
     \registers[30][31]_i_1 
@@ -17343,7 +16804,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_5_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[18]_5 ));
+        .O(\IR_reg[13]_5 ));
   LUT6 #(
     .INIT(64'h0000000080000000)) 
     \registers[31][31]_i_1 
@@ -17353,7 +16814,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_7_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[18]_0 ));
+        .O(\IR_reg[13]_0 ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \registers[3][31]_i_1 
@@ -17363,7 +16824,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_5_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_2 ));
+        .O(\IR_reg[15]_2 ));
   LUT6 #(
     .INIT(64'h0000000000010000)) 
     \registers[4][31]_i_1 
@@ -17373,7 +16834,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_5_n_0 ),
         .I4(\registers[0][31]_i_3_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_4 ));
+        .O(\IR_reg[15]_4 ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \registers[5][31]_i_1 
@@ -17383,7 +16844,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_5_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_1 ));
+        .O(\IR_reg[15]_1 ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \registers[6][31]_i_1 
@@ -17393,7 +16854,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_5_n_0 ),
         .I4(\registers[0][31]_i_6_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_5 ));
+        .O(\IR_reg[15]_5 ));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
     \registers[7][31]_i_1 
@@ -17403,7 +16864,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_6_n_0 ),
         .I4(\registers[0][31]_i_7_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[18]_3 ));
+        .O(\IR_reg[13]_3 ));
   LUT6 #(
     .INIT(64'h0000000000010000)) 
     \registers[8][31]_i_1 
@@ -17413,7 +16874,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_7_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20] ));
+        .O(\IR_reg[15] ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \registers[9][31]_i_1 
@@ -17423,98 +16884,98 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(\registers[0][31]_i_3_n_0 ),
         .I4(\registers[0][31]_i_5_n_0 ),
         .I5(\registers[0][31]_i_8_n_0 ),
-        .O(\IR_reg[20]_10 ));
+        .O(\IR_reg[15]_10 ));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_1
        (.I0(\memory_handler/Aout_OUT0 [9]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [11]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [11]),
+        .I2(\PC_reg[31]_1 [11]),
+        .I3(Q[11]),
+        .I4(MemAddrSrc),
         .O(a[9]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
-    .INIT(16'h56A6)) 
+    .INIT(16'h569A)) 
     rom_0_i_10
        (.I0(MemAccessClock),
-        .I1(\registers_reg[30][31] [2]),
-        .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [2]),
+        .I1(MemAddrSrc),
+        .I2(Q[2]),
+        .I3(\PC_reg[31]_1 [2]),
         .O(a[0]));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_2
        (.I0(\memory_handler/Aout_OUT0 [8]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [10]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [10]),
+        .I2(\PC_reg[31]_1 [10]),
+        .I3(Q[10]),
+        .I4(MemAddrSrc),
         .O(a[8]));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_3
        (.I0(\memory_handler/Aout_OUT0 [7]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [9]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [9]),
+        .I2(\PC_reg[31]_1 [9]),
+        .I3(Q[9]),
+        .I4(MemAddrSrc),
         .O(a[7]));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_4
        (.I0(\memory_handler/Aout_OUT0 [6]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [8]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [8]),
+        .I2(\PC_reg[31]_1 [8]),
+        .I3(Q[8]),
+        .I4(MemAddrSrc),
         .O(a[6]));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_5
        (.I0(\memory_handler/Aout_OUT0 [5]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [7]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [7]),
+        .I2(\PC_reg[31]_1 [7]),
+        .I3(Q[7]),
+        .I4(MemAddrSrc),
         .O(a[5]));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_6
        (.I0(\memory_handler/Aout_OUT0 [4]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [6]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [6]),
+        .I2(\PC_reg[31]_1 [6]),
+        .I3(Q[6]),
+        .I4(MemAddrSrc),
         .O(a[4]));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_7
        (.I0(\memory_handler/Aout_OUT0 [3]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [5]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [5]),
+        .I2(\PC_reg[31]_1 [5]),
+        .I3(Q[5]),
+        .I4(MemAddrSrc),
         .O(a[3]));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_8
        (.I0(\memory_handler/Aout_OUT0 [2]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [4]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [4]),
+        .I2(\PC_reg[31]_1 [4]),
+        .I3(Q[4]),
+        .I4(MemAddrSrc),
         .O(a[2]));
   LUT5 #(
-    .INIT(32'hB8BBB888)) 
+    .INIT(32'hB8B8BB88)) 
     rom_0_i_9
        (.I0(\memory_handler/Aout_OUT0 [1]),
         .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [3]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [3]),
+        .I2(\PC_reg[31]_1 [3]),
+        .I3(Q[3]),
+        .I4(MemAddrSrc),
         .O(a[1]));
-  (* SOFT_HLUTNM = "soft_lutpair155" *) 
+  (* SOFT_HLUTNM = "soft_lutpair132" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \state[0]_i_1 
@@ -17532,7 +16993,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [3]),
         .I5(state),
         .O(\state[0]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair155" *) 
+  (* SOFT_HLUTNM = "soft_lutpair132" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \state[1]_i_1 
@@ -17550,7 +17011,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [1]),
         .I5(\state_reg[5]_0 [3]),
         .O(\state[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair156" *) 
+  (* SOFT_HLUTNM = "soft_lutpair133" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \state[2]_i_1 
@@ -17568,7 +17029,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(state),
         .I5(\state_reg[5]_0 [4]),
         .O(\state[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair156" *) 
+  (* SOFT_HLUTNM = "soft_lutpair133" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \state[3]_i_1 
@@ -17586,7 +17047,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [1]),
         .I5(\state_reg[5]_0 [3]),
         .O(\state[3]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair157" *) 
+  (* SOFT_HLUTNM = "soft_lutpair134" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \state[4]_i_1 
@@ -17613,7 +17074,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .I3(MemAccess),
         .I4(\state[5]_i_6_n_0 ),
         .O(\state[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair157" *) 
+  (* SOFT_HLUTNM = "soft_lutpair134" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \state[5]_i_2 
@@ -17621,21 +17082,21 @@ module design_1_Motherboard_0_0_ControlUnit
         .I1(\state[5]_i_7_n_0 ),
         .I2(\state[5]_i_8_n_0 ),
         .O(next_state[5]));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair125" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \state[5]_i_3 
-       (.I0(\PC_reg[31]_0 [0]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [0]),
+       (.I0(\PC_reg[31]_1 [1]),
+        .I1(Q[1]),
+        .I2(MemAddrSrc),
         .O(\state[5]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair139" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     \state[5]_i_4 
-       (.I0(\PC_reg[31]_0 [1]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [1]),
+       (.I0(\PC_reg[31]_1 [0]),
+        .I1(Q[0]),
+        .I2(MemAddrSrc),
         .O(\state[5]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h0006800006016001)) 
@@ -17713,74 +17174,83 @@ module design_1_Motherboard_0_0_ControlUnit
         .CLR(RST),
         .D(next_state[5]),
         .Q(\state_reg[5]_0 [4]));
+  (* SOFT_HLUTNM = "soft_lutpair144" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    video_ram_i_1
+       (.I0(graphics_write_enable1),
+        .I1(video_ram[3]),
+        .O(\WR_OUT_reg[3] [3]));
   LUT6 #(
-    .INIT(64'hAAAAA8080000A808)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_10
-       (.I0(MemAccessClock_reg_0),
-        .I1(\registers_reg[30][31] [7]),
-        .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [7]),
+       (.I0(graphics_write_enable1),
+        .I1(MemAddrSrc),
+        .I2(Q[7]),
+        .I3(\PC_reg[31]_1 [7]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [5]),
         .O(addra[5]));
   LUT6 #(
-    .INIT(64'hAAAAA8080000A808)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_11
-       (.I0(MemAccessClock_reg_0),
-        .I1(\registers_reg[30][31] [6]),
-        .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [6]),
+       (.I0(graphics_write_enable1),
+        .I1(MemAddrSrc),
+        .I2(Q[6]),
+        .I3(\PC_reg[31]_1 [6]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [4]),
         .O(addra[4]));
   LUT6 #(
-    .INIT(64'hFFE200E200000000)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_12
-       (.I0(\registers_reg[30][31] [5]),
+       (.I0(graphics_write_enable1),
         .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [5]),
-        .I3(MemAccessClock),
-        .I4(\memory_handler/Aout_OUT0 [3]),
-        .I5(MemAccessClock_reg_0),
+        .I2(Q[5]),
+        .I3(\PC_reg[31]_1 [5]),
+        .I4(MemAccessClock),
+        .I5(\memory_handler/Aout_OUT0 [3]),
         .O(addra[3]));
   LUT6 #(
-    .INIT(64'hAAAAA8080000A808)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_13
-       (.I0(MemAccessClock_reg_0),
-        .I1(\registers_reg[30][31] [4]),
-        .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [4]),
+       (.I0(graphics_write_enable1),
+        .I1(MemAddrSrc),
+        .I2(Q[4]),
+        .I3(\PC_reg[31]_1 [4]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [2]),
         .O(addra[2]));
   LUT6 #(
-    .INIT(64'hAAAAA8080000A808)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_14
-       (.I0(MemAccessClock_reg_0),
-        .I1(\registers_reg[30][31] [3]),
-        .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [3]),
+       (.I0(graphics_write_enable1),
+        .I1(MemAddrSrc),
+        .I2(Q[3]),
+        .I3(\PC_reg[31]_1 [3]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [1]),
         .O(addra[1]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
-    .INIT(32'h47B80000)) 
+    .INIT(32'h220A88A0)) 
     video_ram_i_15
-       (.I0(\PC_reg[31]_0 [2]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [2]),
-        .I3(MemAccessClock),
-        .I4(MemAccessClock_reg_0),
+       (.I0(graphics_write_enable1),
+        .I1(\PC_reg[31]_1 [2]),
+        .I2(Q[2]),
+        .I3(MemAddrSrc),
+        .I4(MemAccessClock),
         .O(addra[0]));
-  LUT4 #(
-    .INIT(16'h0054)) 
+  LUT6 #(
+    .INIT(64'h00E000E0F0E000E0)) 
     video_ram_i_18
        (.I0(video_ram_i_28_n_0),
         .I1(video_ram_i_29_n_0),
-        .I2(ram_0_i_17_n_0),
-        .I3(video_ram_i_30_n_0),
-        .O(MemAccessClock_reg_0));
+        .I2(video_ram_i_30_n_0),
+        .I3(video_ram_i_31_n_0),
+        .I4(video_ram_i_32_n_0),
+        .I5(video_ram_i_33_n_0),
+        .O(graphics_write_enable1));
   LUT6 #(
     .INIT(64'h0000FFFF07F70FF0)) 
     video_ram_i_19
@@ -17791,6 +17261,12 @@ module design_1_Motherboard_0_0_ControlUnit
         .I4(\state_reg[5]_0 [3]),
         .I5(\state_reg[5]_0 [2]),
         .O(MemAddrSrc));
+  LUT2 #(
+    .INIT(4'h8)) 
+    video_ram_i_2
+       (.I0(graphics_write_enable1),
+        .I1(video_ram[2]),
+        .O(\WR_OUT_reg[3] [2]));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 video_ram_i_20
        (.CI(video_ram_i_21_n_0),
@@ -17798,7 +17274,7 @@ module design_1_Motherboard_0_0_ControlUnit
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(\memory_handler/Aout_OUT0 [12:9]),
-        .S({video_ram_i_31_n_0,video_ram_i_32_n_0,video_ram_i_33_n_0,video_ram_i_34_n_0}));
+        .S({video_ram_i_34_n_0,video_ram_i_35_n_0,video_ram_i_36_n_0,video_ram_i_37_n_0}));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 video_ram_i_21
        (.CI(video_ram_i_22_n_0),
@@ -17806,191 +17282,453 @@ module design_1_Motherboard_0_0_ControlUnit
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(\memory_handler/Aout_OUT0 [8:5]),
-        .S({video_ram_i_35_n_0,video_ram_i_36_n_0,video_ram_i_37_n_0,video_ram_i_38_n_0}));
+        .S({video_ram_i_38_n_0,video_ram_i_39_n_0,video_ram_i_40_n_0,video_ram_i_41_n_0}));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 video_ram_i_22
        (.CI(1'b0),
         .CO({video_ram_i_22_n_0,video_ram_i_22_n_1,video_ram_i_22_n_2,video_ram_i_22_n_3}),
-        .CYINIT(video_ram_i_39_n_0),
+        .CYINIT(video_ram_i_42_n_0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(\memory_handler/Aout_OUT0 [4:1]),
-        .S({video_ram_i_40_n_0,video_ram_i_41_n_0,video_ram_i_42_n_0,video_ram_i_43_n_0}));
+        .S({video_ram_i_43_n_0,video_ram_i_44_n_0,video_ram_i_45_n_0,video_ram_i_46_n_0}));
   LUT6 #(
-    .INIT(64'hAAAAAA00AAAA8000)) 
+    .INIT(64'hFFFFFEBAAAAAFEBA)) 
     video_ram_i_28
-       (.I0(ram_0_i_17_n_0),
+       (.I0(video_ram_i_51_n_0),
+        .I1(MemAddrSrc),
+        .I2(Q[12]),
+        .I3(\PC_reg[31]_1 [12]),
+        .I4(MemAccessClock),
+        .I5(\memory_handler/Aout_OUT0 [10]),
+        .O(video_ram_i_28_n_0));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFEAE)) 
+    video_ram_i_29
+       (.I0(video_ram_i_52_n_0),
+        .I1(video_ram_i_53_n_0),
+        .I2(MemAccessClock),
+        .I3(\memory_handler/Aout_OUT0 [28]),
+        .I4(video_ram_i_55_n_0),
+        .I5(video_ram_i_56_n_0),
+        .O(video_ram_i_29_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair145" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    video_ram_i_3
+       (.I0(graphics_write_enable1),
+        .I1(video_ram[1]),
+        .O(\WR_OUT_reg[3] [1]));
+  LUT2 #(
+    .INIT(4'h1)) 
+    video_ram_i_30
+       (.I0(ram_0_i_22_n_0),
+        .I1(ram_0_i_23_n_0),
+        .O(video_ram_i_30_n_0));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    video_ram_i_31
+       (.I0(\memory_handler/Aout_OUT0 [11]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [13]),
+        .I3(Q[13]),
+        .I4(MemAddrSrc),
+        .O(video_ram_i_31_n_0));
+  LUT4 #(
+    .INIT(16'h15FF)) 
+    video_ram_i_32
+       (.I0(a[6]),
         .I1(a[4]),
         .I2(a[5]),
         .I3(a[7]),
-        .I4(ram_0_i_24_n_0),
-        .I5(a[6]),
-        .O(video_ram_i_28_n_0));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    video_ram_i_29
-       (.I0(\memory_handler/Aout_OUT0 [10]),
-        .I1(MemAccessClock),
-        .I2(\PC_reg[31]_0 [12]),
-        .I3(MemAddrSrc),
-        .I4(\registers_reg[30][31] [12]),
-        .O(video_ram_i_29_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFE200E2)) 
-    video_ram_i_30
-       (.I0(\registers_reg[30][31] [14]),
-        .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [14]),
-        .I3(MemAccessClock),
-        .I4(\memory_handler/Aout_OUT0 [12]),
-        .I5(ram_0_i_19_n_0),
-        .O(video_ram_i_30_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    video_ram_i_31
-       (.I0(\PC_reg[31]_0 [14]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [14]),
-        .O(video_ram_i_31_n_0));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    video_ram_i_32
-       (.I0(\PC_reg[31]_0 [13]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [13]),
         .O(video_ram_i_32_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hFE)) 
     video_ram_i_33
-       (.I0(\PC_reg[31]_0 [12]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [12]),
+       (.I0(video_ram_i_57_n_0),
+        .I1(a[9]),
+        .I2(a[8]),
         .O(video_ram_i_33_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_34
-       (.I0(\PC_reg[31]_0 [11]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [11]),
+       (.I0(\PC_reg[31]_1 [14]),
+        .I1(Q[14]),
+        .I2(MemAddrSrc),
         .O(video_ram_i_34_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_35
-       (.I0(\PC_reg[31]_0 [10]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [10]),
+       (.I0(\PC_reg[31]_1 [13]),
+        .I1(Q[13]),
+        .I2(MemAddrSrc),
         .O(video_ram_i_35_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_36
-       (.I0(\PC_reg[31]_0 [9]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [9]),
+       (.I0(\PC_reg[31]_1 [12]),
+        .I1(Q[12]),
+        .I2(MemAddrSrc),
         .O(video_ram_i_36_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_37
-       (.I0(\PC_reg[31]_0 [8]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [8]),
+       (.I0(\PC_reg[31]_1 [11]),
+        .I1(Q[11]),
+        .I2(MemAddrSrc),
         .O(video_ram_i_37_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_38
-       (.I0(\PC_reg[31]_0 [7]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [7]),
+       (.I0(\PC_reg[31]_1 [10]),
+        .I1(Q[10]),
+        .I2(MemAddrSrc),
         .O(video_ram_i_38_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_39
-       (.I0(\PC_reg[31]_0 [2]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [2]),
+       (.I0(\PC_reg[31]_1 [9]),
+        .I1(Q[9]),
+        .I2(MemAddrSrc),
         .O(video_ram_i_39_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair145" *) 
   LUT2 #(
     .INIT(4'h8)) 
     video_ram_i_4
-       (.I0(MemAccessClock_reg_0),
-        .I1(ram_0[0]),
-        .O(wea));
+       (.I0(graphics_write_enable1),
+        .I1(video_ram[0]),
+        .O(\WR_OUT_reg[3] [0]));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_40
-       (.I0(\PC_reg[31]_0 [6]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [6]),
+       (.I0(\PC_reg[31]_1 [8]),
+        .I1(Q[8]),
+        .I2(MemAddrSrc),
         .O(video_ram_i_40_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_41
-       (.I0(\PC_reg[31]_0 [5]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [5]),
+       (.I0(\PC_reg[31]_1 [7]),
+        .I1(Q[7]),
+        .I2(MemAddrSrc),
         .O(video_ram_i_41_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_42
-       (.I0(\PC_reg[31]_0 [4]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [4]),
+       (.I0(\PC_reg[31]_1 [2]),
+        .I1(Q[2]),
+        .I2(MemAddrSrc),
         .O(video_ram_i_42_n_0));
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hAC)) 
     video_ram_i_43
-       (.I0(\PC_reg[31]_0 [3]),
-        .I1(MemAddrSrc),
-        .I2(\registers_reg[30][31] [3]),
-        .O(video_ram_i_43_n_0));
-  LUT6 #(
-    .INIT(64'h000002A2AAAA02A2)) 
-    video_ram_i_5
-       (.I0(MemAccessClock_reg_0),
-        .I1(\registers_reg[30][31] [12]),
+       (.I0(\PC_reg[31]_1 [6]),
+        .I1(Q[6]),
         .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [12]),
+        .O(video_ram_i_43_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_44
+       (.I0(\PC_reg[31]_1 [5]),
+        .I1(Q[5]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_44_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_45
+       (.I0(\PC_reg[31]_1 [4]),
+        .I1(Q[4]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_45_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_46
+       (.I0(\PC_reg[31]_1 [3]),
+        .I1(Q[3]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_46_n_0));
+  LUT6 #(
+    .INIT(64'h0000028AAAAA028A)) 
+    video_ram_i_5
+       (.I0(graphics_write_enable1),
+        .I1(MemAddrSrc),
+        .I2(Q[12]),
+        .I3(\PC_reg[31]_1 [12]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [10]),
         .O(addra[10]));
   LUT6 #(
-    .INIT(64'hAAAAA8080000A808)) 
-    video_ram_i_6
-       (.I0(MemAccessClock_reg_0),
-        .I1(\registers_reg[30][31] [11]),
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    video_ram_i_51
+       (.I0(ram_0_i_22_n_0),
+        .I1(video_ram_i_58_n_0),
+        .I2(video_ram_i_59_n_0),
+        .I3(video_ram_i_60_n_0),
+        .I4(video_ram_i_61_n_0),
+        .I5(ram_0_i_47_n_0),
+        .O(video_ram_i_51_n_0));
+  LUT5 #(
+    .INIT(32'hFFFACCFA)) 
+    video_ram_i_52
+       (.I0(video_ram_i_62_n_0),
+        .I1(\memory_handler/Aout_OUT0 [26]),
+        .I2(video_ram_i_63_n_0),
+        .I3(MemAccessClock),
+        .I4(\memory_handler/Aout_OUT0 [27]),
+        .O(video_ram_i_52_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair130" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_53
+       (.I0(\PC_reg[31]_1 [30]),
+        .I1(Q[30]),
         .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [11]),
+        .O(video_ram_i_53_n_0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 video_ram_i_54
+       (.CI(video_ram_i_64_n_0),
+        .CO({video_ram_i_54_n_0,video_ram_i_54_n_1,video_ram_i_54_n_2,video_ram_i_54_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(\memory_handler/Aout_OUT0 [28:25]),
+        .S({video_ram_i_65_n_0,video_ram_i_66_n_0,video_ram_i_67_n_0,video_ram_i_68_n_0}));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    video_ram_i_55
+       (.I0(\memory_handler/Aout_OUT0 [29]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [31]),
+        .I3(Q[31]),
+        .I4(MemAddrSrc),
+        .O(video_ram_i_55_n_0));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFBBFCB8)) 
+    video_ram_i_56
+       (.I0(\memory_handler/Aout_OUT0 [25]),
+        .I1(MemAccessClock),
+        .I2(video_ram_i_70_n_0),
+        .I3(\memory_handler/Aout_OUT0 [24]),
+        .I4(video_ram_i_71_n_0),
+        .I5(video_ram_i_72_n_0),
+        .O(video_ram_i_56_n_0));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    video_ram_i_57
+       (.I0(\memory_handler/Aout_OUT0 [10]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [12]),
+        .I3(Q[12]),
+        .I4(MemAddrSrc),
+        .O(video_ram_i_57_n_0));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    video_ram_i_58
+       (.I0(ram_0_i_46_n_0),
+        .I1(ram_0_i_49_n_0),
+        .I2(ram_0_i_45_n_0),
+        .I3(ram_0_i_50_n_0),
+        .O(video_ram_i_58_n_0));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    video_ram_i_59
+       (.I0(\memory_handler/Aout_OUT0 [22]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [24]),
+        .I3(Q[24]),
+        .I4(MemAddrSrc),
+        .O(video_ram_i_59_n_0));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    video_ram_i_6
+       (.I0(graphics_write_enable1),
+        .I1(MemAddrSrc),
+        .I2(Q[11]),
+        .I3(\PC_reg[31]_1 [11]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [9]),
         .O(addra[9]));
-  LUT6 #(
-    .INIT(64'hAAAAA8080000A808)) 
-    video_ram_i_7
-       (.I0(MemAccessClock_reg_0),
-        .I1(\registers_reg[30][31] [10]),
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    video_ram_i_60
+       (.I0(\memory_handler/Aout_OUT0 [21]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [23]),
+        .I3(Q[23]),
+        .I4(MemAddrSrc),
+        .O(video_ram_i_60_n_0));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    video_ram_i_61
+       (.I0(\memory_handler/Aout_OUT0 [20]),
+        .I1(MemAccessClock),
+        .I2(\PC_reg[31]_1 [22]),
+        .I3(Q[22]),
+        .I4(MemAddrSrc),
+        .O(video_ram_i_61_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair129" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_62
+       (.I0(\PC_reg[31]_1 [28]),
+        .I1(Q[28]),
         .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [10]),
+        .O(video_ram_i_62_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair130" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_63
+       (.I0(\PC_reg[31]_1 [29]),
+        .I1(Q[29]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_63_n_0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 video_ram_i_64
+       (.CI(ram_0_i_51_n_0),
+        .CO({video_ram_i_64_n_0,video_ram_i_64_n_1,video_ram_i_64_n_2,video_ram_i_64_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(\memory_handler/Aout_OUT0 [24:21]),
+        .S({video_ram_i_73_n_0,video_ram_i_74_n_0,video_ram_i_75_n_0,video_ram_i_76_n_0}));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_65
+       (.I0(\PC_reg[31]_1 [30]),
+        .I1(Q[30]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_65_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_66
+       (.I0(\PC_reg[31]_1 [29]),
+        .I1(Q[29]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_66_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_67
+       (.I0(\PC_reg[31]_1 [28]),
+        .I1(Q[28]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_67_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_68
+       (.I0(\PC_reg[31]_1 [27]),
+        .I1(Q[27]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_68_n_0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 video_ram_i_69
+       (.CI(video_ram_i_54_n_0),
+        .CO(NLW_video_ram_i_69_CO_UNCONNECTED[3:0]),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({NLW_video_ram_i_69_O_UNCONNECTED[3:1],\memory_handler/Aout_OUT0 [29]}),
+        .S({1'b0,1'b0,1'b0,video_ram_i_77_n_0}));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    video_ram_i_7
+       (.I0(graphics_write_enable1),
+        .I1(MemAddrSrc),
+        .I2(Q[10]),
+        .I3(\PC_reg[31]_1 [10]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [8]),
         .O(addra[8]));
-  LUT6 #(
-    .INIT(64'hAAAAA8080000A808)) 
-    video_ram_i_8
-       (.I0(MemAccessClock_reg_0),
-        .I1(\registers_reg[30][31] [9]),
+  (* SOFT_HLUTNM = "soft_lutpair129" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_70
+       (.I0(\PC_reg[31]_1 [27]),
+        .I1(Q[27]),
         .I2(MemAddrSrc),
-        .I3(\PC_reg[31]_0 [9]),
+        .O(video_ram_i_70_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair128" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_71
+       (.I0(\PC_reg[31]_1 [26]),
+        .I1(Q[26]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_71_n_0));
+  LUT5 #(
+    .INIT(32'hFFFACCFA)) 
+    video_ram_i_72
+       (.I0(video_ram_i_78_n_0),
+        .I1(\memory_handler/Aout_OUT0 [23]),
+        .I2(video_ram_i_79_n_0),
+        .I3(MemAccessClock),
+        .I4(\memory_handler/Aout_OUT0 [14]),
+        .O(video_ram_i_72_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_73
+       (.I0(\PC_reg[31]_1 [26]),
+        .I1(Q[26]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_73_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_74
+       (.I0(\PC_reg[31]_1 [25]),
+        .I1(Q[25]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_74_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_75
+       (.I0(\PC_reg[31]_1 [24]),
+        .I1(Q[24]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_75_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_76
+       (.I0(\PC_reg[31]_1 [23]),
+        .I1(Q[23]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_76_n_0));
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_77
+       (.I0(\PC_reg[31]_1 [31]),
+        .I1(Q[31]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_77_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair128" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_78
+       (.I0(\PC_reg[31]_1 [25]),
+        .I1(Q[25]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_78_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair113" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    video_ram_i_79
+       (.I0(\PC_reg[31]_1 [16]),
+        .I1(Q[16]),
+        .I2(MemAddrSrc),
+        .O(video_ram_i_79_n_0));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    video_ram_i_8
+       (.I0(graphics_write_enable1),
+        .I1(MemAddrSrc),
+        .I2(Q[9]),
+        .I3(\PC_reg[31]_1 [9]),
         .I4(MemAccessClock),
         .I5(\memory_handler/Aout_OUT0 [7]),
         .O(addra[7]));
   LUT6 #(
-    .INIT(64'hFFE200E200000000)) 
+    .INIT(64'hAAAAA8200000A820)) 
     video_ram_i_9
-       (.I0(\registers_reg[30][31] [8]),
+       (.I0(graphics_write_enable1),
         .I1(MemAddrSrc),
-        .I2(\PC_reg[31]_0 [8]),
-        .I3(MemAccessClock),
-        .I4(\memory_handler/Aout_OUT0 [6]),
-        .I5(MemAccessClock_reg_0),
+        .I2(Q[8]),
+        .I3(\PC_reg[31]_1 [8]),
+        .I4(MemAccessClock),
+        .I5(\memory_handler/Aout_OUT0 [6]),
         .O(addra[6]));
 endmodule
 
@@ -18001,9 +17739,9 @@ module design_1_Motherboard_0_0_Graphics
     VSYNC,
     RGB,
     DCLK,
-    wea,
+    \addr_reg[10] ,
     addra,
-    Dout,
+    \addr_reg[10]_0 ,
     CLK,
     RST);
   output [31:0]douta;
@@ -18011,20 +17749,21 @@ module design_1_Motherboard_0_0_Graphics
   output VSYNC;
   output [7:0]RGB;
   input DCLK;
-  input [3:0]wea;
+  input [3:0]\addr_reg[10] ;
   input [10:0]addra;
-  input [31:0]Dout;
+  input [31:0]\addr_reg[10]_0 ;
   input CLK;
   input RST;
 
   wire CLK;
   wire CLK_Hz;
   wire DCLK;
-  wire [31:0]Dout;
   wire HSYNC;
   wire [7:0]RGB;
   wire RST;
   wire VSYNC;
+  wire [3:0]\addr_reg[10] ;
+  wire [31:0]\addr_reg[10]_0 ;
   wire [10:0]addra;
   wire [5:4]addrb1;
   wire ascii_rom_n_0;
@@ -18058,12 +17797,11 @@ module design_1_Motherboard_0_0_Graphics
   wire video_ram_i_25_n_0;
   wire video_ram_i_26_n_0;
   wire video_ram_i_27_n_0;
-  wire video_ram_i_44_n_0;
-  wire video_ram_i_45_n_0;
-  wire video_ram_i_46_n_0;
   wire video_ram_i_47_n_0;
+  wire video_ram_i_48_n_0;
+  wire video_ram_i_49_n_0;
+  wire video_ram_i_50_n_0;
   wire [31:0]vidoe_ram;
-  wire [3:0]wea;
   wire [9:0]y;
 
   FDCE \RGB_reg[10] 
@@ -18121,13 +17859,13 @@ module design_1_Motherboard_0_0_Graphics
         .doutb({vidoe_ram[19],vidoe_ram[3]}),
         .\x_reg[2] (ascii_rom_n_1),
         .\x_reg[3] (ascii_rom_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair204" *) 
+  (* SOFT_HLUTNM = "soft_lutpair167" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \pulse[0]_i_1 
        (.I0(\pulse_reg_n_0_[0] ),
         .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair204" *) 
+  (* SOFT_HLUTNM = "soft_lutpair167" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \pulse[1]_i_1 
@@ -18156,12 +17894,12 @@ module design_1_Motherboard_0_0_Graphics
         .\RGB_reg[1] (ascii_rom_n_1),
         .\RGB_reg[5] (ascii_rom_n_0),
         .RST(RST),
-        .S({video_ram_i_45_n_0,video_ram_i_46_n_0,video_ram_i_47_n_0}),
+        .S({video_ram_i_48_n_0,video_ram_i_49_n_0,video_ram_i_50_n_0}),
         .VSYNC(VSYNC),
         .addrb({vag_controller_n_33,vag_controller_n_34,vag_controller_n_35,vag_controller_n_36,vag_controller_n_37,vag_controller_n_38,vag_controller_n_39,vag_controller_n_40}),
         .doutb({vidoe_ram[30:16],vidoe_ram[14:0]}),
         .video_ram({video_ram_i_25_n_0,video_ram_i_26_n_0,video_ram_i_27_n_0}),
-        .video_ram_i_16_0(video_ram_i_44_n_0),
+        .video_ram_i_16_0(video_ram_i_47_n_0),
         .\x_next_reg[0]_0 ({\pulse_reg_n_0_[1] ,\pulse_reg_n_0_[0] }),
         .\x_reg[3]_0 (sel),
         .\y_reg[9]_0 (y));
@@ -18171,11 +17909,11 @@ module design_1_Motherboard_0_0_Graphics
         .addrb({vag_controller_n_33,vag_controller_n_34,vag_controller_n_35,vag_controller_n_36,vag_controller_n_37,vag_controller_n_38,vag_controller_n_39,vag_controller_n_40,p_0_in_0[2:0]}),
         .clka(DCLK),
         .clkb(CLK),
-        .dina(Dout),
+        .dina(\addr_reg[10]_0 ),
         .dinb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .douta(douta),
         .doutb(vidoe_ram),
-        .wea(wea),
+        .wea(\addr_reg[10] ),
         .web({1'b0,1'b0,1'b0,1'b0}));
   LUT2 #(
     .INIT(4'h6)) 
@@ -18197,78 +17935,66 @@ module design_1_Motherboard_0_0_Graphics
         .O(video_ram_i_27_n_0));
   LUT2 #(
     .INIT(4'h6)) 
-    video_ram_i_44
+    video_ram_i_47
        (.I0(y[9]),
         .I1(y[7]),
-        .O(video_ram_i_44_n_0));
+        .O(video_ram_i_47_n_0));
   LUT2 #(
     .INIT(4'h6)) 
-    video_ram_i_45
+    video_ram_i_48
        (.I0(y[8]),
         .I1(y[6]),
-        .O(video_ram_i_45_n_0));
+        .O(video_ram_i_48_n_0));
   LUT2 #(
     .INIT(4'h6)) 
-    video_ram_i_46
+    video_ram_i_49
        (.I0(y[7]),
         .I1(y[5]),
-        .O(video_ram_i_46_n_0));
+        .O(video_ram_i_49_n_0));
   LUT2 #(
     .INIT(4'h6)) 
-    video_ram_i_47
+    video_ram_i_50
        (.I0(y[6]),
         .I1(y[4]),
-        .O(video_ram_i_47_n_0));
+        .O(video_ram_i_50_n_0));
 endmodule
 
 (* ORIG_REF_NAME = "MemoryHandler" *) 
 module design_1_Motherboard_0_0_MemoryHandler
-   (D,
+   (MemAccessClock_reg,
     Q,
-    Dout,
-    wea,
-    MemAccessClock_reg,
-    \data_reg[0] ,
-    video_ram,
-    \data_reg[7] ,
+    MemAccessClock_reg_0,
+    D,
     E,
     AR,
     \MDR_reg[31] ,
     \MDR_reg[25] ,
-    ram_0_i_1,
-    \data_reg[0]_0 ,
-    \data_reg[0]_1 );
-  output [31:0]D;
-  output [3:0]Q;
-  output [31:0]Dout;
-  output [2:0]wea;
+    video_ram_i_1,
+    video_ram_i_1_0,
+    video_ram_i_1_1);
   output [31:0]MemAccessClock_reg;
-  input \data_reg[0] ;
-  input video_ram;
-  input [31:0]\data_reg[7] ;
+  output [31:0]Q;
+  output [3:0]MemAccessClock_reg_0;
+  input [31:0]D;
   input [0:0]E;
   input [0:0]AR;
   input [31:0]\MDR_reg[31] ;
   input [3:0]\MDR_reg[25] ;
-  input [3:0]ram_0_i_1;
-  input [1:0]\data_reg[0]_0 ;
-  input [1:0]\data_reg[0]_1 ;
+  input [3:0]video_ram_i_1;
+  input [1:0]video_ram_i_1_0;
+  input [1:0]video_ram_i_1_1;
 
   wire [0:0]AR;
   wire [31:0]D;
-  wire [31:0]Dout;
   wire [0:0]E;
   wire [3:0]\MDR_reg[25] ;
   wire [31:0]\MDR_reg[31] ;
   wire [31:0]MemAccessClock_reg;
-  wire [3:0]Q;
-  wire \data_reg[0] ;
-  wire [1:0]\data_reg[0]_0 ;
-  wire [1:0]\data_reg[0]_1 ;
-  wire [31:0]\data_reg[7] ;
-  wire [3:0]ram_0_i_1;
-  wire video_ram;
-  wire [2:0]wea;
+  wire [3:0]MemAccessClock_reg_0;
+  wire [31:0]Q;
+  wire [3:0]video_ram_i_1;
+  wire [1:0]video_ram_i_1_0;
+  wire [1:0]video_ram_i_1_1;
 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
@@ -18279,7 +18005,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [0]),
         .G(\MDR_reg[25] [0]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[0]));
+        .Q(Q[0]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18289,7 +18015,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [10]),
         .G(\MDR_reg[25] [1]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[10]));
+        .Q(Q[10]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18299,7 +18025,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [11]),
         .G(\MDR_reg[25] [1]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[11]));
+        .Q(Q[11]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18309,7 +18035,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [12]),
         .G(\MDR_reg[25] [1]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[12]));
+        .Q(Q[12]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18319,7 +18045,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [13]),
         .G(\MDR_reg[25] [1]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[13]));
+        .Q(Q[13]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18329,7 +18055,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [14]),
         .G(\MDR_reg[25] [1]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[14]));
+        .Q(Q[14]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18339,7 +18065,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [15]),
         .G(\MDR_reg[25] [1]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[15]));
+        .Q(Q[15]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18349,7 +18075,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [16]),
         .G(\MDR_reg[25] [2]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[16]));
+        .Q(Q[16]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18359,7 +18085,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [17]),
         .G(\MDR_reg[25] [2]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[17]));
+        .Q(Q[17]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18369,7 +18095,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [18]),
         .G(\MDR_reg[25] [2]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[18]));
+        .Q(Q[18]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18379,7 +18105,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [19]),
         .G(\MDR_reg[25] [2]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[19]));
+        .Q(Q[19]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18389,7 +18115,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [1]),
         .G(\MDR_reg[25] [0]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[1]));
+        .Q(Q[1]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18399,7 +18125,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [20]),
         .G(\MDR_reg[25] [2]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[20]));
+        .Q(Q[20]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18409,7 +18135,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [21]),
         .G(\MDR_reg[25] [2]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[21]));
+        .Q(Q[21]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18419,7 +18145,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [22]),
         .G(\MDR_reg[25] [2]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[22]));
+        .Q(Q[22]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18429,7 +18155,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [23]),
         .G(\MDR_reg[25] [2]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[23]));
+        .Q(Q[23]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18439,7 +18165,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [24]),
         .G(\MDR_reg[25] [3]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[24]));
+        .Q(Q[24]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18449,7 +18175,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [25]),
         .G(\MDR_reg[25] [3]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[25]));
+        .Q(Q[25]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18459,7 +18185,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [26]),
         .G(\MDR_reg[25] [3]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[26]));
+        .Q(Q[26]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18469,7 +18195,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [27]),
         .G(\MDR_reg[25] [3]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[27]));
+        .Q(Q[27]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18479,7 +18205,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [28]),
         .G(\MDR_reg[25] [3]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[28]));
+        .Q(Q[28]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18489,7 +18215,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [29]),
         .G(\MDR_reg[25] [3]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[29]));
+        .Q(Q[29]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18499,7 +18225,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [2]),
         .G(\MDR_reg[25] [0]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[2]));
+        .Q(Q[2]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18509,7 +18235,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [30]),
         .G(\MDR_reg[25] [3]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[30]));
+        .Q(Q[30]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18519,7 +18245,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [31]),
         .G(\MDR_reg[25] [3]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[31]));
+        .Q(Q[31]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18529,7 +18255,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [3]),
         .G(\MDR_reg[25] [0]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[3]));
+        .Q(Q[3]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18539,7 +18265,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [4]),
         .G(\MDR_reg[25] [0]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[4]));
+        .Q(Q[4]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18549,7 +18275,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [5]),
         .G(\MDR_reg[25] [0]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[5]));
+        .Q(Q[5]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18559,7 +18285,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [6]),
         .G(\MDR_reg[25] [0]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[6]));
+        .Q(Q[6]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18569,7 +18295,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [7]),
         .G(\MDR_reg[25] [0]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[7]));
+        .Q(Q[7]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18579,7 +18305,7 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [8]),
         .G(\MDR_reg[25] [1]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[8]));
+        .Q(Q[8]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
@@ -18589,643 +18315,367 @@ module design_1_Motherboard_0_0_MemoryHandler
         .D(\MDR_reg[31] [9]),
         .G(\MDR_reg[25] [1]),
         .GE(1'b1),
-        .Q(MemAccessClock_reg[9]));
+        .Q(Q[9]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[0] 
        (.CLR(AR),
-        .D(\data_reg[7] [0]),
+        .D(D[0]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[24]));
+        .Q(MemAccessClock_reg[24]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[10] 
        (.CLR(AR),
-        .D(\data_reg[7] [10]),
+        .D(D[10]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[18]));
+        .Q(MemAccessClock_reg[18]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[11] 
        (.CLR(AR),
-        .D(\data_reg[7] [11]),
+        .D(D[11]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[19]));
+        .Q(MemAccessClock_reg[19]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[12] 
        (.CLR(AR),
-        .D(\data_reg[7] [12]),
+        .D(D[12]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[20]));
+        .Q(MemAccessClock_reg[20]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[13] 
        (.CLR(AR),
-        .D(\data_reg[7] [13]),
+        .D(D[13]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[21]));
+        .Q(MemAccessClock_reg[21]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[14] 
        (.CLR(AR),
-        .D(\data_reg[7] [14]),
+        .D(D[14]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[22]));
+        .Q(MemAccessClock_reg[22]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[15] 
        (.CLR(AR),
-        .D(\data_reg[7] [15]),
+        .D(D[15]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[23]));
+        .Q(MemAccessClock_reg[23]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[16] 
        (.CLR(AR),
-        .D(\data_reg[7] [16]),
+        .D(D[16]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[8]));
+        .Q(MemAccessClock_reg[8]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[17] 
        (.CLR(AR),
-        .D(\data_reg[7] [17]),
+        .D(D[17]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[9]));
+        .Q(MemAccessClock_reg[9]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[18] 
        (.CLR(AR),
-        .D(\data_reg[7] [18]),
+        .D(D[18]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[10]));
+        .Q(MemAccessClock_reg[10]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[19] 
        (.CLR(AR),
-        .D(\data_reg[7] [19]),
+        .D(D[19]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[11]));
+        .Q(MemAccessClock_reg[11]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[1] 
        (.CLR(AR),
-        .D(\data_reg[7] [1]),
+        .D(D[1]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[25]));
+        .Q(MemAccessClock_reg[25]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[20] 
        (.CLR(AR),
-        .D(\data_reg[7] [20]),
+        .D(D[20]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[12]));
+        .Q(MemAccessClock_reg[12]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[21] 
        (.CLR(AR),
-        .D(\data_reg[7] [21]),
+        .D(D[21]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[13]));
+        .Q(MemAccessClock_reg[13]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[22] 
        (.CLR(AR),
-        .D(\data_reg[7] [22]),
+        .D(D[22]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[14]));
+        .Q(MemAccessClock_reg[14]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[23] 
        (.CLR(AR),
-        .D(\data_reg[7] [23]),
+        .D(D[23]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[15]));
+        .Q(MemAccessClock_reg[15]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[24] 
        (.CLR(AR),
-        .D(\data_reg[7] [24]),
+        .D(D[24]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[0]));
+        .Q(MemAccessClock_reg[0]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[25] 
        (.CLR(AR),
-        .D(\data_reg[7] [25]),
+        .D(D[25]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[1]));
+        .Q(MemAccessClock_reg[1]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[26] 
        (.CLR(AR),
-        .D(\data_reg[7] [26]),
+        .D(D[26]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[2]));
+        .Q(MemAccessClock_reg[2]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[27] 
        (.CLR(AR),
-        .D(\data_reg[7] [27]),
+        .D(D[27]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[3]));
+        .Q(MemAccessClock_reg[3]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[28] 
        (.CLR(AR),
-        .D(\data_reg[7] [28]),
+        .D(D[28]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[4]));
+        .Q(MemAccessClock_reg[4]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[29] 
        (.CLR(AR),
-        .D(\data_reg[7] [29]),
+        .D(D[29]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[5]));
+        .Q(MemAccessClock_reg[5]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[2] 
        (.CLR(AR),
-        .D(\data_reg[7] [2]),
+        .D(D[2]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[26]));
+        .Q(MemAccessClock_reg[26]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[30] 
        (.CLR(AR),
-        .D(\data_reg[7] [30]),
+        .D(D[30]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[6]));
+        .Q(MemAccessClock_reg[6]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[31] 
        (.CLR(AR),
-        .D(\data_reg[7] [31]),
+        .D(D[31]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[7]));
+        .Q(MemAccessClock_reg[7]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[3] 
        (.CLR(AR),
-        .D(\data_reg[7] [3]),
+        .D(D[3]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[27]));
+        .Q(MemAccessClock_reg[27]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[4] 
        (.CLR(AR),
-        .D(\data_reg[7] [4]),
+        .D(D[4]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[28]));
+        .Q(MemAccessClock_reg[28]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[5] 
        (.CLR(AR),
-        .D(\data_reg[7] [5]),
+        .D(D[5]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[29]));
+        .Q(MemAccessClock_reg[29]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[6] 
        (.CLR(AR),
-        .D(\data_reg[7] [6]),
+        .D(D[6]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[30]));
+        .Q(MemAccessClock_reg[30]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[7] 
        (.CLR(AR),
-        .D(\data_reg[7] [7]),
+        .D(D[7]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[31]));
+        .Q(MemAccessClock_reg[31]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[8] 
        (.CLR(AR),
-        .D(\data_reg[7] [8]),
+        .D(D[8]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[16]));
+        .Q(MemAccessClock_reg[16]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \Dout_OUT_reg[9] 
        (.CLR(AR),
-        .D(\data_reg[7] [9]),
+        .D(D[9]),
         .G(E),
         .GE(1'b1),
-        .Q(Dout[17]));
+        .Q(MemAccessClock_reg[17]));
   (* XILINX_LEGACY_PRIM = "LDP" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDPE #(
     .INIT(1'b1)) 
     \WR_OUT_reg[0] 
-       (.D(ram_0_i_1[0]),
-        .G(\data_reg[0]_0 [1]),
+       (.D(video_ram_i_1[0]),
+        .G(video_ram_i_1_0[1]),
         .GE(1'b1),
-        .PRE(\data_reg[0]_1 [1]),
-        .Q(Q[0]));
+        .PRE(video_ram_i_1_1[1]),
+        .Q(MemAccessClock_reg_0[0]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \WR_OUT_reg[1] 
-       (.CLR(\data_reg[0]_1 [0]),
-        .D(ram_0_i_1[1]),
-        .G(\data_reg[0]_0 [0]),
+       (.CLR(video_ram_i_1_1[0]),
+        .D(video_ram_i_1[1]),
+        .G(video_ram_i_1_0[0]),
         .GE(1'b1),
-        .Q(Q[1]));
+        .Q(MemAccessClock_reg_0[1]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \WR_OUT_reg[2] 
-       (.CLR(\data_reg[0]_1 [0]),
-        .D(ram_0_i_1[2]),
-        .G(\data_reg[0]_0 [0]),
+       (.CLR(video_ram_i_1_1[0]),
+        .D(video_ram_i_1[2]),
+        .G(video_ram_i_1_0[0]),
         .GE(1'b1),
-        .Q(Q[2]));
+        .Q(MemAccessClock_reg_0[2]));
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \WR_OUT_reg[3] 
-       (.CLR(\data_reg[0]_1 [1]),
-        .D(ram_0_i_1[3]),
-        .G(\data_reg[0]_0 [1]),
+       (.CLR(video_ram_i_1_1[1]),
+        .D(video_ram_i_1[3]),
+        .G(video_ram_i_1_0[1]),
         .GE(1'b1),
-        .Q(Q[3]));
-  (* SOFT_HLUTNM = "soft_lutpair168" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[0]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[0]),
-        .O(D[0]));
-  (* SOFT_HLUTNM = "soft_lutpair173" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[10]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[10]),
-        .O(D[10]));
-  (* SOFT_HLUTNM = "soft_lutpair173" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[11]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[11]),
-        .O(D[11]));
-  (* SOFT_HLUTNM = "soft_lutpair174" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[12]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[12]),
-        .O(D[12]));
-  (* SOFT_HLUTNM = "soft_lutpair174" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[13]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[13]),
-        .O(D[13]));
-  (* SOFT_HLUTNM = "soft_lutpair175" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[14]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[14]),
-        .O(D[14]));
-  (* SOFT_HLUTNM = "soft_lutpair175" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[15]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[15]),
-        .O(D[15]));
-  (* SOFT_HLUTNM = "soft_lutpair176" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[16]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[16]),
-        .O(D[16]));
-  (* SOFT_HLUTNM = "soft_lutpair176" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[17]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[17]),
-        .O(D[17]));
-  (* SOFT_HLUTNM = "soft_lutpair177" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[18]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[18]),
-        .O(D[18]));
-  (* SOFT_HLUTNM = "soft_lutpair177" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[19]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[19]),
-        .O(D[19]));
-  (* SOFT_HLUTNM = "soft_lutpair168" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[1]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[1]),
-        .O(D[1]));
-  (* SOFT_HLUTNM = "soft_lutpair178" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[20]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[20]),
-        .O(D[20]));
-  (* SOFT_HLUTNM = "soft_lutpair178" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[21]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[21]),
-        .O(D[21]));
-  (* SOFT_HLUTNM = "soft_lutpair179" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[22]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[22]),
-        .O(D[22]));
-  (* SOFT_HLUTNM = "soft_lutpair179" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[23]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[23]),
-        .O(D[23]));
-  (* SOFT_HLUTNM = "soft_lutpair180" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[24]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[24]),
-        .O(D[24]));
-  (* SOFT_HLUTNM = "soft_lutpair180" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[25]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[25]),
-        .O(D[25]));
-  (* SOFT_HLUTNM = "soft_lutpair181" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[26]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[26]),
-        .O(D[26]));
-  (* SOFT_HLUTNM = "soft_lutpair181" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[27]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[27]),
-        .O(D[27]));
-  (* SOFT_HLUTNM = "soft_lutpair182" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[28]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[28]),
-        .O(D[28]));
-  (* SOFT_HLUTNM = "soft_lutpair182" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[29]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[29]),
-        .O(D[29]));
-  (* SOFT_HLUTNM = "soft_lutpair169" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[2]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[2]),
-        .O(D[2]));
-  (* SOFT_HLUTNM = "soft_lutpair183" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[30]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[30]),
-        .O(D[30]));
-  (* SOFT_HLUTNM = "soft_lutpair183" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[31]_i_2 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[31]),
-        .O(D[31]));
-  (* SOFT_HLUTNM = "soft_lutpair169" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[3]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[3]),
-        .O(D[3]));
-  (* SOFT_HLUTNM = "soft_lutpair170" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[4]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[4]),
-        .O(D[4]));
-  (* SOFT_HLUTNM = "soft_lutpair170" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[5]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[5]),
-        .O(D[5]));
-  (* SOFT_HLUTNM = "soft_lutpair171" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[6]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[6]),
-        .O(D[6]));
-  (* SOFT_HLUTNM = "soft_lutpair171" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[7]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[7]),
-        .O(D[7]));
-  (* SOFT_HLUTNM = "soft_lutpair172" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[8]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[8]),
-        .O(D[8]));
-  (* SOFT_HLUTNM = "soft_lutpair172" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    \data[9]_i_1 
-       (.I0(\data_reg[0] ),
-        .I1(Q[0]),
-        .I2(Dout[9]),
-        .O(D[9]));
-  LUT2 #(
-    .INIT(4'h8)) 
-    video_ram_i_1
-       (.I0(Q[3]),
-        .I1(video_ram),
-        .O(wea[2]));
-  (* SOFT_HLUTNM = "soft_lutpair184" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
-    video_ram_i_2
-       (.I0(Q[2]),
-        .I1(video_ram),
-        .O(wea[1]));
-  (* SOFT_HLUTNM = "soft_lutpair184" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
-    video_ram_i_3
-       (.I0(Q[1]),
-        .I1(video_ram),
-        .O(wea[0]));
+        .Q(MemAccessClock_reg_0[3]));
 endmodule
 
 (* KEYBOARD_MAPPED_ADDRESS = "8896" *) (* KEYBOARD_SIZE = "4" *) (* ORIG_REF_NAME = "Motherboard" *) 
@@ -19251,56 +18701,16 @@ module design_1_Motherboard_0_0_Motherboard
 
   wire CLK;
   wire DCLK;
+  wire [0:0]Dout;
   wire HSYNC;
+  wire PS2CLOCK0;
   wire [9:0]\^RGB ;
   wire RST;
   wire VSYNC;
-  wire amo_v1_n_10;
-  wire amo_v1_n_12;
-  wire amo_v1_n_13;
-  wire amo_v1_n_3;
-  wire amo_v1_n_5;
-  wire amo_v1_n_6;
-  wire amo_v1_n_7;
-  wire amo_v1_n_9;
-  wire amo_v1_n_94;
   wire [12:2]graphics_address;
   wire [31:0]graphics_data_in;
   wire [31:0]graphics_data_out;
-  wire [3:1]graphics_write_enable;
-  wire [31:0]p_1_in;
-  wire ps2_controller_keyboard_n_0;
-  wire ps2_controller_keyboard_n_1;
-  wire ps2_controller_keyboard_n_10;
-  wire ps2_controller_keyboard_n_11;
-  wire ps2_controller_keyboard_n_12;
-  wire ps2_controller_keyboard_n_13;
-  wire ps2_controller_keyboard_n_14;
-  wire ps2_controller_keyboard_n_15;
-  wire ps2_controller_keyboard_n_16;
-  wire ps2_controller_keyboard_n_17;
-  wire ps2_controller_keyboard_n_18;
-  wire ps2_controller_keyboard_n_19;
-  wire ps2_controller_keyboard_n_2;
-  wire ps2_controller_keyboard_n_20;
-  wire ps2_controller_keyboard_n_21;
-  wire ps2_controller_keyboard_n_22;
-  wire ps2_controller_keyboard_n_23;
-  wire ps2_controller_keyboard_n_24;
-  wire ps2_controller_keyboard_n_25;
-  wire ps2_controller_keyboard_n_26;
-  wire ps2_controller_keyboard_n_27;
-  wire ps2_controller_keyboard_n_28;
-  wire ps2_controller_keyboard_n_29;
-  wire ps2_controller_keyboard_n_3;
-  wire ps2_controller_keyboard_n_30;
-  wire ps2_controller_keyboard_n_31;
-  wire ps2_controller_keyboard_n_4;
-  wire ps2_controller_keyboard_n_5;
-  wire ps2_controller_keyboard_n_6;
-  wire ps2_controller_keyboard_n_7;
-  wire ps2_controller_keyboard_n_8;
-  wire ps2_controller_keyboard_n_9;
+  wire [3:0]graphics_write_enable;
   wire pulse;
   wire pulse_i_1_n_0;
   wire [12:2]ram_address;
@@ -19317,37 +18727,34 @@ module design_1_Motherboard_0_0_Motherboard
   assign RGB[3] = \^RGB [0];
   assign RGB[2:0] = \^RGB [2:0];
   design_1_Motherboard_0_0_AMO amo_v1
-       (.D(p_1_in),
-        .\Din_OUT_reg[15]_i_3 (graphics_data_out),
-        .Dout(graphics_data_in),
-        .E(amo_v1_n_94),
-        .MemAccessClock_reg(ram_write_enable),
-        .MemAccessClock_reg_0(ram_address),
-        .Q({ps2_controller_keyboard_n_0,ps2_controller_keyboard_n_1,ps2_controller_keyboard_n_2,ps2_controller_keyboard_n_3,ps2_controller_keyboard_n_4,ps2_controller_keyboard_n_5,ps2_controller_keyboard_n_6,ps2_controller_keyboard_n_7,ps2_controller_keyboard_n_8,ps2_controller_keyboard_n_9,ps2_controller_keyboard_n_10,ps2_controller_keyboard_n_11,ps2_controller_keyboard_n_12,ps2_controller_keyboard_n_13,ps2_controller_keyboard_n_14,ps2_controller_keyboard_n_15,ps2_controller_keyboard_n_16,ps2_controller_keyboard_n_17,ps2_controller_keyboard_n_18,ps2_controller_keyboard_n_19,ps2_controller_keyboard_n_20,ps2_controller_keyboard_n_21,ps2_controller_keyboard_n_22,ps2_controller_keyboard_n_23,ps2_controller_keyboard_n_24,ps2_controller_keyboard_n_25,ps2_controller_keyboard_n_26,ps2_controller_keyboard_n_27,ps2_controller_keyboard_n_28,ps2_controller_keyboard_n_29,ps2_controller_keyboard_n_30,ps2_controller_keyboard_n_31}),
+       (.\Din_OUT_reg[23]_i_5 (ram_data_out),
+        .Dout(Dout),
+        .MemAccessClock_reg(graphics_data_in),
         .RST(RST),
+        .\WR_OUT_reg[3] (graphics_write_enable),
         .a(rom_address),
-        .addra({graphics_address[12],amo_v1_n_5,amo_v1_n_6,amo_v1_n_7,graphics_address[8],amo_v1_n_9,amo_v1_n_10,graphics_address[5],amo_v1_n_12,amo_v1_n_13,graphics_address[2]}),
-        .douta(ram_data_out),
+        .addra(graphics_address),
+        .douta(graphics_data_out),
         .pulse(pulse),
+        .ram_0_i_17(ram_address),
         .spo(rom_data_out),
-        .wea({graphics_write_enable,amo_v1_n_3}));
+        .wea(ram_write_enable));
   design_1_Motherboard_0_0_Graphics graphics
        (.CLK(CLK),
         .DCLK(DCLK),
-        .Dout(graphics_data_in),
         .HSYNC(HSYNC),
         .RGB({\^RGB [8],\^RGB [2],\^RGB [9],\^RGB [4],\^RGB [6:5],\^RGB [0],\^RGB [1]}),
         .RST(RST),
         .VSYNC(VSYNC),
-        .addra({graphics_address[12],amo_v1_n_5,amo_v1_n_6,amo_v1_n_7,graphics_address[8],amo_v1_n_9,amo_v1_n_10,graphics_address[5],amo_v1_n_12,amo_v1_n_13,graphics_address[2]}),
-        .douta(graphics_data_out),
-        .wea({graphics_write_enable,amo_v1_n_3}));
-  design_1_Motherboard_0_0_PS2Controller ps2_controller_keyboard
-       (.CLK(pulse),
-        .D(p_1_in),
-        .E(amo_v1_n_94),
-        .Q({ps2_controller_keyboard_n_0,ps2_controller_keyboard_n_1,ps2_controller_keyboard_n_2,ps2_controller_keyboard_n_3,ps2_controller_keyboard_n_4,ps2_controller_keyboard_n_5,ps2_controller_keyboard_n_6,ps2_controller_keyboard_n_7,ps2_controller_keyboard_n_8,ps2_controller_keyboard_n_9,ps2_controller_keyboard_n_10,ps2_controller_keyboard_n_11,ps2_controller_keyboard_n_12,ps2_controller_keyboard_n_13,ps2_controller_keyboard_n_14,ps2_controller_keyboard_n_15,ps2_controller_keyboard_n_16,ps2_controller_keyboard_n_17,ps2_controller_keyboard_n_18,ps2_controller_keyboard_n_19,ps2_controller_keyboard_n_20,ps2_controller_keyboard_n_21,ps2_controller_keyboard_n_22,ps2_controller_keyboard_n_23,ps2_controller_keyboard_n_24,ps2_controller_keyboard_n_25,ps2_controller_keyboard_n_26,ps2_controller_keyboard_n_27,ps2_controller_keyboard_n_28,ps2_controller_keyboard_n_29,ps2_controller_keyboard_n_30,ps2_controller_keyboard_n_31}),
-        .RST(RST));
+        .\addr_reg[10] (graphics_write_enable),
+        .\addr_reg[10]_0 (graphics_data_in),
+        .addra(graphics_address),
+        .douta(graphics_data_out));
+  design_1_Motherboard_0_0_PS2Controller ps2_controller
+       (.Dout(Dout),
+        .PS2CLOCK0(PS2CLOCK0),
+        .RST(RST),
+        .pulse(pulse));
   LUT1 #(
     .INIT(2'h1)) 
     pulse_i_1
@@ -19374,536 +18781,28 @@ endmodule
 
 (* ORIG_REF_NAME = "PS2Controller" *) 
 module design_1_Motherboard_0_0_PS2Controller
-   (Q,
-    E,
-    D,
-    CLK,
+   (Dout,
+    PS2CLOCK0,
+    pulse,
     RST);
-  output [31:0]Q;
-  input [0:0]E;
-  input [31:0]D;
-  input CLK;
+  output [0:0]Dout;
+  input PS2CLOCK0;
+  input pulse;
   input RST;
 
-  wire CLK;
-  wire [31:0]D;
-  wire [0:0]E;
-  wire [31:0]Q;
+  wire [0:0]Dout;
+  wire PS2CLOCK0;
   wire RST;
-  wire [31:0]data;
+  wire pulse;
 
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \Dout_reg[0] 
-       (.C(CLK),
+       (.C(pulse),
         .CE(1'b1),
         .CLR(RST),
-        .D(data[0]),
-        .Q(Q[0]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[10] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[10]),
-        .Q(Q[10]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[11] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[11]),
-        .Q(Q[11]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[12] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[12]),
-        .Q(Q[12]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[13] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[13]),
-        .Q(Q[13]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[14] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[14]),
-        .Q(Q[14]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[15] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[15]),
-        .Q(Q[15]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[16] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[16]),
-        .Q(Q[16]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[17] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[17]),
-        .Q(Q[17]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[18] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[18]),
-        .Q(Q[18]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[19] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[19]),
-        .Q(Q[19]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[1] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[1]),
-        .Q(Q[1]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[20] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[20]),
-        .Q(Q[20]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[21] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[21]),
-        .Q(Q[21]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[22] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[22]),
-        .Q(Q[22]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[23] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[23]),
-        .Q(Q[23]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[24] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[24]),
-        .Q(Q[24]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[25] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[25]),
-        .Q(Q[25]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[26] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[26]),
-        .Q(Q[26]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[27] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[27]),
-        .Q(Q[27]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[28] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[28]),
-        .Q(Q[28]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[29] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[29]),
-        .Q(Q[29]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[2] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[2]),
-        .Q(Q[2]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[30] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[30]),
-        .Q(Q[30]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[31] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[31]),
-        .Q(Q[31]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[3] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[3]),
-        .Q(Q[3]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[4] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[4]),
-        .Q(Q[4]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[5] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[5]),
-        .Q(Q[5]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[6] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[6]),
-        .Q(Q[6]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[7] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[7]),
-        .Q(Q[7]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[8] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[8]),
-        .Q(Q[8]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \Dout_reg[9] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(RST),
-        .D(data[9]),
-        .Q(Q[9]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[0] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[0]),
-        .Q(data[0]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[10] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[10]),
-        .Q(data[10]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[11] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[11]),
-        .Q(data[11]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[12] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[12]),
-        .Q(data[12]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[13] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[13]),
-        .Q(data[13]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[14] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[14]),
-        .Q(data[14]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[15] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[15]),
-        .Q(data[15]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[16] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[16]),
-        .Q(data[16]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[17] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[17]),
-        .Q(data[17]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[18] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[18]),
-        .Q(data[18]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[19] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[19]),
-        .Q(data[19]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[1] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[1]),
-        .Q(data[1]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[20] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[20]),
-        .Q(data[20]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[21] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[21]),
-        .Q(data[21]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[22] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[22]),
-        .Q(data[22]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[23] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[23]),
-        .Q(data[23]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[24] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[24]),
-        .Q(data[24]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[25] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[25]),
-        .Q(data[25]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[26] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[26]),
-        .Q(data[26]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[27] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[27]),
-        .Q(data[27]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[28] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[28]),
-        .Q(data[28]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[29] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[29]),
-        .Q(data[29]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[2] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[2]),
-        .Q(data[2]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[30] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[30]),
-        .Q(data[30]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[31] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[31]),
-        .Q(data[31]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[3] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[3]),
-        .Q(data[3]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[4] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[4]),
-        .Q(data[4]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[5] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[5]),
-        .Q(data[5]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[6] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[6]),
-        .Q(data[6]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[7] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[7]),
-        .Q(data[7]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[8] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[8]),
-        .Q(data[8]));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \data_reg[9] 
-       (.C(CLK),
-        .CE(E),
-        .CLR(RST),
-        .D(D[9]),
-        .Q(data[9]));
+        .D(PS2CLOCK0),
+        .Q(Dout));
 endmodule
 
 (* ORIG_REF_NAME = "RegisterFile" *) 
@@ -34158,7 +33057,7 @@ module design_1_Motherboard_0_0_VGAController
         .I4(\RGB[11]_i_4_n_0 ),
         .I5(active),
         .O(D[7]));
-  (* SOFT_HLUTNM = "soft_lutpair196" *) 
+  (* SOFT_HLUTNM = "soft_lutpair159" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \RGB[11]_i_4 
@@ -34175,7 +33074,7 @@ module design_1_Motherboard_0_0_VGAController
         .I3(\RGB[6]_i_2_n_0 ),
         .I4(\RGB_reg[1] ),
         .O(D[0]));
-  (* SOFT_HLUTNM = "soft_lutpair197" *) 
+  (* SOFT_HLUTNM = "soft_lutpair160" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \RGB[1]_i_2 
@@ -34220,7 +33119,7 @@ module design_1_Motherboard_0_0_VGAController
         .I3(\RGB_reg[5] ),
         .I4(\RGB[6]_i_4_n_0 ),
         .O(D[3]));
-  (* SOFT_HLUTNM = "soft_lutpair198" *) 
+  (* SOFT_HLUTNM = "soft_lutpair161" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \RGB[6]_i_2 
@@ -34228,7 +33127,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(Q[3]),
         .I2(doutb[15]),
         .O(\RGB[6]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair199" *) 
+  (* SOFT_HLUTNM = "soft_lutpair162" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \RGB[6]_i_3 
@@ -34245,7 +33144,7 @@ module design_1_Motherboard_0_0_VGAController
         .I3(\RGB[7]_i_3_n_0 ),
         .I4(active),
         .O(\RGB[6]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair197" *) 
+  (* SOFT_HLUTNM = "soft_lutpair160" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \RGB[6]_i_5 
@@ -34273,7 +33172,7 @@ module design_1_Motherboard_0_0_VGAController
         .I4(\RGB[11]_i_4_n_0 ),
         .I5(\RGB[1]_i_2_n_0 ),
         .O(\RGB[7]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair198" *) 
+  (* SOFT_HLUTNM = "soft_lutpair161" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \RGB[7]_i_3 
@@ -34300,7 +33199,7 @@ module design_1_Motherboard_0_0_VGAController
         .I3(\RGB_reg[5] ),
         .I4(\RGB[11]_i_4_n_0 ),
         .O(D[5]));
-  (* SOFT_HLUTNM = "soft_lutpair196" *) 
+  (* SOFT_HLUTNM = "soft_lutpair159" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \RGB[9]_i_2 
@@ -34323,7 +33222,7 @@ module design_1_Motherboard_0_0_VGAController
         .CLR(RST),
         .D(active0),
         .Q(active));
-  (* SOFT_HLUTNM = "soft_lutpair199" *) 
+  (* SOFT_HLUTNM = "soft_lutpair162" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \addr[10]_i_1 
@@ -34331,7 +33230,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(Q[3]),
         .I2(doutb[29]),
         .O(\x_reg[3]_0 [6]));
-  (* SOFT_HLUTNM = "soft_lutpair202" *) 
+  (* SOFT_HLUTNM = "soft_lutpair165" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \addr[4]_i_1 
@@ -34339,7 +33238,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(Q[3]),
         .I2(doutb[23]),
         .O(\x_reg[3]_0 [0]));
-  (* SOFT_HLUTNM = "soft_lutpair202" *) 
+  (* SOFT_HLUTNM = "soft_lutpair165" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \addr[5]_i_1 
@@ -34347,7 +33246,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(Q[3]),
         .I2(doutb[24]),
         .O(\x_reg[3]_0 [1]));
-  (* SOFT_HLUTNM = "soft_lutpair201" *) 
+  (* SOFT_HLUTNM = "soft_lutpair164" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \addr[6]_i_1 
@@ -34355,7 +33254,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(Q[3]),
         .I2(doutb[25]),
         .O(\x_reg[3]_0 [2]));
-  (* SOFT_HLUTNM = "soft_lutpair201" *) 
+  (* SOFT_HLUTNM = "soft_lutpair164" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \addr[7]_i_1 
@@ -34363,7 +33262,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(Q[3]),
         .I2(doutb[26]),
         .O(\x_reg[3]_0 [3]));
-  (* SOFT_HLUTNM = "soft_lutpair200" *) 
+  (* SOFT_HLUTNM = "soft_lutpair163" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \addr[8]_i_1 
@@ -34371,7 +33270,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(Q[3]),
         .I2(doutb[27]),
         .O(\x_reg[3]_0 [4]));
-  (* SOFT_HLUTNM = "soft_lutpair200" *) 
+  (* SOFT_HLUTNM = "soft_lutpair163" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \addr[9]_i_1 
@@ -34435,7 +33334,7 @@ module design_1_Motherboard_0_0_VGAController
         .I4(vsync_i_3_n_0),
         .I5(\y_reg[9]_0 [9]),
         .O(vsync0));
-  (* SOFT_HLUTNM = "soft_lutpair193" *) 
+  (* SOFT_HLUTNM = "soft_lutpair156" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     vsync_i_2
@@ -34444,7 +33343,7 @@ module design_1_Motherboard_0_0_VGAController
         .I2(\y_reg[9]_0 [8]),
         .I3(\y_reg[9]_0 [7]),
         .O(vsync_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair192" *) 
+  (* SOFT_HLUTNM = "soft_lutpair155" *) 
   LUT2 #(
     .INIT(4'h2)) 
     vsync_i_3
@@ -34462,14 +33361,14 @@ module design_1_Motherboard_0_0_VGAController
     \x_next[0]_i_1 
        (.I0(Q[0]),
         .O(x_next_0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair203" *) 
+  (* SOFT_HLUTNM = "soft_lutpair166" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \x_next[1]_i_1 
        (.I0(Q[1]),
         .I1(Q[0]),
         .O(x_next_0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair203" *) 
+  (* SOFT_HLUTNM = "soft_lutpair166" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \x_next[2]_i_1 
@@ -34477,7 +33376,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(Q[1]),
         .I2(Q[2]),
         .O(x_next_0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair195" *) 
+  (* SOFT_HLUTNM = "soft_lutpair158" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \x_next[3]_i_1 
@@ -34486,7 +33385,7 @@ module design_1_Motherboard_0_0_VGAController
         .I2(Q[0]),
         .I3(Q[1]),
         .O(x_next_0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair188" *) 
+  (* SOFT_HLUTNM = "soft_lutpair151" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \x_next[4]_i_1 
@@ -34506,7 +33405,7 @@ module design_1_Motherboard_0_0_VGAController
         .I4(Q[6]),
         .I5(Q[5]),
         .O(x_next_0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair188" *) 
+  (* SOFT_HLUTNM = "soft_lutpair151" *) 
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
     \x_next[5]_i_2 
@@ -34524,7 +33423,7 @@ module design_1_Motherboard_0_0_VGAController
         .I2(Q[4]),
         .I3(Q[5]),
         .O(x_next_0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair189" *) 
+  (* SOFT_HLUTNM = "soft_lutpair152" *) 
   LUT5 #(
     .INIT(32'hAAAA6AAA)) 
     \x_next[7]_i_1 
@@ -34534,7 +33433,7 @@ module design_1_Motherboard_0_0_VGAController
         .I3(Q[6]),
         .I4(\x_next[7]_i_2_n_0 ),
         .O(x_next_0[7]));
-  (* SOFT_HLUTNM = "soft_lutpair195" *) 
+  (* SOFT_HLUTNM = "soft_lutpair158" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \x_next[7]_i_2 
@@ -34543,7 +33442,7 @@ module design_1_Motherboard_0_0_VGAController
         .I2(Q[0]),
         .I3(Q[1]),
         .O(\x_next[7]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair194" *) 
+  (* SOFT_HLUTNM = "soft_lutpair157" *) 
   LUT3 #(
     .INIT(8'h41)) 
     \x_next[8]_i_1 
@@ -34551,7 +33450,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(\x_next[9]_i_2_n_0 ),
         .I2(Q[8]),
         .O(x_next_0[8]));
-  (* SOFT_HLUTNM = "soft_lutpair194" *) 
+  (* SOFT_HLUTNM = "soft_lutpair157" *) 
   LUT4 #(
     .INIT(16'h00B4)) 
     \x_next[9]_i_1 
@@ -34560,7 +33459,7 @@ module design_1_Motherboard_0_0_VGAController
         .I2(Q[9]),
         .I3(y_next_1),
         .O(x_next_0[9]));
-  (* SOFT_HLUTNM = "soft_lutpair189" *) 
+  (* SOFT_HLUTNM = "soft_lutpair152" *) 
   LUT5 #(
     .INIT(32'hFFFF7FFF)) 
     \x_next[9]_i_2 
@@ -34695,14 +33594,14 @@ module design_1_Motherboard_0_0_VGAController
     \y_next[0]_i_1 
        (.I0(\y_reg[9]_0 [0]),
         .O(\y_next[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair190" *) 
+  (* SOFT_HLUTNM = "soft_lutpair153" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \y_next[1]_i_1 
        (.I0(\y_reg[9]_0 [0]),
         .I1(\y_reg[9]_0 [1]),
         .O(\y_next[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair190" *) 
+  (* SOFT_HLUTNM = "soft_lutpair153" *) 
   LUT5 #(
     .INIT(32'h0DD0D0D0)) 
     \y_next[2]_i_1 
@@ -34722,7 +33621,7 @@ module design_1_Motherboard_0_0_VGAController
         .I4(\y_reg[9]_0 [2]),
         .I5(\y_reg[9]_0 [3]),
         .O(\y_next[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair191" *) 
+  (* SOFT_HLUTNM = "soft_lutpair154" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \y_next[4]_i_1 
@@ -34749,7 +33648,7 @@ module design_1_Motherboard_0_0_VGAController
         .I1(\y_next[8]_i_2_n_0 ),
         .I2(\y_reg[9]_0 [5]),
         .O(\y_next[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair193" *) 
+  (* SOFT_HLUTNM = "soft_lutpair156" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \y_next[7]_i_1 
@@ -34758,7 +33657,7 @@ module design_1_Motherboard_0_0_VGAController
         .I2(\y_next[8]_i_2_n_0 ),
         .I3(\y_reg[9]_0 [6]),
         .O(\y_next[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair187" *) 
+  (* SOFT_HLUTNM = "soft_lutpair150" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \y_next[8]_i_1 
@@ -34768,7 +33667,7 @@ module design_1_Motherboard_0_0_VGAController
         .I3(\y_reg[9]_0 [6]),
         .I4(\y_reg[9]_0 [7]),
         .O(\y_next[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair191" *) 
+  (* SOFT_HLUTNM = "soft_lutpair154" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \y_next[8]_i_2 
@@ -34808,7 +33707,7 @@ module design_1_Motherboard_0_0_VGAController
         .I4(\y_reg[9]_0 [5]),
         .I5(\y_reg[9]_0 [4]),
         .O(\y_next[9]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair187" *) 
+  (* SOFT_HLUTNM = "soft_lutpair150" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \y_next[9]_i_4 
@@ -34818,7 +33717,7 @@ module design_1_Motherboard_0_0_VGAController
         .I3(\y_reg[9]_0 [6]),
         .I4(\y_next[8]_i_2_n_0 ),
         .O(\y_next[9]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair192" *) 
+  (* SOFT_HLUTNM = "soft_lutpair155" *) 
   LUT5 #(
     .INIT(32'h4444FF4F)) 
     \y_next[9]_i_5 
