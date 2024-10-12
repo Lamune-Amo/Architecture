@@ -33,18 +33,30 @@ module PS2Controller(
     input DATA
     );
     reg [31:0] data;
+    wire [7:0] received;
     
     always @(negedge CLK or posedge RST) begin
         if (RST) begin
-            data <= 32'h0;
+            data <= 32'hffffffff;
             Dout <= 32'h0;
         end
         else begin
             Dout <= data;
-            if (RD)
-                data <= 32'h0;
-            if (WR)
+            if (INT)
+                data <= { received, 24'h0 };
+            else if (RD)
+                data <= 32'hffffffff;
+            else if (WR)
                 data <= Din;
         end
     end
+    
+    PS2RX ps2rx (
+        .CLK(CLK),
+        .RST(RST),
+        .CLOCK(CLOCK),
+        .DATA(DATA),
+        .INT(INT),
+        .Dout(received)
+    );
 endmodule

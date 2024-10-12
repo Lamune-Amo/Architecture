@@ -41,12 +41,17 @@
     </Object>
   </ObjectList>
   <ObjectList object_type="hw_probe" gui_info="">
-    <Object name="design_1_i/Motherboard_0/inst/amo_v1/PC[31:0]" gui_info="Trigger Setup=0"/>
+    <Object name="PS2CLOCK0_IBUF" gui_info=""/>
+    <Object name="PS2DATA0_IBUF" gui_info=""/>
+    <Object name="design_1_i/Motherboard_0/inst/amo_v1/PC[31:0]" gui_info=""/>
     <Object name="design_1_i/Motherboard_0/inst/amo_v1/WR[3:0]" gui_info=""/>
     <Object name="design_1_i/Motherboard_0/inst/amo_v1/control_unit/next_state[5:0]" gui_info=""/>
     <Object name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[31:0]" gui_info=""/>
     <Object name="design_1_i/Motherboard_0/inst/ps2_controller/PS2CLOCK0" gui_info=""/>
     <Object name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/state0_in[3:0]" gui_info=""/>
+    <Object name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/INT_reg" gui_info="Trigger Setup=0"/>
+    <Object name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/PS2CLOCK0" gui_info=""/>
+    <Object name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/INT_reg_0" gui_info="Trigger Setup=0"/>
     <Object name="design_1_i/Motherboard_0/inst/ram_0/douta[31:0]" gui_info="Trigger Setup=0"/>
   </ObjectList>
   <probeset name="hw project" active="false">
@@ -81,7 +86,7 @@
         <Option Id="DISPLAY_VISIBILITY" value=""/>
         <Option Id="HW_ILA" value="hw_ila_1"/>
         <Option Id="LINK_TO_WAVEFORM" value="1"/>
-        <Option Id="MAP" value="probe0[0]"/>
+        <Option Id="MAP" value="probe3[0]"/>
         <Option Id="NAME.CUSTOM" value=""/>
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
@@ -102,7 +107,7 @@
         <Option Id="DISPLAY_VISIBILITY" value=""/>
         <Option Id="HW_ILA" value="hw_ila_1"/>
         <Option Id="LINK_TO_WAVEFORM" value="1"/>
-        <Option Id="MAP" value="probe1[0]"/>
+        <Option Id="MAP" value="probe4[0]"/>
         <Option Id="NAME.CUSTOM" value=""/>
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
@@ -217,7 +222,7 @@
         <net name="design_1_i/Motherboard_0/inst/amo_v1/Din_BIG[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
@@ -227,7 +232,7 @@
         <Option Id="DISPLAY_VISIBILITY" value=""/>
         <Option Id="HW_ILA" value="hw_ila_1"/>
         <Option Id="LINK_TO_WAVEFORM" value="1"/>
-        <Option Id="MAP" value="probe1[31:0]"/>
+        <Option Id="MAP" value="probe3[31:0]"/>
         <Option Id="NAME.CUSTOM" value=""/>
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
@@ -269,10 +274,10 @@
         <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
-        <Option Id="COMPARE_VALUE.0" value="eq32&apos;h0000_01BC"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
         <Option Id="DISPLAY_AS_ENUM" value="1"/>
         <Option Id="DISPLAY_HINT" value=""/>
         <Option Id="DISPLAY_RADIX" value="HEX"/>
@@ -283,7 +288,7 @@
         <Option Id="NAME.CUSTOM" value=""/>
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
-        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;h0000_01BC"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
         <Option Id="WAVEFORM_STYLE" value="Digital"/>
       </probeOptions>
       <nets>
@@ -345,7 +350,7 @@
         <net name="design_1_i/Motherboard_0/inst/amo_v1/WR[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq6&apos;hXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq6&apos;hXX"/>
@@ -797,6 +802,217 @@
         <net name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/state0_in[2]"/>
         <net name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/state0_in[1]"/>
         <net name="design_1_i/Motherboard_0/inst/ps2_controller/ps2rx/state0_in[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;b1"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe4[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;b1"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/INT_reg"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe6[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/PS2CLOCK0"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe7[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/PS2DATA0"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe1[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/data[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;b1"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe2[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;b1"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/INT_reg_0"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq10&apos;hXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq10&apos;hXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[9:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq10&apos;hXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/bits[2]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq4&apos;hX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe3[3:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/state_reg[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/state_reg[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/state_reg[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/ps2rx/state_reg[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe5[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/ps2_controller_keyboard/pulse"/>
       </nets>
     </probe>
     <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">

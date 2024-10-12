@@ -21,26 +21,21 @@
 
 
 module Testbench_PS2();
-    reg clk, rst, clock, data, WR;
-    wire hsync, vsync;
-    wire [11:0] rgb;
-    wire a, b;
+    reg clk, rst, clock, data;
     
     Motherboard cu0(
-        .CLK(clk),
+        .CLK(),
+        .DCLK(clk),
         .RST(rst),
-        .HSYNC(hsync),
-	    .VSYNC(vsync),
-	    .RGB(rgb),
-	    .PS2CLOCK0(a),
-	    .PS2DATA0(b)
+        .HSYNC(),
+	    .VSYNC(),
+	    .RGB(),
+	    .PS2CLOCK0(clock),
+	    .PS2DATA0(data)
     );
-    
-    assign a = clock;
-    assign b = data;
 
     initial begin
-        clk = 1; rst = 1'b0; WR = 1'b0; clock = 1'b1; data = 1'b1;
+        clk = 1; rst = 1'b0; clock = 1'b1; data = 1'b1;
         #1;
         rst = 1'b1;
         #1;
@@ -113,9 +108,9 @@ module Testbench_PS2();
         
         
         #100;
-        WR = 1'b1;
+
         #10;
-        WR = 1'b0;
+
         #100;
         
         
