@@ -40,15 +40,19 @@ module Motherboard(
     parameter VIDEO_RAM_MAPPED_ADDRESS = 4096; /* VIDEO RAM: 4096 ~ 8896 - 1 */
     parameter VIDEO_RAM_SIZE = 2 * 80 * 30;
     
-    parameter KEYBOARD_MAPPED_ADDRESS = 8896; /* VIDEO RAM: 8896 ~ 8900 - 1 */
+    parameter INTERRUPT_MAPPED_ADDRESS = 8896; /* VIDEO RAM: 8896 ~ 8900 - 1 */
+    parameter INTERRUPT_SIZE = 4;
+    
+    parameter KEYBOARD_MAPPED_ADDRESS = 8900; /* VIDEO RAM: 8900 ~ 8904 - 1 */
     parameter KEYBOARD_SIZE = 4;
     
-    parameter RAM_MAPPED_ADDRESS = 9000; /* RAM: 9000 ~ 17192 - 1 */
-    parameter RAM_SIZE = 4 * 2048; /* 2KB */
+    parameter RAM_MAPPED_ADDRESS = 9216; /* RAM: 9216 ~ 17408 - 1 */
+    parameter RAM_SIZE = 4 * 2048; /* 8KB */
 
     /* wires */
     wire [31:0] Din, Aout, Dout;
     wire [3:0] WR;
+    wire INT;
     
     /* clock */
     reg pulse;
@@ -93,6 +97,24 @@ module Motherboard(
     assign graphics_address = (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? Aout - VIDEO_RAM_MAPPED_ADDRESS : 32'h0;
     assign graphics_data_in = Dout;
     
+    /* Interrupt */
+    wire [31:0] interrupt_data_out;
+    wire interrupt_read_enable;
+    wire INT0, INT1;
+    
+    InterruptController interrupt_contoller (
+        .CLK(DCLK_HALF),
+        .RST(RST),
+        .RD(interrupt_read_enable),
+        .INT(INT),
+        .Dout(interrupt_data_out),
+        /* interrupt line */
+        .INT0(), /* timer */
+        .INT1(INT1)  /* ps/2 keyboard */
+    );
+    
+    assign interrupt_read_enable = ((INTERRUPT_MAPPED_ADDRESS <= Aout && Aout <= INTERRUPT_MAPPED_ADDRESS + INTERRUPT_SIZE - 1) && (WR == 4'h0)) ? 1'h1 : 1'h0;
+    
     /* PS/2 Keyboard */
     wire [31:0] ps2_keyboard_data_in, ps2_keyboard_data_out;
     wire ps2_keyboard_read_enable, ps2_keyboard_write_enable;
@@ -102,15 +124,15 @@ module Motherboard(
         .RST(RST),
         .RD(ps2_keyboard_read_enable),
         .WR(ps2_keyboard_write_enable),
-        .INT(),
+        .INT(INT1),
         .Din(ps2_keyboard_data_in),
         .Dout(ps2_keyboard_data_out),
         .CLOCK(PS2CLOCK0),
         .DATA(PS2DATA0)
     );
     
-    assign ps2_keyboard_read_enable = ((KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) && (WR[0] == 0)) ? 1'h1 : 1'h0;
-    assign ps2_keyboard_write_enable = (KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) ? WR[0] : 1'h0;
+    assign ps2_keyboard_read_enable = ((KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) && (WR == 4'h0)) ? 1'h1 : 1'h0;
+    assign ps2_keyboard_write_enable = (KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) ? (WR[3] | WR[2] | WR[1] | WR[0]) : 1'h0;
     assign ps2_keyboard_data_in = Dout;
     
     /* RAM */
@@ -139,6 +161,7 @@ module Motherboard(
     AMO amo_v1 (
         .CLK(DCLK_HALF),
         .RST(RST),
+        .INT(INT),
         .Din(Din),
         .WR(WR),
         .Aout(Aout),

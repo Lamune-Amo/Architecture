@@ -28,42 +28,48 @@ module PS2RX(
     output reg INT,
     output reg [7:0] Dout
     );
+    reg [1:0] state;
+    reg [3:0] position;
     reg [10:0] bits;
-    reg falled;
-    reg [3:0] state;
-    wire [3:0] next_state;
+    wire [3:0] next_position;
     
     always @(posedge CLK or posedge RST) begin
         if (RST) begin
+            state <= 2'h0;
+            position <= 4'h0;
             bits <= 11'h0;
-            falled <= 1'b0;
-            state <= 4'h0;
             INT <= 1'b0;
             Dout <= 8'h0;
         end
         else begin
-            if (state != 4'hB) begin
-                INT <= 1'b0;
-                if (falled == 1'b0 && CLOCK == 1'b0) begin
-                    falled <= 1'b1;
+            if (state == 2'h0 && CLOCK == 1'b0) begin
+                state <= 2'h1;
+            end
+            else if (state == 2'h1) begin
+                state <= 2'h2;
+                bits[position] <= DATA;
+                position <= next_position;
+            end
+            else if (state == 2'h2 && CLOCK == 1'b1) begin
+                if (position == 4'hB) begin
+                    state <= 2'h3;
                 end
-                if (falled == 1'b1 && CLOCK == 1'b1) begin
-                    falled <= 1'b0;
-                    /* rising edge */
-                    bits[state] <= DATA;
-                    state <= next_state;
+                else begin
+                    state <= 2'h0;
                 end
             end
-            else begin
+            else if (state == 2'h3) begin
+                position <= 4'h0;
+                state <= 2'h0;
                 /* received */
-                bits <= 11'h0;
-                falled <= 1'b0;
-                state <= 4'h0;
                 INT <= 1'b1;
                 Dout <= bits[8:1];
+            end
+            else begin
+                INT <= 1'b0;
             end
         end
     end
     
-    assign next_state = state + 1;
+    assign next_position = position + 1;
 endmodule

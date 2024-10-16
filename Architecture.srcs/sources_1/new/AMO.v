@@ -23,6 +23,7 @@
 module AMO(
     input CLK,
     input RST,
+    input INT,
     input [31:0] Din,
     output [3:0] WR,
     output [31:0] Aout,
