@@ -24,6 +24,7 @@ module InterruptController(
     input CLK,
     input RST,
     input RD,
+    input RDINT,
     output reg INT,
     output reg [31:0] Dout,
     /* interrupt line */
@@ -47,6 +48,9 @@ module InterruptController(
             else if (INT1) begin
                 INT <= 1'b1;
                 data <= { 8'h1, 24'h0 };
+            end
+            else if (RDINT) begin
+                INT <= 1'b0;
             end
             else if (RD) begin
                 INT <= 1'b0;

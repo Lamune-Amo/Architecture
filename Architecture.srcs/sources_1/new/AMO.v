@@ -24,6 +24,7 @@ module AMO(
     input CLK,
     input RST,
     input INT,
+    output RDINT,
     input [31:0] Din,
     output [3:0] WR,
     output [31:0] Aout,
@@ -34,18 +35,20 @@ module AMO(
     reg [31:0] Rs, Rn;
     
     /* system registers */
+    /* interrupt descriptor table register */
+    reg [31:0] IDTR;
     reg [3:0] CPSR;
-    reg CR0;
     
     /* wires */
     wire [31:0] Din_BIG, Dout_BIG;
     
     wire [3:0] ALUOpcode;
-    wire [2:0] PCSource, PCWriteCondSrc;
-    wire [1:0] RegDataInSrc, RegWriteSrc, MemAccess, ALUSrcB;
-    wire PCWrite, PCWriteCond, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, CR0WriteEn, CR0ModeSrc;    
+    wire [2:0] PCSource, PCWriteCondSrc, INTType, RegWriteSrc;
+    wire [1:0] RegDataInSrc, MemAccess, ALUSrcB;
+    wire PCWrite, PCWriteCond, MemAddrSrc, MemInSrc, MemWriteEn, IRWriteEn, RegWriteEn, ExtendImm, SignedExtend, ALUAddCarry, ALUSrcA, ALUOpcodeSrc, CPSRWriteEn, SPRWriteEn;    
     wire MemAccessClock;
     
+    wire [31:0] InterruptAddress;
     wire [31:0] PC_next;
     
     wire [31:0] data_out1, data_out2;
@@ -62,7 +65,6 @@ module AMO(
     
     /* system wires */
     wire Overflow, Carry, Zero, Negative;
-    wire CR0Mode;
     
     /* rising edge */
     always @(posedge CLK or posedge RST) begin
@@ -75,8 +77,8 @@ module AMO(
             Rs <= 32'h0;
             Rn <= 32'h0;
             /* system */
+            IDTR <= 32'h0;
             CPSR <= 4'h0;
-            CR0 <= 1'h0;
         end
         else begin
             /* common */
@@ -89,20 +91,24 @@ module AMO(
             Rs <= data_out1;
             Rn <= data_out2;
             /* system */
+            if (SPRWriteEn && imm16 == 32'h0)
+                IDTR <= Rs;
             if (CPSRWriteEn)
                 CPSR <= { FlagInNegative, FlagInZero, FlagInCarry, FlagInOverflow };
-            if (CR0WriteEn)
-                CR0 <= CR0ModeSrc;
         end
     end
     
     /* system */
+    assign InterruptAddress = (INTType == 3'h0) ? IDTR : /* reset */
+                              (INTType == 3'h1) ? IDTR + 32'h4 : /* undefined */
+                              (INTType == 3'h2) ? IDTR + 32'h8 : /* interrupt */
+                              (INTType == 3'h3) ? IDTR + 32'hC : /* IRQ */
+                              32'h0;
+    
     assign Overflow = CPSR[0];
     assign Carry = CPSR[1];
     assign Zero = CPSR[2];
     assign Negative = CPSR[3];
-    
-    assign CR0Mode = CR0;
     
     /* imm */
     assign extend16 = (SignedExtend == 1'b0) ? { 16'h0, IR[15:0] } : { {16{IR[15]}}, IR[15:0] };
@@ -127,13 +133,15 @@ module AMO(
         .data_out2(data_out2)
     );
     
-    assign write_register = (RegWriteSrc == 2'h0) ? 5'h1F :
-                            (RegWriteSrc == 2'h1) ? IR[15:11] :
-                            (RegWriteSrc == 2'h2) ? IR[20:16] : IR[25:21];
+    assign write_register = (RegWriteSrc == 3'h0) ? 5'h1F :
+                            (RegWriteSrc == 3'h1) ? IR[15:11] :
+                            (RegWriteSrc == 3'h2) ? IR[20:16] : 
+                            (RegWriteSrc == 3'h3) ? IR[25:21] : 5'h1A;
     assign data_in_mux = (RegDataInSrc == 2'h0) ? ALUOut :
                          (RegDataInSrc == 2'h1) ? Rn :
                          (RegDataInSrc == 2'h2) ? imm21 : MDR;
-    assign data_in = (RegWriteSrc == 2'h0) ? PC : data_in_mux;
+    assign data_in = (RegWriteSrc == 3'h0) ? PC :
+                     (RegWriteSrc == 3'h4) ? PC : data_in_mux;
     
     OpcodeToALUOpcode opcode_to_aluop (
         .opcode(IR[31:26]),
@@ -161,7 +169,7 @@ module AMO(
                      (PCSource == 3'h1) ? ALUOut :
                      (PCSource == 3'h2) ? { PC[31:28], imm26[27:0] } :
                      (PCSource == 3'h3) ? Rs :
-                     (PCSource == 3'h4) ? 32'h8 : 32'h0;
+                     (PCSource == 3'h4) ? InterruptAddress : 32'h0;
                      
     Condition condition (
         .carry(FlagInCarry),
@@ -177,19 +185,21 @@ module AMO(
     ControlUnit control_unit(
         .CLK(CLK),
         .RST(RST),
+        .INT(INT),
+        .RDINT(RDINT),
         .opcode(IR[31:26]),
         .address((MemAddrSrc == 1'b0) ? PC : ALUOut),
         /* 4-bit */
         .ALUOpcode(ALUOpcode),
         /* 3-bit */
-        .PCSource(PCSource), .PCWriteCondSrc(PCWriteCondSrc),
+        .PCSource(PCSource), .PCWriteCondSrc(PCWriteCondSrc), .INTType(INTType), .RegWriteSrc(RegWriteSrc),
         /* 2-bit */
-        .RegDataInSrc(RegDataInSrc), .RegWriteSrc(RegWriteSrc), .MemAccess(MemAccess), .ALUSrcB(ALUSrcB),
+        .RegDataInSrc(RegDataInSrc), .MemAccess(MemAccess), .ALUSrcB(ALUSrcB),
         /* 1-bit */
         .PCWrite(PCWrite), .PCWriteCond(PCWriteCond), .MemAddrSrc(MemAddrSrc), .MemInSrc(MemInSrc),
         .MemWriteEn(MemWriteEn), .IRWriteEn(IRWriteEn), .RegWriteEn(RegWriteEn), .ExtendImm(ExtendImm),
         .SignedExtend(SignedExtend), .ALUAddCarry(ALUAddCarry), .ALUSrcA(ALUSrcA), .ALUOpcodeSrc(ALUOpcodeSrc),
-        .CPSRWriteEn(CPSRWriteEn), .CR0WriteEn(CR0WriteEn), .CR0ModeSrc(CR0ModeSrc),
+        .CPSRWriteEn(CPSRWriteEn), .SPRWriteEn(SPRWriteEn),
         .MemAccessClock(MemAccessClock)
     );
     

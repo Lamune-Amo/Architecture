@@ -22,6 +22,7 @@
 
 module Testbench();
     reg clk, dclk, rst;
+    reg clock, data;
     
     Motherboard cu0(
         .CLK(clk),
@@ -30,19 +31,131 @@ module Testbench();
         .HSYNC(),
 	    .VSYNC(),
 	    .RGB(),
-	    .PS2CLOCK0(1'b1),
-	    .PS2DATA0(1'b1)
+	    .PS2CLOCK0(clock),
+	    .PS2DATA0(data)
     );
 
     initial begin
-        clk = 1; dclk = 1; rst = 1'b0;
+        clk = 1; dclk = 1; rst = 1'b0; clock = 1'b1; data = 1'b1;
         #1;
         rst = 1'b1;
         #5;
         rst = 1'b0;
-
-        #208503;
         
+        #333110;
+        /*
+        #100;
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        */
+        
+        #20;
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+        #20;
+        
+        clock = 1'b0;
+        #20;
+        clock = 1'b1;
+
+        #300030;
         $finish;
     end
     

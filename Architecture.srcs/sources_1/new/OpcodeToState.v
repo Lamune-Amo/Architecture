@@ -84,7 +84,11 @@ module OpcodeToState(
 
             6'h2C: state = 8'h31;
             6'h2D: state = 8'h33;
-
+            6'h2E: state = 8'h35;
+            6'h2F: state = 8'h37;
+            
+            6'h30: state = 8'h38;
+            
             /* invalid */
             default: state = 8'h0;
         endcase

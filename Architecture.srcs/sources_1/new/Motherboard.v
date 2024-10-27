@@ -46,13 +46,13 @@ module Motherboard(
     parameter KEYBOARD_MAPPED_ADDRESS = 8900; /* VIDEO RAM: 8900 ~ 8904 - 1 */
     parameter KEYBOARD_SIZE = 4;
     
-    parameter RAM_MAPPED_ADDRESS = 9216; /* RAM: 9216 ~ 17408 - 1 */
-    parameter RAM_SIZE = 4 * 2048; /* 8KB */
+    parameter RAM_MAPPED_ADDRESS = 9216; /* RAM: 9216 ~ 91136 - 1 */
+    parameter RAM_SIZE = 4 * 20480; /* 8KB */
 
     /* wires */
     wire [31:0] Din, Aout, Dout;
     wire [3:0] WR;
-    wire INT;
+    wire INT, RDINT;
     
     /* clock */
     reg pulse;
@@ -106,6 +106,7 @@ module Motherboard(
         .CLK(DCLK_HALF),
         .RST(RST),
         .RD(interrupt_read_enable),
+        .RDINT(RDINT),
         .INT(INT),
         .Dout(interrupt_data_out),
         /* interrupt line */
@@ -147,7 +148,7 @@ module Motherboard(
     
     blk_mem_ram ram_0(
         .clka(DCLK_D),
-        .addra(ram_address[12:2]),
+        .addra(ram_address[16:2]),
         .dina(ram_data_in),
         .douta(ram_data_out),
         .wea(ram_write_enable)
@@ -162,6 +163,7 @@ module Motherboard(
         .CLK(DCLK_HALF),
         .RST(RST),
         .INT(INT),
+        .RDINT(RDINT),
         .Din(Din),
         .WR(WR),
         .Aout(Aout),
@@ -169,6 +171,7 @@ module Motherboard(
     );
     assign Din = (0 <= Aout && Aout <= ROM_MAPPED_ADDRESS + ROM_SIZE - 1) ? rom_data_out :
                  (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? graphics_data_out :
+                 (INTERRUPT_MAPPED_ADDRESS <= Aout && Aout <= INTERRUPT_MAPPED_ADDRESS + INTERRUPT_SIZE - 1) ? interrupt_data_out :
                  (KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) ? ps2_keyboard_data_out :
                  (RAM_MAPPED_ADDRESS <= Aout && Aout <= RAM_MAPPED_ADDRESS + RAM_SIZE - 1) ? ram_data_out :
                  32'h0;

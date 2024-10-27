@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-// Date        : Wed Oct 16 22:59:29 2024
+// Date        : Mon Oct 28 01:22:40 2024
 // Host        : DESKTOP-TDU015C running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               e:/Project/Capstone/Architecture/Architecture.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_stub.v
@@ -16,11 +16,11 @@
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* x_core_info = "blk_mem_gen_v8_4_7,Vivado 2023.2" *)
 module blk_mem_ram(clka, wea, addra, dina, douta)
-/* synthesis syn_black_box black_box_pad_pin="wea[3:0],addra[10:0],dina[31:0],douta[31:0]" */
+/* synthesis syn_black_box black_box_pad_pin="wea[3:0],addra[14:0],dina[31:0],douta[31:0]" */
 /* synthesis syn_force_seq_prim="clka" */;
   input clka /* synthesis syn_isclock = 1 */;
   input [3:0]wea;
-  input [10:0]addra;
+  input [14:0]addra;
   input [31:0]dina;
   output [31:0]douta;
 endmodule

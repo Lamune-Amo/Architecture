@@ -84,6 +84,10 @@ module OpcodeToALUOpcode(
 
             6'h2C: ALUOpcode = 4'hx;
             6'h2D: ALUOpcode = 4'hx;
+            6'h2E: ALUOpcode = 4'hx;
+            6'h2F: ALUOpcode = 4'hx;
+            
+            6'h30: ALUOpcode = 4'hx;
             
             /* invalid */
             default: ALUOpcode = 4'h0;

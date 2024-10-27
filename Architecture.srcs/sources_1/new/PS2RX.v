@@ -42,31 +42,37 @@ module PS2RX(
             Dout <= 8'h0;
         end
         else begin
-            if (state == 2'h0 && CLOCK == 1'b0) begin
-                state <= 2'h1;
+            INT <= 1'b0;
+            if (state == 2'h0) begin
+                if (CLOCK == 1'b0)
+                    state <= 2'h1;
+                else
+                    state <= 2'h0;
             end
             else if (state == 2'h1) begin
                 state <= 2'h2;
                 bits[position] <= DATA;
                 position <= next_position;
             end
-            else if (state == 2'h2 && CLOCK == 1'b1) begin
-                if (position == 4'hB) begin
-                    state <= 2'h3;
+            else if (state == 2'h2) begin
+                if (CLOCK == 1'b1) begin
+                    if (position == 4'hB) begin
+                        state <= 2'h3;
+                    end
+                    else begin
+                        state <= 2'h0;
+                    end
                 end
                 else begin
-                    state <= 2'h0;
+                    state <= 2'h2;
                 end
             end
-            else if (state == 2'h3) begin
+            else begin
                 position <= 4'h0;
                 state <= 2'h0;
                 /* received */
                 INT <= 1'b1;
                 Dout <= bits[8:1];
-            end
-            else begin
-                INT <= 1'b0;
             end
         end
     end
