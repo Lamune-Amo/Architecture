@@ -1,0 +1,434 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sun Oct 27 15:25:43 2024
+# Process ID: 27092
+# Current directory: E:/Project/Capstone/Architecture
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13108 E:\Project\Capstone\Architecture\Architecture.xpr
+# Log file: E:/Project/Capstone/Architecture/vivado.log
+# Journal file: E:/Project/Capstone/Architecture\vivado.jou
+# Running On: DESKTOP-TDU015C, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 12, Host memory: 34306 MB
+#-----------------------------------------------------------
+start_gui
+open_project E:/Project/Capstone/Architecture/Architecture.xpr
+update_compile_order -fileset sources_1
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+current_hw_device [get_hw_devices xc7z020_1]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7z020_1] 0]
+create_hw_cfgmem -hw_device [get_hw_devices xc7z020_1] -mem_dev [lindex [get_cfgmem_parts {is25lp256d-qspi-x4-single}] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+close_hw_manager
+generate_target Simulation [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target Simulation [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_video/dist_mem_video.xci]
+generate_target Simulation [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0.xci]
+launch_simulation
+source Testbench.tcl
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/amo_v1/PC}} 
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/amo_v1/control_unit/state}} 
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/amo_v1/control_unit/INTBlockReg}} 
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/interrupt_contoller/INT}} 
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/interrupt_contoller/RDINT}} 
+relaunch_sim
+current_wave_config {Untitled 1}
+add_wave {{/Testbench/cu0/amo_v1/register_file/registers[0]}} {{/Testbench/cu0/amo_v1/register_file/registers[1]}} {{/Testbench/cu0/amo_v1/register_file/registers[2]}} {{/Testbench/cu0/amo_v1/register_file/registers[3]}} {{/Testbench/cu0/amo_v1/register_file/registers[4]}} {{/Testbench/cu0/amo_v1/register_file/registers[5]}} {{/Testbench/cu0/amo_v1/register_file/registers[6]}} {{/Testbench/cu0/amo_v1/register_file/registers[7]}} {{/Testbench/cu0/amo_v1/register_file/registers[8]}} {{/Testbench/cu0/amo_v1/register_file/registers[9]}} {{/Testbench/cu0/amo_v1/register_file/registers[10]}} {{/Testbench/cu0/amo_v1/register_file/registers[11]}} {{/Testbench/cu0/amo_v1/register_file/registers[12]}} {{/Testbench/cu0/amo_v1/register_file/registers[13]}} {{/Testbench/cu0/amo_v1/register_file/registers[14]}} {{/Testbench/cu0/amo_v1/register_file/registers[15]}} {{/Testbench/cu0/amo_v1/register_file/registers[16]}} {{/Testbench/cu0/amo_v1/register_file/registers[17]}} {{/Testbench/cu0/amo_v1/register_file/registers[18]}} {{/Testbench/cu0/amo_v1/register_file/registers[19]}} {{/Testbench/cu0/amo_v1/register_file/registers[20]}} {{/Testbench/cu0/amo_v1/register_file/registers[21]}} {{/Testbench/cu0/amo_v1/register_file/registers[22]}} {{/Testbench/cu0/amo_v1/register_file/registers[23]}} {{/Testbench/cu0/amo_v1/register_file/registers[24]}} {{/Testbench/cu0/amo_v1/register_file/registers[25]}} {{/Testbench/cu0/amo_v1/register_file/registers[26]}} {{/Testbench/cu0/amo_v1/register_file/registers[27]}} {{/Testbench/cu0/amo_v1/register_file/registers[28]}} {{/Testbench/cu0/amo_v1/register_file/registers[29]}} {{/Testbench/cu0/amo_v1/register_file/registers[30]}} {{/Testbench/cu0/amo_v1/register_file/registers[31]}} 
+relaunch_sim
+close_sim
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+current_hw_device [get_hw_devices xc7z020_1]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7z020_1] 0]
+create_hw_cfgmem -hw_device [get_hw_devices xc7z020_1] -mem_dev [lindex [get_cfgmem_parts {is25lp256d-qspi-x4-single}] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+close_hw_manager
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+current_hw_device [get_hw_devices xc7z020_1]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7z020_1] 0]
+create_hw_cfgmem -hw_device [get_hw_devices xc7z020_1] -mem_dev [lindex [get_cfgmem_parts {is25lp256d-qspi-x4-single}] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+close_hw_manager
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+current_hw_device [get_hw_devices xc7z020_1]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7z020_1] 0]
+create_hw_cfgmem -hw_device [get_hw_devices xc7z020_1] -mem_dev [lindex [get_cfgmem_parts {is25lp256d-qspi-x4-single}] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+current_hw_device [get_hw_devices xc7z020_1]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7z020_1] 0]
+create_hw_cfgmem -hw_device [get_hw_devices xc7z020_1] -mem_dev [lindex [get_cfgmem_parts {is25lp256d-qspi-x4-single}] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+open_bd_design {E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/bd/design_1/design_1.bd}
+reset_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+export_ip_user_files -of_objects  [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -sync -no_script -force -quiet
+delete_ip_run [get_files -of_objects [get_fileset blk_mem_ram] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+generate_target all [get_files  E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+catch { config_ip_cache -export [get_ips -all blk_mem_ram] }
+export_ip_user_files -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci]
+launch_runs blk_mem_ram_synth_1 -jobs 6
+wait_on_run blk_mem_ram_synth_1
+export_simulation -of_objects [get_files E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci] -directory E:/Project/Capstone/Architecture/Architecture.ip_user_files/sim_scripts -ip_user_files_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files -ipstatic_source_dir E:/Project/Capstone/Architecture/Architecture.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/modelsim} {questa=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/questa} {riviera=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/riviera} {activehdl=E:/Project/Capstone/Architecture/Architecture.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+reset_run design_1_Motherboard_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {E:/Project/Capstone/Architecture/Architecture.runs/impl_1/design_1_wrapper.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+close_hw_manager
