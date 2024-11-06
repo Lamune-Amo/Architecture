@@ -100,6 +100,7 @@ module Testbench();
         clock = 1'b1;
         */
         
+        /*
         #20;
         clock = 1'b0;
         #20;
@@ -154,6 +155,7 @@ module Testbench();
         clock = 1'b0;
         #20;
         clock = 1'b1;
+        */
 
         #300030;
         $finish;

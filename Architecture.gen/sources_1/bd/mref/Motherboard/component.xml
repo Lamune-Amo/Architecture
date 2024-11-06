@@ -55,7 +55,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a21675f7</spirit:value>
+            <spirit:value>fdf29b27</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -68,7 +68,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a21675f7</spirit:value>
+            <spirit:value>fdf29b27</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -233,6 +233,16 @@
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.KEYBOARD_SIZE">4</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>TIMER1_MAPPED_ADDRESS</spirit:name>
+        <spirit:displayName>Timer1 Mapped Address</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.TIMER1_MAPPED_ADDRESS">8904</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>TIMER1_SIZE</spirit:name>
+        <spirit:displayName>Timer1 Size</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.TIMER1_SIZE">4</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>RAM_MAPPED_ADDRESS</spirit:name>
         <spirit:displayName>Ram Mapped Address</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.RAM_MAPPED_ADDRESS">9216</spirit:value>
@@ -250,7 +260,7 @@
       <spirit:file>
         <spirit:name>xgui/Motherboard_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_90000e6f</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_19cdb191</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -298,6 +308,16 @@
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.KEYBOARD_SIZE">4</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
+      <spirit:name>TIMER1_MAPPED_ADDRESS</spirit:name>
+      <spirit:displayName>Timer1 Mapped Address</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.TIMER1_MAPPED_ADDRESS">8904</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>TIMER1_SIZE</spirit:name>
+      <spirit:displayName>Timer1 Size</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.TIMER1_SIZE">4</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
       <spirit:name>RAM_MAPPED_ADDRESS</spirit:name>
       <spirit:displayName>Ram Mapped Address</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.RAM_MAPPED_ADDRESS">9216</spirit:value>
@@ -328,7 +348,7 @@
         <xilinx:designToolContext>IPI</xilinx:designToolContext>
       </xilinx:designToolContexts>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-10-25T16:27:57Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2024-11-06T12:25:51Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>

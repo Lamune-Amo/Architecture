@@ -23,8 +23,8 @@
       <Properties Property="SLR.COUNT" value="1"/>
     </Object>
     <Object name="xc7z020_1" gui_info="">
-      <Properties Property="FULL_PROBES.FILE" value=""/>
-      <Properties Property="PROBES.FILE" value=""/>
+      <Properties Property="FULL_PROBES.FILE" value="$_project_name_.runs/impl_1/design_1_wrapper.ltx"/>
+      <Properties Property="PROBES.FILE" value="$_project_name_.runs/impl_1/design_1_wrapper.ltx"/>
       <Properties Property="PROGRAM.HW_BITSTREAM" value="$_project_name_.runs/impl_1/design_1_wrapper.bit"/>
       <Properties Property="PROGRAM.HW_CFGMEM_PART" value="is25lp256d-qspi-x4-single"/>
       <Properties Property="SLR.COUNT" value="1"/>
@@ -2043,6 +2043,110 @@
         <net name="design_1_i/Motherboard_0/inst/rom_data_out[2]"/>
         <net name="design_1_i/Motherboard_0/inst/rom_data_out[1]"/>
         <net name="design_1_i/Motherboard_0/inst/rom_data_out[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="UNSIGNED"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[31]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[30]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[29]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[28]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[27]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[26]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[25]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[24]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[23]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[22]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[21]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[20]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[19]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[18]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[17]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[16]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[15]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[14]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[13]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[12]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[11]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[10]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[9]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[8]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[7]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[6]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[5]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[4]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[3]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[2]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[1]"/>
+        <net name="design_1_i/Motherboard_0/inst/timer1/seconds_reg[0]"/>
       </nets>
     </probe>
     <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">

@@ -1,0 +1,490 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu Nov  7 01:12:49 2024
+# Process ID: 10792
+# Current directory: E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1
+# Command line: vivado.exe -log design_1_Motherboard_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_Motherboard_0_0.tcl
+# Log file: E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/design_1_Motherboard_0_0.vds
+# Journal file: E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1\vivado.jou
+# Running On: DESKTOP-TDU015C, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 12, Host memory: 34306 MB
+#-----------------------------------------------------------
+source design_1_Motherboard_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 472.465 ; gain = 177.086
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'E:/Xilinx/Vivado/2023.2/data/ip'.
+Command: synth_design -top design_1_Motherboard_0_0 -part xc7z020clg484-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 17592
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1346.879 ; gain = 439.430
+---------------------------------------------------------------------------------
+INFO: [Synth 8-11241] undeclared symbol 'FlagInCarry', assumed default net type 'wire' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/AMO.v:157]
+INFO: [Synth 8-11241] undeclared symbol 'FlagInNegative', assumed default net type 'wire' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/AMO.v:158]
+INFO: [Synth 8-11241] undeclared symbol 'FlagInZero', assumed default net type 'wire' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/AMO.v:159]
+INFO: [Synth 8-11241] undeclared symbol 'FlagInOverflow', assumed default net type 'wire' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/AMO.v:160]
+INFO: [Synth 8-11241] undeclared symbol 'INTBlockWriteEn', assumed default net type 'wire' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/ControlUnit.v:180]
+INFO: [Synth 8-11241] undeclared symbol 'CLK_Hz', assumed default net type 'wire' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Graphics.v:72]
+INFO: [Synth 8-11241] undeclared symbol 'DCLK_HALF', assumed default net type 'wire' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Motherboard.v:68]
+INFO: [Synth 8-6157] synthesizing module 'design_1_Motherboard_0_0' [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/ip/design_1_Motherboard_0_0/synth/design_1_Motherboard_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'Motherboard' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Motherboard.v:23]
+	Parameter ROM_MAPPED_ADDRESS bound to: 0 - type: integer 
+	Parameter ROM_SIZE bound to: 4096 - type: integer 
+	Parameter VIDEO_RAM_MAPPED_ADDRESS bound to: 4096 - type: integer 
+	Parameter VIDEO_RAM_SIZE bound to: 4800 - type: integer 
+	Parameter INTERRUPT_MAPPED_ADDRESS bound to: 8896 - type: integer 
+	Parameter INTERRUPT_SIZE bound to: 4 - type: integer 
+	Parameter KEYBOARD_MAPPED_ADDRESS bound to: 8900 - type: integer 
+	Parameter KEYBOARD_SIZE bound to: 4 - type: integer 
+	Parameter TIMER1_MAPPED_ADDRESS bound to: 8904 - type: integer 
+	Parameter TIMER1_SIZE bound to: 4 - type: integer 
+	Parameter RAM_MAPPED_ADDRESS bound to: 9216 - type: integer 
+	Parameter RAM_SIZE bound to: 81920 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'dist_mem_gen_0' [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-10792-DESKTOP-TDU015C/realtime/dist_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'dist_mem_gen_0' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-10792-DESKTOP-TDU015C/realtime/dist_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'Graphics' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Graphics.v:23]
+INFO: [Synth 8-6157] synthesizing module 'dist_mem_video' [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-10792-DESKTOP-TDU015C/realtime/dist_mem_video_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'dist_mem_video' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-10792-DESKTOP-TDU015C/realtime/dist_mem_video_stub.v:6]
+WARNING: [Synth 8-689] width (32) of port connection 'addrb' does not match port width (11) of module 'dist_mem_video' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Graphics.v:59]
+INFO: [Synth 8-6157] synthesizing module 'VGAController' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/VGAController.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'VGAController' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/VGAController.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ASCIIRom' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/ASCIIRom.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ASCIIRom' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/ASCIIRom.v:23]
+INFO: [Synth 8-6157] synthesizing module 'Palette' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Palette.v:23]
+INFO: [Synth 8-226] default block is never used [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Palette.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'Palette' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Palette.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Graphics' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Graphics.v:23]
+INFO: [Synth 8-6157] synthesizing module 'InterruptController' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/InterruptController.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'InterruptController' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/InterruptController.v:23]
+INFO: [Synth 8-6157] synthesizing module 'Timer' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Timer.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Timer' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Timer.v:23]
+INFO: [Synth 8-6157] synthesizing module 'PS2Controller' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/PS2Controller.v:23]
+INFO: [Synth 8-6157] synthesizing module 'PS2RX' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/PS2RX.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'PS2RX' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/PS2RX.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'PS2Controller' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/PS2Controller.v:23]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_ram' [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-10792-DESKTOP-TDU015C/realtime/blk_mem_ram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_ram' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-10792-DESKTOP-TDU015C/realtime/blk_mem_ram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'AMO' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/AMO.v:23]
+INFO: [Synth 8-6157] synthesizing module 'RegisterFile' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/RegisterFile.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'RegisterFile' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/RegisterFile.v:23]
+INFO: [Synth 8-6157] synthesizing module 'OpcodeToALUOpcode' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/OpcodeToALUOpcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'OpcodeToALUOpcode' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/OpcodeToALUOpcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ALU' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/ALU.v:23]
+INFO: [Synth 8-6157] synthesizing module 'Adder_32bit' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Adder.v:23]
+INFO: [Synth 8-6157] synthesizing module 'CLB' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/CLB.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'CLB' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/CLB.v:23]
+INFO: [Synth 8-6157] synthesizing module 'FullAdder' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/FullAdder.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'FullAdder' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/FullAdder.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Adder_32bit' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Adder.v:23]
+INFO: [Synth 8-6157] synthesizing module 'Extender_32bit' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Extender.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Extender_32bit' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Extender.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ALU' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/ALU.v:23]
+INFO: [Synth 8-6157] synthesizing module 'Condition' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Condition.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Condition' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Condition.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ControlUnit' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/ControlUnit.v:23]
+INFO: [Synth 8-6157] synthesizing module 'OpcodeToState' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/OpcodeToState.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'OpcodeToState' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/OpcodeToState.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ControlUnit' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/ControlUnit.v:23]
+INFO: [Synth 8-6157] synthesizing module 'MemoryHandler' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/MemoryHandler.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'MemoryHandler' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/MemoryHandler.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'AMO' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/AMO.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Motherboard' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Motherboard.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_Motherboard_0_0' (0#1) [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/ip/design_1_Motherboard_0_0/synth/design_1_Motherboard_0_0.v:53]
+WARNING: [Synth 8-7137] Register INT_reg in module Timer has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Timer.v:41]
+WARNING: [Synth 8-7129] Port address[31] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[30] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[29] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[28] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[27] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[26] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[25] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[24] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[23] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[22] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[21] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[20] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[19] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[18] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[17] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[16] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[15] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[14] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[13] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[12] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[11] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[10] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[9] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[8] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[7] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[6] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[5] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[4] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[3] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[2] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[31] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[30] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[29] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[28] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[27] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[26] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[25] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[24] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[23] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[22] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[21] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[20] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[19] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[18] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[17] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[16] in module Extender_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ascii[11] in module ASCIIRom is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[31] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[30] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[29] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[28] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[27] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[26] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[25] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[24] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[23] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[22] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[21] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[20] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[19] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[18] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[17] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[16] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[15] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[14] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[13] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[1] in module Graphics is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[0] in module Graphics is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1476.684 ; gain = 569.234
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1476.684 ; gain = 569.234
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1476.684 ; gain = 569.234
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.051 . Memory (MB): peak = 1476.684 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/ip/blk_mem_ram/blk_mem_ram/blk_mem_ram_in_context.xdc] for cell 'inst/ram_0'
+Finished Parsing XDC File [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/ip/blk_mem_ram/blk_mem_ram/blk_mem_ram_in_context.xdc] for cell 'inst/ram_0'
+Parsing XDC File [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/ip/dist_mem_video_1/dist_mem_video/dist_mem_video_in_context.xdc] for cell 'inst/graphics/video_ram'
+Finished Parsing XDC File [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/ip/dist_mem_video_1/dist_mem_video/dist_mem_video_in_context.xdc] for cell 'inst/graphics/video_ram'
+Parsing XDC File [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0/dist_mem_gen_0_in_context.xdc] for cell 'inst/rom_0'
+Finished Parsing XDC File [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/ip/dist_mem_gen_0/dist_mem_gen_0/dist_mem_gen_0_in_context.xdc] for cell 'inst/rom_0'
+Parsing XDC File [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/ip/design_1_Motherboard_0_0/design_1_Motherboard_0_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/ip/design_1_Motherboard_0_0/design_1_Motherboard_0_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1578.078 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1578.078 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/dont_touch.xdc, line 18).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/ram_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/graphics/video_ram. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/rom_0. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'PS2RX'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE1 |                               00 |                               00
+                  iSTATE |                               01 |                               01
+                 iSTATE0 |                               10 |                               10
+                 iSTATE2 |                               11 |                               11
+*
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'PS2RX'
+WARNING: [Synth 8-327] inferring latch for variable 'Dout_OUT_reg' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/MemoryHandler.v:59]
+WARNING: [Synth 8-327] inferring latch for variable 'Din_OUT_reg' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/MemoryHandler.v:108]
+WARNING: [Synth 8-327] inferring latch for variable 'WR_OUT_reg' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/MemoryHandler.v:60]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 4     
+	   2 Input   30 Bit       Adders := 1     
+	   2 Input   28 Bit       Adders := 1     
+	   2 Input   17 Bit       Adders := 1     
+	   2 Input   10 Bit       Adders := 3     
+	   2 Input    4 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 1     
+	   2 Input    1 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
+	   3 Input      1 Bit         XORs := 32    
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	               32 Bit    Registers := 43    
+	               28 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	               11 Bit    Registers := 2     
+	               10 Bit    Registers := 5     
+	                8 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 10    
++---ROMs : 
+	                    ROMs := 1     
++---Muxes : 
+	   2 Input   46 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 30    
+	   4 Input   32 Bit        Muxes := 8     
+	   5 Input   32 Bit        Muxes := 2     
+	   3 Input   32 Bit        Muxes := 1     
+	   2 Input   28 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 3     
+	   2 Input   17 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 2     
+	   3 Input   11 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 3     
+	   4 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 17    
+	   8 Input    4 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 1     
+	   6 Input    4 Bit        Muxes := 1     
+	   4 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 53    
+	   3 Input    1 Bit        Muxes := 3     
+	   4 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port address[31] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[30] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[29] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[28] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[27] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[26] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[25] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[24] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[23] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[22] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[21] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[20] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[19] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[18] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[17] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[16] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[15] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[14] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[13] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[12] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[11] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[10] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[9] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[8] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[7] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[6] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[5] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[4] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[3] in module ControlUnit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[2] in module ControlUnit is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++------------------+-----------------------------+---------------+----------------+
+|Module Name       | RTL Object                  | Depth x Width | Implemented As | 
++------------------+-----------------------------+---------------+----------------+
+|OpcodeToALUOpcode | ALUOpcode                   | 64x4          | LUT            | 
+|OpcodeToState     | state                       | 64x6          | LUT            | 
+|ControlUnit       | opcode_to_state/state       | 64x6          | LUT            | 
+|AMO               | opcode_to_aluop/ALUOpcode   | 64x4          | LUT            | 
+|Motherboard       | graphics/ascii_rom/addr_reg | 2048x8        | Block RAM      | 
++------------------+-----------------------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:00:40 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+---------------+----------+
+|      |BlackBox name  |Instances |
++------+---------------+----------+
+|1     |dist_mem_gen_0 |         1|
+|2     |blk_mem_ram    |         1|
+|3     |dist_mem_video |         1|
++------+---------------+----------+
+
+Report Cell Usage: 
++------+---------------+------+
+|      |Cell           |Count |
++------+---------------+------+
+|1     |blk_mem_ram    |     1|
+|2     |dist_mem_gen   |     1|
+|3     |dist_mem_video |     1|
+|4     |CARRY4         |    53|
+|5     |LUT1           |    12|
+|6     |LUT2           |   103|
+|7     |LUT3           |   173|
+|8     |LUT4           |    62|
+|9     |LUT5           |   366|
+|10    |LUT6           |  1581|
+|11    |MUXF7          |   390|
+|12    |MUXF8          |    47|
+|13    |FDCE           |  1440|
+|14    |FDPE           |    34|
+|15    |FDRE           |    12|
+|16    |LDC            |    67|
+|17    |LDP            |     1|
++------+---------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1578.078 ; gain = 670.629
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 34 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:41 ; elapsed = 00:00:50 . Memory (MB): peak = 1578.078 ; gain = 569.234
+Synthesis Optimization Complete : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1578.078 ; gain = 670.629
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.050 . Memory (MB): peak = 1586.430 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 558 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1590.082 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 68 instances were transformed.
+  LDC => LDCE: 67 instances
+  LDP => LDPE: 1 instance 
+
+Synth Design complete | Checksum: 20a0300f
+INFO: [Common 17-83] Releasing license: Synthesis
+78 Infos, 104 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 1590.082 ; gain = 1101.715
+INFO: [Coretcl 2-1174] Renamed 15 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1590.082 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/design_1_Motherboard_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file design_1_Motherboard_0_0_utilization_synth.rpt -pb design_1_Motherboard_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Nov  7 01:13:56 2024...

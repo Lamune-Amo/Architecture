@@ -11,6 +11,8 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "RAM_SIZE" -parent ${Page_0}
   ipgui::add_param $IPINST -name "ROM_MAPPED_ADDRESS" -parent ${Page_0}
   ipgui::add_param $IPINST -name "ROM_SIZE" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "TIMER1_MAPPED_ADDRESS" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "TIMER1_SIZE" -parent ${Page_0}
   ipgui::add_param $IPINST -name "VIDEO_RAM_MAPPED_ADDRESS" -parent ${Page_0}
   ipgui::add_param $IPINST -name "VIDEO_RAM_SIZE" -parent ${Page_0}
 
@@ -89,6 +91,24 @@ proc validate_PARAM_VALUE.ROM_SIZE { PARAM_VALUE.ROM_SIZE } {
 	return true
 }
 
+proc update_PARAM_VALUE.TIMER1_MAPPED_ADDRESS { PARAM_VALUE.TIMER1_MAPPED_ADDRESS } {
+	# Procedure called to update TIMER1_MAPPED_ADDRESS when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.TIMER1_MAPPED_ADDRESS { PARAM_VALUE.TIMER1_MAPPED_ADDRESS } {
+	# Procedure called to validate TIMER1_MAPPED_ADDRESS
+	return true
+}
+
+proc update_PARAM_VALUE.TIMER1_SIZE { PARAM_VALUE.TIMER1_SIZE } {
+	# Procedure called to update TIMER1_SIZE when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.TIMER1_SIZE { PARAM_VALUE.TIMER1_SIZE } {
+	# Procedure called to validate TIMER1_SIZE
+	return true
+}
+
 proc update_PARAM_VALUE.VIDEO_RAM_MAPPED_ADDRESS { PARAM_VALUE.VIDEO_RAM_MAPPED_ADDRESS } {
 	# Procedure called to update VIDEO_RAM_MAPPED_ADDRESS when any of the dependent parameters in the arguments change
 }
@@ -146,6 +166,16 @@ proc update_MODELPARAM_VALUE.KEYBOARD_MAPPED_ADDRESS { MODELPARAM_VALUE.KEYBOARD
 proc update_MODELPARAM_VALUE.KEYBOARD_SIZE { MODELPARAM_VALUE.KEYBOARD_SIZE PARAM_VALUE.KEYBOARD_SIZE } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.KEYBOARD_SIZE}] ${MODELPARAM_VALUE.KEYBOARD_SIZE}
+}
+
+proc update_MODELPARAM_VALUE.TIMER1_MAPPED_ADDRESS { MODELPARAM_VALUE.TIMER1_MAPPED_ADDRESS PARAM_VALUE.TIMER1_MAPPED_ADDRESS } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.TIMER1_MAPPED_ADDRESS}] ${MODELPARAM_VALUE.TIMER1_MAPPED_ADDRESS}
+}
+
+proc update_MODELPARAM_VALUE.TIMER1_SIZE { MODELPARAM_VALUE.TIMER1_SIZE PARAM_VALUE.TIMER1_SIZE } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.TIMER1_SIZE}] ${MODELPARAM_VALUE.TIMER1_SIZE}
 }
 
 proc update_MODELPARAM_VALUE.RAM_MAPPED_ADDRESS { MODELPARAM_VALUE.RAM_MAPPED_ADDRESS PARAM_VALUE.RAM_MAPPED_ADDRESS } {

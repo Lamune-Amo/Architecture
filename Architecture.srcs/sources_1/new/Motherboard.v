@@ -46,6 +46,9 @@ module Motherboard(
     parameter KEYBOARD_MAPPED_ADDRESS = 8900; /* VIDEO RAM: 8900 ~ 8904 - 1 */
     parameter KEYBOARD_SIZE = 4;
     
+    parameter TIMER1_MAPPED_ADDRESS = 8904; /* VIDEO RAM: 8904 ~ 8908 - 1 */
+    parameter TIMER1_SIZE = 4;
+    
     parameter RAM_MAPPED_ADDRESS = 9216; /* RAM: 9216 ~ 91136 - 1 */
     parameter RAM_SIZE = 4 * 20480; /* 8KB */
 
@@ -110,11 +113,21 @@ module Motherboard(
         .INT(INT),
         .Dout(interrupt_data_out),
         /* interrupt line */
-        .INT0(), /* timer */
+        .INT0(INT0), /* timer */
         .INT1(INT1)  /* ps/2 keyboard */
     );
     
     assign interrupt_read_enable = ((INTERRUPT_MAPPED_ADDRESS <= Aout && Aout <= INTERRUPT_MAPPED_ADDRESS + INTERRUPT_SIZE - 1) && (WR == 4'h0)) ? 1'h1 : 1'h0;
+    
+    /* timer */
+    wire [31:0] timer1_data_out;
+    
+    Timer timer1 (
+        .CLK(DCLK_HALF),
+        .RST(RST),
+        .INT(INT0),
+        .Dout(timer1_data_out)
+    );
     
     /* PS/2 Keyboard */
     wire [31:0] ps2_keyboard_data_in, ps2_keyboard_data_out;
@@ -173,6 +186,7 @@ module Motherboard(
                  (VIDEO_RAM_MAPPED_ADDRESS <= Aout && Aout <= VIDEO_RAM_MAPPED_ADDRESS + VIDEO_RAM_SIZE - 1) ? graphics_data_out :
                  (INTERRUPT_MAPPED_ADDRESS <= Aout && Aout <= INTERRUPT_MAPPED_ADDRESS + INTERRUPT_SIZE - 1) ? interrupt_data_out :
                  (KEYBOARD_MAPPED_ADDRESS <= Aout && Aout <= KEYBOARD_MAPPED_ADDRESS + KEYBOARD_SIZE - 1) ? ps2_keyboard_data_out :
+                 (TIMER1_MAPPED_ADDRESS <= Aout && Aout <= TIMER1_MAPPED_ADDRESS + TIMER1_SIZE - 1) ? timer1_data_out :
                  (RAM_MAPPED_ADDRESS <= Aout && Aout <= RAM_MAPPED_ADDRESS + RAM_SIZE - 1) ? ram_data_out :
                  32'h0;
 endmodule

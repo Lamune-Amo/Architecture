@@ -22,6 +22,7 @@ verilog xil_defaultlib  --include "../../../../Architecture.gen/sources_1/bd/des
 "../../../../Architecture.srcs/sources_1/new/PS2RX.v" \
 "../../../../Architecture.srcs/sources_1/new/Palette.v" \
 "../../../../Architecture.srcs/sources_1/new/RegisterFile.v" \
+"../../../../Architecture.srcs/sources_1/new/Timer.v" \
 "../../../../Architecture.srcs/sources_1/new/VGAController.v" \
 "../../../../Architecture.srcs/sim_1/new/Testbench.v" \
 

@@ -137,7 +137,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:39d933e4</spirit:value>
+            <spirit:value>9:96a5438a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -149,7 +149,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3817882c</spirit:value>
+            <spirit:value>9:bfc37ffc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -163,11 +163,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Oct 31 05:17:55 UTC 2024</spirit:value>
+            <spirit:value>Wed Nov 06 16:13:56 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3817882c</spirit:value>
+            <spirit:value>9:bfc37ffc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -181,11 +181,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Oct 25 16:28:32 UTC 2024</spirit:value>
+            <spirit:value>Wed Nov 06 12:26:20 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3817882c</spirit:value>
+            <spirit:value>9:bfc37ffc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -201,11 +201,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Oct 25 16:28:32 UTC 2024</spirit:value>
+            <spirit:value>Wed Nov 06 12:26:20 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:39d933e4</spirit:value>
+            <spirit:value>9:96a5438a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -221,11 +221,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Oct 25 16:28:32 UTC 2024</spirit:value>
+            <spirit:value>Wed Nov 06 12:26:20 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3817882c</spirit:value>
+            <spirit:value>9:bfc37ffc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -382,6 +382,16 @@
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.KEYBOARD_SIZE">4</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>TIMER1_MAPPED_ADDRESS</spirit:name>
+        <spirit:displayName>Timer1 Mapped Address</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.TIMER1_MAPPED_ADDRESS">8904</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>TIMER1_SIZE</spirit:name>
+        <spirit:displayName>Timer1 Size</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.TIMER1_SIZE">4</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>RAM_MAPPED_ADDRESS</spirit:name>
         <spirit:displayName>Ram Mapped Address</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.RAM_MAPPED_ADDRESS">9216</spirit:value>
@@ -498,6 +508,16 @@
       <spirit:name>KEYBOARD_SIZE</spirit:name>
       <spirit:displayName>Keyboard Size</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.KEYBOARD_SIZE">4</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>TIMER1_MAPPED_ADDRESS</spirit:name>
+      <spirit:displayName>Timer1 Mapped Address</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.TIMER1_MAPPED_ADDRESS">8904</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>TIMER1_SIZE</spirit:name>
+      <spirit:displayName>Timer1 Size</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.TIMER1_SIZE">4</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RAM_MAPPED_ADDRESS</spirit:name>
