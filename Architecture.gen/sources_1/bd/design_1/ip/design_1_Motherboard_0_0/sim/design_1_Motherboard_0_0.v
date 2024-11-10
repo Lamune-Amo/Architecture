@@ -90,7 +90,7 @@ input wire PS2DATA0;
     .TIMER1_MAPPED_ADDRESS(8904),
     .TIMER1_SIZE(4),
     .RAM_MAPPED_ADDRESS(9216),
-    .RAM_SIZE(81920)
+    .RAM_SIZE(163840)
   ) inst (
     .CLK(CLK),
     .DCLK(DCLK),

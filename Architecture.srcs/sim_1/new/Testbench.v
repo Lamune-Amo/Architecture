@@ -156,8 +156,7 @@ module Testbench();
         #20;
         clock = 1'b1;
         */
-
-        #300030;
+        
         $finish;
     end
     

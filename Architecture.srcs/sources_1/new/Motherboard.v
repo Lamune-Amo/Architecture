@@ -49,8 +49,8 @@ module Motherboard(
     parameter TIMER1_MAPPED_ADDRESS = 8904; /* VIDEO RAM: 8904 ~ 8908 - 1 */
     parameter TIMER1_SIZE = 4;
     
-    parameter RAM_MAPPED_ADDRESS = 9216; /* RAM: 9216 ~ 91136 - 1 */
-    parameter RAM_SIZE = 4 * 20480; /* 8KB */
+    parameter RAM_MAPPED_ADDRESS = 9216; /* RAM: 9216 ~ 173056 - 1 */
+    parameter RAM_SIZE = 4 * 40960; /* 160KB */
 
     /* wires */
     wire [31:0] Din, Aout, Dout;
@@ -161,7 +161,7 @@ module Motherboard(
     
     blk_mem_ram ram_0(
         .clka(DCLK_D),
-        .addra(ram_address[16:2]),
+        .addra(ram_address[17:2]),
         .dina(ram_data_in),
         .douta(ram_data_out),
         .wea(ram_write_enable)

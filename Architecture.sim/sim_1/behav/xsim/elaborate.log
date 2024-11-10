@@ -7,4 +7,42 @@ Starting static elaboration
 Pass Through NonSizing Optimizer
 WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 11 for port 'addrb' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Graphics.v:59]
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module dist_mem_gen_v8_0_14.dist_mem_gen_v8_0_14(C_FAMILY="z...
+Compiling module xil_defaultlib.dist_mem_gen_0
+Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_output_stage(...
+Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7(C_FAMILY="zyn...
+Compiling module xil_defaultlib.dist_mem_video
+Compiling module xil_defaultlib.VGAController_default
+Compiling module xil_defaultlib.ASCIIRom
+Compiling module xil_defaultlib.Palette
+Compiling module xil_defaultlib.Graphics
+Compiling module xil_defaultlib.InterruptController
+Compiling module xil_defaultlib.Timer
+Compiling module xil_defaultlib.PS2RX
+Compiling module xil_defaultlib.PS2Controller
+Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_output_stage(...
+Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7(C_FAMILY="zyn...
+Compiling module xil_defaultlib.blk_mem_ram
+Compiling module xil_defaultlib.RegisterFile
+Compiling module xil_defaultlib.OpcodeToALUOpcode
+Compiling module xil_defaultlib.CLB
+Compiling module xil_defaultlib.FullAdder
+Compiling module xil_defaultlib.Adder_32bit
+Compiling module xil_defaultlib.Extender_32bit
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.Condition
+Compiling module xil_defaultlib.OpcodeToState
+Compiling module xil_defaultlib.ControlUnit
+Compiling module xil_defaultlib.MemoryHandler
+Compiling module xil_defaultlib.AMO
+Compiling module xil_defaultlib.Motherboard
+Compiling module xil_defaultlib.Testbench
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Testbench_behav

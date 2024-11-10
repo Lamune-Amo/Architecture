@@ -3,8 +3,8 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Thu Nov  7 01:13:59 2024
-# Process ID: 10680
+# Start of session at: Mon Nov 11 00:48:21 2024
+# Process ID: 25176
 # Current directory: E:/Project/Capstone/Architecture/Architecture.runs/synth_1
 # Command line: vivado.exe -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
 # Log file: E:/Project/Capstone/Architecture/Architecture.runs/synth_1/design_1_wrapper.vds
@@ -12,7 +12,7 @@
 # Running On: DESKTOP-TDU015C, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 12, Host memory: 34306 MB
 #-----------------------------------------------------------
 source design_1_wrapper.tcl -notrace
-create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 473.434 ; gain = 179.617
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 473.098 ; gain = 176.828
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'E:/Xilinx/Vivado/2023.2/data/ip'.
@@ -21,33 +21,33 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg484-1
-INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 23604
+INFO: [Synth 8-7075] Helper process launched with PID 24692
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 1349.367 ; gain = 437.621
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1350.027 ; gain = 438.523
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'design_1_wrapper' [E:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v:13]
 INFO: [Synth 8-6157] synthesizing module 'design_1' [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/synth/design_1.v:13]
-INFO: [Synth 8-6157] synthesizing module 'design_1_Motherboard_0_0' [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/.Xil/Vivado-10680-DESKTOP-TDU015C/realtime/design_1_Motherboard_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_Motherboard_0_0' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/.Xil/Vivado-10680-DESKTOP-TDU015C/realtime/design_1_Motherboard_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_clk_wiz_0_0' [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/.Xil/Vivado-10680-DESKTOP-TDU015C/realtime/design_1_clk_wiz_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_clk_wiz_0_0' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/.Xil/Vivado-10680-DESKTOP-TDU015C/realtime/design_1_clk_wiz_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_Motherboard_0_0' [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/.Xil/Vivado-25176-DESKTOP-TDU015C/realtime/design_1_Motherboard_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_Motherboard_0_0' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/.Xil/Vivado-25176-DESKTOP-TDU015C/realtime/design_1_Motherboard_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_clk_wiz_0_0' [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/.Xil/Vivado-25176-DESKTOP-TDU015C/realtime/design_1_clk_wiz_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_clk_wiz_0_0' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/.Xil/Vivado-25176-DESKTOP-TDU015C/realtime/design_1_clk_wiz_0_0_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'design_1' (0#1) [e:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/synth/design_1.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'design_1_wrapper' (0#1) [E:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v:13]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1460.914 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1461.242 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -89,6 +89,70 @@ WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/timer1/s
 WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/timer1/seconds_reg[8]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:78]
 WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/timer1/seconds_reg[22]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:79]
 WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/timer1/seconds_reg[27]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:80]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[8]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:82]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[14]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:83]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[19]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:84]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[22]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:85]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[23]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:86]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[21]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:87]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[28]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:88]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[29]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:89]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[30]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:90]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[5]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:91]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[9]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:92]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[10]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:93]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[12]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:94]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[17]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:95]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[18]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:96]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[1]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:97]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[7]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:98]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[27]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:99]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[0]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:100]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[2]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:101]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[3]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:102]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[6]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:103]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[11]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:104]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[15]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:105]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[16]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:106]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[24]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:107]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[26]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:108]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[4]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:109]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[13]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:110]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[20]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:111]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[25]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:112]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[31]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:113]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[7]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:114]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[10]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:115]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[16]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:116]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[17]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:117]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[19]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:118]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[24]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:119]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[26]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:120]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[29]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:121]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[18]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:122]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[1]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:123]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[13]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:124]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[14]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:125]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[20]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:126]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[21]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:127]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[22]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:128]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[27]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:129]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[31]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:130]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[3]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:131]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[4]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:132]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[9]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:133]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[23]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:134]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[25]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:135]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[28]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:136]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[2]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:137]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[0]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:138]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[5]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:139]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[6]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:140]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[8]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:141]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[11]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:142]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[12]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:143]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[15]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:144]
+WARNING: [Vivado 12-507] No nets matched 'design_1_i/Motherboard_0/inst/amo_v1/PC[30]'. [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc:145]
 Finished Parsing XDC File [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc]
 WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/design_1_wrapper_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [E:/Project/Capstone/Architecture/Architecture.srcs/constrs_1/new/pin_constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_1_wrapper_propImpl.xdc].
@@ -97,20 +161,20 @@ Parsing XDC File [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/don
 Finished Parsing XDC File [E:/Project/Capstone/Architecture/Architecture.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1460.914 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1461.242 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1460.914 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1461.242 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -122,10 +186,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for design_1_i. (constraint file  aut
 Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/Motherboard_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/clk_wiz_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -148,25 +212,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -184,37 +248,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished IO Insertion : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -238,25 +302,25 @@ Report Cell Usage:
 |4     |OBUF                   |    14|
 +------+-----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1461.242 ; gain = 549.738
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:25 . Memory (MB): peak = 1460.914 ; gain = 549.168
-Synthesis Optimization Complete : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1460.914 ; gain = 549.168
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:26 . Memory (MB): peak = 1461.242 ; gain = 549.738
+Synthesis Optimization Complete : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1461.242 ; gain = 549.738
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1468.164 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1471.223 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1475.785 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1478.887 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 Synth Design complete | Checksum: 7f148f6f
 INFO: [Common 17-83] Releasing license: Synthesis
-24 Infos, 34 Warnings, 0 Critical Warnings and 0 Errors encountered.
+24 Infos, 98 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1475.785 ; gain = 984.477
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1475.785 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1478.887 ; gain = 990.074
+Write ShapeDB Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00 . Memory (MB): peak = 1478.887 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'E:/Project/Capstone/Architecture/Architecture.runs/synth_1/design_1_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Nov  7 01:14:39 2024...
+INFO: [Common 17-206] Exiting Vivado at Mon Nov 11 00:49:03 2024...

@@ -19,7 +19,7 @@
         "TIMER1_MAPPED_ADDRESS": [ { "value": "8904", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "TIMER1_SIZE": [ { "value": "4", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "RAM_MAPPED_ADDRESS": [ { "value": "9216", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "RAM_SIZE": [ { "value": "81920", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "RAM_SIZE": [ { "value": "163840", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "design_1_Motherboard_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "model_parameters": {
@@ -34,7 +34,7 @@
         "TIMER1_MAPPED_ADDRESS": [ { "value": "8904", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "TIMER1_SIZE": [ { "value": "4", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "RAM_MAPPED_ADDRESS": [ { "value": "9216", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "RAM_SIZE": [ { "value": "81920", "resolve_type": "generated", "format": "long", "usage": "all" } ]
+        "RAM_SIZE": [ { "value": "163840", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynq" } ],

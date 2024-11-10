@@ -48,7 +48,7 @@
     <Object name="design_1_i/Motherboard_0/inst/amo_v1/control_unit/next_state[5:0]" gui_info=""/>
     <Object name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[1]_1[31:0]" gui_info=""/>
     <Object name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[31:0]" gui_info="Trigger Setup=0"/>
-    <Object name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[31:0]" gui_info="Trigger Setup=1"/>
+    <Object name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[30]_30[31:0]" gui_info="Trigger Setup=0"/>
     <Object name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[31]_31[31:0]" gui_info=""/>
     <Object name="design_1_i/Motherboard_0/inst/interrupt_contoller/INT" gui_info=""/>
     <Object name="design_1_i/Motherboard_0/inst/ps2_controller/PS2CLOCK0" gui_info=""/>
@@ -283,7 +283,7 @@
         <net name="design_1_i/Motherboard_0/inst/amo_v1/MDR[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
@@ -293,7 +293,7 @@
         <Option Id="DISPLAY_VISIBILITY" value=""/>
         <Option Id="HW_ILA" value="hw_ila_1"/>
         <Option Id="LINK_TO_WAVEFORM" value="1"/>
-        <Option Id="MAP" value="probe0[31:0]"/>
+        <Option Id="MAP" value="probe1[31:0]"/>
         <Option Id="NAME.CUSTOM" value="PC[31:0]"/>
         <Option Id="NAME.SELECT" value="Custom"/>
         <Option Id="SOURCE" value="netlist"/>
@@ -609,10 +609,10 @@
         <net name="design_1_i/Motherboard_0/inst/amo_v1/register_file/registers_reg[29]_29[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
-        <Option Id="COMPARE_VALUE.0" value="eq32&apos;h0000_3451"/>
+        <Option Id="COMPARE_VALUE.0" value="lt32&apos;h0000_D868"/>
         <Option Id="DISPLAY_AS_ENUM" value="1"/>
         <Option Id="DISPLAY_HINT" value=""/>
         <Option Id="DISPLAY_RADIX" value="HEX"/>
@@ -623,7 +623,7 @@
         <Option Id="NAME.CUSTOM" value="registers_reg[30][31:0] sp"/>
         <Option Id="NAME.SELECT" value="Custom"/>
         <Option Id="SOURCE" value="netlist"/>
-        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;h0000_3451"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="lt32&apos;h0000_D868"/>
         <Option Id="WAVEFORM_STYLE" value="Digital"/>
       </probeOptions>
       <nets>
@@ -2097,7 +2097,7 @@
         <net name="design_1_i/Motherboard_0/inst/timer1/Dout_reg[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
