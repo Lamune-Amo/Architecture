@@ -3,8 +3,8 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Mon Nov 11 00:47:07 2024
-# Process ID: 2164
+# Start of session at: Thu Nov 14 00:16:06 2024
+# Process ID: 24240
 # Current directory: E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1
 # Command line: vivado.exe -log design_1_Motherboard_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_Motherboard_0_0.tcl
 # Log file: E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/design_1_Motherboard_0_0.vds
@@ -12,7 +12,7 @@
 # Running On: DESKTOP-TDU015C, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 12, Host memory: 34306 MB
 #-----------------------------------------------------------
 source design_1_Motherboard_0_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 473.461 ; gain = 178.035
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 473.137 ; gain = 175.852
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'E:/Xilinx/Vivado/2023.2/data/ip'.
@@ -21,11 +21,11 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg484-1
-INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 19880
+INFO: [Synth 8-7075] Helper process launched with PID 12920
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1347.789 ; gain = 438.453
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1348.344 ; gain = 439.625
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-11241] undeclared symbol 'FlagInCarry', assumed default net type 'wire' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/AMO.v:157]
 INFO: [Synth 8-11241] undeclared symbol 'FlagInNegative', assumed default net type 'wire' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/AMO.v:158]
@@ -48,11 +48,11 @@ INFO: [Synth 8-6157] synthesizing module 'Motherboard' [E:/Project/Capstone/Arch
 	Parameter TIMER1_SIZE bound to: 4 - type: integer 
 	Parameter RAM_MAPPED_ADDRESS bound to: 9216 - type: integer 
 	Parameter RAM_SIZE bound to: 163840 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'dist_mem_gen_0' [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-2164-DESKTOP-TDU015C/realtime/dist_mem_gen_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'dist_mem_gen_0' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-2164-DESKTOP-TDU015C/realtime/dist_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'dist_mem_gen_0' [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-24240-DESKTOP-TDU015C/realtime/dist_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'dist_mem_gen_0' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-24240-DESKTOP-TDU015C/realtime/dist_mem_gen_0_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'Graphics' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Graphics.v:23]
-INFO: [Synth 8-6157] synthesizing module 'dist_mem_video' [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-2164-DESKTOP-TDU015C/realtime/dist_mem_video_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'dist_mem_video' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-2164-DESKTOP-TDU015C/realtime/dist_mem_video_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'dist_mem_video' [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-24240-DESKTOP-TDU015C/realtime/dist_mem_video_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'dist_mem_video' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-24240-DESKTOP-TDU015C/realtime/dist_mem_video_stub.v:6]
 WARNING: [Synth 8-689] width (32) of port connection 'addrb' does not match port width (11) of module 'dist_mem_video' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/Graphics.v:59]
 INFO: [Synth 8-6157] synthesizing module 'VGAController' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/VGAController.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'VGAController' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/VGAController.v:23]
@@ -70,8 +70,8 @@ INFO: [Synth 8-6157] synthesizing module 'PS2Controller' [E:/Project/Capstone/Ar
 INFO: [Synth 8-6157] synthesizing module 'PS2RX' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/PS2RX.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'PS2RX' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/PS2RX.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'PS2Controller' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/PS2Controller.v:23]
-INFO: [Synth 8-6157] synthesizing module 'blk_mem_ram' [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-2164-DESKTOP-TDU015C/realtime/blk_mem_ram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blk_mem_ram' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-2164-DESKTOP-TDU015C/realtime/blk_mem_ram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_ram' [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-24240-DESKTOP-TDU015C/realtime/blk_mem_ram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_ram' (0#1) [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/.Xil/Vivado-24240-DESKTOP-TDU015C/realtime/blk_mem_ram_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'AMO' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/AMO.v:23]
 INFO: [Synth 8-6157] synthesizing module 'RegisterFile' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/RegisterFile.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'RegisterFile' (0#1) [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/RegisterFile.v:23]
@@ -168,18 +168,18 @@ WARNING: [Synth 8-7129] Port address[13] in module Graphics is either unconnecte
 WARNING: [Synth 8-7129] Port address[1] in module Graphics is either unconnected or has no load
 WARNING: [Synth 8-7129] Port address[0] in module Graphics is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1477.836 ; gain = 568.500
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1477.762 ; gain = 569.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1477.836 ; gain = 568.500
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1477.762 ; gain = 569.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1477.836 ; gain = 568.500
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1477.762 ; gain = 569.043
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.052 . Memory (MB): peak = 1477.836 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.053 . Memory (MB): peak = 1477.762 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -196,21 +196,21 @@ Parsing XDC File [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Mo
 Finished Parsing XDC File [E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1513.605 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1581.852 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1519.840 ; gain = 6.234
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 1581.852 ; gain = 0.000
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1519.840 ; gain = 610.504
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1519.840 ; gain = 610.504
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -220,7 +220,7 @@ Applied set_property KEEP_HIERARCHY = SOFT for inst/ram_0. (constraint file  aut
 Applied set_property KEEP_HIERARCHY = SOFT for inst/graphics/video_ram. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for inst/rom_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1519.840 ; gain = 610.504
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'PS2RX'
 ---------------------------------------------------------------------------------------------------
@@ -237,7 +237,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'Dout_OUT_reg' [E:/Project/C
 WARNING: [Synth 8-327] inferring latch for variable 'Din_OUT_reg' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/MemoryHandler.v:108]
 WARNING: [Synth 8-327] inferring latch for variable 'WR_OUT_reg' [E:/Project/Capstone/Architecture/Architecture.srcs/sources_1/new/MemoryHandler.v:60]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1519.840 ; gain = 610.504
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -339,7 +339,7 @@ WARNING: [Synth 8-7129] Port address[4] in module ControlUnit is either unconnec
 WARNING: [Synth 8-7129] Port address[3] in module ControlUnit is either unconnected or has no load
 WARNING: [Synth 8-7129] Port address[2] in module ControlUnit is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 1519.840 ; gain = 610.504
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -363,19 +363,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1519.840 ; gain = 610.504
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:00:49 . Memory (MB): peak = 1527.637 ; gain = 618.301
+Finished Timing Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:00:54 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1555.902 ; gain = 646.566
+Finished Technology Mapping : Time (s): cpu = 00:00:55 ; elapsed = 00:00:56 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -393,37 +393,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:54 ; elapsed = 00:00:55 . Memory (MB): peak = 1570.453 ; gain = 661.117
+Finished IO Insertion : Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:54 ; elapsed = 00:00:55 . Memory (MB): peak = 1570.453 ; gain = 661.117
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:54 ; elapsed = 00:00:56 . Memory (MB): peak = 1570.453 ; gain = 661.117
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:54 ; elapsed = 00:00:56 . Memory (MB): peak = 1570.453 ; gain = 661.117
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:55 ; elapsed = 00:00:56 . Memory (MB): peak = 1570.453 ; gain = 661.117
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:55 ; elapsed = 00:00:56 . Memory (MB): peak = 1570.453 ; gain = 661.117
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -461,18 +461,18 @@ Report Cell Usage:
 |17    |LDP            |     1|
 +------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:55 ; elapsed = 00:00:56 . Memory (MB): peak = 1570.453 ; gain = 661.117
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1581.852 ; gain = 673.133
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 34 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:45 ; elapsed = 00:00:53 . Memory (MB): peak = 1570.453 ; gain = 619.113
-Synthesis Optimization Complete : Time (s): cpu = 00:00:55 ; elapsed = 00:00:56 . Memory (MB): peak = 1570.453 ; gain = 661.117
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:49 ; elapsed = 00:00:58 . Memory (MB): peak = 1581.852 ; gain = 569.043
+Synthesis Optimization Complete : Time (s): cpu = 00:01:00 ; elapsed = 00:01:01 . Memory (MB): peak = 1581.852 ; gain = 673.133
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.051 . Memory (MB): peak = 1582.547 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.052 . Memory (MB): peak = 1584.871 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 559 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1586.273 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1588.516 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 68 instances were transformed.
   LDC => LDCE: 67 instances
@@ -482,9 +482,9 @@ Synth Design complete | Checksum: 1e54cc38
 INFO: [Common 17-83] Releasing license: Synthesis
 78 Infos, 104 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:01 ; elapsed = 00:01:02 . Memory (MB): peak = 1586.273 ; gain = 1097.246
+synth_design: Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 1588.516 ; gain = 1100.207
 INFO: [Coretcl 2-1174] Renamed 15 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1586.273 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1588.516 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/design_1_Motherboard_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file design_1_Motherboard_0_0_utilization_synth.rpt -pb design_1_Motherboard_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Nov 11 00:48:18 2024...
+INFO: [Common 17-206] Exiting Vivado at Thu Nov 14 00:17:22 2024...

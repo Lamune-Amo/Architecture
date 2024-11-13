@@ -3,8 +3,8 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Mon Nov 11 00:47:07 2024
-# Process ID: 2164
+# Start of session at: Thu Nov 14 00:16:06 2024
+# Process ID: 24240
 # Current directory: E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1
 # Command line: vivado.exe -log design_1_Motherboard_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_Motherboard_0_0.tcl
 # Log file: E:/Project/Capstone/Architecture/Architecture.runs/design_1_Motherboard_0_0_synth_1/design_1_Motherboard_0_0.vds

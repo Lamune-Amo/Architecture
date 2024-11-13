@@ -71,11 +71,8 @@ proc create_report { reportName command } {
 }
 OPTRACE "design_1_Motherboard_0_0_synth_1" START { ROLLUP_AUTO }
 set_param tcl.collectionResultDisplayLimit 0
-set_param general.maxThreads 4
 set_param chipscope.maxJobs 3
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {HDL-1065} -limit 10000
 set_param project.vivado.isBlockSynthRun true
 OPTRACE "Creating in-memory project" START { }
 set_param ips.modRefOverrideMrefDirPath e:/Project/Capstone/Architecture/Architecture.gen/sources_1/bd/mref
