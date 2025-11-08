@@ -120,10 +120,6 @@ Memory access is controlled by the Control Unit through the `MemoryHandler` modu
 
 ## Motherboard
 
-Motherboard는 실제로 AMO가 동작하는데 필요한 요소들과 구성을 가지고 있습니다. 이 구성에서 AMO는 하나의 Module로 존재하며, Motherboard는 실제로 PL에 얹어지는 TOP Module이 됩니다.
-현재는 PS2 Keyboard와 VGA를 지원하고 있으며, Timer를 통해 시분할 시스템을 위한 Scheduling을 구현할 수 있습니다.
-아래 구성에서 ROM, RAM, ClockingWizard는 IP를 사용하였으며, 나머지는 직접 구현하여 제공합니다.
-
 The `Motherboard` contains the components and configuration required to actually run AMO.  
 In this setup, AMO exists as a module, and the Motherboard becomes the `top` module placed on the PL.  
 Currently PS/2 keyboard and VGA are supported, and a timer can be used to implement scheduling for a time-sharing system.  
@@ -166,7 +162,7 @@ Motherboard
 | RAM       | 0x0000_2400 .. 0x0002_A3FF | 163,840 (0x28000) | Data               |
 
 AMO uses memory-mapped I/O, so peripherals are accessed according to the mapping above.  
-access completes in **one clock**, regardless of address alignment.
+access completes in **1-clock**, regardless of address alignment.
 
 ## VGA Controller
 
